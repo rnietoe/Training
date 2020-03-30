@@ -1,0 +1,20 @@
+site_name: rnietoe training
+site_description: Training Documentation
+site_author: Rafael Nieto Esteve
+copyright: Rafael Nieto Esteve
+repo_url: https://github.com/rnietoe/Training
+repo_name: 'Training@rnietoe'
+theme:
+  name: 'material'
+  palette:
+    primary: 'light blue'
+    accent: 'light blue'    
+extra_css: [extra.css]
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - toc:
+      permalink: true  
+  - pymdownx.tasklist:
+      custom_checkbox: true  
