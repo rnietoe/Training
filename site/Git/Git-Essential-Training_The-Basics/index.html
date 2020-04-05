@@ -1,0 +1,1132 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Training Documentation">
+      
+      
+      
+        <meta name="author" content="Rafael Nieto Esteve">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Git Essential Training: The Basics - rnietoe training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#git-essential-training-the-basics" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="rnietoe training" aria-label="rnietoe training" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              rnietoe training
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Git Essential Training: The Basics
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="rnietoe training" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rnietoe training
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Training index" class="md-nav__link">
+      Training index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      AWS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        AWS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/0-AWS-Solutions-Architect-Associate/" title="AWS Solutions Architect (Associate)" class="md-nav__link">
+      AWS Solutions Architect (Associate)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/0-Exam-Tips/" title="Exam Tips" class="md-nav__link">
+      Exam Tips
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/1-Cloud-Services-Overview/" title="1. Cloud Services Overview" class="md-nav__link">
+      1. Cloud Services Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/2-Storage-Design/" title="2. Storage Design" class="md-nav__link">
+      2. Storage Design
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/3-Virtual-Private-Cloud/" title="3. VPC (Virtual Private Cloud)" class="md-nav__link">
+      3. VPC (Virtual Private Cloud)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/4-Compute-Services/" title="4. Compute Services" class="md-nav__link">
+      4. Compute Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/5-Identity-and-Access-Management/" title="5. IAM (Identity and Access Management)" class="md-nav__link">
+      5. IAM (Identity and Access Management)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/6-Auto-Scaling-and-Virtual-Network-Services/" title="6. Auto Scaling and Virtual Network Services" class="md-nav__link">
+      6. Auto Scaling and Virtual Network Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/7-Application-Deployment/" title="7. Application Deployment" class="md-nav__link">
+      7. Application Deployment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/8-Databases/" title="8. Databases" class="md-nav__link">
+      8. Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../AWS/9-Services-and-Design-Scenarios/" title="9. Services and Design Scenarios" class="md-nav__link">
+      9. Services and Design Scenarios
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Git Essential Training: The Basics
+      </label>
+    
+    <a href="./" title="Git Essential Training: The Basics" class="md-nav__link md-nav__link--active">
+      Git Essential Training: The Basics
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-concepts-and-architecture" class="md-nav__link">
+    Git Concepts and Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-hanges-to-files" class="md-nav__link">
+    Make hanges to files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differences" class="md-nav__link">
+    Differences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    Other changes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-all" class="md-nav__link">
+    Commit all
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-a-commit" class="md-nav__link">
+    Inspect a commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compare-commits" class="md-nav__link">
+    Compare commits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiline-commit-message" class="md-nav__link">
+    Multiline commit message
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-changes" class="md-nav__link">
+    Undo changes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amendedit-commits" class="md-nav__link">
+    Amend/Edit commits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-old-versions" class="md-nav__link">
+    Retrieve old versions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert-a-commit" class="md-nav__link">
+    Revert a commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-untracked" class="md-nav__link">
+    Remove untracked
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ignore-files" class="md-nav__link">
+    Ignore files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-templates" class="md-nav__link">
+    .gitignore templates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore-files-globally" class="md-nav__link">
+    Ignore files globally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore-files-to-be-tracked" class="md-nav__link">
+    Ignore files to be tracked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-empty-directories" class="md-nav__link">
+    Track empty directories
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-nav__link">
+      Web Security: OAuth and OpenID Connect
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-concepts-and-architecture" class="md-nav__link">
+    Git Concepts and Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-hanges-to-files" class="md-nav__link">
+    Make hanges to files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differences" class="md-nav__link">
+    Differences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    Other changes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-all" class="md-nav__link">
+    Commit all
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspect-a-commit" class="md-nav__link">
+    Inspect a commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compare-commits" class="md-nav__link">
+    Compare commits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiline-commit-message" class="md-nav__link">
+    Multiline commit message
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-changes" class="md-nav__link">
+    Undo changes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amendedit-commits" class="md-nav__link">
+    Amend/Edit commits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-old-versions" class="md-nav__link">
+    Retrieve old versions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert-a-commit" class="md-nav__link">
+    Revert a commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-untracked" class="md-nav__link">
+    Remove untracked
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ignore-files" class="md-nav__link">
+    Ignore files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-templates" class="md-nav__link">
+    .gitignore templates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore-files-globally" class="md-nav__link">
+    Ignore files globally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore-files-to-be-tracked" class="md-nav__link">
+    Ignore files to be tracked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-empty-directories" class="md-nav__link">
+    Track empty directories
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/Git/Git-Essential-Training_The-Basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="git-essential-training-the-basics">Git Essential Training: The Basics<a class="headerlink" href="#git-essential-training-the-basics" title="Permanent link">&para;</a></h1>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Install git from <a href="https://git-scm.com">https://git-scm.com</a></p>
+<ul>
+<li><strong>System</strong>: C:\Program Files\Git\etc\gitconfig:
+<div class="codehilite"><pre><span></span><code><span class="err">git config --system</span>
+</code></pre></div></li>
+<li><strong>User</strong>: C:\Users\rniet.gitconfig:
+<div class="codehilite"><pre><span></span><code><span class="err">git config --global</span>
+</code></pre></div></li>
+<li><strong>Project</strong>: my_project/.git/config: 
+<div class="codehilite"><pre><span></span><code><span class="err">git config</span>
+</code></pre></div></li>
+</ul>
+<p>Other configuration settings:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">git config --global user.name &quot;Rafael Nieto&quot;</span>
+<span class="err">git config --global user.email &quot;rnietoe@gmail.com&quot;</span>
+<span class="err">git config --global core.editor &quot;code --wait&quot;` </span>
+<span class="err">git config --list</span>
+</code></pre></div>
+
+<p>Other basic commands:</p>
+<ul>
+<li>change to my user directory:
+<div class="codehilite"><pre><span></span><code><span class="err">cd ~</span>
+</code></pre></div></li>
+<li>list all items (hidden as well):
+<div class="codehilite"><pre><span></span><code><span class="err">ls -la</span>
+</code></pre></div></li>
+<li>display a text file
+<div class="codehilite"><pre><span></span><code><span class="err">cat .gitconfig</span>
+</code></pre></div></li>
+</ul>
+<h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Initialize and clone a repository
+<div class="codehilite"><pre><span></span><code><span class="err">git init</span>
+<span class="err">git clone https://github.com/rnietoe/Training.git   </span>
+</code></pre></div></li>
+<li>Stage and commit changes
+<div class="codehilite"><pre><span></span><code><span class="err">git add .  </span>
+<span class="err">git commit -m &quot;commit message&quot;</span>
+</code></pre></div></li>
+<li>git log commands<br />
+<div class="codehilite"><pre><span></span><code><span class="err">git log  </span>
+<span class="err">git log -n2</span>
+<span class="err">git log --since=2020-04-04</span>
+<span class="err">git log --until=2020-04-04  </span>
+<span class="err">git log --author=&quot;Rafael&quot;  </span>
+<span class="err">git log --grep=&quot;bug&quot;</span>
+<span class="err">git log --oneline</span>
+</code></pre></div></li>
+</ul>
+<h2 id="git-concepts-and-architecture">Git Concepts and Architecture<a class="headerlink" href="#git-concepts-and-architecture" title="Permanent link">&para;</a></h2>
+<p><img alt="Git Architecture" src="../img/git-architecture.png" style="height:200px;width:250px" /> 
+<img alt="Git Hash values (SHA-1)" src="../img/git-hash-values.PNG" style="height:200px;width:400px" /></p>
+<p><img alt="Git head" src="../img/git-head.PNG" /></p>
+<h2 id="make-hanges-to-files">Make hanges to files<a class="headerlink" href="#make-hanges-to-files" title="Permanent link">&para;</a></h2>
+<h3 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">git status</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Untracked</strong>: created but unstagged yet</li>
+<li><strong>Added</strong>: created and stagged ("cached") </li>
+<li><strong>Modified</strong> </li>
+<li><strong>Deleted</strong></li>
+<li><strong>Renamed</strong></li>
+</ul>
+<h3 id="differences">Differences<a class="headerlink" href="#differences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>compare the staging tree and your working directory
+<div class="codehilite"><pre><span></span><code><span class="err">git diff</span>
+</code></pre></div></li>
+<li>compare the repository and the staging tree:
+<div class="codehilite"><pre><span></span><code><span class="err">git diff --stagged</span>
+</code></pre></div></li>
+<li>show only the words that are different:
+<div class="codehilite"><pre><span></span><code><span class="err">git diff --color-words</span>
+</code></pre></div></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Use Visal Studio or Visual Studio Code as difference viewer</p>
+</div>
+<h3 id="other-changes">Other changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>remove the file from the working directory and stage the change in a single git command:
+<div class="codehilite"><pre><span></span><code><span class="err">git rm filename</span>
+</code></pre></div></li>
+<li>rename filename as newname and stage the change in a single git command:
+<div class="codehilite"><pre><span></span><code><span class="err">git mv filename newname</span>
+</code></pre></div></li>
+</ul>
+<h3 id="commit-all">Commit all<a class="headerlink" href="#commit-all" title="Permanent link">&para;</a></h3>
+<p>Stage and commit all changes from working directory directly to the repository (instead to the staging tree)
+<div class="codehilite"><pre><span></span><code><span class="err">git commit -all</span>
+<span class="err">git commit -am &quot;commit message&quot;</span>
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">it does not include untracked files</p>
+</div>
+<h3 id="inspect-a-commit">Inspect a commit<a class="headerlink" href="#inspect-a-commit" title="Permanent link">&para;</a></h3>
+<p><div class="codehilite"><pre><span></span><code><span class="err">git show HEAD</span>
+<span class="err">git show commitID </span>
+<span class="err">git show commitID --color-words</span>
+</code></pre></div>
+where commitID is the first characters of commit Id (6 to 8 characters are enough)</p>
+<div class="admonition tip">
+<p class="admonition-title"> Use space or <code>f</code> to go forward in the paginator, and <code>b</code> to go backward, and <code>q</code> to quit.</p>
+</div>
+<h3 id="compare-commits">Compare commits<a class="headerlink" href="#compare-commits" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">git diff commitID1..HEAD </span>
+<span class="err">git diff commitID1..commitID2 </span>
+<span class="err">git diff commitID1..commitID2 --color-words</span>
+</code></pre></div>
+
+<h3 id="multiline-commit-message">Multiline commit message<a class="headerlink" href="#multiline-commit-message" title="Permanent link">&para;</a></h3>
+<p><div class="codehilite"><pre><span></span><code><span class="err">git commit -a</span>
+</code></pre></div>
+because of we didn't specify the message parameter, the <code>.git/COMMIT_EDITMSG</code> file is opened in our editor to enter a multiline commit message. </p>
+<div class="admonition note">
+<p class="admonition-title">When git/COMMIT_EDITMSG file is closed, the commit is executed. The commit is aborted if commit message is empty.</p>
+</div>
+<h2 id="undo-changes">Undo changes<a class="headerlink" href="#undo-changes" title="Permanent link">&para;</a></h2>
+<p>To discard changes in the working directory:
+<div class="codehilite"><pre><span></span><code><span class="err">git checkout -- &quot;filename&quot;</span>
+<span class="err">git checkout -- .</span>
+</code></pre></div>
+Above command does not check out any branch. Instead, it checks out a single file or every file, from the repository</p>
+<p>To discard changes in the staging tree:
+<div class="codehilite"><pre><span></span><code><span class="err">git reset HEAD filename</span>
+</code></pre></div>
+Above command unstage changes from the staging tree to the working directory.</p>
+<h3 id="amendedit-commits">Amend/Edit commits<a class="headerlink" href="#amendedit-commits" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">git commit --amend -m &quot;new commit message&quot;</span>
+</code></pre></div>
+
+<p>take what's in staging and add it to the latest commit</p>
+<div class="admonition tip">
+<p class="admonition-title">amend command is also usefull to update the message of the latest commit</p>
+</div>
+<h3 id="retrieve-old-versions">Retrieve old versions<a class="headerlink" href="#retrieve-old-versions" title="Permanent link">&para;</a></h3>
+<p>Retrieve files with changes of desired commit ID
+<div class="codehilite"><pre><span></span><code><span class="err">git checkout commitId -- .</span>
+<span class="err">git checkout commitId -- filename</span>
+</code></pre></div></p>
+<h3 id="revert-a-commit">Revert a commit<a class="headerlink" href="#revert-a-commit" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">git revert commitID</span>
+</code></pre></div>
+
+<h3 id="remove-untracked">Remove untracked<a class="headerlink" href="#remove-untracked" title="Permanent link">&para;</a></h3>
+<p>remove untracked files from the working directory
+ <div class="codehilite"><pre><span></span><code><span class="err">git clean -n # display what would be removed</span>
+<span class="err">git clean -f # remove untracked files</span>
+</code></pre></div></p>
+<h2 id="ignore-files">Ignore files<a class="headerlink" href="#ignore-files" title="Permanent link">&para;</a></h2>
+<p><code>project/.gitignore</code> using:</p>
+<ul>
+<li>regexp with: * ? [aeiou] [0-9]. Sample of ignore all log files from logs directory: <code>logs/*.log.[0-9]</code></li>
+<li>negative expressions with !: Sample of ignore all php files with *.php, but do not ignore index file with <code>!index.php</code></li>
+<li>trailing slash /: Sample of ignore all files in a directory: <code>asset/videos/</code></li>
+</ul>
+<p><code># This is a comment</code> in the project/.gitignore file</p>
+<p>We should ignore:</p>
+<ul>
+<li>compiled source code</li>
+<li>packages and compressed files</li>
+<li>logs and databases</li>
+<li>Operative System generated files</li>
+<li>User-uploaded assets (images, PDFs, videos)</li>
+</ul>
+<h3 id="gitignore-templates">.gitignore templates<a class="headerlink" href="#gitignore-templates" title="Permanent link">&para;</a></h3>
+<p>https://github.com/github/gitignore</p>
+<h3 id="ignore-files-globally">Ignore files globally<a class="headerlink" href="#ignore-files-globally" title="Permanent link">&para;</a></h3>
+<p>Ignore files globally (instead by project):
+<div class="codehilite"><pre><span></span><code><span class="err">git config --global core.excludesfile ~/.gitignore_global</span>
+</code></pre></div></p>
+<h3 id="ignore-files-to-be-tracked">Ignore files to be tracked<a class="headerlink" href="#ignore-files-to-be-tracked" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="err">git rm --cached filename</span>
+</code></pre></div>
+
+<h3 id="track-empty-directories">Track empty directories<a class="headerlink" href="#track-empty-directories" title="Permanent link">&para;</a></h3>
+<p>Create <code>.gitkeep</code> file to track empty directories
+<div class="codehilite"><pre><span></span><code><span class="err">touch dirname/.gitkeep </span>
+</code></pre></div></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../AWS/9-Services-and-Design-Scenarios/" title="9. Services and Design Scenarios" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                9. Services and Design Scenarios
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Web Security: OAuth and OpenID Connect
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Rafael Nieto Esteve
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
