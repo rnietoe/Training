@@ -55,12 +55,20 @@ git commit -m "commit message"
 * git log commands  
 ```git
 git log  
-git log -n2
+git log -2
 git log --since=2020-04-04
 git log --until=2020-04-04  
+git log --until="3 days ago"  
 git log --author="Rafael"  
 git log --grep="bug"
 git log --oneline
+
+git log -p
+git log --stat
+git log --format=medium
+git log --format=short
+git log --format=oneline
+git log --graph --all --oneline --decorated
 ```
 
 ## Git Concepts and Architecture
