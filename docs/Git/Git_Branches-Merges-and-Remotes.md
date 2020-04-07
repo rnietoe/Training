@@ -99,5 +99,29 @@ Delete branches
 git branch -d branch_name
 ```
 
-!!!warning "Cannot delete the checked out branch"
+!!!warning "Cannot delete the checked out branch"  
 !!!warning "Cannot delete branches not fully merged. Instead, use capital `-D`, but commits in the branch will be lost."
+
+### Reset Branches
+
+!!! tip "Back up the latest commitID before, in case you want to undo the reset using `git reset <mode> commitID`."
+
+* **Soft** reset: Latest commits changes are staged and pending to commit. useful when you want to back things up in the commit timeline.
+    ```git
+    git reset --soft <SHA>
+    ```
+
+* **Mixed** reset (default reset option): Latest commits changes are unstaged, pending to stage and commit.
+    ```git
+    git reset --mixed <SHA>
+    git reset <SHA>
+    ```
+
+* **Hard** reset: Latest commits changes are nowhere. Useful to permanently undo commits (SHA=commitID) or if you want to make one branch look like another (sha=branchID)
+    ```git
+    git reset --hard <SHA>
+    ```
+
+    !!! tip "Create a new branch as backup before a hard reset"
+
+### Merge Branches
