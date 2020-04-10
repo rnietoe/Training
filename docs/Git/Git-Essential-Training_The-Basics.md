@@ -5,15 +5,15 @@ Install git from [https://git-scm.com](https://git-scm.com)
 
 * **System**: C:\Program Files\Git\etc\gitconfig:
 ```git
-git config --system
+git config --system --list
 ```
 * **User**: C:\Users\rniet\.gitconfig:
 ```git
-git config --global
+git config --global --list
 ```
 * **Project**: my_project/.git/config: 
 ```git
-git config
+git config --list
 ```
 
 Other configuration settings:
@@ -45,7 +45,8 @@ cat .gitconfig
 * Initialize and clone a repository
 ```git
 git init
-git clone https://github.com/rnietoe/Training.git   
+git clone https://github.com/rnietoe/Training.git
+git clone https://github.com/rnietoe/Training.git local_repository_name
 ```
 * Stage and commit changes
 ```git
@@ -55,12 +56,20 @@ git commit -m "commit message"
 * git log commands  
 ```git
 git log  
-git log -n2
+git log -2
 git log --since=2020-04-04
 git log --until=2020-04-04  
+git log --until="3 days ago"  
 git log --author="Rafael"  
 git log --grep="bug"
 git log --oneline
+
+git log -p
+git log --stat
+git log --format=medium
+git log --format=short
+git log --format=oneline
+git log --graph --all --oneline --decorated
 ```
 
 ## Git Concepts and Architecture
@@ -70,7 +79,7 @@ git log --oneline
 
 ![Git head](img/git-head.PNG)
 
-## Make hanges to files
+## Make changes to files
 
 ### Status
 ```git
@@ -98,8 +107,6 @@ git diff --stagged
 git diff --color-words
 ```
 
-!!! tip "Use Visal Studio or Visual Studio Code as difference viewer"
-
 ### Other changes
 
 * remove the file from the working directory and stage the change in a single git command:
@@ -120,6 +127,14 @@ git commit -am "commit message"
 
 !!!warning "it does not include untracked files"
 
+### Multiline commit message
+```git
+git commit -a
+```
+Because of we didn't specify the message parameter, the `.git/COMMIT_EDITMSG` file is opened in our editor to enter a multiline commit message. 
+
+!!! note "When git/COMMIT_EDITMSG file is closed, the commit is executed. The commit is aborted if commit message is empty."
+
 ### Inspect a commit
 ```
 git show HEAD
@@ -128,7 +143,7 @@ git show commitID --color-words
 ```
 where commitID is the first characters of commit Id (6 to 8 characters are enough)
 
-!!!tip " Use space or `f` to go forward in the paginator, and `b` to go backward, and `q` to quit."
+!!!tip " Use space or `f` to go forward in the paginator, `b` to go backward, and `q` to quit."
 
 ### Compare commits
 ```
@@ -136,14 +151,6 @@ git diff commitID1..HEAD
 git diff commitID1..commitID2 
 git diff commitID1..commitID2 --color-words
 ```
-
-### Multiline commit message
-```git
-git commit -a
-```
-because of we didn't specify the message parameter, the `.git/COMMIT_EDITMSG` file is opened in our editor to enter a multiline commit message. 
-
-!!! note "When git/COMMIT_EDITMSG file is closed, the commit is executed. The commit is aborted if commit message is empty."
 
 ## Undo changes
 To discard changes in the working directory:
@@ -153,18 +160,17 @@ git checkout -- .
 ```
 Above command does not check out any branch. Instead, it checks out a single file or every file, from the repository
 
-To discard changes in the staging tree:
+To discard changes in the staging tree (to the working directory):
 ```git
 git reset HEAD filename
 ```
-Above command unstage changes from the staging tree to the working directory.
 
 ### Amend/Edit commits
 ```git
 git commit --amend -m "new commit message"
 ```
 
-take what's in staging and add it to the latest commit
+It takes what's in staging and add it to the latest commit
 
 !!! tip "amend command is also usefull to update the message of the latest commit"
 
@@ -181,7 +187,7 @@ git revert commitID
 ```
 
 ### Remove untracked 
-remove untracked files from the working directory
+Remove untracked files from the working directory
  ```git
  git clean -n # display what would be removed
  git clean -f # remove untracked files
@@ -205,8 +211,7 @@ We should ignore:
 * Operative System generated files
 * User-uploaded assets (images, PDFs, videos)
 
-### .gitignore templates
-https://github.com/github/gitignore
+[.gitignore templates](https://github.com/github/gitignore)
 
 ### Ignore files globally
 Ignore files globally (instead by project):

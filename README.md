@@ -1,4 +1,4 @@
 # rnieto training
-These are the **rnietoe** notes when **training**.
+[These](docs/index.md) are the **rnietoe** notes, as part of his **training**.
 
-Documentation files are generated using [**mkdocs**](mkdocs.md)
+Documentation files were generated using [**mkdocs**](mkdocs.md).
