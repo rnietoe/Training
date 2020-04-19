@@ -465,8 +465,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#make-hanges-to-files" class="md-nav__link">
-    Make hanges to files
+  <a href="#make-changes-to-files" class="md-nav__link">
+    Make changes to files
   </a>
   
     <nav class="md-nav">
@@ -501,6 +501,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#multiline-commit-message" class="md-nav__link">
+    Multiline commit message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#inspect-a-commit" class="md-nav__link">
     Inspect a commit
   </a>
@@ -510,13 +517,6 @@
           <li class="md-nav__item">
   <a href="#compare-commits" class="md-nav__link">
     Compare commits
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multiline-commit-message" class="md-nav__link">
-    Multiline commit message
   </a>
   
 </li>
@@ -576,13 +576,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gitignore-templates" class="md-nav__link">
-    .gitignore templates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ignore-files-globally" class="md-nav__link">
     Ignore files globally
   </a>
@@ -625,8 +618,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-nav__link">
+    <a href="../2-Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-nav__link">
       Git: Branches, Merges, and Remotes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3-Git-Intermediate-Techniques/" title="Git Intermediate Techniques" class="md-nav__link">
+      Git Intermediate Techniques
     </a>
   </li>
 
@@ -714,8 +719,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#make-hanges-to-files" class="md-nav__link">
-    Make hanges to files
+  <a href="#make-changes-to-files" class="md-nav__link">
+    Make changes to files
   </a>
   
     <nav class="md-nav">
@@ -750,6 +755,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#multiline-commit-message" class="md-nav__link">
+    Multiline commit message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#inspect-a-commit" class="md-nav__link">
     Inspect a commit
   </a>
@@ -759,13 +771,6 @@
           <li class="md-nav__item">
   <a href="#compare-commits" class="md-nav__link">
     Compare commits
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multiline-commit-message" class="md-nav__link">
-    Multiline commit message
   </a>
   
 </li>
@@ -825,13 +830,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gitignore-templates" class="md-nav__link">
-    .gitignore templates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ignore-files-globally" class="md-nav__link">
     Ignore files globally
   </a>
@@ -873,7 +871,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rnietoe/Training/edit/master/docs/Git/Git-Essential-Training_The-Basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/Git/1-Git-Essential-Training_The-Basics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="git-essential-training-the-basics">Git Essential Training: The Basics<a class="headerlink" href="#git-essential-training-the-basics" title="Permanent link">&para;</a></h1>
@@ -881,13 +879,13 @@
 <p>Install git from <a href="https://git-scm.com">https://git-scm.com</a></p>
 <ul>
 <li><strong>System</strong>: C:\Program Files\Git\etc\gitconfig:
-<div class="codehilite"><pre><span></span><code><span class="err">git config --system</span>
+<div class="codehilite"><pre><span></span><code><span class="err">git config --system --list</span>
 </code></pre></div></li>
 <li><strong>User</strong>: C:\Users\rniet.gitconfig:
-<div class="codehilite"><pre><span></span><code><span class="err">git config --global</span>
+<div class="codehilite"><pre><span></span><code><span class="err">git config --global --list</span>
 </code></pre></div></li>
 <li><strong>Project</strong>: my_project/.git/config: 
-<div class="codehilite"><pre><span></span><code><span class="err">git config</span>
+<div class="codehilite"><pre><span></span><code><span class="err">git config --list</span>
 </code></pre></div></li>
 </ul>
 <p>Other configuration settings:</p>
@@ -912,36 +910,45 @@
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Initialize and clone a repository
-<div class="codehilite"><pre><span></span><code><span class="err">git init</span>
-<span class="err">git clone https://github.com/rnietoe/Training.git   </span>
+    <div class="codehilite"><pre><span></span><code><span class="err">git init</span>
+<span class="err">git clone https://github.com/rnietoe/Training.git</span>
+<span class="err">git clone https://github.com/rnietoe/Training.git local_repository_name</span>
 </code></pre></div></li>
 <li>Stage and commit changes
-<div class="codehilite"><pre><span></span><code><span class="err">git add .  </span>
+    <div class="codehilite"><pre><span></span><code><span class="err">git add .  </span>
 <span class="err">git commit -m &quot;commit message&quot;</span>
 </code></pre></div></li>
-<li>git log commands<br />
-<div class="codehilite"><pre><span></span><code><span class="n">git</span> <span class="n">log</span>  
+<li>
+<p>git log commands<br />
+    <div class="codehilite"><pre><span></span><code><span class="n">git</span> <span class="n">log</span>  
 <span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="mi">2</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--since=2020-04-04</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--until=2020-04-04  </span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--until=&quot;3 days ago&quot;  </span>
+<span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="n">L</span> <span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">:</span><span class="n">filename</span><span class="p">.</span><span class="n">txt</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--author=&quot;Rafael&quot;  </span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--grep=&quot;bug&quot;</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--oneline</span>
 
-<span class="n">git</span> <span class="n">log</span> <span class="o">-</span><span class="n">p</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--stat</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--format=medium</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--format=short</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--format=oneline</span>
 <span class="n">git</span> <span class="n">log</span> <span class="c1">--graph --all --oneline --decorated</span>
+</code></pre></div></p>
+<ul>
+<li>List logs as patches (diff)
+    <div class="codehilite"><pre><span></span><code><span class="err">git log --pathces</span>
+<span class="err">git log -p</span>
 </code></pre></div></li>
+</ul>
+</li>
 </ul>
 <h2 id="git-concepts-and-architecture">Git Concepts and Architecture<a class="headerlink" href="#git-concepts-and-architecture" title="Permanent link">&para;</a></h2>
 <p><img alt="Git Architecture" src="../img/git-architecture.png" style="height:200px;width:250px" /> 
 <img alt="Git Hash values (SHA-1)" src="../img/git-hash-values.PNG" style="height:200px;width:400px" /></p>
 <p><img alt="Git head" src="../img/git-head.PNG" /></p>
-<h2 id="make-hanges-to-files">Make hanges to files<a class="headerlink" href="#make-hanges-to-files" title="Permanent link">&para;</a></h2>
+<h2 id="make-changes-to-files">Make changes to files<a class="headerlink" href="#make-changes-to-files" title="Permanent link">&para;</a></h2>
 <h3 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="err">git status</span>
 </code></pre></div>
@@ -965,9 +972,6 @@
 <div class="codehilite"><pre><span></span><code><span class="err">git diff --color-words</span>
 </code></pre></div></li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Use Visal Studio or Visual Studio Code as difference viewer</p>
-</div>
 <h3 id="other-changes">Other changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>remove the file from the working directory and stage the change in a single git command:
@@ -985,6 +989,13 @@
 <div class="admonition warning">
 <p class="admonition-title">it does not include untracked files</p>
 </div>
+<h3 id="multiline-commit-message">Multiline commit message<a class="headerlink" href="#multiline-commit-message" title="Permanent link">&para;</a></h3>
+<p><div class="codehilite"><pre><span></span><code><span class="err">git commit -a</span>
+</code></pre></div>
+Because of we didn't specify the message parameter, the <code>.git/COMMIT_EDITMSG</code> file is opened in our editor to enter a multiline commit message. </p>
+<div class="admonition note">
+<p class="admonition-title">When git/COMMIT_EDITMSG file is closed, the commit is executed. The commit is aborted if commit message is empty.</p>
+</div>
 <h3 id="inspect-a-commit">Inspect a commit<a class="headerlink" href="#inspect-a-commit" title="Permanent link">&para;</a></h3>
 <p><div class="codehilite"><pre><span></span><code><span class="err">git show HEAD</span>
 <span class="err">git show commitID </span>
@@ -992,7 +1003,7 @@
 </code></pre></div>
 where commitID is the first characters of commit Id (6 to 8 characters are enough)</p>
 <div class="admonition tip">
-<p class="admonition-title"> Use space or <code>f</code> to go forward in the paginator, and <code>b</code> to go backward, and <code>q</code> to quit.</p>
+<p class="admonition-title"> Use space or <code>f</code> to go forward in the paginator, <code>b</code> to go backward, <code>/</code> to search words and <code>q</code> to quit.</p>
 </div>
 <h3 id="compare-commits">Compare commits<a class="headerlink" href="#compare-commits" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="err">git diff commitID1..HEAD </span>
@@ -1000,28 +1011,20 @@ where commitID is the first characters of commit Id (6 to 8 characters are enoug
 <span class="err">git diff commitID1..commitID2 --color-words</span>
 </code></pre></div>
 
-<h3 id="multiline-commit-message">Multiline commit message<a class="headerlink" href="#multiline-commit-message" title="Permanent link">&para;</a></h3>
-<p><div class="codehilite"><pre><span></span><code><span class="err">git commit -a</span>
-</code></pre></div>
-because of we didn't specify the message parameter, the <code>.git/COMMIT_EDITMSG</code> file is opened in our editor to enter a multiline commit message. </p>
-<div class="admonition note">
-<p class="admonition-title">When git/COMMIT_EDITMSG file is closed, the commit is executed. The commit is aborted if commit message is empty.</p>
-</div>
 <h2 id="undo-changes">Undo changes<a class="headerlink" href="#undo-changes" title="Permanent link">&para;</a></h2>
 <p>To discard changes in the working directory:
 <div class="codehilite"><pre><span></span><code><span class="err">git checkout -- &quot;filename&quot;</span>
 <span class="err">git checkout -- .</span>
 </code></pre></div>
 Above command does not check out any branch. Instead, it checks out a single file or every file, from the repository</p>
-<p>To discard changes in the staging tree:
+<p>To discard changes in the staging tree (to the working directory):
 <div class="codehilite"><pre><span></span><code><span class="err">git reset HEAD filename</span>
-</code></pre></div>
-Above command unstage changes from the staging tree to the working directory.</p>
+</code></pre></div></p>
 <h3 id="amendedit-commits">Amend/Edit commits<a class="headerlink" href="#amendedit-commits" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="err">git commit --amend -m &quot;new commit message&quot;</span>
 </code></pre></div>
 
-<p>take what's in staging and add it to the latest commit</p>
+<p>It takes what's in staging and add it to the latest commit</p>
 <div class="admonition tip">
 <p class="admonition-title">amend command is also usefull to update the message of the latest commit</p>
 </div>
@@ -1035,7 +1038,7 @@ Above command unstage changes from the staging tree to the working directory.</p
 </code></pre></div>
 
 <h3 id="remove-untracked">Remove untracked<a class="headerlink" href="#remove-untracked" title="Permanent link">&para;</a></h3>
-<p>remove untracked files from the working directory
+<p>Remove untracked files from the working directory
  <div class="codehilite"><pre><span></span><code><span class="err">git clean -n # display what would be removed</span>
 <span class="err">git clean -f # remove untracked files</span>
 </code></pre></div></p>
@@ -1055,8 +1058,7 @@ Above command unstage changes from the staging tree to the working directory.</p
 <li>Operative System generated files</li>
 <li>User-uploaded assets (images, PDFs, videos)</li>
 </ul>
-<h3 id="gitignore-templates">.gitignore templates<a class="headerlink" href="#gitignore-templates" title="Permanent link">&para;</a></h3>
-<p>https://github.com/github/gitignore</p>
+<p><a href="https://github.com/github/gitignore">.gitignore templates</a></p>
 <h3 id="ignore-files-globally">Ignore files globally<a class="headerlink" href="#ignore-files-globally" title="Permanent link">&para;</a></h3>
 <p>Ignore files globally (instead by project):
 <div class="codehilite"><pre><span></span><code><span class="err">git config --global core.excludesfile ~/.gitignore_global</span>
@@ -1105,7 +1107,7 @@ Above command unstage changes from the staging tree to the working directory.</p
           </a>
         
         
-          <a href="../Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2-Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
