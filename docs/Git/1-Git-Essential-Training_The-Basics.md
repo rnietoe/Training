@@ -43,34 +43,40 @@ cat .gitconfig
 ## Getting started
 
 * Initialize and clone a repository
-```git
-git init
-git clone https://github.com/rnietoe/Training.git
-git clone https://github.com/rnietoe/Training.git local_repository_name
-```
+    ```git
+    git init
+    git clone https://github.com/rnietoe/Training.git
+    git clone https://github.com/rnietoe/Training.git local_repository_name
+    ```
 * Stage and commit changes
-```git
-git add .  
-git commit -m "commit message"
-```
+    ```git
+    git add .  
+    git commit -m "commit message"
+    ```
 * git log commands  
-```git
-git log  
-git log -2
-git log --since=2020-04-04
-git log --until=2020-04-04  
-git log --until="3 days ago"  
-git log --author="Rafael"  
-git log --grep="bug"
-git log --oneline
+    ```git
+    git log  
+    git log -2
+    git log --since=2020-04-04
+    git log --until=2020-04-04  
+    git log --until="3 days ago"  
+    git log -L 100,150:filename.txt
+    git log --author="Rafael"  
+    git log --grep="bug"
+    git log --oneline
 
-git log -p
-git log --stat
-git log --format=medium
-git log --format=short
-git log --format=oneline
-git log --graph --all --oneline --decorated
-```
+    git log --stat
+    git log --format=medium
+    git log --format=short
+    git log --format=oneline
+    git log --graph --all --oneline --decorated
+    ```
+
+    * List logs as patches (diff)
+        ```git
+        git log --pathces
+        git log -p
+        ```
 
 ## Git Concepts and Architecture
 
@@ -143,7 +149,7 @@ git show commitID --color-words
 ```
 where commitID is the first characters of commit Id (6 to 8 characters are enough)
 
-!!!tip " Use space or `f` to go forward in the paginator, `b` to go backward, and `q` to quit."
+!!!tip " Use space or `f` to go forward in the paginator, `b` to go backward, `/` to search words and `q` to quit."
 
 ### Compare commits
 ```
