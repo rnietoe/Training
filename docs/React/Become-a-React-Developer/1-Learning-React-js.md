@@ -21,12 +21,12 @@ Create a react element using **React.createElement**:
         <script type="text/javascript">
             ReactDOM.render(
                 React.createElement(
-                    "div", 
-                    null, 
-                    React.createElement(
-                        "h1",
-                        null,
-                        "Oh hello!"
+                    "div",                  //type
+                    null,                   //properties
+                    React.createElement(    //children
+                        "h1",               //type
+                        null,               //properties
+                        "Oh hello!"         //children
                     )
                 ),
                 document.getElementById("root")
@@ -50,60 +50,83 @@ Using JSX (JS as XML). Require **script type="text/babel"** and **className** in
 
 ## React Components
 
-* Functions as **const**: Use Pascal Case for functions names:
-```js 
-const Hello = (props) => {
-    return (
-        <div className="heading">
-            <h1>Welcome to {props.library}</h1>
-            <p>{props.message}</p>
-        </div>
-    )
-};    
-ReactDOM.render(
-    <Hello library="React" message="Enjoy!"/>,
-    document.getElementById("root")
-);
-```
+!!! important "All react components should be capitalized using Pascal Case"
 
-* Properties: see below exaple with name and country properties
-```js          
-const Lake = ({name, country}) => {
-    return (
-        <div className="heading">
-            <h1>{name}</h1>
-            <p>{country}</p>
-        </div>
-    )
-}; 
-const App = () => (
-    <div>
-        <Lake name="Lake Tahoe" country="USA" />
-        <Lake name="Angora Lake" country="Angola"/>
-        <Lake name="Shirley Lake" country="Australia"/>
-    </div>
-);
-ReactDOM.render(
-    <App />,
-    document.getElementById("root")
-);
-```
-
-* Classes: always include the **render** method
-```js           
-const Lake = ({name}) => <h1>{name}</h1>;
-class App extends React.Component {
-    render() {
+* Functions as **const**:
+    ```js 
+    const Hello = (props) => {
         return (
-            <div>
-                <Lake name="Lake Tahoe" />
-                <Lake name="Angora Lake" />
-                <Lake name="Shirley Lake" />
+            <div className="heading">
+                <h1>Welcome to {props.library}</h1>
+                <p>{props.message}</p>
             </div>
         )
+    };    
+    ReactDOM.render(
+        <Hello library="React" message="Enjoy!"/>,
+        document.getElementById("root")
+    );
+    ```
+
+* Properties: see below example using a functon with properties
+    ```js          
+    const Lake = ({name, country}) => {
+        return (
+            <div className="heading">
+                <h1>{name}</h1>
+                <p>{country}</p>
+            </div>
+        )
+    }; 
+    const App = () => (
+        <div>
+            <Lake name="Lake Tahoe" country="USA" />
+            <Lake name="Angora Lake" country="Angola"/>
+            <Lake name="Shirley Lake" country="Australia"/>
+        </div>
+    );
+    ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+    );
+    ```
+
+* Classes: always include the **render** method
+    ```js           
+    const Lake = ({name}) => <h1>{name}</h1>;
+    class App extends React.Component {
+        render() {
+            return (
+                <div>
+                    <Lake name="Lake Tahoe" />
+                    <Lake name="Angora Lake" />
+                    <Lake name="Shirley Lake" />
+                </div>
+            )
+        }
+    }    
+    ```    
+
+    See below example using a class with properties
+
+    ```js
+    class Message extends React.Component {
+        render() {
+            return (
+                <div>
+                    <h1 style={{color: this.props.color}}>
+                        {this.props.msg}
+                    </h1>
+                    <p>I will check back in {this.props.minutes} minutes</p>
+                </div>
+            )
+        }
     }
-}    
-```
+    ReactDOM.render(
+        <Message color="blue" msg="how are you?" minutes={5}/>, 
+        document.getElementById('root')
+    )
+    ```
 
 * State: When a component's State data changes, the render function will be called again to re-render the state change.
 ```js
