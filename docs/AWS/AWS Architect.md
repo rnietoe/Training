@@ -150,38 +150,46 @@ Regional Services with global view
 
 AWS Service that can be used on premise:
 
-* Snowball - to upload TB to amazon in a week instead of three months
-* Snowball Edge- include CPUs
-* Storage gateway
+* `AWS Snow Family`:
+    * **Snowball** - to upload 50TB (200$) or 80TB (250$) to AWS in a week instead of three months. This allow S3 imports/exports
+    * **Snowball Edge** - Local compute and storage only till 100TB
+    * **Snowmobile** - a track with 100PB
+    * First 10 days are free. 15$ per day later
+    * Data transfer to S3 is free. Data transfer out is charged
+* **Storage gateway**: connect on-premise software with cloud-based storage (S3)
+    * File Gateway. objects are flat files
+    * Volume Gateway: objects are hard disk drives. It looks like EBS snapshots. there are storage volumes (entire dataset) and cached volumes
+    * Tape gateway
 * CodeDeploy - include applications
 * Opsworks - include applications
 * IoT greengrass
 
-### Overview
+## Overview
 
 * **Availability Zone** (AZ) are data center
 * **Region** is a distinct location within a geographical area with 2 or more AZ, designed to provide high availability to a specific geography. Choosen by law, latency and AWS Services
 
-!!!note "US East (N. Virginia) us-east-1 was the first region and all new services are deployed here first" 
+    !!!info "US East (N. Virginia) us-east-1 was the first region and all new services are deployed here first" 
 
-* **Edge Locations** are Amazon's CDN (**C**ontent **D**elivery **N**etwork) end points. Objects are cached for 48 hours by default (TTL - Time To Live). This not just read only. Types:
-    * Web Distribution (websites)
-    * RTMD (media streaming) - Discontinued support by CloudFront on December 31, 2020"
+* **Edge Locations** are Amazon's CDN (**C**ontent **D**elivery **N**etwork) end points. Objects are cached for 48 hours by default (TTL - **T**ime **T**o **L**ive). This not just read only. Types:
+    * **Web Distribution** (websites)
+    * **RTMD** (media streaming) - Discontinued support by CloudFront on December 31, 2020"
 
-!!!important "Number of Edge Locations > Number of Availability Zones > Number of Regions"
+    !!!danger "Number of Edge Locations > Number of Availability Zones > Number of Regions"
 
-#### CloudFront: 
+* **`AWS CloudFront`** distribution is a collection of a CDN's Edge Locations. CloudFront content is **cached** in Edge Locations. This allows you to distribute content using a worldwide network of edge locations that provide low latency and high data transfer speeds. 
 
-**`AWS CloudFront`** distribution is a collection of a CDN's Edge Locations. This allows you to distribute content using a worldwide network of edge locations that provide low latency and high data transfer speeds
+    * From `AwS CloudFront` select `Create Distribution`
+    * The CloudFront origin can be an S3 bucket, an EC2 instance, an Elastic Load Balancer or Route53.
+    * We can restrict viewer access using signed URLs for individual files or signed cookies for multiple files. Netflix or CloudGuru samples. 
+        * OAI - **O**rigin **A**ccess **I**dentity
+        * If the origin is EC2 then use CloudFront Signed url 
+        * If the origin is S3 then use S3 signed url 
+    * We can `create invalidations` to remove origin objets on the edge location
+    * To delete a CloudFront distribution, you have to disable it first. This process takes 15 minutes	
 
-1. Create a CloudFront distribution
-2. Browse to the CloudFront distribution domain name ([https://dzi85fss8k88j.cloudfront.net/malaga.jpg](https://dzi85fss8k88j.cloudfront.net/malaga.jpg))
-3. To delete a CloudFront distribution, you have to disable it first. This process takes 15 minutes
-
-	A CloudFront Origin can be an S3 bucket, an EC2 instance, an Elastic Load Balancer or Route53.
-
-!!!info "We can be charged when deleting cached data from an edge location"
-
+    !!!danger "We will be charged when deleting cached data from an edge location"
+    
 #### Resource Groups and Tag Editor
 
 * **Tags** allow to find AWS resources in a selected region, but it can not directly managing those resources. This can make it easier to search for and filter resources by purpose, owner, environment, or other criteria.
@@ -194,13 +202,39 @@ AWS Service that can be used on premise:
 
 **`AWS IAM`** (**I**dentity and **A**ccess **M**anagement) enables you to manage access to AWS services and resources securely. 
 
-* You can create and manage AWS users and groups globally and not for a specific a region
-* You can use permissions to allow and deny their access to AWS resources.
+* Users, groups, roles and policies are managed **globally** and not for a specific a region.
+* You may have a 3rd party device that uses **BioMetrics** to initiate and exchange of the password or secret key with AWS, but that is not an AWS IAM service
+* You can use permissions to allow and deny users and groups access to AWS resources.
+    * Managed policies. Attach readonly policies already defined in AWS
+    * Inline policies: Select a policy template, generate a policy, or create a custom policy. 
 * Groups are a collection of users with specific permissions/policies
+* Roles are a secure way to grant permissions to entities that you trust.
+    1. `Create role` from IAM.
+    2. Select `EC2` as trusted entity to call AWS services on your behalf.
+    3. Attach permission policy `AmazonS3FullAccess`
+    4. Named as S3_Admin_Access
 * **Identities** include users, groups, and roles. These are the IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. 
 * A **Principal** is a person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS.
 
-When you create IAM policies, follow the standard security advice of granting **the least privilege**, or granting only the permissions required to perform a task. Determine what users (and roles) need to do, and then craft policies that allow them to perform only those tasks.
+New users are assigned Access Key Id and secret when first created to access AWS via the APIs and CLI.  
+
+**Power User Access** allows access to all AWS services except the management of groups and users within IAM.
+
+!!!danger "New users have NO permissions when first created. When you manage IAM policies, follow the standard security advice of granting **the least privilege**, or granting only the permissions required to perform a task. Determine what users (and roles) need to do, and then craft policies that allow them to perform only those tasks."
+
+AdministratorAccess Policy json:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+        }
+    ]
+}
+```
 
 With the **IAM Policy Simulator**, you can test and troubleshoot identity-based policies, IAM permissions boundaries, Organizations service control policies, and resource-based policies.
 
@@ -228,8 +262,8 @@ The customer would be responsible for patching the Operating System for IaaS sol
 * **`CloudTrail`** track user **activity** and API usage
 * **`CloudWatch`** monitoring **performance**
 * **`Config`** monitor **configuration** settings
-* **`Athena`** serverless service for **querying** data in S3
-* **`Macie`** uses Machine learning to protect **sensitive data** stored in S3
+* **`Athena`** serverless service for **querying** data in S3 using SQL. Commonly used to analyse logs 
+* **`Macie`** uses Machine learning to protect **sensitive data** (**P**ersonally **I**dentifiable **I**nformation) stored in S3
 * **`Kinesis`** work with Real-Time Streaming Data
 
 * `Personal Health Dashboard` helps you to inspect account alerts and find remediation guidance for your account
@@ -774,44 +808,80 @@ Amazon Neptune
 
 #### S3
 
-**`AWS S3`** is **Object-based** for the storage of 'flat' files such as text files, videos, pictures and any other flat file from 0 to 5 tb. The object has a key (filename), value (data), versionID, Metadata, encryption, and security by ACL (Access Control Lists) and Bucket Policies 
+**`AWS S3`** is **Object-based** for the safe storage of 'flat' files such as text files, videos, pictures and any other flat file from 0 to 5 tb. The object has a key (filename), value (data), versionID, Metadata, encryption, and security by ACL (**A**ccess **C**ontrol **L**ists), torrent and Bucket Policies 
 
-!!!important "Objects stored in S3 are stored in multiple servers in multiple facilities across AWS"
+!!!info "Objects stored in S3 are stored in multiple servers in multiple facilities across AWS"
 
-**Buckets** are folders/containers for everything that you store in Amazon S3. S3 bucket names are **global**, and must be unique. Universal namespaces are like https://s3-region_name.amazonaws.com/bucket_name. The response code is 200 when file upload succeeds
+**Buckets** are folders/containers for everything that you store in Amazon S3. S3 bucket names are **global**, and must be unique. Universal namespaces are like https://s3-region_name.amazonaws.com/bucket_name. The response code is http 200 when file upload succeeds.
 
-We can use the bucket to host a static website using S3, with index.html and error.html. Dynamic website can not be hosted on S3.
+!!!danger "Create new files are read inmediately. However, updates and deletes takes a little bit of time to propagate."
 
-Create new files are read inmediately. However, updates and deletes takes a little bit of time to propagate.
+S3 classes:
 
-Pricing models:
+* **S3 Standard**: Frequently accessed data
+* **S3 - IA** (**I**nfrequently **A**ccessed)
+* **S3 One Zone - IA** (multiple AZ not required) aka **RRS**
+* **S3 - Intelligent Tiering**, using machine learning to move files to the most cost-effective access tier
+* **S3 Glacier** (low cost storage. retrieval times from 2 minutes to hours)
+* **S3 Glacier Deep Archive** (lowest-cost. retrieval time of 12 hours is acceptable)
 
-* S3 Standard: Frequently accessed data
-* S3 - IA (**I**nfrequently **A**ccessed)
-* S3 One Zone - IA (multiple AZ not required)
-* S3 - Intelligent Tiering, using machine learning to move files to the most cost-effective access tier
-* S3 Glacier (low cost storage. retrieval times from 2 minutes to hours)
-* S3 Glacier Deep Archive (lowest-cost. retrieval time of 12 hours is acceptable)
+!!!danger "It does not make sense to use S3 standard. Instead, use S3 - Intelligent Tiering to save money"
 
-The **`AWS DMS`** (**D**atabase **M**igrations **S**ervice) is the best choice for conventional database migrations.
+More features:
 
-You can add rules in an **S3 Lifecycle** configuration to tell Amazon S3 to transition objects to another Amazon S3 storage class:
+* Unlimited storage
+* We can use the bucket to host a **static website** using S3 with option `static website hosting` eanbled, with index.html and error.html. Dynamic website can not be hosted on S3.
+* Encryption:
+    * Encryption in Transit, using https (SSL/TLS)
+    * Encryption at Rest:
+        * In the server side (**S**erver **S**ide **E**ncryption):
+            * **SSE-S3**: An encryption key that Amazon S3 creates, manages, and uses for you.
+            * **SSE-KMS**: An encryption key protected by AWS **K**ey **M**anagament **S**ervice
+            * **SSE-C** with customer provided keys
+        * In the client side - encrypted before uploading
+* Versioning (diabled by default):
+    * usefull as backup tool
+    * **MFA Delete** setting: an additional layer of security that requires MFA for changing Bucket Versioning settings and permanently deleting object versions. To modify MFA delete settings, use the AWS CLI, AWS SDK, or the Amazon S3 REST API.
+    * Cannot be disabled once enabled
+    * Uploaded new verions are **private** by default
+    * Deleting a file create a new version (**deleted marker**), then restoring the file recovers all previous versions.
+    * Integrated with lifecycle rules
+* **S3 Transfer Acceleration** takes advantage of Amazon CloudFront (edge location - cache) using Amazon internal network (no internet). It enables fast, easy and secure transfers of files to and from your bucket.
 
-* When you know that objects are infrequently accessed, you might transition them to the S3 Standard-IA storage class.
-* You might want to archive objects that you don't need to access in real time to the S3 Glacier storage class
- 
-**S3 Transfer Acceleration** takes advantage of Amazon CloudFront (edge location - cache) using Amazon internal network (no internet). It enables fast, easy and secure transfers of files to and from your bucket.
+    * [Speed Comparison Tool](https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html)
 
-**Cross Bucket Replication**: replicate a bucket from a region to another
+* **Cross Region Replication**: replicate a bucket from a region to another:
 
-**Multipart uploads** use multithreading to upload large files to S3 buckets **in parallel** (the parts of the file are uploaded in parallel).
+    * From S3 Management tab, select `Create replication rule`
+    * Create a new role and select the source bucket and destination bucket. Replicated buckets can be in different AWS accounts
+    * Replication requires versioning to be enable on the source and destionation buckets.
+    * we can change the storage class for the replicated objetcs
+
+    !!!danger "replication starts when files are added and updated later. Deletes are not replicated. Permissions and previous versions are not replicated"
+
+* **Multipart uploads** use multithreading to upload large files to S3 buckets **in parallel** (the parts of the file are uploaded in parallel). recommended for > 100mb and required for > 5Gb
+* Use **S3 Lifecycle** rules to define actions you want AWS S3 to take during an object's lifetime such as **transitioning** objects to another storage class, archiving them, or deleting them after a specified period of time.
+* **AWS DataSync** is used to move large amounts of data from on-premise  to AWS.
+* **`AWS DMS`** (**D**atabase **M**igrations **S**ervice) is the best choice for conventional database migrations.
+* [General S3 FAQs](https://aws.amazon.com/s3/faqs/)
+
+[S3 Pricing](https://aws.amazon.com/s3/pricing/)
+
+* Storage class
+* Storage
+* Requests
+* Data transfer
+* Transfer acceleration
+* Cross region replication
 
 To upload a file larger than 160 GB, use the AWS CLI, AWS SDK, or Amazon S3 REST API.
 
-Uploaded files are not public by default.
+S3 Security:
 
-* Bucket policies applies to the whole bucket (like one hosting a static S3 website - public) 
-* Object policies applies to an individual file. You use ACL
+* Uploaded files are **private** by default
+* Bucket policies applies to the entire bucket (like one hosting a static S3 website - public) 
+* Bucket ACLs. Object policies applies to an individual file.
+* IAM roles by another AWS account. Provide the aws link to other account. Switch role for **cross account** with Console access 
 * IAM policies applies to users and groups. 
 
 A Policy is the document used to grant permissions to users, groups, and roles, but it can not be attached directly to an application. Policies are written using JSON.
@@ -836,7 +906,27 @@ A Policy is the document used to grant permissions to users, groups, and roles, 
 }
 ```
 
+**S3 Objetc lock** are objects **W**ritten **O**nce and **R**ead **M**any. WORM model. Objects (the whole bucket or individual files) became unmodificable and undeletable:
+
+* Governance mode: some users are grant with permissions to alter settings or delete the object version
+* Compliance mode: objects version cannot be modified or deleted, even by the root user
+
+S3 Performance:
+
+* Use **prefixes** to improve performance: path between the bucket and file
+* Use SSE-KMS have limitations
+* Use **Multipart uploads** 
+* Use downloads with **S3 Byte-Range Fetches**
+* Use **S3 Select**/**Glacier Select** using SQL to download only the subset of data we need from ZIP or CSV files 
+
 #### Glacier
+
+Glacier pricing:
+
+* storage
+* Data Retrieval times
+
+**S3 Glacier Vault Lock Policy**: compliance controls for S3 Glacier with a Vault Lock policy. The policy can no longer be changed
 
 #### EFS
 
@@ -850,7 +940,7 @@ Amazon Elastic Block Store (EBS) is a block level storage service for use with A
 
 #### VPC
 
-**`AWS VPC`** (**V**irtual **P**rivate **C**loud) is a **virtual network** that lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources. You have complete control over your virtual networking environment, including the selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways. You can use both IPv4 and IPv6 in your VPC for secure and easy access to resources and applications.
+**`AWS VPC`** (**V**irtual **P**rivate **C**loud) is a **virtual network** dedicated to a single AWS account. VPC lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources. You have complete control over your virtual networking environment, including the selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways. You can use both IPv4 and IPv6 in your VPC for secure and easy access to resources and applications.
 
 **VPC peering** creates a connection between two VPCs. 
 
@@ -1401,7 +1491,7 @@ You can consolidate all your AWS accounts into an organization, and arrange all 
 * Lets you create and invite accounts
 * Allows you to apply policy-based controls
 * Helps you simplify organization-wide management of AWS services
-* Or you can create an organization with only consolidated billing features.
+* Or you can create an organization with only **consolidated billing** features.
 
 After you create an organization, you cannot join this account to another organization until you delete its current organization.
 
@@ -1411,37 +1501,40 @@ Enable AWS Single Sign On to centrally manage access to multiple AWS accounts an
 Create an **organization trail** in AWS CloudTrail to log all events for all AWS accounts in your organization.
 
 2. From `Organize Accounts` Tab, we create a new organisational units
-3. From `Policies` tab, enable service control policies and create a policy to block EC2 usage. this is a sample
+3. From `Policies` tab, enable service control policies and create a sample policy to block EC2 usage.
 	* Select Amazon EC2 statement and deny effect
 4. Apply the new policy to organisational units or to AWS Accounts
 
 Maximum of 20 Link accounts. Contact AWS for more
 
-!!!warning "Assuming all instances are in the same AWS Organization, the reserved instance pricing for the unused on demand instances will be applied."
+!!!danger "Assuming all instances are in the same AWS Organization, the reserved instance pricing for the unused on demand instances will be applied."
 
-[Landing Zone](https://aws.amazon.com/solutions/implementations/aws-landing-zone/) helps to quickly setup a secure, multi-account AWS environment based on AWS best practices 
-
+[Landing Zone](https://aws.amazon.com/solutions/implementations/aws-landing-zone/) helps to quickly setup a secure, multi-account AWS environment based on AWS best practices.
 
 ### Pricing
 
 * Capex: Capital Expenditure: you pay up front. It's a fixed cost
 * Opex: Operational Expenditure: you pay for what you use, like electricity, gas or water
 
-**Budgets** predict costs **before** they are incurred. Alarms can be set to monitor spending on your AWS Account.  
-**Cost explorer** is use to explore costs **after** they have been incurred
+* **Budgets** predict costs **before** they are incurred. Alarms can be set to monitor spending on your AWS account from `AWS Billing` service - [Budgets](https://console.aws.amazon.com/billing/home#/budgets)
 
-Support Plans
+    !!!info "`Receive Billing Alerts` must be enabled at [Billing Preferences](https://console.aws.amazon.com/billing/home?region=us-east-1#/preferences)."
 
-All accounts receive billing support.
+* **Cost explorer** is use to explore costs **after** they have been incurred. See [Billing & Cost Management Dashboard](https://console.aws.amazon.com/billing/home#/).
 
-![](img/support_plans.png)
-![](img/support_plans2.png)
-
-Setting up a billing alarm at `ClouldWatch/Alarms/Billing` using SNS (**S**imple **N**otify **S**ervice) topic
+* [Creating a billing alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html) at `ClouldWatch/Alarms/Billing` using SNS (**S**imple **N**otification **S**ervice) topic to monitor estimated AWS charges.
 
 `Application Integration/SNS` is a messaging service that enables you to decouple microservices, distributed systems, and serverless applications. Using AWS SNS topics, your publisher systems can fan-out messages to a large number of subscriber endpoints for parallel processing, including Amazon SQS queues, AWS Lambda functions, and HTTP/S webhooks. Additionally, SNS can be used to fan out notifications to end users using mobile push, SMS, and email.
 
 `Application Integration/SQS` (**S**imple **Q**ueue **S**ervice) offers a queue that lets you integrate and decouple distributed software systems and components.
+
+Support Plans:
+
+!!!info "All accounts receive billing support"
+
+![](img/support_plans.png)
+![](img/support_plans2.png)
+
 
 Pricing policies
 
@@ -1499,25 +1592,6 @@ Consolidated billing allows you to get volume discounts on all your accounts
 * Volumes
 * Snapshots
 * Data transfer
-
-#### S3 Pricing
-
-* Storage class
-* storage
-* requests
-* Data transfer
-
-#### Glacier pricing
-
-* storage
-* Data Retrieval times
-
-#### Snowball pricing
-
-* 50tb are 200$
-* 80tb are 250$
-* First 10 days are free. 15$ per day later
-* Data transfer to S3 is free. Data transfer out is charged
 
 #### RDS Pricing
 
