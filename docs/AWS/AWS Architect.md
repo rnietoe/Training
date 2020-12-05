@@ -101,6 +101,13 @@ Regional Services with global view
 
 * S3
 
+Caching services:
+
+* CloudFront
+* API Gateway
+* ElastiCache
+* DynamoDB Accelerator (DAX)
+
 AWS Service that can be used on premise:
 
 * `AWS Snow Family`:
@@ -140,6 +147,10 @@ AWS Service that can be used on premise:
         * If the origin is S3 then use S3 signed url 
     * We can `create invalidations` to remove origin objets on the edge location
     * To delete a CloudFront distribution, you have to disable it first. This process takes 15 minutes	
+    * Pricing depends on:
+        * traffic distribution
+        * requests
+        * data transfer out
 
     !!!danger "We will be charged when deleting cached data from an edge location"
     
@@ -221,7 +232,7 @@ The customer would be responsible for patching the Operating System for IaaS sol
 * **`CloudTrail`** track user **activity** and API usage
 * **`CloudWatch`** monitoring **performance**
 * **`Config`** monitor **configuration** settings
-* **`Athena`** serverless service for **querying** data in S3 using SQL. Commonly used to analyse logs 
+* **`Athena`** serverless service for **querying** data in S3 using SQL. Commonly used to analyse logs. It will work with a number of data formats including JSON, Apache Parquet, Apache ORC amongst others, but XML is not a format that is supported. 
 * **`Macie`** uses Machine learning to protect **sensitive data** (**P**ersonally **I**dentifiable **I**nformation) stored in S3
 * **`Kinesis`** work with Real-Time Streaming Data
 
@@ -533,22 +544,16 @@ Pricing:
 
 **`AWS RDS`** (**R**elational **D**atabase **S**ervice): 
 
-DB engine types:
-
-* MS SQL Server
+* MS SQL Server (up to 16TB of storage when using the Provisioned IOPS and General Purpose - SSD - storage)
 * Oracle. Includes license model
-* MySQL
+* MySQL (port 3306)
 * Amazon Aurora. This is up to 5X faster than a traditional MySQL database. MySQL and PostgreSQL compatibility. No free tier
 * MariaDB
-* PostgreSQL
-
-They use `AWS EBS` volumes for database and log storage. Only Aurora uses its storage system.
-
-We can manage RDS instances (CPU and Memory) using AWS CLI, AWS RDS API or management console.  
+* PostgreSQL (port 5432)
 
 Some features: 
 
-* **Multi-AZ** for disaster recovery and **high availability**. By default in production RDS. Primary host replicates to a secondary host when failover
+* **Multi-AZ** for disaster recovery and **high availability**. By default in production RDS. Primary host replicates to a secondary host when failover. Enable multiAZ impact to the RDS instance if running
 ```shell
 host -t NS database_endpoint # Query DNS Records on Linux
 nslookup database_endpoint # Query DNS Records on Windows
@@ -561,22 +566,24 @@ nslookup database_endpoint # Query DNS Records on Windows
     * reporting and data warehousing
     * disaster recovery
     * hosting a cross region with lower latency
+    * MS SQL Server cannot be read replica
+    * From the RDS instance, select the action `Create read replica` (must have backups turned on) and check the option Public accesible.  
+    * A new RDS instance is created for the read replica **wihout any impact**.  
+    * A read replica can be promoted as a standalone instance. Note that the promotion process is irreversible.  
+* Use of **AWS EBS** volumes for database and log storage. Only Aurora uses its storage system.
+* We can manage RDS instances (CPU and Memory) using AWS CLI, AWS RDS API or management console.  
+* RDS run on VM, but logging is not allowed.
+* Patching RDS is Amazon's responsability
 
-    From the RDS instance, select the action `Create read replica` and check the option Public accesible.  
-    A new RDS instance is created for the read replica.  
-    A read replica can be promoted as a standalone instance. Note that the promotion process is irreversible.  
-
-##### Scaling
+Scaling
 
 * vertical scaling (compute -CPU- OR memory) with a new RDS instance of DB instance class. Instance may shutdown
 * scaling with AWS EBS storage
 * horizontal scaling with read replicas
 
-In the case for Oracle, check license is in place.
+multiAZ takes more time for vertical scaling, but RDS is shutted down less time than working on a single AZ
 
-multiAZ takes more time for vertical scaling, but RDS is shutdown less time than working on a single AZ
-
-##### Backup options
+Backup options
 
 * backups in S3 are stored in an RDS own bucket. 
 * backup is for the db host, not only the databases.
@@ -601,7 +608,7 @@ To mitigate the slow restore process:
 * Restore a RDS instance with high I/O capacity
 * Maximize the I/O during the restore process
 
-##### Pricing
+Pricing
 
 * DB Engine and version
 * License model
@@ -610,13 +617,14 @@ To mitigate the slow restore process:
 * Storage type and allocation
 
 * Instance hours
-* Database Storage:  EBS VS Aurora
+* Database Storage: EBS VS Aurora
 * Size of bakcup storage
 * Outgoing data transfer
+* Data transferred between Availability Zones for replication of Multi-AZ deployments is free
 
-!!!tip "Reserve instance when long terms"
+!!!tip "Reserve instance when long terms for both Multi-AZ and Single-AZ configurations"
 
-##### Security
+Security
 
 * Network isolation, using VPC:
     * Private subnet
@@ -642,7 +650,7 @@ To mitigate the slow restore process:
 
 * SSL for db conectivity  
 
-##### Monitoring
+Monitoring
 
 * RDS sends metrics to `CloudWatch`
 * 15-18 metrics based on the instance class (CPU, free storage space, network traffic, database connections and IOPS)
@@ -666,7 +674,6 @@ SELECT sections.*, gen.*
        GENERATE_SERIES(1, 900000) gen
  WHERE gen <= sections * 3000;
  ```
-
 
 ##### How to create a secured RDS instance
 
@@ -752,16 +759,14 @@ SELECT sections.*, gen.*, CEIL(RANDOM()*100)
 1. From `RDS`, click `Create Database` button
 2. Select MySQL engine type, free tier template (without Multi-AZ) and fill the database name (db instance identifier)
 3. Use rnietoe and Abodroc83 for credencials
-4. Set initial db name as rnietoe in the additional configuration. If you do not specify a database name, Amazon RDS does not create a database.
-5. Click on defult VPC security group, `inbound rules`, edit to add a rule with:
-	* MySQL/Aurora type
-	* protocol TCP 
-	* port 3306
-	* WebDMZ security group
+4. Set initial db name as rnietoe in the additional configuration. 
+    * If you do not specify a database name, Amazon RDS does not create a database.
+    * When creating an RDS instance, you can select the Availability Zone into which you deploy it.
+    * automated backups are enabled by default, till 35 days
 
-	Then create a new EC2 instance with our WebDMZ security group, our key pair rnietoe and the following advanced details:
+5. Create a new EC2 instance with our WebDMZ security group, our key pair rnietoe and the following advanced details:
 
-	```
+	```shell
 	#!/bin/bash
 	yum install httpd php php-mysql -y
 	amazon-linux-extras install -y php7.2
@@ -776,9 +781,15 @@ SELECT sections.*, gen.*, CEIL(RANDOM()*100)
 	service httpd start
 	chkconfig httpd on
 	```
+    
+6. Allow connection between EC2 and RDS clicking on defult VPC security group, `inbound rules`, edit to add a rule with:
+	* MySQL/Aurora type
+	* protocol TCP 
+	* port 3306
+	* WebDMZ security group
 
-6. Browse to the EC2 public IP and see the wordpress home page. Fill db name, user name, pwd and RDS endpoint (rnietoe.cmr9irlg1qe3.us-east-1.rds.amazonaws.com)
-7. Create the wp-config.php file manually:
+7. Browse to the EC2 public IP and see the wordpress home page. Fill db name, user name, pwd and RDS endpoint (rnietoe.cmr9irlg1qe3.us-east-1.rds.amazonaws.com)
+8. Create the wp-config.php file manually:
 
 	```shell
 	ssh ec2-user@52.87.161.80 -i rnietoe.pem
@@ -786,9 +797,10 @@ SELECT sections.*, gen.*, CEIL(RANDOM()*100)
 	nano wp-config.php
 	# here paste wp-config.php from the wordpress home page. Ctrl+X to save it
 	```
-8. From the wordpress home page, `Run the installation`, fill the same credentials and `Install WordPress`
-9. Login to wordpress
-10. Configure a ELB target group to set WordPress settings URL with a DNS address instead of a public IP
+
+9. From the wordpress home page, `Run the installation`, fill the same credentials and `Install WordPress`
+10. Login to wordpress
+11. Configure a ELB target group to set WordPress settings URL with a DNS address instead of a public IP
 
 Finally we create a EC2 instance image, like a **snapshot**. this is called `AMI` (**A**mazon **M**achine **I**mange)
 
@@ -818,10 +830,10 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called `AMI
 
 #### Amazon Aurora
 
-* Move **Logging** and **Storage** layers into a multi tented scale out database optimized service
 * It has a hight performance with a low cost. 2-3x faster thant postgreSQL and 5x faster than MySQL
-* storage up to 64tb
-* continuous backup to S3
+* Move **Logging** and **Storage** layers into a multi tented scale out database optimized service
+* Storage from 10 gb to 64tb
+* Continuous backup to S3
 * Aurora DB Cluster till 15 replicas
     * Cluster endpoint connection allow write operations
     * Reader endpoint connection allow read operations
@@ -830,18 +842,21 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called `AMI
 * Aurora global databases
     * primary region - read and write
     * secondary region - read only. Promoted when failure
+* Aurora store by default 6 copies of my data (2x3)
 
 1. From `RDS`, create Amazon Aurora database with PostgreSQL compatibility
 2. Tree instances are created:
-    * regional - with wirte and read endpoints
+    * regional - with writer and read endpoints
     * writer
     * reader
+
+3. From actions, create aurora read replica (writer and reader node)
 
 **Aurora Serverless**
 
 * capacity type: Serverless
 * You specify the minimum and maximum amount of resources needed, and Aurora scales the capacity based on database load. This is a good option for intermittent or unpredictable workloads.
-* only an endponint is created
+* only an endpoint is created
 
 ```js
 //test lambda function
@@ -867,31 +882,45 @@ exports.handler = (event, context) => {
   });    
 };
 ```
+
 #### DynamoDB
 
 DynamoDB (Non Relational Databases) is a key-value and document database that delivers single-digit millisecond performance at any scale.
 
-* colletion = table
-* document = row
-* key value pairs = fields
+* DynamoDB provide automatic replication across AZs.
+* DynamoDB is distributed across three geographically distinct datacentres by default
+* Eventual consistent reads (default) sample of 2 seconds  
+* Strongly consistent reads. sample of less than 1 second
+* **DAX** (DynamoDB Accelerator) is an advanced DynamoDB
+* There will always be a charge for:
+    1. provisioning read and write capacity 
+    2. the storage of data
 
-DynamoDB provide automatic replication across AZs.
+#### RedShift 
 
-#### Red Shift
-
+* OLAP (OnLine Analytics Processing)
 * **Amazon's Data WareHousing** used for Online Anaylitcs Processing
-* Business Intelligence
+* Used for Business Intelligence
+* availabled in 1 AZ
 
 #### EMR 
 
-a web service that makes it easy to process large amounts of data efficiently.
+EMR (**E**lastic **M**ap **R**educe) is a web service that makes it easy to process large amounts of data efficiently. sample of **big data**
+
+cluster with:
+
+* master node (store logs by default)
+* core node
+* task node (optional)
+
+logs must be defined on cluster creation
 
 #### ElastiCache
 
-caches the most common queries:
+Improve performance with cache for the most common queries:
 
 * Memcached
-* Redis
+* Redis (muti AZ)
 
 #### Graph Databases
 
@@ -955,7 +984,9 @@ More features:
 * **Multipart uploads** use multithreading to upload large files to S3 buckets **in parallel** (the parts of the file are uploaded in parallel). recommended for > 100mb and required for > 5Gb
 * Use **S3 Lifecycle** rules to define actions you want AWS S3 to take during an object's lifetime such as **transitioning** objects to another storage class, archiving them, or deleting them after a specified period of time.
 * **AWS DataSync** is used to move large amounts of data from on-premise to AWS S3, EFS, FSx, etc.
-* **`AWS DMS`** (**D**atabase **M**igrations **S**ervice) is the best choice for conventional database migrations.
+* **`AWS DMS`** (**D**atabase **M**igrations **S**ervice) is the best choice for conventional database migrations to AWS.
+    * homogenous: sample of Oracle to Oracle
+    * heterogenous with SCT (**S**chema **C**onversion **T**ool): sample of SQL Server to Aurora
 * [General S3 FAQs](https://aws.amazon.com/s3/faqs/)
 
 [S3 Pricing](https://aws.amazon.com/s3/pricing/)
@@ -1735,24 +1766,6 @@ Create a paying account for billing purposes only. Do not deploy resources into 
 
 Consolidated billing allows you to get volume discounts on all your accounts
 
-#### RDS Pricing
-
-* Clock hours of server time
-* database Characteristics
-* database purchase type
-* number of database instances
-* provisioned storage
-* aditional storage
-* requests
-* deployment type
-* data transfer
-
-#### cloudfront pricing
-
-* traffic distribution
-* requests
-* data transfer out
-
 #### AWS Cost Calculators
 
 * [AWS Simple Monthly Calculator](https://calculator.s3.amazonaws.com/index.html) (**DEPRECATED**)
@@ -1761,85 +1774,5 @@ Consolidated billing allows you to get volume discounts on all your accounts
 
 #####################################################################
 
-
-Introduction to Amazon RDS
-
-S3 Masterclass
-
-#101 - Securing S3
-Supplementary
-Mastering the AWS Well-Architected Framework
-
-AWS Certified Solutions Architect Associate SAA-C02
-
-Application Load Balancer - Deprecated Aug 2020
-Supplementary
-Introduction to Machine Learning
-
-#107 - Does Twitter Hate Cats?
-Supplementary
-#101 - What is the DeepRacer?
-Supplementary
-Introduction to AWS AppSync
-2:15:00
-Docker Fundamentals - Deprecated Aug 2020
-
-Professional
-457 Total Lessons, 50.76 Hours of Video
-AWS Security Best Practices - Deprecated Aug 2020
-
-The Sky Is Falling, Run! | Mark Nunnikhoven
-Supplementary
-#109 - Your Very Own API
-25:48
-#108 - Let the Free Times Roll
-19:48
-The Complete Serverless Course - Deprecated Aug 2020
-14:30:00
-AS400/Mainframe to Serverless | David Wilson
-Supplementary
-Building Resilient Serverless Systems with "Non-Serverless" Components | Jeremy Daly
-Supplementary
-AWS Business Essentials
-2:00:00
-Demonstrating ROI: Convincing the VCs/Bosses to Invest in Serverless | MJ Ramachandran
-Supplementary
-AWS Certified Developer - Associate 2020
-
 `Developer Tools - X-Ray`
 AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
-
-Git Merge
-Supplementary
-Git Merge Conflicts
-Supplementary
-Git Remotes
-Supplementary
-Hands on with AWS Redshift: Table Design - Deprecated Aug 2020
-2:30:00
-AWS Certified SysOps Administrator - Associate 2020
-12:30:00
-Essentials for Windows Administrators on AWS - Deprecated Aug 2020
-Supplementary
-Automating AWS with Python - Deprecated Aug 2020
-Supplementary
-Guru
-496 Total Lessons, 76 Hours of Video
-Advanced AWS CloudFormation - Deprecated Aug 2020
-12:00:00
-#111 - Soda-theft Detection Device
-Supplementary
-AWS DynamoDB - From Beginner to Pro - Deprecated Aug 2020
-19:00:00
-Kubernetes Deep Dive
-4:00:00
-#112 - How to Turn on a Lamp from Anywhere in the World
-Supplementary
-AWS CodeDeploy - Deprecated Aug 2020
-4:00:00
-Avoiding Work: Architecting for serverless efficiency | Ryan Scott Brown
-Supplementary
-AWS Certified Advanced Networking - Specialty 2020
-25:00:00
-AWS Certified Solutions Architect - Professional 2020
-12:00:00
