@@ -42,53 +42,6 @@ AWS Cloud Practitioner Essentials (Second Edition) (Spanish)
 * Abodroc@83
 * Google Authenticator for Android - MFA (**M**ulti-**F**actor **A**uthentication)
 
-How to connect to EC2 using putty:
-
-1. Download [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) and load private key file created at `EC2/Key Pairs` (rnietoe.ppk) using putty gen.
-
-	**Key pair** can created or imported in AWS. You can create you key pair with the following command, keep the private key and import the public key in AWS:
-
-	```shell
-	ssh-keygen -C rnietoe@gmail.com -f ~/.ssh/rnietoe
-	```
-
-2. Configure SSH Auth with private key
-3. Copy IP address to the session host name field
-4. Open connection, login as `ec2-user` and type `sudo su command`
-
-![](img/ec2-putty.PNG)
-
-How to connect to EC2 using gitbash and install a web server:
-
-```shell
-cd "C:\Users\rniet\OneDrive\AWS"
-ssh ec2-user@3.80.39.184 -i rnietoe.pem
-uname -a  # software details
-cat ~/.ssh/authorized_keys	# the public key
-```
-
-How to connect using CLI
-
-1. Download the windows installer from [AWS Command Line Interface](https://aws.amazon.com/cli/?nc1=h_ls) and installe it
-2. Now we have the **aws** command in our prompt
-3. Configure IAM User with Programmatic access 
-4. Download the access key and the secret access key:
-
-	```shell
-	aws configure
-	aws configure --profile profile_name # when we want to work with cli profiles
-	# once type the access key, the secret access key, the default region and the output format (json/text)
-	aws ec2 describe-regions
-	# use :q to exit from command output
-	aws <command> --profile <profile_name> # when we want to execute commands with a specific profile
-	set AWS_PROFILE=<profile_name> # set/unset default profile
-	echo $AWS_PROFILE
-	aws sts get-caller-identity # print out account and user info
-	```
-
-~/.aws/config	# file containing profile configuration
-~/.aws/credentials	# file containing profile credentials	
-
 ## AWS Certified Cloud Practitioner 2020
 
 ### Introduction to AWS
@@ -213,6 +166,13 @@ AWS Service that can be used on premise:
     2. Select `EC2` as trusted entity to call AWS services on your behalf.
     3. Attach permission policy `AmazonS3FullAccess`
     4. Named as S3_Admin_Access
+
+    ```shell
+    aws iam create-role --role-name DEV_ROLE --assume-role-policy-document file://mypolicy.json
+    ```
+
+    * To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state. 
+    * To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the running state.
 * **Identities** include users, groups, and roles. These are the IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. 
 * A **Principal** is a person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS.
 
@@ -255,7 +215,6 @@ Encryption is a shared responsability
 
 The customer would be responsible for patching the Operating System for IaaS solutions
 
-* **`WAF`** (**W**eb **A**pplication **F**irewall) to stop hackers. It operates down to Layer 7.
 * **`Shield`** protect a lot of traffic (DDOS attacks). Only AWS Shield Advanced offers automated application layer monitoring. This costs $3000/month
 * **`Inspector`** to anayze and report security issues on EC2, but it can not examine individual policies
 * **`Trusted Advisor`** for recomendations and advices (not only EC2 instances). It helps you optimize cost, fault-tolerance, and more.
@@ -271,53 +230,167 @@ The customer would be responsible for patching the Operating System for IaaS sol
 
 It's safer to use IAM roles than it is to use Access Keys.
 
+#### WAF 
+
+**`AWS WAF`** (**W**eb **A**pplication **F**irewall) **block** request from specific IP address to stop hackers requests. It operates down to Layer 7.
+
 ### Compute
 
 #### EC2
 
 **`AWS EC2`** (**E**lastic **C**ompute **C**loud) is a virtual server in the cloud. It is a web service that provides resizeable compute capacity in the cloud
 
-**EC2 fleet** - multiple EC2 instances. They are manage by **`AWS System Manager`**
+**EC2 fleet** - multiple EC2 instances. They are manage by **`AWS System Manager`**  
+**Spot fleet** - multiple Spot (and on demand) instances 
 
-Pricing models:
+!!!danger "AWS originally used a modified version of the **Xen** Hypervisor to host EC2. In 2017, AWS began rolling out their own Hypervisor called **Nitro**"
 
-* **Dedicated**: physical EC2 server. It reduces cost using your SW licenses. Also when multitenant not supported by law
-* **Reserved**: the most economical option for **long-term workloads** with predictable usage patterns. Contract terms are 1 to 3 years. It includes different discounts
-	* Standard Reserved instances (75%)
-	* Convertible Reserved instances (54%)
-	* Schedule Reserved instances, based on times
+##### Placement groups
+
+* **Clustered**: Group homogenous EC2 instances within a single AZ for network performance
+* **Spread**: Individial EC2 instances are placed on distinct rack within one region for hardware errors
+* **Partitiononed**: Multiple EC2 instances in the same rack
+
+##### Pricing models:
+
 * **On Demand**: low cost, paying by hour or second. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it. Sample: when **task run uninterrupted** from start to finish
-* **Spot**: based on start and end times. it can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, high-performance computing (HPC), and other test & development workloads. Extra charge when you terminate the instance
+* **Reserved**: the most economical option for **long-term workloads** with predictable usage patterns. Contract terms are 1 to 3 years. It includes different discounts
+	* **Standard** Reserved instances (75% off on demand instances)
+	* **Convertible** Reserved instances (54%)
+	* **Schedule** Reserved instances, based on times
+* **Spot**: taket advantage of unused EC2 capacity. It can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, HPC (high-performance computing), and other test & development workloads. Extra charge when you terminate the instance
+    * Spot Instances are available at up to a 90% discount compared to On-Demand prices.
+* **Dedicated**: physical EC2 server. It reduces cost using your SW licenses. Also when multitenant not supported by law
 
-Spot Instances are available at up to a 90% discount compared to On-Demand prices.
+    ![EC2-instances-types](img/EC2-instances-types.png)
 
-![EC2-instances-types](img/EC2-instances-types.png)
+    !!!danger "Standard Reserved Instances cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific AZ, or an Entire Region, but you cannot change the region"
 
-**EBS** is the virtual hard disk attached to the EC2:
+ EC2 Pricing depends on:
 
-* SSD 
-	* GP2 - General Purpose
-	* IO1 - Input Output per second - high perfrmance
-* Magnetic (HDD)
-	* ST1 - Low cost for frequently access
-	* SC1 - Lowest cost for less frequently access
-	* Magnetic - Previous generation
+* Clock hours of server time
+* instance type
+* pricing model (on demand, reserved, spot, dedicated host)
+* number of instances
+* load balancing
+* detailed monitoring
+* auto scaling
+* Elastic IP Addresses
+* Operative Systems and sw packages
 
-##### How to create a EC2:
+##### AMI
 
-1. `Launch instance`
-2. Select Operative System (amazon linux 2 AMI)
-3. Choose an Instance Type (free tier)
+* (**A**mazon **M**achine **I**mange) are instance image snapshots of different Operative System
+* AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage)
+* EC2 instance with **Instance Store** can't be stopped
+* **Instance Store** does not appear in the AWS EC2 Volume list
+* To use hibernation, the root volume must be an encrypted EBS volume. RAM be less than 150gb
+
+!!!danger "Use snapshots and AMI to change EC2 volumes (AZ and encryption)."
+
+* Snapshots are incremental
+* You must first deregister the AMI before you can delete the snapshot
+* You can use AWS APIs, CLI or the AWS Console to copy snapshots, share snapshots, and create volumes from snapshots.
+* EBS snapshots use incremental backups and are stored in S3.
+* Volumes exist on EBS. Snapshots and instance store exist on S3. 
+
+```shell
+aws ec2 create-snapshot
+```
+##### How to create EC2:
+
+1. From AWS EC2, `Launch instance`
+2. Select AMI, for example: Amazon Linux 2 AMI
+3. Choose an Instance Type (t2 micro - free tier)
 4. Configure Instance Details (number of instances) 
-5. Add Storage
-6. Add tags like Name, Department or Employee_Id
-7. Configure **Security Groups** - virtual firewalls (types ssh & http - ports 22 & 80)
 
-	!!!info "Linux=SSH port 22. Microsoft Windows= RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443"
+    !!!tips "Enable CloudWatch detailed monitoring is not free"
+
+5. Add Storage. Root and EBS volume types allow encryption and delete on termination (turn off by default on EBS) 
+
+    !!!note "EC2 instance and volume are in the same AZ"
+
+6. Add tags like Name, Department or Employee_Id
+7. Configure **Security Groups** - virtual firewalls to enable traffic (types ssh & http - ports 22 & 80)
+    * All inbound traffic is blocked by default and all outbound traffic is allowed (SG are STATEFUL)
+    * Linux=SSH port 22. Microsoft Windows= RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443
+    * SG changes are take effect immediately
+    * one or more SG can be assigned to EC2 instance. EC2 and SG relationshipt is many to many
+    * use **Network ACL** to block specific IP address instead of SG
 
 8. Launch using a key pair (public and private key)
 
 !!!danger "Always design for failure. Have one EC2 instance in each AZ"
+!!!tips "EC2 instance are provisioned in AZ"
+
+##### How to connect to EC2 
+
+Using AWS Console, select the EC2 instance and clic on the `Connect` button
+
+Using putty:
+
+1. Download [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) and load private key file created at `EC2/Key Pairs` (rnietoe.ppk) using putty gen.
+
+	**Key pair** can created or imported in AWS. You can create you key pair with the following command, keep the private key and import the public key in AWS:
+
+	```shell
+	ssh-keygen -C rnietoe@gmail.com -f ~/.ssh/rnietoe
+	```
+
+2. Configure SSH Auth with private key
+3. Copy IP address to the session host name field
+4. Open connection, login as `ec2-user` and type `sudo su command`
+
+    ![](img/ec2-putty.PNG)
+
+Using gitbash and install a web server:
+
+```shell
+cd "C:\Users\rniet\OneDrive\AWS"
+CHMOD 400 rnietoe.pem # change permissions to lock my key down
+ssh ec2-user@3.80.39.184 -i rnietoe.pem
+sudo su
+uname -a  # software details
+cat ~/.ssh/authorized_keys	# the public key
+```
+
+```shell
+while true; do echo; done # to monitor the CPU usage
+```
+
+Using CLI
+
+1. Download the windows installer from [AWS Command Line Interface](https://aws.amazon.com/cli/?nc1=h_ls) and installe it
+2. Now we have the **aws** command in our prompt
+3. Configure IAM User with Programmatic access 
+4. Download the access key and the secret access key:
+
+	```shell
+	aws configure
+	aws configure --profile profile_name # when we want to work with cli profiles
+	# once type the access key, the secret access key, the default region and the output format (json/text)
+	aws ec2 describe-regions
+	# use :q to exit from command output
+	aws <command> --profile <profile_name> # when we want to execute commands with a specific profile
+	set AWS_PROFILE=<profile_name> # set/unset default profile
+	echo $AWS_PROFILE
+	aws sts get-caller-identity # print out account and user info    
+    cat ~/.aws/config	# file containing profile configuration
+    cat ~/.aws/credentials	# file containing profile credentials	
+    rm -rf ~/.aws
+	```
+
+    We must use **roles** for security reasons instead of saving credentials (anyone could access to the .aws directory). Roles are global. They are not specified any region. Create a role to allows EC2 to use S3 as an admin:
+
+    1. Go to `IAM/Roles` and crete a new role
+    2. Select `EC2` as the type of trusted entity
+    3. Attach `AmazonS3FullAccess` permissions policies
+    4. Go to `EC2`, select the instance and actions/instance settings/attach/replace iam role
+    5. Then we can delete .aws directory with credential and still running `aws s3 ls`
+
+    ```shell
+    aws s3 ls
+    ```
 
 ##### How to create a static website on S3
 
@@ -334,20 +407,6 @@ cd .aws # go the hidden directory
 nano credentials # display access keys
 ```
 
-We must use **roles** for security reasons instead of saving credentials (anyone could access to the .aws directory). Roles are global. They are not specified any region. Create a role to allows EC2 to use S3 as an admin:
-
-1. Go to `IAM/Roles` and crete a new role
-2. Select `EC2` as the type of trusted entity
-3. Attach `AmazonS3FullAccess` permissions policies
-4. Go to `EC2`, select the instance and actions/instance settings/attach/replace iam role
-5. Then we can delete .aws directory with credential and still running `aws s3 ls`
-
-```shell
-cd ~
-rm -rf .aws
-aws s3 ls
-```
-
 ##### How to build a web server
 
 ```shell
@@ -357,7 +416,8 @@ yum install httpd -y # install apache
 cd /var/www/html # create index.html in this path
 nano index.html
 <html><body><h1>This is server 1</h1></body></html>
-sudo systemctl start httpd # start apache service
+service httpd start # sudo systemctl start httpd # start apache service
+chkconfig on # start apache on restarts
 ```
 
 ##### How to use a load balancer
@@ -382,7 +442,7 @@ Create Load balancer with a single instance:
 7. Review and create
 8. Browse to the ELB (**E**lastic **L**oad **B**alance) DNS name and see the result, instead of browsing to the EC2 IP address
 
-Launch a new EC2 instance with a different subnet (in order to have our two EC2 instances in two different AZ)
+    Launch a new EC2 instance with a different subnet (in order to have our two EC2 instances in two different AZ)
 
 9. Configure instance details with advance details:
 
@@ -394,14 +454,18 @@ Launch a new EC2 instance with a different subnet (in order to have our two EC2 
 	chkconfig httpd on	# start apache on restarts
 	cd /var/www/html
 	echo "<html><body><h1>This is server 2</h1></body></html>" > index.html
+    aws s3 mb s3://YOURBUCKETNAMEHERE
+    aws s3 cp index.html s3://YOURBUCKETNAMEHERE # backup in S3
 	```
+
+    More details to create Bootstrap actions to install additional software are [here](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-bootstrap.html)
 
 10. Add tags
 11. Select our security group (virtual firewall)
 12. Review and launch using our private key
 13. Browse to the public IP to see the result
 
-Update `Load balancing/Target Groups` adding our second EC2 instance
+    Update `Load balancing/Target Groups` adding our second EC2 instance
 
 14. Select the target group and click the button `Register targets`
 15. Select our second EC2 instance and click the buttons `Include as pending below` and `Register pending targets` to add registerd on port 80  
@@ -426,6 +490,20 @@ Update `Load balancing/Target Groups` adding our second EC2 instance
 	* CloudWatch alarm
 	* ...
 
+##### Retrieving instance metadata
+
+Connect to the EC2 instance and [get instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html) to get information about an instance:
+
+```shell
+curl http://169.254.169.254/latest/user-data
+curl http://169.254.169.254/latest/user-data > bootstrap.txt
+cat bootstrap.txt
+
+curl http://169.254.169.254/latest/meta-data
+curl http://169.254.169.254/latest/meta-data/local-ipv4
+curl http://169.254.169.254/latest/meta-data/public-ipv4
+```
+
 #### Lambda
 
 **`AWS Lambda`** is the Function-as-a-Service (FaaS) to run your code without provisioning or managing servers.
@@ -433,6 +511,21 @@ Update `Load balancing/Target Groups` adding our second EC2 instance
 * Lambda can be used for Infrastructure as Code
 * You can use JSON or YAML for Lambda templates.
 * The resources section is the only required field in Lambda templates.
+
+Pricing: 
+
+* request pricing
+	* 1 million request per month free
+	* 0,20$ next million requests
+* duration pricing (how long lambda functions are executing for)
+	*  4000.000 gb-seconds per month free, up to 3,2 million seconds of compute time
+	* 0,00001667 for every GB second used thereafter
+* additional charges
+	* when using other AWS services
+
+#### Batch
+
+**`AWS Batch`** enables you to easily and efficiently run batch computing jobs of any scale on AWS using EC2 and EC2 Spot.
 
 ### Databases
 
@@ -530,7 +623,7 @@ To mitigate the slow restore process:
     * Security group (firewall)
     * Public accessibility (turn off)
     * ClassicLink
-    * DirectConnect
+    * **Direct Connect**: dedicated line from on premise to AWS to improve the network connection
     * VPC Peering
 * IAM for access control:
     * Do not use AWS root credentials
@@ -861,7 +954,7 @@ More features:
 
 * **Multipart uploads** use multithreading to upload large files to S3 buckets **in parallel** (the parts of the file are uploaded in parallel). recommended for > 100mb and required for > 5Gb
 * Use **S3 Lifecycle** rules to define actions you want AWS S3 to take during an object's lifetime such as **transitioning** objects to another storage class, archiving them, or deleting them after a specified period of time.
-* **AWS DataSync** is used to move large amounts of data from on-premise  to AWS.
+* **AWS DataSync** is used to move large amounts of data from on-premise to AWS S3, EFS, FSx, etc.
 * **`AWS DMS`** (**D**atabase **M**igrations **S**ervice) is the best choice for conventional database migrations.
 * [General S3 FAQs](https://aws.amazon.com/s3/faqs/)
 
@@ -906,6 +999,8 @@ A Policy is the document used to grant permissions to users, groups, and roles, 
 }
 ```
 
+Changes to IAM Policies take effect almost immediately (with maybe a few seconds delay).
+
 **S3 Objetc lock** are objects **W**ritten **O**nce and **R**ead **M**any. WORM model. Objects (the whole bucket or individual files) became unmodificable and undeletable:
 
 * Governance mode: some users are grant with permissions to alter settings or delete the object version
@@ -930,13 +1025,74 @@ Glacier pricing:
 
 #### EFS
 
-Amazon Elastic File System (EFS) is a mountable file storage service for EC2, but has no connection to S3 which is an object storage service.
+Based on NFSv4, Amazon EFS (**E**lastic **F**ile **S**ystem) is a mountable file storage service for EC2 (linux), but has no connection to S3 which is an object storage service.
+
+Data is stored across multiple AZ's within a region
+
+How to create an EFS **shared** by two EC2 instances:
+
+1. From AWS EFS, `Create file system`
+2. Create EC2 instances with following user data: 
+
+    ```shell
+    #!/bin/bash
+    yum update -y
+    yum install httpd -y
+    service httpd start
+    chkconfig httpd on
+    yum install amazon-efs-utils -y
+    ```
+
+3. default SG require inbound rule of type NFSv4 (**N**etwork **F**ile **S**ystem, port 2049) with source SG WebDMZ
+4. connect to the EC2 instances, and then mount EFS:
+
+    ```shell
+    cd /var/www/html
+    cd ..
+    mount -t efs -o tls fs-9816b269:/ /var/www/html   # this command comes from `EFS - Amazon EC2 mount instructions from local VPC`
+    cd html
+    echo "<html><body><h1>using EFS</h1></body></html>" > index.html
+    ```
 
 #### EBS
 
-Amazon Elastic Block Store (EBS) is a block level storage service for use with Amazon EC2 and again has no connection to S3.
+EBS cannot be shared by two EC2 instances
+
+AWS EBS (**E**lastic **B**lock **S**torage) is like a virtual hard disk in the cloud. This is a block level storage service for use with AWS EC2 and again has no connection to S3.
+
+!!!danger "an Amazon EBS volume attached as an additional disk (not the root volume) can be detached without stopping the instance"
+
+EBS Types:
+
+* SSD (**S**olid **S**tate **D**rive)
+	* GP2 - General Purpose
+	* IO1 - Provisioned IOPS - Input Output per second - high perfrmance
+* HDD (**H**ard **D**isk **D**rive)
+	* ST1 - Throughtput optimised - Low cost for frequently access
+	* SC1 - Cold HDD - Lowest cost for less frequently access
+	* Magnetic - Previous generation
+
+![](img/ebs.PNG)
+
+HDD based volumes will always be less expensive than SSD types. EBS Pricing depends on:
+
+* Volumes
+* Snapshots
+* Data transfer
+
+#### FSx
+
+* AWS FSx for windows file server - MS Windows file system
+    * Based on SMB (Windows **S**erver **M**essage **B**lock)
+* AWS FSx for Lustre
+    * Optimised file system
+    * can store data on S3
 
 ### Network
+
+* **ENI** - Elastic Network Interface - virtual network card for basic networking
+* **ENA** - Enhanced Networking Adapter - use SR-IOV (**S**ingle **R**oot **I/O V**irtualization) to allow speeds between 10 and 100 Gbps requirement
+* **EFA** - Elastic Fabric Adapter - machine learning or HPC (**H**igh **P**erformance **C**omputing) requirement
 
 #### VPC
 
@@ -1511,6 +1667,21 @@ Maximum of 20 Link accounts. Contact AWS for more
 
 [Landing Zone](https://aws.amazon.com/solutions/implementations/aws-landing-zone/) helps to quickly setup a secure, multi-account AWS environment based on AWS best practices.
 
+#### AWS Config
+
+`AWS Config` provides an inventory of your AWS resources and a history of configuration changes to these resources.  
+ You can use AWS Config to define rules that evaluate these configurations for compliance.
+
+ How to get started:
+
+ 1. Specify the types of AWS resources you want AWS Config to record
+ 2. Define the Amazon S3 bucket to which it sends files
+ 3. Set the Amazon SNS topic to which it sends notifications
+ 4. Define config rules
+ 5. Restart EC2 instances and check AWS Config results
+
+You are charged based on the number of configuration items recorded, the number of active AWS Config rule evaluations and the number of conformance pack evaluations in your account
+
 ### Pricing
 
 * Capex: Capital Expenditure: you pay up front. It's a fixed cost
@@ -1563,35 +1734,6 @@ free services
 Create a paying account for billing purposes only. Do not deploy resources into the paying account.
 
 Consolidated billing allows you to get volume discounts on all your accounts
-
-#### EC2 Pricing
-
-* Clock hours of server time
-* instance type
-* pricing model (on demand, reserved, spot, dedicated host)
-* number of instances
-* load balancing
-* detailed monitoring
-* auto scaling
-* Elastic IP Addresses
-* Operative Systems and sw packages
-
-#### Lambda Pricing 
-
-* request pricing
-	* 1 million request per month free
-	* 0,20$ next million requests
-* duration pricing (how long lambda functions are executing for)
-	*  4000.000 gb-seconds per month free, up to 3,2 million seconds of compute time
-	* 0,00001667 for every GB second used thereafter
-* additional charges
-	* when using other AWS services
-
-#### EBS Pricing
-
-* Volumes
-* Snapshots
-* Data transfer
 
 #### RDS Pricing
 
