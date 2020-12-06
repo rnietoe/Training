@@ -1,18 +1,52 @@
-# AWS Solutions Architect (Associate)
+# AWS Architect
 
-* [AWS Management Console](https://console.aws.amazon.com/)  
-* [AWS Documentation](https://docs.aws.amazon.com/index.html)  
-* [AWS Sample Exam Questions](https://aws.amazon.com/certification/certification-prep/)  
-* [AWS Certified Solutions Architect Associate Practice Exams](https://www.udemy.com/course/aws-certified-solutions-architect-associate-practice-tests-k/)
+[https://rnietoe.signin.aws.amazon.com/console](https://rnietoe.signin.aws.amazon.com/console)
 
-[Exam Tips](0-Exam-Tips.md)
+* rnietoe@gmail.com - AWS account (root account)
+* rnietoe/training
+* rnietoe/paying
+* Abodroc@83
+* Google Authenticator for Android - **MFA** (**M**ulti-**F**actor **A**uthentication)
 
-1. [Cloud Services Overview](1-Cloud-Services-Overview.md)
-2. [Storage Design](2-Storage-Design.md)
-3. [VPC (Virtual Private Cloud)](3-Virtual-Private-Cloud.md)
-4. [Compute Services](4-Compute-Services.md)
-5. [IAM (Identity and Access Management)](5-Identity-and-Access-Management.md)
-6. [Auto Scaling and Virtual Network Services](6-Auto-Scaling-and-Virtual-Network-Services.md)
-7. [Application Deployment](7-Application-Deployment.md)
+Book your exam [here](https://www.aws.training/certification)
+
+1. [Introduction](1-Introduction.md)
+2. [Storage](2-Storage.md)
+3. [Network](3-Network.md)
+4. [Compute](4-Compute.md)
+5. [Security](5-Security.md)
+6. [Management](5-Management.md)
 8. [Databases](8-Databases.md)
-9. [Services and Design Scenarios](9-Services-and-Design-Scenarios.md)
+
+## ACloud.Guru Final Practice Exam  
+[https://aws.amazon.com/certification/certification-prep/](https://aws.amazon.com/certification/certification-prep/)
+
+• Step 1: Take an AWS Training Class  
+• Step 2: Review the Exam Guide and Sample Questions  
+• Step 3: Practice with Self-Placed Labs and an Exam Prep Quest  
+• Step 4: Study AWS Whitepapers  
+• Step 5: Review AWS FAQs  
+• Step 6: Take an Exam Prep Workshop  
+• Step 7: Take a Practice Exam  
+• Step 8: Schedule Your Exam and Get Certified  
+
+[https://www.qwiklabs.com/](https://www.qwiklabs.com/)
+
+## AWS Documentation
+[https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do](https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do)  
+[https://aws.amazon.com/faqs/](https://aws.amazon.com/faqs/)  
+[https://aws.amazon.com/whitepapers/?whitepapers-main.sort-by=item.additionalFields.sortDate&whitepapers-main.sort-order=desc](https://aws.amazon.com/whitepapers/?whitepapers-main.sort-by=item.additionalFields.sortDate&whitepapers-main.sort-order=desc)    
+[https://www.youtube.com/c/amazonwebservices/videos](https://www.youtube.com/c/amazonwebservices/videos)  
+[https://aws.amazon.com/architecture/](https://aws.amazon.com/architecture/)  
+[https://aws.amazon.com/new/](https://aws.amazon.com/new/)  
+[https://www.meetup.com/es/topics/amazon-web-services/](https://www.meetup.com/es/topics/amazon-web-services/)  
+[AWS Certified Solutions Architect Associate Practice Exams](https://www.udemy.com/course/aws-certified-solutions-architect-associate-practice-tests-k/)
+
+## AWS Exam  
+[https://aws.amazon.com/certification/faqs/](https://aws.amazon.com/certification/faqs/)  
+[https://aws.amazon.com/certification/certified-solutions-architect-associate/](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
+
+AWS Cloud Practitioner Essentials (Second Edition) (Spanish)
+[https://www.aws.training/Details/Curriculum?id=46152](https://www.aws.training/Details/Curriculum?id=46152)
+
+
