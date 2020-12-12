@@ -76,16 +76,20 @@ aws ec2 create-snapshot
 
 6. Add tags like Name, Department or Employee_Id
 7. Configure **Security Groups** - virtual firewalls to enable traffic (types ssh & http - ports 22 & 80)
+    * Security groups support "allow" rules only.
     * All inbound traffic is blocked by default and all outbound traffic is allowed (SG are STATEFUL)
     * Linux=SSH port 22. Microsoft Windows= RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443
     * SG changes are take effect immediately
     * one or more SG can be assigned to EC2 instance. EC2 and SG relationshipt is many to many
+    * Security groups operate at the instance level.
     * use **Network ACL** to block specific IP address instead of SG
 
 8. Launch using a key pair (public and private key)
 
 !!!danger "Always design for failure. Have one EC2 instance in each AZ"
 !!!tips "EC2 instance are provisioned in AZ"
+!!!danget "Creating an Elastic IP address and associate it with your instance would be the simplest way to make your instance reachable from the outside world."
+
 
 ### How to connect to EC2 
 
@@ -195,6 +199,9 @@ Create Load balancer with a single instance:
 	* `Classic Load Balancer` would be the cheapest type for test and dev. It is intended for applications that were built within the EC2-Classic network.
 
 3. Configure Load Balancer with name and select every AZ
+
+    !!!danger "At least two public subnets are required to enable the LB"
+
 4. Select our Security Group (virtual firewall)
 5. Configure Routing with a Target Troup name and the following health check settings:
 	* healthy threshold: 3 times

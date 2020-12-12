@@ -97,17 +97,6 @@ S3 Security:
 }
 ```
 
-ARN (**A**mazon **R**esource **N**ame)
-    
-    arn:partition:service:region:account_id:resouce_type:qualifier:resource:qualifier
-* partition: aws|aws-cn
-* service: s3|ec2|rds
-* region: us-east-1|eu-central-1 (omitted when service is global such as iam)
-* account_id: twelve digits (ommitted with service is globally unique, such as s3)
-* resource_type: 
-* resource: 
-* qualifier:
-
 **S3 Objetc lock** are objects **W**ritten **O**nce and **R**ead **M**any. WORM model. Objects (the whole bucket or individual files) became unmodificable and undeletable:
 
 * Governance mode: some users are grant with permissions to alter settings or delete the object version

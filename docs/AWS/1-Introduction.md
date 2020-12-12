@@ -80,7 +80,7 @@ AWS Service used on premise:
 
 Overview: 
 
-* **Availability Zone** (AZ) are data center
+* **Availability Zone** (AZ) are data center. AZs are randomized by AWS (us-east-1 can be different AZ for different accounts). 
 * **Region** is a distinct location within a geographical area with 2 or more AZ, designed to provide high availability to a specific geography. Choosen by law, latency and AWS Services
 
     !!!info "US East (N. Virginia) us-east-1 was the first region and all new services are deployed here first" 
