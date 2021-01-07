@@ -40,7 +40,7 @@
     
     
       
-        <title>AWS Architect - rnietoe training</title>
+        <title>2. Storage - rnietoe training</title>
       
     
     
@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#aws-architect" tabindex="0" class="md-skip">
+      <a href="#2-storage" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -117,7 +117,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                AWS Architect
+                2. Storage
               
             </span>
           
@@ -259,63 +259,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        AWS Architect
-      </label>
-    
-    <a href="./" title="AWS Architect" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../0-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
       AWS Architect
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#acloudguru-final-practice-exam" class="md-nav__link">
-    ACloud.Guru Final Practice Exam
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aws-documentation" class="md-nav__link">
-    AWS Documentation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aws-exam" class="md-nav__link">
-    AWS Exam
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -335,11 +283,90 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../2-Storage/" title="2. Storage" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2. Storage
+      </label>
+    
+    <a href="./" title="2. Storage" class="md-nav__link md-nav__link--active">
       2. Storage
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#s3" class="md-nav__link">
+    S3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glacier" class="md-nav__link">
+    Glacier
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efs" class="md-nav__link">
+    EFS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-an-efs-shared-by-two-ec2-instances" class="md-nav__link">
+    How to create an EFS shared by two EC2 instances:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ebs" class="md-nav__link">
+    EBS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fsx" class="md-nav__link">
+    FSx
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -633,22 +660,49 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#acloudguru-final-practice-exam" class="md-nav__link">
-    ACloud.Guru Final Practice Exam
+  <a href="#s3" class="md-nav__link">
+    S3
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aws-documentation" class="md-nav__link">
-    AWS Documentation
+  <a href="#glacier" class="md-nav__link">
+    Glacier
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aws-exam" class="md-nav__link">
-    AWS Exam
+  <a href="#efs" class="md-nav__link">
+    EFS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-an-efs-shared-by-two-ec2-instances" class="md-nav__link">
+    How to create an EFS shared by two EC2 instances:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ebs" class="md-nav__link">
+    EBS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fsx" class="md-nav__link">
+    FSx
   </a>
   
 </li>
@@ -669,54 +723,213 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/0-AWS-Solutions-Architect-Associate.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/2-Storage.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="aws-architect">AWS Architect<a class="headerlink" href="#aws-architect" title="Permanent link">&para;</a></h1>
-<p><a href="https://rnietoe.signin.aws.amazon.com/console">https://rnietoe.signin.aws.amazon.com/console</a></p>
+                <h1 id="2-storage">2. Storage<a class="headerlink" href="#2-storage" title="Permanent link">&para;</a></h1>
+<h2 id="s3">S3<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS S3</code></strong> is <strong>Object-based</strong> for the safe storage of <strong>flat</strong> files such as text files, videos, pictures and any other flat file from 0 to 5 tb. The object has a key (filename), value (data), versionID, metadata, encryption, and security by ACL (<strong>A</strong>ccess <strong>C</strong>ontrol <strong>L</strong>ists), torrent and Bucket Policies </p>
+<div class="admonition info">
+<p class="admonition-title">Objects stored in S3 are stored in multiple servers in multiple facilities across AWS</p>
+</div>
+<p><strong>Buckets</strong> are folders/containers for everything that you store in S3. S3 bucket names are <strong>global</strong>, and must be unique. Universal namespaces are like https://s3-region_name.amazonaws.com/bucket_name. The response code is http 200 when file upload succeeds.</p>
+<div class="admonition danger">
+<p class="admonition-title">Create new files are read inmediately. Updates and deletes takes a little bit of time to propagate.</p>
+</div>
+<p>S3 classes:</p>
 <ul>
-<li>rnietoe@gmail.com - AWS account (root account)</li>
-<li>rnietoe/training</li>
-<li>rnietoe/paying</li>
-<li>Abodroc@83</li>
-<li>Google Authenticator for Android - <strong>MFA</strong> (<strong>M</strong>ulti-<strong>F</strong>actor <strong>A</strong>uthentication)</li>
+<li><strong>S3 Standard</strong>: Frequently accessed data</li>
+<li><strong>S3 - IA</strong> (<strong>I</strong>nfrequently <strong>A</strong>ccessed)</li>
+<li><strong>S3 One Zone - IA</strong> (multiple AZ not required) aka <strong>RRS</strong></li>
+<li><strong>S3 - Intelligent Tiering</strong>, using machine learning to move files to the most cost-effective access tier</li>
+<li><strong>S3 Glacier</strong> (low cost storage. retrieval times from 2 minutes to hours)</li>
+<li><strong>S3 Glacier Deep Archive</strong> (lowest-cost. retrieval time of 12 hours is acceptable)</li>
 </ul>
-<p>Book your exam <a href="https://www.aws.training/certification">here</a></p>
+<div class="admonition danger">
+<p class="admonition-title">It does not make sense to use S3 standard. Instead, use S3 - Intelligent Tiering to save money</p>
+</div>
+<p>More features:</p>
+<ul>
+<li>Unlimited storage</li>
+<li>We can use the bucket to host a <strong>static website</strong> using S3 with option <code>static website hosting</code> eanbled, with index.html and error.html. Dynamic website can not be hosted on S3.</li>
+<li>Encryption:<ul>
+<li>Encryption in Transit, using https (SSL/TLS)</li>
+<li>Encryption at Rest:<ul>
+<li>In the server side (<strong>S</strong>erver <strong>S</strong>ide <strong>E</strong>ncryption):<ul>
+<li><strong>SSE-S3</strong>: An encryption key that Amazon S3 creates, manages, and uses for you.</li>
+<li><strong>SSE-KMS</strong>: An encryption key protected by AWS <strong>K</strong>ey <strong>M</strong>anagament <strong>S</strong>ervice</li>
+<li><strong>SSE-C</strong> with customer provided keys</li>
+</ul>
+</li>
+<li>In the client side - encrypted before uploading</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Versioning (disabled by default):<ul>
+<li>usefull as backup tool</li>
+<li><strong>MFA Delete</strong> setting: an additional layer of security that requires MFA for changing Bucket Versioning settings and permanently deleting object versions. To modify MFA delete settings, use the AWS CLI, AWS SDK, or the Amazon S3 REST API.</li>
+<li>Cannot be disabled once enabled</li>
+<li>Uploaded new verions are <strong>private</strong> by default</li>
+<li>Deleting a file create a new version (<strong>deleted marker</strong>), then restoring the file recovers all previous versions.</li>
+<li>Integrated with lifecycle rules</li>
+</ul>
+</li>
+<li>
+<p><strong>S3 Transfer Acceleration</strong> takes advantage of Amazon CloudFront (edge location - cache) using Amazon internal network (no internet). It enables fast, easy and secure transfers of files to and from your bucket.</p>
+<ul>
+<li><a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">Speed Comparison Tool</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Cross Region Replication</strong>: replicate a bucket from a region to another:</p>
+<ul>
+<li>From S3 Management tab, select <code>Create replication rule</code></li>
+<li>Create a new role and select the source bucket and destination bucket. Replicated buckets can be in different AWS accounts</li>
+<li>Replication requires versioning to be enable on the source and destionation buckets.</li>
+<li>we can change the storage class for the replicated objetcs</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">replication starts when files are added and updated later. Deletes are not replicated. Permissions and previous versions are not replicated</p>
+</div>
+</li>
+<li>
+<p>Use <strong>S3 Lifecycle</strong> rules to define actions you want AWS S3 to take during an object's lifetime such as <strong>transitioning</strong> objects to another storage class, archiving them, or deleting them after a specified period of time.</p>
+</li>
+<li><strong>Multipart uploads</strong> use multithreading to upload large files to S3 buckets <strong>in parallel</strong> (the parts of the file are uploaded in parallel). recommended for &gt; 100mb and required for &gt; 5Gb</li>
+<li><strong>AWS DataSync</strong> is used to move large amounts of data from on-premise to AWS S3, EFS, FSx, etc.</li>
+<li><strong><code>AWS DMS</code></strong> (<strong>D</strong>atabase <strong>M</strong>igrations <strong>S</strong>ervice) is the best choice for conventional database migrations to AWS.<ul>
+<li>homogenous: sample of Oracle to Oracle</li>
+<li>heterogenous with SCT (<strong>S</strong>chema <strong>C</strong>onversion <strong>T</strong>ool): sample of SQL Server to Aurora</li>
+</ul>
+</li>
+<li><a href="https://aws.amazon.com/s3/faqs/">General S3 FAQs</a></li>
+</ul>
+<p><a href="https://aws.amazon.com/s3/pricing/">S3 Pricing</a> depends on:</p>
+<ul>
+<li>Storage class</li>
+<li>Storage</li>
+<li>Requests</li>
+<li>Data transfer</li>
+<li>Transfer acceleration</li>
+<li>Cross region replication</li>
+</ul>
+<p>To upload a file larger than 160 GB, use the AWS CLI, AWS SDK, or Amazon S3 REST API.</p>
+<p>S3 Security:</p>
+<ul>
+<li>Uploaded files are <strong>private</strong> by default</li>
+<li>Bucket policies applies to the entire bucket (like one hosting a static S3 website - public) </li>
+<li>Bucket ACLs. Object policies applies to an individual file.</li>
+<li><strong>Public</strong> bucket policy sample:
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-09-08&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">identify</span> <span class="err">the</span> <span class="err">document</span> <span class="err">structure</span>
+    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;Sid&quot;</span><span class="p">:</span> <span class="s2">&quot;PublicReadGetObject&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">statement</span> <span class="err">id</span>
+            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">allow</span> <span class="err">|</span> <span class="err">deny</span>
+            <span class="nt">&quot;Principal&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;s3:GetObject&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;arn:aws:s3:::BUCKET_NAME/*&quot;</span> 
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><strong>S3 Objetc lock</strong> are objects <strong>W</strong>ritten <strong>O</strong>nce and <strong>R</strong>ead <strong>M</strong>any. WORM model. Objects (the whole bucket or individual files) became unmodificable and undeletable:</p>
+<ul>
+<li>Governance mode: some users are grant with permissions to alter settings or delete the object version</li>
+<li>Compliance mode: objects version cannot be modified or deleted, even by the root user</li>
+</ul>
+<p>S3 Performance:</p>
+<ul>
+<li>Use <strong>prefixes</strong> to improve performance: path between the bucket and file</li>
+<li>Use SSE-KMS have limitations</li>
+<li>Use <strong>Multipart uploads</strong> </li>
+<li>Use downloads with <strong>S3 Byte-Range Fetches</strong></li>
+<li>Use <strong>S3 Select</strong>/<strong>Glacier Select</strong> using SQL to download only the subset of data we need from ZIP or CSV files </li>
+</ul>
+<h2 id="glacier">Glacier<a class="headerlink" href="#glacier" title="Permanent link">&para;</a></h2>
+<p>Glacier pricing:</p>
+<ul>
+<li>storage</li>
+<li>Data Retrieval times</li>
+</ul>
+<p><strong>S3 Glacier Vault Lock Policy</strong>: compliance controls for S3 Glacier with a Vault Lock policy. The policy can no longer be changed</p>
+<h2 id="efs">EFS<a class="headerlink" href="#efs" title="Permanent link">&para;</a></h2>
+<p>Based on <strong>NFSv4</strong>, Amazon EFS (<strong>E</strong>lastic <strong>F</strong>ile <strong>S</strong>ystem) is a mountable <strong>file</strong> storage service for EC2 (linux), but has no connection to S3 which is an object storage service.</p>
+<p>Data is stored across multiple AZ's within a region</p>
+<h3 id="how-to-create-an-efs-shared-by-two-ec2-instances">How to create an EFS <strong>shared</strong> by two EC2 instances:<a class="headerlink" href="#how-to-create-an-efs-shared-by-two-ec2-instances" title="Permanent link">&para;</a></h3>
 <ol>
-<li><a href="../1-Introduction/">Introduction</a></li>
-<li><a href="../2-Storage/">Storage</a></li>
-<li><a href="../3-Network/">Network</a></li>
-<li><a href="../4-Compute/">Compute</a></li>
-<li><a href="../5-Security/">Security</a></li>
-<li><a href="../6-Management/">Management</a></li>
-<li><a href="../7-Architecture/">HA Architecture</a></li>
-<li><a href="../8-Databases/">Databases</a></li>
+<li>From AWS EFS, <code>Create file system</code></li>
+<li>
+<p>Create EC2 instances with following user data: </p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+yum install amazon-efs-utils -y
+</code></pre></div>
+
+</li>
+<li>
+<p>default SG require inbound rule of type NFSv4 (<strong>N</strong>etwork <strong>F</strong>ile <strong>S</strong>ystem, port 2049) with source SG WebDMZ</p>
+</li>
+<li>
+<p>connect to the EC2 instances, and then mount EFS:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> /var/www/html
+<span class="nb">cd</span> ..
+mount -t efs -o tls fs-9816b269:/ /var/www/html   <span class="c1"># this command comes from `EFS - Amazon EC2 mount instructions from local VPC`</span>
+<span class="nb">cd</span> html
+<span class="nb">echo</span> <span class="s2">&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;using EFS&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span> &gt; index.html
+</code></pre></div>
+
+</li>
 </ol>
-<h2 id="acloudguru-final-practice-exam">ACloud.Guru Final Practice Exam<a class="headerlink" href="#acloudguru-final-practice-exam" title="Permanent link">&para;</a></h2>
-<p><a href="https://aws.amazon.com/certification/certification-prep/">https://aws.amazon.com/certification/certification-prep/</a></p>
-<p>• Step 1: Take an AWS Training Class<br />
-• Step 2: Review the Exam Guide and Sample Questions<br />
-• Step 3: Practice with Self-Placed Labs and an Exam Prep Quest<br />
-• Step 4: Study AWS Whitepapers<br />
-• Step 5: Review AWS FAQs<br />
-• Step 6: Take an Exam Prep Workshop<br />
-• Step 7: Take a Practice Exam<br />
-• Step 8: Schedule Your Exam and Get Certified  </p>
-<p><a href="https://www.qwiklabs.com/">https://www.qwiklabs.com/</a></p>
-<h2 id="aws-documentation">AWS Documentation<a class="headerlink" href="#aws-documentation" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do">https://docs.aws.amazon.com/index.html?nc2=h_ql_doc_do</a><br />
-<a href="https://aws.amazon.com/faqs/">https://aws.amazon.com/faqs/</a><br />
-<a href="https://aws.amazon.com/whitepapers/?whitepapers-main.sort-by=item.additionalFields.sortDate&amp;whitepapers-main.sort-order=desc">https://aws.amazon.com/whitepapers/?whitepapers-main.sort-by=item.additionalFields.sortDate&amp;whitepapers-main.sort-order=desc</a>  <br />
-<a href="https://www.youtube.com/c/amazonwebservices/videos">https://www.youtube.com/c/amazonwebservices/videos</a><br />
-<a href="https://aws.amazon.com/architecture/">https://aws.amazon.com/architecture/</a><br />
-<a href="https://aws.amazon.com/new/">https://aws.amazon.com/new/</a><br />
-<a href="https://www.meetup.com/es/topics/amazon-web-services/">https://www.meetup.com/es/topics/amazon-web-services/</a><br />
-<a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-practice-tests-k/">AWS Certified Solutions Architect Associate Practice Exams</a></p>
-<h2 id="aws-exam">AWS Exam<a class="headerlink" href="#aws-exam" title="Permanent link">&para;</a></h2>
-<p><a href="https://aws.amazon.com/certification/faqs/">https://aws.amazon.com/certification/faqs/</a><br />
-<a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/">https://aws.amazon.com/certification/certified-solutions-architect-associate/</a></p>
-<p>AWS Cloud Practitioner Essentials (Second Edition) (Spanish)
-<a href="https://www.aws.training/Details/Curriculum?id=46152">https://www.aws.training/Details/Curriculum?id=46152</a></p>
+<h2 id="ebs">EBS<a class="headerlink" href="#ebs" title="Permanent link">&para;</a></h2>
+<p>AWS EBS (<strong>E</strong>lastic <strong>B</strong>lock <strong>S</strong>torage) is like a virtual hard disk in the cloud. This is a <strong>block</strong> level storage service for use with AWS EC2 and again has no connection to S3.</p>
+<p>EBS cannot be shared by two EC2 instances</p>
+<div class="admonition danger">
+<p class="admonition-title">an Amazon EBS volume attached as an additional disk (not the root volume) can be detached without stopping the instance</p>
+</div>
+<p>EBS Types:</p>
+<ul>
+<li>SSD (<strong>S</strong>olid <strong>S</strong>tate <strong>D</strong>rive)<ul>
+<li>GP2 - General Purpose</li>
+<li>IO1 - Provisioned IOPS - Input Output per second - high perfrmance</li>
+</ul>
+</li>
+<li>HDD (<strong>H</strong>ard <strong>D</strong>isk <strong>D</strong>rive)<ul>
+<li>ST1 - Throughtput optimised - Low cost for frequently access</li>
+<li>SC1 - Cold HDD - Lowest cost for less frequently access</li>
+<li>Magnetic - Previous generation</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="../img/ebs.PNG" /></p>
+<p>HDD based volumes will always be less expensive than SSD types. </p>
+<p>EBS Pricing depends on:</p>
+<ul>
+<li>Volumes</li>
+<li>Snapshots</li>
+<li>Data transfer</li>
+</ul>
+<h2 id="fsx">FSx<a class="headerlink" href="#fsx" title="Permanent link">&para;</a></h2>
+<ul>
+<li>AWS FSx for windows file server - MS Windows file system<ul>
+<li>Based on SMB (Windows <strong>S</strong>erver <strong>M</strong>essage <strong>B</strong>lock)</li>
+</ul>
+</li>
+<li>AWS FSx for Lustre<ul>
+<li>Optimised file system</li>
+<li>can store data on S3</li>
+</ul>
+</li>
+</ul>
                 
                   
                 
@@ -738,7 +951,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Training index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../1-Introduction/" title="1. Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -747,19 +960,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Training index
+                1. Introduction
               </span>
             </div>
           </a>
         
         
-          <a href="../1-Introduction/" title="1. Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../3-Network/" title="3. Network" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                1. Introduction
+                3. Network
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

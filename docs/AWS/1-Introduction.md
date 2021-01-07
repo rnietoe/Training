@@ -28,8 +28,8 @@ Traditional Computing VS Cloud Computing
 		* EC2 auto recovery and Auto Scaling
 	* Alarms and Events - CloudWatch - Lambda scheduled events, WAF security automations
 * Global, available and scalable capacity
-	* Scale up / Vertical Scaling (increase RAM, CPU)
-	* Scale Out - Horizontal Scaling (add multiple virtual machines behind a ELB)
+	* **Scale up** / Vertical Scaling (increase RAM, CPU)
+	* **Scale Out** - Horizontal Scaling (add multiple virtual machines behind a ELB)
 		* Stateless applications (Lambda - Alexa)
 		* Stateless componets (login credentials in a cookie)
 		* Statefull components (store information in a db)
@@ -61,6 +61,14 @@ Caching services:
 * API Gateway
 * ElastiCache
 * DynamoDB Accelerator (DAX)
+
+High-level AWS service used on premises:
+
+* DMS (Database Migration Service)
+* SMS (Server Migration Service)
+* Application Discovery Service: collect information about their on premises data centers. data is available in the AWS Migration Hub
+* VM import/export
+* Download Amazon Linux 2 as an ISO
 
 AWS Service used on premise:
 

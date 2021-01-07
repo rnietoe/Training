@@ -284,8 +284,13 @@ LIMIT 100;
 
 ### Bastion host
 
-* a bastion (jump box) is used to securely administer/manage EC2 instances using **SSH** or **RDP**
+* a bastion (jump box) is used to securely administer/manage EC2 instances in the private subnet using **SSH** or **RDP**
 * NAT gateway cannot be used as a bastion host
+
+For high availability:
+
+* create two public subnets in two different AZs with a bastion host each, and a Network Load Balancer with static IP address or Auto scaling group (cheaper)
+* cannot use an Application Load Balancer as it is layer 7 and you need to use layer 4.
 
 ### Direct Connect
 

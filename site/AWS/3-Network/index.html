@@ -1,0 +1,1327 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Training Documentation">
+      
+      
+      
+        <meta name="author" content="Rafael Nieto Esteve">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>3. Network - rnietoe training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#3-network" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="rnietoe training" aria-label="rnietoe training" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              rnietoe training
+            </span>
+            <span class="md-header-nav__topic">
+              
+                3. Network
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="rnietoe training" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rnietoe training
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Training index" class="md-nav__link">
+      Training index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      AWS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        AWS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
+      AWS Architect
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1-Introduction/" title="1. Introduction" class="md-nav__link">
+      1. Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2-Storage/" title="2. Storage" class="md-nav__link">
+      2. Storage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        3. Network
+      </label>
+    
+    <a href="./" title="3. Network" class="md-nav__link md-nav__link--active">
+      3. Network
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-vpc" class="md-nav__link">
+    How to create a VPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-nat-gateway" class="md-nav__link">
+    How to create a NAT Gateway
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-acls" class="md-nav__link">
+    Network ACLs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpc-flowlogs" class="md-nav__link">
+    VPC FlowLogs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bastion-host" class="md-nav__link">
+    Bastion host
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-connect" class="md-nav__link">
+    Direct Connect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-accelerator" class="md-nav__link">
+    Global Accelerator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpc-endpoints" class="md-nav__link">
+    VPC endpoints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-private-link" class="md-nav__link">
+    AWS Private Link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transit-gateway" class="md-nav__link">
+    Transit Gateway
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpn-cloudhub" class="md-nav__link">
+    VPN CloudHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-53" class="md-nav__link">
+    Route 53
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4-Compute/" title="4. Compute" class="md-nav__link">
+      4. Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5-Security/" title="5. Security" class="md-nav__link">
+      5. Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6-Management/" title="6. Management and Governance" class="md-nav__link">
+      6. Management and Governance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7-Architecture/" title="HA Architecture" class="md-nav__link">
+      HA Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../8-Databases/" title="8. Databases" class="md-nav__link">
+      8. Databases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/1-Git-Essential-Training_The-Basics/" title="Git Essential Training: The Basics" class="md-nav__link">
+      Git Essential Training: The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/2-Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-nav__link">
+      Git: Branches, Merges, and Remotes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/3-Git-Intermediate-Techniques/" title="Git Intermediate Techniques" class="md-nav__link">
+      Git Intermediate Techniques
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      React
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        React
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Building-React-and-ASP.NET-Core-Applications/" title="Building React and ASP.NET Core Applications" class="md-nav__link">
+      Building React and ASP.NET Core Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Become a React Developer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Become a React Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/1-Learning-React-js/" title="Learning React.js" class="md-nav__link">
+      Learning React.js
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/2-React.js-Essential-Training/" title="React.js Essential Training" class="md-nav__link">
+      React.js Essential Training
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-nav__link">
+      Web Security: OAuth and OpenID Connect
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vpc" class="md-nav__link">
+    VPC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-vpc" class="md-nav__link">
+    How to create a VPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-nat-gateway" class="md-nav__link">
+    How to create a NAT Gateway
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-acls" class="md-nav__link">
+    Network ACLs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpc-flowlogs" class="md-nav__link">
+    VPC FlowLogs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bastion-host" class="md-nav__link">
+    Bastion host
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-connect" class="md-nav__link">
+    Direct Connect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-accelerator" class="md-nav__link">
+    Global Accelerator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpc-endpoints" class="md-nav__link">
+    VPC endpoints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-private-link" class="md-nav__link">
+    AWS Private Link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transit-gateway" class="md-nav__link">
+    Transit Gateway
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpn-cloudhub" class="md-nav__link">
+    VPN CloudHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-53" class="md-nav__link">
+    Route 53
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/3-Network.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="3-network">3. Network<a class="headerlink" href="#3-network" title="Permanent link">&para;</a></h1>
+<ul>
+<li><strong>ENI</strong> - <strong>E</strong>lastic <strong>N</strong>etwork <strong>I</strong>nterface - virtual network card for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more.</li>
+<li><strong>ENA</strong> - <strong>E</strong>nhanced <strong>N</strong>etworking <strong>A</strong>dapter - use SR-IOV (<strong>S</strong>ingle <strong>R</strong>oot <strong>I/O V</strong>irtualization) to allow speeds between 10 and 100 Gbps requirement</li>
+<li><strong>EFA</strong> - <strong>E</strong>lastic <strong>F</strong>abric <strong>A</strong>dapter - machine learning or HPC (<strong>H</strong>igh <strong>P</strong>erformance <strong>C</strong>omputing) requirement</li>
+</ul>
+<h2 id="vpc">VPC<a class="headerlink" href="#vpc" title="Permanent link">&para;</a></h2>
+<p><a href="https://cidr.xyz/">AN INTERACTIVE IP ADDRESS AND CIDR RANGE VISUALIZER</a></p>
+<ul>
+<li><strong><code>AWS VPC</code></strong> (<strong>V</strong>irtual <strong>P</strong>rivate <strong>C</strong>loud) is like a logical datacenter in AWS. A VPC is an isolated portion of the AWS cloud dedicated to a single AWS account where you can launch AWS resources. You define a VPC’s IP address space from ranges you select (10.0.0.0/16).</li>
+<li><strong>Subnets</strong> are segments of a VPC’s IP address range where you can place groups of isolated resources (10.0.1.0/24).<ul>
+<li>1 subnet = 1 AZ</li>
+</ul>
+</li>
+<li><strong>Internet Gateway</strong> allow communication between your VPC and the internet. An IG serves two purposes: to provide a target in your VPC route tables for internet-routable traffic, and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses<ul>
+<li>1 VPC = 1 IG</li>
+</ul>
+</li>
+<li><strong>egress-only internet gateway</strong> allows IPv6 based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.</li>
+<li><strong>VPG</strong> (<strong>V</strong>irtual <strong>P</strong>rivate <strong>G</strong>ateway) is the VPN concentrator on the Amazon side of the Site-to-Site VPN connection.</li>
+<li><strong>customer gateway</strong> is a resource that is installed on the customer side and provides a customer gateway inside a VPC.</li>
+<li><strong>VPC peering</strong> creates a connection between two VPCs using same or different accounts and regions.<ul>
+<li>no transitive peering VPC-A &lt;=&gt; VPC-B &lt;=&gt; VPC-C ... VPC-A &lt;&gt; VPC-C </li>
+</ul>
+</li>
+<li><strong>VPC Endpoints</strong>: Enables private connectivity to services hosted in AWS, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.</li>
+</ul>
+<p>VPC pricing:</p>
+<ul>
+<li>traffic in the VPC is free</li>
+<li>using same AZ with private IP is free</li>
+<li>using different AZs and public IP has a cost</li>
+</ul>
+<p>Some <strong>scans</strong> can be performed without alerting AWS, some require you to alert, such as Penetration Testing</p>
+<p>You can have up to <strong>5</strong> non-default VPCs per account and region, but you can place a support request to increase the number.</p>
+<h3 id="how-to-create-a-vpc">How to create a VPC<a class="headerlink" href="#how-to-create-a-vpc" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.acloud.guru/handson/2cc3cf9e-61ce-475d-a00e-03306e9ba285/course/aws-certified-solutions-architect-associate">Creating a Basic VPC and Associated Components in AWS</a></p>
+<ol>
+<li>
+<p><code>Create VPC</code> with IPv4 CIDR block equals 10.0.0.0/16 and IPv6 CIDR block provided by Amazon.</p>
+<ul>
+<li>Note that <strong>only a RT, a network ACL and a SG are created</strong></li>
+</ul>
+<p><img alt="" src="../img/vpc-new.PNG" /></p>
+</li>
+<li>
+<p><code>Create subnet</code> with IPv4 CIDR block equals 10.0.1.0/24 (public) and 10.0.2.0/24 (private) with different AZs.</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">AWS</a> reserve 5 addresses so there are 251 available IPv4 addresses instead of 256</li>
+</ul>
+<p><img alt="" src="../img/vpc-subnets.PNG" /></p>
+</li>
+<li>
+<p>Select the public subnet and from Actions, clic on <code>Modify auto-assign IP settings</code> to automatically request a public IP for a new network interface in this subnet.</p>
+</li>
+<li><code>Create internet gateway</code> as the virtual router that connects the VPC to the internet.</li>
+<li>Select the IG and from Actions, clic on <code>attach to VPC</code> 
+    <div class="codehilite"><pre><span></span><code>aws ec2 attach-internet-gateway --vpc-id <span class="s2">&quot;vpc-05fa9d6e7085db9bf&quot;</span> --internet-gateway-id <span class="s2">&quot;igw-0e2c1cfa68b4dfc76&quot;</span> --region us-east-2
+</code></pre></div></li>
+<li><code>Create route table</code> to specify how packets are forwarded between the subnets within your VPC, the internet, and your VPN connection. <ul>
+<li>New subnets will be associated to the main route table instead of this public RT.</li>
+</ul>
+</li>
+<li>Allow the internet access selecting the public RT and <code>Edit routes</code> button and <code>add route</code> with destination 0.0.0.0/0 (IPv4) and ::/0 (IPv6) and our IG as the target </li>
+<li><code>Edit subnet associations</code> and select 10.0.1.0/24 to associate the public subnet with the public RT</li>
+<li>Create first EC2 instances as WebServer with network equals our VPC <ul>
+<li>select public subnet and <code>auto-assign public ip</code> equals <code>use subnet settings (enabled)</code> for the first instance</li>
+<li>Create new SG as WebDMZ with rules SSH and HTTP</li>
+<li>Create a new key-pair as rnietoe-ohio
+<div class="codehilite"><pre><span></span><code>chmod <span class="m">400</span> rnietoe-ohio.pem
+ssh ec2-user@3.16.203.67 -i rnietoe-ohio.pem
+</code></pre></div></li>
+</ul>
+</li>
+<li>Create second EC2 instances as DBServer with network equals our VPC <ul>
+<li>select private subnet and <code>auto-assign public ip</code> equals <code>use subnet settings (disabled)</code> for the second instance</li>
+<li>Select default SG instead of WebDMZ</li>
+<li>there is no public IP so we can't connect to this instance
+<img alt="" src="../img/vpc-created.PNG" /></li>
+</ul>
+</li>
+<li>Create new SG as DBSG with our VPC<ul>
+<li>Add inbound rules of type <code>All ICMP - IPv2</code> with source 10.0.1.0/24 to allow WebDMZ to ping EC2 instance inside this SG, HTTP, HTTPS, SSH and MySQL/Aurora</li>
+</ul>
+</li>
+<li>Set DBSG to DBServer from actions : security : <code>change security group</code>. Remove default SG too<ul>
+<li>Ping the DBServer private IP from WebServer
+<div class="codehilite"><pre><span></span><code>ping <span class="m">10</span>.0.2.200
+</code></pre></div></li>
+</ul>
+</li>
+<li>Copy private key (rnietoe-ohio.pem) to WebServer and check the connection from WebServer to DBServer
+    <div class="codehilite"><pre><span></span><code>nano rnietoe-ohio.pem
+chmod <span class="m">400</span> rnietoe-ohio.pem
+ssh ec2-user@10.0.2.200 -i rnietoe-ohio.pem
+yum update -y <span class="c1"># this fail because private instance does not have access to internet </span>
+</code></pre></div></li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">By default, instances in new subnets in a custom VPC can communicate with each other across AZs.</p>
+</div>
+<h3 id="how-to-create-a-nat-gateway">How to create a NAT Gateway<a class="headerlink" href="#how-to-create-a-nat-gateway" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html">NAT instances</a> (<strong>N</strong>etwork <strong>A</strong>ddress <strong>T</strong>ransaction) are single EC2 instances.</li>
+<li>NAT Gateway is a highly available gateway that allows you to get your private subnets communicate out to the internet without becaming public</li>
+<li>NAT gateway enable instances in a private subnet to connect to the internet or other AWS services, but prevent the internet from initiating a connection with those instances.</li>
+<li>NAT gateway are redundant inside the AZ<ul>
+<li>1 NAT gateway per AZ</li>
+</ul>
+</li>
+<li>not need to patch</li>
+<li>not associated with SGs</li>
+<li>no need to disable source/destination check</li>
+</ul>
+<p><img alt="" src="../img/vpc-nat-gateway.PNG" /></p>
+<ol>
+<li>Launch EC2 instance choosing <code>Amazon Linux 2 AMI 2.0.20201126.0 x86_64 HVM gp2</code> from <code>Community AMIs</code></li>
+<li>Select rnietoeVPC and public subnet</li>
+<li>Select WebDMZ as SG and the same key pair</li>
+<li>Select EC2 instance and clic on actions : networking : <code>change source/destination check</code>
+and disable all the traffic it sends and receives, as NAT gateway requirement
+    <div class="codehilite"><pre><span></span><code>aws ec2 modify-instance-attribute --instance-id<span class="o">=</span>i-0cdece2dd619e009b --no-source-dest-check
+</code></pre></div></li>
+<li>Edit private route table and create a route (from <code>edit routes</code>) to allow connections (0.0.0.0/0) to the NAT instance
+    <div class="codehilite"><pre><span></span><code>ssh ec2-user@10.0.2.200 -i rnietoe-ohio.pem
+yum update -y <span class="c1"># should work now, but it does not</span>
+</code></pre></div></li>
+</ol>
+<p>we have created a small VM that will not work for thouthands of EC2 instances. To use a NAT gateway, create one in a public subnet and assign it an Elastic IP address. Then, update the route tables for your private subnets to point internet traffic to the NAT gateway.</p>
+<ol>
+<li>Terminate EC2 NAT instance</li>
+<li>From VPC, <code>create NAT gateway</code></li>
+<li>Select public subnet and allocate a new Elastic IP</li>
+<li>Edit private route table and create a route (from <code>edit routes</code>) to allow connections (0.0.0.0/0) to the NAT gateway
+    <div class="codehilite"><pre><span></span><code>ssh ec2-user@10.0.2.200 -i rnietoe-ohio.pem
+yum update -y <span class="c1"># this work successfully</span>
+yum install mysql -y 
+</code></pre></div></li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Elastic IP / NAT Gateway are not free</p>
+</div>
+<h3 id="network-acls">Network ACLs<a class="headerlink" href="#network-acls" title="Permanent link">&para;</a></h3>
+<p>SG are statefull while network ACLs are stateless (inbounds settings are not applied to outbound settings implicitly)</p>
+<div class="admonition danger">
+<p class="admonition-title">Block IP addresses using NACL instead of SG</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">1 NACL - 1 subnet, NACLs act on the subnet level, while security groups act on the instance level.</p>
+</div>
+<ol>
+<li>Default NACL allow all traffic</li>
+<li><code>Create Network ACL</code> as WebNACL using our VPC. All inbound rules are denied by default</li>
+<li>Create a Web page in the EC2 WebServer and check the valid connection:
+<div class="codehilite"><pre><span></span><code>service httpd status <span class="c1"># Unit httpd.service could not be found</span>
+sudo su
+yum install httpd -y
+chkconfig httpd on
+service httpd start
+<span class="nb">cd</span> /var/www/html
+nano index.html
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;This is server <span class="m">1</span>&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
+</code></pre></div></li>
+<li><code>Edit subnet associations</code> for our NACL named WebNACL and select the public subnet<ul>
+<li>public subnet is disassociate from the default NACL becuase a subnet can be associated to a NACL only</li>
+<li>1 NACL - many subnets</li>
+<li>web page is not accessible now</li>
+</ul>
+</li>
+<li><code>Edit inbound rules</code> adding new rules (100, 200, 300) allowing ports 80, 443 and 22<ul>
+<li>Rule Number increase in 100 units, like 100, 200, 300...</li>
+<li>inbound rules work order by rule number, so firt allow some ports and then deny everything else</li>
+</ul>
+</li>
+<li><code>Edit outbound rules</code> adding new rules allowing ports 80, 443 and 1024-65535<ul>
+<li>NACL are stateless: outbound rules have to be defined explicitly</li>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-ephemeral-ports">Ephemeral ports</a></li>
+<li>Requests originating from Elastic Load Balancing use ports 1024-65535.</li>
+</ul>
+</li>
+<li><code>Edit inbound rules</code> adding new rule 400 denying port 80 to my public Ip 92.189.102.194/32<ul>
+<li>Web page still accessible since rule 100 allow the traffic</li>
+</ul>
+</li>
+<li><code>Edit inbound rules</code> editing rule 400 as 99<ul>
+<li>Web page no accessible since rule 99 deny the traffic before rule 100 allow all traffic</li>
+<li>This is not working in my demo</li>
+</ul>
+</li>
+<li><code>Edit inbound rules</code> removing rule 99 and add new rule 400 to allow traffic on ports 1024-65535
+<div class="codehilite"><pre><span></span><code>yum update -y <span class="c1"># it should works again```</span>
+</code></pre></div></li>
+</ol>
+<h3 id="vpc-flowlogs">VPC FlowLogs<a class="headerlink" href="#vpc-flowlogs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. </li>
+<li>VPC Flow Logs can be created at the VPC, subnet, and network interface levels. </li>
+<li>you can enable flow logs if VPC is in the same aws account</li>
+<li>you can not edit flow logs</li>
+</ul>
+<p>not all ip traffic is monitored such as:</p>
+<ul>
+<li>Amazon DNS Server</li>
+<li>Windows license activation</li>
+<li>169.254.169.254</li>
+<li>DHCP traffic</li>
+<li>VPC reserved ports</li>
+</ul>
+<p>How to configure VPC FlowLogs:</p>
+<ol>
+<li><code>Create VPC</code> with ipv4 CIDR block as 10.0.0.0/16</li>
+<li><code>Create subnet</code> with ipv4 CIDR block as 10.0.1.0/24 and enable auto-assign public IPv4 address</li>
+<li><code>Launch EC2 instance</code> with VPC, subnet and a new SG with HTTP and SSH rules</li>
+<li>Create internet gateway and associate it to the default VPC RT</li>
+<li><code>Create flow log</code> in the Network interface (eni)<ul>
+<li>specify the filter: accepted traffic only, rejected traffic only or capture all traffic</li>
+<li>set Maximum aggregation interval to 1 min</li>
+<li>flow log data destination can be CloudWatch Logs or S3 bucket. Select S3 bucket</li>
+<li><code>Create bucket</code> as arn:aws:s3:::rnietoeflowlogs</li>
+<li>Specify AWS default format</li>
+</ul>
+</li>
+<li><code>Create log group</code> from CloudWatch as VPCFlowLogs</li>
+<li><code>Create flow log</code> again<ul>
+<li>specify the filter with all tthe traffic</li>
+<li>set Maximum aggregation interval to 1 min</li>
+<li>set flow log data destination as CloudWatch Logs</li>
+<li>select  the destination log group as VPCFlowLogs</li>
+<li><code>set up permissions</code> to define the IAM role that has permission to publish to the Amazon CloudWatch log group. Create new role as flowlogsRole with the following policy:
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;logs:CreateLogGroup&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logs:CreateLogStream&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logs:DescribeLogGroups&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logs:DescribeLogStreams&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logs:PutLogEvents&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>Go to CloudWatch : Log groups : VPCFlowLogs : Log stream and check results</li>
+<li><code>Create filter pattern</code> as (protocol 6 is TCP):
+    <div class="codehilite"><pre><span></span><code><span class="err">[version, account, eni, source, destination, srcport, destport=&quot;22&quot;, protocol=&quot;6&quot;, packets, bytes, windowstart, windowend, action=&quot;ACCEPT&quot;, flowlogstatus]</span>
+</code></pre></div><ul>
+<li>test pattern
+<div class="codehilite"><pre><span></span><code><span class="err">2 086112738802 eni-0d5d75b41f9befe9e 61.177.172.128 172.31.83.158 39611 22 6 1 40 1563108188 1563108227 REJECT OK</span>
+<span class="err">2 086112738802 eni-0d5d75b41f9befe9e 182.68.238.8 172.31.83.158 42227 22 6 1 44 1563109030 1563109067 REJECT OK</span>
+<span class="err">2 086112738802 eni-0d5d75b41f9befe9e 42.171.23.181 172.31.83.158 52417 22 6 24 4065 1563191069 1563191121 ACCEPT OK</span>
+<span class="err">2 086112738802 eni-0d5d75b41f9befe9e 61.177.172.128 172.31.83.158 39611 80 6 1 40 1563108188 1563108227 REJECT OK</span>
+</code></pre></div></li>
+<li>set metric details</li>
+</ul>
+</li>
+<li><code>Create alarm</code> for above metric filter<ul>
+<li>set period to 1 min</li>
+<li>Whenever SSHAccept is greater/equal than 1</li>
+</ul>
+</li>
+<li><code>Run query</code> from CloudWatch Logs Insights using VPC Flow Logs sample queries (right panel)</li>
+<li>Go back to S3 and check a new folder named <code>AWSLogs</code> has been created in our rnietoeflowlogs bucket</li>
+<li>Go to AWS Athena and set up a query result location in AWS S3 with the arn:
+<div class="codehilite"><pre><span></span><code><span class="c">s3://rnietoeflowlogs/AWSLogs/065275835852/vpcflowlogs/us-east-1/2020/12/12/</span>
+</code></pre></div></li>
+<li>Run query to create Athena Table
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="k">default</span><span class="p">.</span><span class="n">vpc_flow_logs</span> <span class="p">(</span>
+  <span class="k">version</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">account</span> <span class="n">string</span><span class="p">,</span>
+  <span class="n">interfaceid</span> <span class="n">string</span><span class="p">,</span>
+  <span class="n">sourceaddress</span> <span class="n">string</span><span class="p">,</span>
+  <span class="n">destinationaddress</span> <span class="n">string</span><span class="p">,</span>
+  <span class="n">sourceport</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">destinationport</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">protocol</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">numpackets</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">numbytes</span> <span class="nb">bigint</span><span class="p">,</span>
+  <span class="n">starttime</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">endtime</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">action</span> <span class="n">string</span><span class="p">,</span>
+  <span class="n">logstatus</span> <span class="n">string</span>
+<span class="p">)</span> <span class="n">PARTITIONED</span> <span class="k">BY</span> <span class="p">(</span>
+  <span class="n">dt</span> <span class="n">string</span>
+<span class="p">)</span> <span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span> <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">&#39; &#39;</span> <span class="k">LOCATION</span> <span class="s1">&#39;s3://rnietoeflowlogs/AWSLogs/065275835852/vpcflowlogs/us-east-1/&#39;</span> <span class="n">TBLPROPERTIES</span> <span class="p">(</span><span class="ss">&quot;skip.header.line.count&quot;</span><span class="o">=</span><span class="ss">&quot;1&quot;</span><span class="p">);</span>
+</code></pre></div></li>
+<li>Create Partitions
+<div class="codehilite"><pre><span></span><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="k">default</span><span class="p">.</span><span class="n">vpc_flow_logs</span>
+<span class="k">ADD</span> <span class="n">PARTITION</span> <span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="s1">&#39;2020-12-12&#39;</span><span class="p">)</span> <span class="k">location</span> <span class="s1">&#39;s3://rnietoeflowlogs/AWSLogs/065275835852/vpcflowlogs/us-east-1/2020/12/12&#39;</span><span class="p">;</span>
+</code></pre></div></li>
+<li>Analyze Data
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span> <span class="n">day_of_week</span><span class="p">(</span><span class="n">from_iso8601_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span> <span class="k">AS</span>
+  <span class="k">day</span><span class="p">,</span>
+  <span class="n">dt</span><span class="p">,</span>
+  <span class="n">interfaceid</span><span class="p">,</span>
+  <span class="n">sourceaddress</span><span class="p">,</span>
+  <span class="n">destinationport</span><span class="p">,</span>
+  <span class="n">action</span><span class="p">,</span>
+  <span class="n">protocol</span>
+<span class="k">FROM</span> <span class="n">vpc_flow_logs</span>
+<span class="k">WHERE</span> <span class="n">action</span> <span class="o">=</span> <span class="s1">&#39;ACCEPT&#39;</span> <span class="k">AND</span> <span class="n">protocol</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">order</span> <span class="k">by</span> <span class="n">sourceaddress</span>
+<span class="k">LIMIT</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></div></li>
+</ol>
+<h3 id="bastion-host">Bastion host<a class="headerlink" href="#bastion-host" title="Permanent link">&para;</a></h3>
+<ul>
+<li>a bastion (jump box) is used to securely administer/manage EC2 instances using <strong>SSH</strong> or <strong>RDP</strong></li>
+<li>NAT gateway cannot be used as a bastion host</li>
+</ul>
+<h3 id="direct-connect">Direct Connect<a class="headerlink" href="#direct-connect" title="Permanent link">&para;</a></h3>
+<p>Dedicated line from on premise to AWS to improve the network connection (security and performance)</p>
+<ol>
+<li><code>Create virtual interface</code> from AWS Direct Connect : Virtual interfaces as Public</li>
+<li><code>Create Customer Gateway</code> from VPC : Customer Gateways</li>
+<li><code>Create Virtual Private Gateway</code> from VPC : Virtual Private Gateways<ul>
+<li>attach the VPG to the VPC</li>
+</ul>
+</li>
+<li><code>Create VPN Connection</code> from VPC : Site-to-Site VPN Connections using the VPG and Customer Gateway</li>
+<li>Set up the VPN on the customer gateway</li>
+</ol>
+<p><a href="https://www.youtube.com/watch?v=dhpTTT6V1So&amp;feature=youtu.be">How do I configure a VPN over AWS Direct Connect?</a></p>
+<h3 id="global-accelerator">Global Accelerator<a class="headerlink" href="#global-accelerator" title="Permanent link">&para;</a></h3>
+<p>improves the availability and performance of your applications for local or global users</p>
+<p>1234567890abcdef.awsglobalaccelerator.com</p>
+<ol>
+<li><code>Create accelerator</code> from AWS Global Accelerator </li>
+<li>Add a <strong>listener</strong> to checks for connection requests that arrive to an assigned set of static IP addresses on a port or port range that you specify. (80, 443)<ul>
+<li>Leave client affinity setting as none</li>
+</ul>
+</li>
+<li>Add <strong>endpoint groups</strong> where the accelerator direct traffic to from one or more listeners. An endpoint group includes endpoints, such as load balancers.</li>
+<li>Add <strong>endpoints</strong> to each endpoint group<ul>
+<li>Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses.</li>
+</ul>
+</li>
+<li>two static IP addresses are assign</li>
+</ol>
+<p>Disable Global Accelerator before removing is required</p>
+<p><strong>Network zones</strong> are simliar to AZs. They are isolated units with their own set of physical infrastructure and service IP addresses from a unique IP subnet. If one IP address from a network zone becomes unavailable, due to network disruptions or IP address blocking by certain client networks, your client applications can retry using the healthy static IP address from the other isolated network zone.</p>
+<h3 id="vpc-endpoints">VPC endpoints<a class="headerlink" href="#vpc-endpoints" title="Permanent link">&para;</a></h3>
+<p>VPC endpoint is a service that replace NAT gateway and allow connections from the private subnet to other AWS services, such as S3 </p>
+<p><img alt="" src="../img/vpc-endpoints.PNG" /></p>
+<ul>
+<li>Interface endpoints: ENI (<strong>E</strong>lastic <strong>N</strong>etwork <strong>I</strong>nterface) with private IP as entry point</li>
+<li>
+<p>Gateway endpoints support S3 and DynamoDB</p>
+</li>
+<li>
+<p><code>Create Endpoint</code> from VPC : Endpoints</p>
+</li>
+<li>select service <code>com.amazonaws.us-east-2.s3</code>, our VPC, our main route table and the full access policy<ul>
+<li>the update in the route table could take some time</li>
+</ul>
+</li>
+</ul>
+<h3 id="aws-private-link">AWS Private Link<a class="headerlink" href="#aws-private-link" title="Permanent link">&para;</a></h3>
+<p>To open up our apps to other VPCs, we can try:</p>
+<ul>
+<li>Open up the VPC to the internet. everything will be public</li>
+<li>use <strong>VPC peering</strong>. However, many relationships will be required</li>
+<li>AWS Private Link peers many VPCs. They only require a NLB on the AWS VPC and a ENI on the customer VPC</li>
+</ul>
+<h3 id="transit-gateway">Transit Gateway<a class="headerlink" href="#transit-gateway" title="Permanent link">&para;</a></h3>
+<p>TGW (<strong>T</strong>ransit <strong>G</strong>ate<strong>W</strong>ay) is a network transit hub that interconnects attachments (VPCs and VPNs) within the same account or across accounts. </p>
+<ul>
+<li>Cross region is allowed</li>
+<li>support <strong>IP multicast</strong></li>
+</ul>
+<h3 id="vpn-cloudhub">VPN CloudHub<a class="headerlink" href="#vpn-cloudhub" title="Permanent link">&para;</a></h3>
+<p>AWS VPN CloudHub manage multiple sites with own VPN connections</p>
+<h2 id="route-53">Route 53<a class="headerlink" href="#route-53" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS Route 53</code></strong> service name comes from port 53, where <strong>DNS</strong> work on </p>
+<p>we can register a DNS using <code>Route53</code> - <code>Register domain</code>. You can purchase and manage domain names such as example.com, and Route 53 will automatically configure DNS settings for your domains</p>
+<div class="admonition tip">
+<p class="admonition-title">Ensure there is a free bucket with the same domain name</p>
+</div>
+<ul>
+<li><strong>Failover Routing policy</strong> routes data to a second resource if the first is unhealthy. Route 53 can be used for Disaster Recovery by simply shifting traffic to the new region.</li>
+<li><strong>Latency-based Routing policy</strong> routes data to resources that have better performance</li>
+</ul>
+<p><strong>Route 53 Traffic Flow</strong> makes it easy for you to manage traffic globally through a variety of routing types, including Latency Based Routing, Geo DNS, Geoproximity, and Weighted Round Robin—all of which can be combined with DNS Failover to enable a variety of low-latency, fault-tolerant architectures. Using Route 53 Traffic Flow’s simple visual editor, you can easily manage how your end-users are routed to your application’s endpoints—whether in a single AWS region or distributed around the globe. </p>
+<p>.com =&gt; <strong>NS</strong> (Name Server) Records =&gt; <strong>SOA</strong> (Start Of Authority)</p>
+<p>DNS changes can take 48 hours to take effect due to the cache</p>
+<ul>
+<li><strong>CName</strong> (Canonical Name) maps to the host name: https://mobile.acloud.guru = https://m.acloud.guru </li>
+<li><strong>Alias Record</strong> provide a Route 53–specific extension to DNS functionality. An alias could be created for the ELB. Alias Records can also point to AWS Resources that are hosted in other accounts by manually entering the ARN</li>
+</ul>
+<div class="admonition tips">
+<p class="admonition-title">ELB resolve DNS names isnteaf of IPv4 addresses</p>
+</div>
+<p>Routing Policies:</p>
+<ul>
+<li><strong>Simple</strong> Routing: one dns record with multiple IP addresses</li>
+<li><strong>Weighted</strong> Routing: traffic based on weighting (ponderaciones 20%-30%-50%)</li>
+<li><strong>Latency-based</strong> Routing: traffic based on the lowest latency</li>
+<li><strong>Failover</strong> Routing: route the traffic to the primary or secondary site defined based on health checks</li>
+<li><strong>Geolocation</strong> Routing: traffic based on the user's location</li>
+<li><strong>Geoproximity</strong> Routing: traffic based on the users' and resources' location. Available in traffic <strong>flow-only</strong> mode using <strong>bias</strong></li>
+<li>
+<p><strong>Multivalue Answer</strong> Routing, similar to simple routing, but using health checks on each record sets to serve traffic to <strong>random</strong> web servers</p>
+</li>
+<li>
+<p><code>Register domain</code> from Route53 takes between 2 hours and 3 days</p>
+</li>
+<li><code>Create Record Set</code> of type IPv4 address with the three EC2 public IPs. Set TTL (Time to Live) to 1 min to clear from cache</li>
+<li><code>Create healthcheck</code> and associate it to each record set, so it will be removed from Route53 until it passes the health check</li>
+<li><code>Create traffic policy</code> to configure Geoproximity Routing</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>ipconfig /flushdns <span class="c1"># to remove saved ip from cache</span>
+</code></pre></div>
+
+<div class="admonition danger">
+<p class="admonition-title">With Route 53, there is a default limit of <strong>50</strong> domain names. However, this limit can be increased by contacting AWS suppor</p>
+</div>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../2-Storage/" title="2. Storage" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                2. Storage
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../4-Compute/" title="4. Compute" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                4. Compute
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Rafael Nieto Esteve
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>

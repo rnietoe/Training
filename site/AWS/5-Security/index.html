@@ -40,7 +40,7 @@
     
     
       
-        <title>Web Security: OAuth and OpenID Connect - rnietoe training</title>
+        <title>5. Security - rnietoe training</title>
       
     
     
@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#web-security-oauth-and-openid-connect" tabindex="0" class="md-skip">
+      <a href="#5-security" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -117,7 +117,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Web Security: OAuth and OpenID Connect
+                5. Security
               
             </span>
           
@@ -238,10 +238,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       AWS
@@ -259,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/0-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
+    <a href="../0-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
       AWS Architect
     </a>
   </li>
@@ -271,7 +273,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/1-Introduction/" title="1. Introduction" class="md-nav__link">
+    <a href="../1-Introduction/" title="1. Introduction" class="md-nav__link">
       1. Introduction
     </a>
   </li>
@@ -283,7 +285,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/2-Storage/" title="2. Storage" class="md-nav__link">
+    <a href="../2-Storage/" title="2. Storage" class="md-nav__link">
       2. Storage
     </a>
   </li>
@@ -295,7 +297,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/3-Network/" title="3. Network" class="md-nav__link">
+    <a href="../3-Network/" title="3. Network" class="md-nav__link">
       3. Network
     </a>
   </li>
@@ -307,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/4-Compute/" title="4. Compute" class="md-nav__link">
+    <a href="../4-Compute/" title="4. Compute" class="md-nav__link">
       4. Compute
     </a>
   </li>
@@ -317,11 +319,84 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../AWS/5-Security/" title="5. Security" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        5. Security
+      </label>
+    
+    <a href="./" title="5. Security" class="md-nav__link md-nav__link--active">
       5. Security
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#iam" class="md-nav__link">
+    IAM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-in-the-cloud" class="md-nav__link">
+    Security in the cloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waf" class="md-nav__link">
+    WAF
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-service" class="md-nav__link">
+    Directory Service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ram" class="md-nav__link">
+    RAM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sso" class="md-nav__link">
+    SSO
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -331,7 +406,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/6-Management/" title="6. Management and Governance" class="md-nav__link">
+    <a href="../6-Management/" title="6. Management and Governance" class="md-nav__link">
       6. Management and Governance
     </a>
   </li>
@@ -343,7 +418,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/7-Architecture/" title="HA Architecture" class="md-nav__link">
+    <a href="../7-Architecture/" title="HA Architecture" class="md-nav__link">
       HA Architecture
     </a>
   </li>
@@ -355,7 +430,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../AWS/8-Databases/" title="8. Databases" class="md-nav__link">
+    <a href="../8-Databases/" title="8. Databases" class="md-nav__link">
       8. Databases
     </a>
   </li>
@@ -526,12 +601,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       Security
@@ -547,91 +620,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Web Security: OAuth and OpenID Connect
-      </label>
-    
-    <a href="./" title="Web Security: OAuth and OpenID Connect" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-nav__link">
       Web Security: OAuth and OpenID Connect
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-oauth" class="md-nav__link">
-    What is OAuth?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-terminology" class="md-nav__link">
-    Core Terminology
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#client-credentials-authz-for-microservices" class="md-nav__link">
-    Client Credentials: AuthZ for microservices
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implicit-or-hybrid-authz-for-mobile-devices" class="md-nav__link">
-    Implicit or Hybrid: AuthZ for mobile devices
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authorization-code" class="md-nav__link">
-    Authorization Code
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resource-owner-password-flow" class="md-nav__link">
-    Resource Owner Password Flow
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#server-side-implementations" class="md-nav__link">
-    Server side implementations
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -661,50 +654,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-oauth" class="md-nav__link">
-    What is OAuth?
+  <a href="#iam" class="md-nav__link">
+    IAM
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-terminology" class="md-nav__link">
-    Core Terminology
+  <a href="#security-in-the-cloud" class="md-nav__link">
+    Security in the cloud
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#client-credentials-authz-for-microservices" class="md-nav__link">
-    Client Credentials: AuthZ for microservices
+  <a href="#waf" class="md-nav__link">
+    WAF
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#implicit-or-hybrid-authz-for-mobile-devices" class="md-nav__link">
-    Implicit or Hybrid: AuthZ for mobile devices
+  <a href="#directory-service" class="md-nav__link">
+    Directory Service
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#authorization-code" class="md-nav__link">
-    Authorization Code
+  <a href="#ram" class="md-nav__link">
+    RAM
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#resource-owner-password-flow" class="md-nav__link">
-    Resource Owner Password Flow
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#server-side-implementations" class="md-nav__link">
-    Server side implementations
+  <a href="#sso" class="md-nav__link">
+    SSO
   </a>
   
 </li>
@@ -725,89 +711,135 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/rnietoe/Training/edit/master/docs/Security/Web-Security-OAuth-And-OpenID-Connect.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/5-Security.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="web-security-oauth-and-openid-connect">Web Security: OAuth and OpenID Connect<a class="headerlink" href="#web-security-oauth-and-openid-connect" title="Permanent link">&para;</a></h1>
-<p><a href="https://www.linkedin.com/learning/web-security-oauth-and-openid-connect?u=1009514">https://www.linkedin.com/learning/web-security-oauth-and-openid-connect?u=1009514</a></p>
+                <h1 id="5-security">5. Security<a class="headerlink" href="#5-security" title="Permanent link">&para;</a></h1>
+<h2 id="iam">IAM<a class="headerlink" href="#iam" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS IAM</code></strong> (<strong>I</strong>dentity and <strong>A</strong>ccess <strong>M</strong>anagement) enables you to manage access to AWS services and resources securely. </p>
 <ul>
-<li><a href="https://www.oauth.com">OAuth 2.0 Servers</a></li>
-<li><a href="https://www.oauth.com/oauth2-servers/map-oauth-2-0-specs">Map of OAuth 2.0 Specs</a></li>
-<li>Aaron Parecki's book <strong>OAuth 2.0 Simplified</strong></li>
+<li>Users, groups, roles and policies are managed <strong>globally</strong> and not for a specific a region.</li>
+<li>You may have a 3rd party device that uses <strong>BioMetrics</strong> to initiate and exchange of the password or secret key with AWS, but that is not an AWS IAM service</li>
+<li>You can use permissions to allow and deny users and groups access to AWS resources.<ul>
+<li>Managed policies. Attach readonly policies already defined in AWS</li>
+<li>Inline policies: Select a policy template, generate a policy, or create a custom policy. </li>
+<li>Not explicitly allowed = implicitly denied</li>
+<li>explicit deny &gt; everything else </li>
 </ul>
-<h2 id="what-is-oauth">What is OAuth?<a class="headerlink" href="#what-is-oauth" title="Permanent link">&para;</a></h2>
-<p>Some OAuth Servers:</p>
+</li>
+<li>Groups are a collection of users with specific permissions/policies</li>
+<li>
+<p>Roles are a secure way to grant permissions to entities that you trust.</p>
+<ol>
+<li><code>Create role</code> from IAM.</li>
+<li>Select <code>EC2</code> as trusted entity to call AWS services on your behalf.</li>
+<li>Attach permission policy <code>AmazonS3FullAccess</code></li>
+<li>Named as S3_Admin_Access</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>aws iam create-role --role-name DEV_ROLE --assume-role-policy-document file://mypolicy.json
+</code></pre></div>
+
 <ul>
-<li>https://oauth2.thephpleague.com </li>
-<li>https://developers.google.com/oauthplayground </li>
-<li>https://openidconnect.net </li>
-<li><strong>https://developer.okta.com</strong> </li>
+<li>To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state. </li>
+<li>To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the running state.</li>
 </ul>
-<p>A token introspection tool: https://www.jsonwebtoken.io </p>
+</li>
+<li>
+<p><strong>Identities</strong> include users, groups, and roles. These are the IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. </p>
+</li>
+<li>A <strong>Principal</strong> is a person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS.</li>
+</ul>
+<p>New users are assigned Access Key Id and secret when first created to access AWS via the APIs and CLI.  </p>
+<p><strong>Power User Access</strong> allows access to all AWS services except the management of groups and users within IAM.</p>
+<div class="admonition danger">
+<p class="admonition-title">New users have NO permissions when first created. When you manage IAM policies, follow the standard security advice of granting <strong>the least privilege</strong>, or granting only the permissions required to perform a task. Determine what users (and roles) need to do, and then craft policies that allow them to perform only those tasks.</p>
+</div>
+<p>A Policy is the document used to grant permissions to users, groups, and roles, but it can not be attached directly to an application. Policies are written using JSON.</p>
+<p>AdministratorAccess Policy json:
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
 <ul>
-<li>flow = grant type</li>
-<li>scopes = permissions</li>
+<li>IAM policies applies to users and groups. </li>
+<li>IAM roles by another AWS account provide the aws link to other account. Switch role for <strong>cross account</strong> with Console access </li>
+<li>Changes to IAM Policies take effect almost immediately (with maybe a few seconds delay).</li>
 </ul>
-<p>AuthZ with:</p>
+<p>With the <strong>IAM Policy Simulator</strong>, you can test and troubleshoot identity-based policies, IAM permissions boundaries (delegate permissions to other user), Organizations service control policies, and resource-based policies.</p>
+<p><strong>Permissions boundary</strong> define the maximum permissions an identity can have</p>
+<p>ARN (<strong>A</strong>mazon <strong>R</strong>esource <strong>N</strong>ame)</p>
+<div class="codehilite"><pre><span></span><code><span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account_id</span><span class="o">:</span><span class="n">resouce_type</span><span class="o">:</span><span class="n">qualifier</span><span class="o">:</span><span class="n">resource</span><span class="o">:</span><span class="n">qualifier</span>
+</code></pre></div>
+
+
 <ul>
-<li>API keys</li>
-<li>Id &amp; Secret</li>
-<li>OAuth</li>
+<li>partition: aws|aws-cn</li>
+<li>service: s3|ec2|rds</li>
+<li>region: us-east-1|eu-central-1 (omitted when service is global such as iam)</li>
+<li>account_id: twelve digits (ommitted with service is globally unique, such as s3)</li>
+<li>resource_type: </li>
+<li>resource: </li>
+<li>qualifier:</li>
 </ul>
-<p>OpenID Connect (OIDC) is an OAuth 2.0 identity extension – only for users.</p>
-<h2 id="core-terminology">Core Terminology<a class="headerlink" href="#core-terminology" title="Permanent link">&para;</a></h2>
-<p>Main OAuth extensions</p>
+<h2 id="security-in-the-cloud">Security in the cloud<a class="headerlink" href="#security-in-the-cloud" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS Artifact</code></strong>: <a href="https://aws.amazon.com/compliance/?nc1=h_ls">Compliance</a> and security <strong>reports</strong> in the AWS Cloud</p>
 <ul>
-<li><strong>/authorize</strong>: grant permission to the resource. Could return an authZ code or an access token</li>
-<li><strong>/token</strong>: trade an authZ code or refresh token for an access token </li>
-<li><strong>/revoke</strong>: deactivate (invalidate) a token. Valid for access or refresh tokens</li>
-<li><strong>/instrospect</strong>: learn more about the token </li>
-<li><strong>/register</strong>: create new OAuth clients</li>
-<li><strong>/userinfo</strong> : retrieve profile information about the authenticated user</li>
-<li><strong>/.well-known/openid-configuration</strong>: which endpoints are support by our OAuth server</li>
+<li>A <strong>PCI DSS Level 1</strong> certification attests to the security of the AWS platform regarding <strong>credit card transactions</strong>.</li>
+<li>A <strong>HIPAA</strong> certification attests to the fact that the AWS Platform has met the standard required for the secure storage of <strong>medical records</strong> in the US</li>
 </ul>
-<p>Main OAuth tokens</p>
+<p>"AWS is responsible for the security <strong>OF</strong> the cloud. The customer is responsible for security <strong>IN</strong> the cloud ". Customer is responsible of patching EC2 instances. If you can do in the aws console, you are the responsible</p>
+<p>Encryption is a shared responsability</p>
+<p><a href="https://aws.amazon.com/compliance/shared-responsibility-model/">Shared responsability model</a> talks about who is responsible for waht in cloud</p>
+<p><img alt="" src="../img/Shared_Responsibility_Model_V2.jpg" /></p>
+<p>The customer would be responsible for patching the Operating System for IaaS solutions</p>
 <ul>
-<li>Access token: gives the client application access to the protected resource, usually the API</li>
-<li>Refresh token: used to request a new access token when this expires</li>
-<li>ID Token (included with OIDC): user profile information </li>
+<li><strong><code>Shield</code></strong> protect a lot of traffic (DDOS attacks). Only AWS Shield Advanced offers automated application layer monitoring. This costs $3000/month</li>
+<li><strong><code>Inspector</code></strong> to anayze and report security issues on EC2, but it can not examine individual policies</li>
+<li><strong><code>Trusted Advisor</code></strong> for recomendations and advices (not only EC2 instances). It helps you optimize cost, fault-tolerance, and more.</li>
+<li><strong><code>CloudTrail</code></strong> track user <strong>activity</strong> and API usage</li>
+<li><strong><code>CloudWatch</code></strong> monitoring <strong>performance</strong></li>
+<li><strong><code>Config</code></strong> monitor <strong>configuration</strong> settings</li>
+<li><strong><code>Athena</code></strong> serverless service for <strong>querying</strong> data in S3 using SQL. Commonly used to analyse logs. It will work with a number of data formats including JSON, Apache Parquet, Apache ORC amongst others, but XML is not a format that is supported. </li>
+<li><strong><code>Macie</code></strong> uses Machine learning to protect <strong>sensitive data</strong> (<strong>P</strong>ersonally <strong>I</strong>dentifiable <strong>I</strong>nformation) stored in S3</li>
+<li>
+<p><strong><code>Kinesis</code></strong> work with Real-Time Streaming Data</p>
+</li>
+<li>
+<p><code>Personal Health Dashboard</code> helps you to inspect account alerts and find remediation guidance for your account</p>
+</li>
+<li><code>Service Health Dashboard</code> displays the general status of AWS services</li>
 </ul>
-<p>JWT (Json Web Token)</p>
+<p>It's safer to use IAM roles than it is to use Access Keys.</p>
+<h2 id="waf">WAF<a class="headerlink" href="#waf" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS WAF</code></strong> (<strong>W</strong>eb <strong>A</strong>pplication <strong>F</strong>irewall) <strong>block</strong> request from specific IP address to stop hackers requests. It operates down to Layer 7.</p>
+<h2 id="directory-service">Directory Service<a class="headerlink" href="#directory-service" title="Permanent link">&para;</a></h2>
+<p>There are three options that help you migrate <strong>Active Directory</strong>-dependent applications to the AWS Cloud: </p>
 <ul>
-<li><strong>iss</strong>: the issuer of the token, an entity we trust</li>
-<li><strong>sub</strong>: the subject (user) of the token</li>
-<li><strong>aud</strong>: the audience which should consume the token</li>
-<li><strong>exp</strong>: expiration time of the token</li>
+<li>Managed Microsoft AD - <strong>Directory Service</strong> for Microsoft Active Diretory</li>
+<li><strong>AD Connector</strong></li>
+<li><strong>Simple AD</strong></li>
 </ul>
-<p>Claims: a key/value pair within the token that gives the client application information</p>
-<h2 id="client-credentials-authz-for-microservices">Client Credentials: AuthZ for microservices<a class="headerlink" href="#client-credentials-authz-for-microservices" title="Permanent link">&para;</a></h2>
-<p>Private clients only where secrets are in backend code; not appropiate for web  pages or mobiles apps</p>
-<ul>
-<li>Must use secure communications TLS</li>
-<li>no user relationship</li>
-<li>validate access token against the <strong>/instrospect</strong> endpoint</li>
-<li>expired token has to be rejected</li>
-</ul>
-<h2 id="implicit-or-hybrid-authz-for-mobile-devices">Implicit or Hybrid: AuthZ for mobile devices<a class="headerlink" href="#implicit-or-hybrid-authz-for-mobile-devices" title="Permanent link">&para;</a></h2>
-<p>Attach the user to the process</p>
-<ul>
-<li>cookie/session storage</li>
-<li>AppAuth and Passport for Android or iOS</li>
-<li>Must use secure communications TLS</li>
-<li>use of <strong>redirect_uri</strong></li>
-</ul>
-<h2 id="authorization-code">Authorization Code<a class="headerlink" href="#authorization-code" title="Permanent link">&para;</a></h2>
-<p>get an Auth Code instead of an access token. </p>
-<ul>
-<li>The third-party application never sees our credentials. </li>
-<li>The end user never sees the access token.</li>
-</ul>
-<h2 id="resource-owner-password-flow">Resource Owner Password Flow<a class="headerlink" href="#resource-owner-password-flow" title="Permanent link">&para;</a></h2>
-<ul>
-<li>recommended <strong>only</strong> for updating legacy systems</li>
-<li>danger! credentials are managed by the application itself</li>
-</ul>
-<h2 id="server-side-implementations">Server side implementations<a class="headerlink" href="#server-side-implementations" title="Permanent link">&para;</a></h2>
+<p>These solutions also enable users to sign into AWS applications such as Amazon WorkSpaces and Amazon QuickSight with their AD credentials. Developers who don’t need AD can use Amazon <strong>Cloud Directory</strong> to create cloud-scale directories that organize and manage hierarchical information such as organizational charts, course catalogs, and device registries. Amazon <strong>Cognito</strong> user pools offer mobile and web application developers Internet-scale user directories with integrated sign-up and sign-in.</p>
+<h2 id="ram">RAM<a class="headerlink" href="#ram" title="Permanent link">&para;</a></h2>
+<p><strong>R</strong>esource <strong>A</strong>ccess <strong>M</strong>anagement shares AWS resources with other AWS accounts.</p>
+<ol>
+<li>Create a resource share</li>
+<li>Choose the resources type to add to the resource share</li>
+<li>Select the resource id</li>
+<li>Add principals to the resource share. Principals can be AWS accounts, organizational units, or your organization.</li>
+<li>Add tags to the resource share. </li>
+</ol>
+<p>from the other account, browse to <code>Resource Access Manager</code>: <code>Shared with me</code> : <code>Resource shares</code> and accept the resource share</p>
+<h2 id="sso">SSO<a class="headerlink" href="#sso" title="Permanent link">&para;</a></h2>
+<p>AWS <strong>S</strong>ingle <strong>S</strong>ign-<strong>O</strong>n is a cloud service that makes it easy to manage SSO access to multiple AWS accounts and business applications.</p>
+<p>this require Active Directory and <strong>SAML</strong> (<strong>S</strong>ecurity <strong>A</strong>ssertion <strong>M</strong>arkup <strong>L</strong>anguage) integration</p>
                 
                   
                 
@@ -829,7 +861,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../React/Become-a-React-Developer/2-React.js-Essential-Training/" title="React.js Essential Training" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../4-Compute/" title="4. Compute" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -838,11 +870,25 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                React.js Essential Training
+                4. Compute
               </span>
             </div>
           </a>
         
+        
+          <a href="../6-Management/" title="6. Management and Governance" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                6. Management and Governance
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

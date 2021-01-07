@@ -15,8 +15,10 @@ Book your exam [here](https://www.aws.training/certification)
 3. [Network](3-Network.md)
 4. [Compute](4-Compute.md)
 5. [Security](5-Security.md)
-6. [Management](5-Management.md)
+6. [Management](6-Management.md)
+7. [HA Architecture](7-Architecture.md)
 8. [Databases](8-Databases.md)
+9. [Applications](9-Applications.md)
 
 ## ACloud.Guru Final Practice Exam  
 [https://aws.amazon.com/certification/certification-prep/](https://aws.amazon.com/certification/certification-prep/)

@@ -12,14 +12,16 @@
 
 S3 classes:
 
-* **S3 Standard**: Frequently accessed data
-* **S3 - IA** (**I**nfrequently **A**ccessed)
-* **S3 One Zone - IA** (multiple AZ not required) aka **RRS**
+* **S3 Standard**: Frequently accessed data. availability of 99.99%
+* **S3 - IA** (**I**nfrequently **A**ccessed). availability of 99.9%
+* **S3 One Zone - IA** (multiple AZ not required) aka **RRS** (Reduce Redundancy Storage). availability of 99.5%
 * **S3 - Intelligent Tiering**, using machine learning to move files to the most cost-effective access tier
 * **S3 Glacier** (low cost storage. retrieval times from 2 minutes to hours)
 * **S3 Glacier Deep Archive** (lowest-cost. retrieval time of 12 hours is acceptable)
 
 !!!danger "It does not make sense to use S3 standard. Instead, use S3 - Intelligent Tiering to save money"
+
+In S3 the durability of my files is 99.999999999 percent
 
 More features:
 

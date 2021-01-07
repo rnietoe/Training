@@ -175,6 +175,8 @@ cd .aws # go the hidden directory
 nano credentials # display access keys
 ```
 
+More details to create Bootstrap actions to install additional software are [here](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-bootstrap.html)
+
 ### How to build a web server
 
 ```shell
@@ -188,67 +190,9 @@ service httpd start # sudo systemctl start httpd # start apache service
 chkconfig on # start apache on restarts
 ```
 
-### How to use a load balancer
-
-Create Load balancer with a single instance:
-
-1. From `EC2/Load Balancers`, create a load balancer
-
-	* Select `Application Load Balancer` as load balancer type for http/https traffic. 
-	* `Network Load Balancer` type will be required for ultra-hight performance and static IPs. 
-	* `Classic Load Balancer` would be the cheapest type for test and dev. It is intended for applications that were built within the EC2-Classic network.
-
-3. Configure Load Balancer with name and select every AZ
-
-    !!!danger "At least two public subnets are required to enable the LB"
-
-4. Select our Security Group (virtual firewall)
-5. Configure Routing with a Target Troup name and the following health check settings:
-	* healthy threshold: 3 times
-	* unhealthy threshold: 3 times
-	* timeout: 3 seconds
-	* interval: 5 seconds
-	* success code: 200
-6. Register target adding our EC2 instance (to registered)
-7. Review and create
-8. Browse to the ELB (**E**lastic **L**oad **B**alance) DNS name and see the result, instead of browsing to the EC2 IP address
-
-    Launch a new EC2 instance with a different subnet (in order to have our two EC2 instances in two different AZ)
-
-9. Configure instance details with advance details:
-
-	```shell
-	#!/bin/bash		below code is running with the root user
-	yum update -y
-	yum install httpd -y
-	service httpd start
-	chkconfig httpd on	# start apache on restarts
-	cd /var/www/html
-	echo "<html><body><h1>This is server 2</h1></body></html>" > index.html
-    aws s3 mb s3://YOURBUCKETNAMEHERE
-    aws s3 cp index.html s3://YOURBUCKETNAMEHERE # backup in S3
-	```
-
-    More details to create Bootstrap actions to install additional software are [here](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-bootstrap.html)
-
-10. Add tags
-11. Select our security group (virtual firewall)
-12. Review and launch using our private key
-13. Browse to the public IP to see the result
-
-    Update `Load balancing/Target Groups` adding our second EC2 instance
-
-14. Select the target group and click the button `Register targets`
-15. Select our second EC2 instance and click the buttons `Include as pending below` and `Register pending targets` to add registerd on port 80  
-16. Wait till the target groups instance status is healthy
-17. Browse to the ELB DNS name and see the result
-
-18. Remove the second EC2 instance with the action `Terminate Instance`
-19. Browse to the ELB DNS name and see the result.
-
 ## Elastic Beanstalk
 
-**`AWS Elastic Beanstalk`** is an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker on familiar servers such as Apache, Nginx, Passenger, and IIS.
+**`AWS Elastic Beanstalk`** deploy and manage applications in the AWS cloud wihout worrying about the infrastructure that runs those applications
 
 1. `Create Application` from `Elastic Beanstalk`
 2. Select PHP as platform and the sample application code
@@ -260,6 +204,16 @@ Create Load balancer with a single instance:
 	* Ec2 instance
 	* CloudWatch alarm
 	* ...
+
+```shell
+mkdir helloworld
+cd hellowworld
+eb init -p PHP
+echo "Hello World" > index.html
+eb create dev-env
+eb open
+eb deploy # to deploy updates to the applications
+```
 
 ### Retrieving instance metadata
 
