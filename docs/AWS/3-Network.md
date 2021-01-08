@@ -397,3 +397,21 @@ ipconfig /flushdns # to remove saved ip from cache
 ```
 
 !!!danger "With Route 53, there is a default limit of **50** domain names. However, this limit can be increased by contacting AWS suppor"
+
+## API Gateway
+
+[API Gateway vs Application Load Balancer](https://serverless-training.com/articles/api-gateway-vs-application-load-balancer-technical-details/)
+
+API Gateway is like a door for your AWS environment. Targets are:
+
+* Lamda
+* EC2
+* DynamoDB
+
+scaling is automatic
+
+enable **api gateway caching** to cache API gateway endpoint's responses for a TTL period in seconds
+
+!!!danger "If a cache is configured, then Amazon API Gateway will return a cached response for duplicate requests for a customizable time, but only if under configured throttling limits"
+
+same origin policy to prevent cross site scripting (XSS) attacks. Cross origin resource sharing (CORS) allow restricted resources in a web page to be requested from a different domain. Enable **CORS** in Apigateway when the error message is "Origin policy cannot be read at the remote resource"

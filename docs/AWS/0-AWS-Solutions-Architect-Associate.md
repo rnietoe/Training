@@ -5,7 +5,6 @@
 * rnietoe@gmail.com - AWS account (root account)
 * rnietoe/training
 * rnietoe/paying
-* Abodroc@83
 * Google Authenticator for Android - **MFA** (**M**ulti-**F**actor **A**uthentication)
 
 Book your exam [here](https://www.aws.training/certification)
@@ -19,6 +18,7 @@ Book your exam [here](https://www.aws.training/certification)
 7. [HA Architecture](7-Architecture.md)
 8. [Databases](8-Databases.md)
 9. [Applications](9-Applications.md)
+10. [Media](10-Media.md)
 
 ## ACloud.Guru Final Practice Exam  
 [https://aws.amazon.com/certification/certification-prep/](https://aws.amazon.com/certification/certification-prep/)

@@ -86,7 +86,6 @@ Encryption is a shared responsability
 
 The customer would be responsible for patching the Operating System for IaaS solutions
 
-* **`Shield`** protect a lot of traffic (DDOS attacks). Only AWS Shield Advanced offers automated application layer monitoring. This costs $3000/month
 * **`Inspector`** to anayze and report security issues on EC2, but it can not examine individual policies
 * **`Trusted Advisor`** for recomendations and advices (not only EC2 instances). It helps you optimize cost, fault-tolerance, and more.
 * **`CloudTrail`** track user **activity** and API usage
@@ -103,7 +102,27 @@ It's safer to use IAM roles than it is to use Access Keys.
 
 ## WAF 
 
-**`AWS WAF`** (**W**eb **A**pplication **F**irewall) **block** request from specific IP address to stop hackers requests. It operates down to Layer 7.
+AWS WAF (**W**eb **A**pplication **F**irewall) **block** request to stop hackers requests from:
+
+* specific IP address (CloudFront, ALB or API Gateway)
+* origin country
+* request size
+* request header values
+* SQL code injection
+* Cross scripting
+
+It operates down to Layer 7.
+
+block traffic response forbbiden (403)
+
+## Shield
+
+AWS Shield protect a lot of traffic (**DDOS** attacks).
+
+* AWS Shield Standard: free protection in layers 3 and 4
+* AWS Shield Advanced: advance protection costs $3000/month. It offers automated application layer monitoring. 
+
+
 
 ## Directory Service
 
@@ -132,3 +151,68 @@ from the other account, browse to `Resource Access Manager`: `Shared with me` : 
 AWS **S**ingle **S**ign-**O**n is a cloud service that makes it easy to manage SSO access to multiple AWS accounts and business applications.
 
 this require Active Directory and **SAML** (**S**ecurity **A**ssertion **M**arkup **L**anguage) integration
+
+## Cognito
+
+Amazon Cognito provides Web Identity Federation (auth using Facebook, Google, etc.) recomended for mobile apps
+
+1. users pool: JWT Json Web Token for registration, authentication and account recovery
+2. identity pool: temporary AWS credentials to access AWS recources
+
+Cognito uses Push synchronization to push updates and synchronize user data across multiple devices
+
+## KMS (Key Management Service)
+
+manage encryption keys to encrypt data
+
+FIPS 140-2 Level 2
+
+CMK (Customer master Key) per region
+
+* AWS Managed CMK: used by default; free
+* AWS Owned CMK: used by AWS
+* Customer Managed CMK: created by you. it allows key rotation
+
+Symmetric CMK
+
+* default option
+* same key for encryption and decryption
+* AES-256 algoritm
+* data never leaves AWS unencrypted
+* KMS must be called for using
+
+Asymmetric CMK
+
+* Public and Private key pair
+* SSL
+* RSA and ECC algoritm
+* private key never leaves AWS unencrypted
+* AWS services integrated with KMS does not support asymmetric CMKs
+
+```shell
+aws kms create-key --description "MyCMK"
+# allow every action to the root user by default
+aws kms create-alias --target-key-id KEYID --alias-name "alias/MyCMK"
+echo "hello world" > test.txt
+aws kms encrypt --key-id KEYID "alias/MyCMK" --plaintext file://test.txt --output text --query CiphertextBlob
+aws kms encrypt --key-id KEYID "alias/MyCMK" --plaintext file://test.txt --output text --query CiphertextBlob | base64 --decode > test.txt.encrypted
+
+aws kms decrypt --ciphertext-blob fileb://test.txt.encrypted --output text --query Plaintext 
+aws kms decrypt --ciphertext-blob fileb://test.txt.encrypted --output text --query Plaintext | base64 --decode
+```
+
+## CloudHSM (Hardware Security Model)
+
+FIPS 140-2 Level 3
+
+manage your own keys
+
+run within a VPC in your account 
+
+single tenant (KMS is multitenant), dedicated hardware 
+
+## Secrets Manager
+
+AWS Secrets Manager helps you protect access to your applications, services, and IT resources. You can easily **rotate**, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle.
+
+generate random secrets

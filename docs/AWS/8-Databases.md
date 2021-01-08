@@ -193,7 +193,6 @@ SELECT sections.*, gen.*
 
 4. From `RDS`, click `Create Database` button
 5. Select PostgreSQL engine type, previous to last version, free tier template, db.t2.micro as db instance class, no multi-AZ
-6. Use rnietoe and Abodroc83 for credencials for db name mypostgresql
 7. Select the VPC created above and the public subnet group. **Public access**
 8. **Security groups are required for publicly accessible databases**. Create new VPC security group., so port 5432 will be opened to allow the PostgreSQL access.
 9. Run pgAdmin and create a new server Lab1 using the RDS endpoint as hostname (`mypostgresql.cmr9irlg1qe3.us-east-1.rds.amazonaws.com`), and the user and pwd
@@ -218,8 +217,7 @@ SELECT sections.*, gen.*, CEIL(RANDOM()*100)
 
 1. From `RDS`, click `Create Database` button
 2. Select MySQL engine type, free tier template (without Multi-AZ) and fill the database name (db instance identifier)
-3. Use rnietoe and Abodroc83 for credencials
-4. Set initial db name as rnietoe in the additional configuration. 
+3. Set initial db name as rnietoe in the additional configuration. 
     * If you do not specify a database name, Amazon RDS does not create a database.
     * When creating an RDS instance, you can select the Availability Zone into which you deploy it.
     * automated backups are enabled by default, till 35 days

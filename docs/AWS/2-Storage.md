@@ -6,6 +6,14 @@
 
 !!!info "Objects stored in S3 are stored in multiple servers in multiple facilities across AWS"
 
+S3 Event notifications:
+
+* Object Created
+* Object Removed
+* Object Restored
+* RRS Object Lost
+* Replication
+
 **Buckets** are folders/containers for everything that you store in S3. S3 bucket names are **global**, and must be unique. Universal namespaces are like https://s3-region_name.amazonaws.com/bucket_name. The response code is http 200 when file upload succeeds.
 
 !!!danger "Create new files are read inmediately. Updates and deletes takes a little bit of time to propagate."

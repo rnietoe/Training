@@ -1,12 +1,60 @@
 
 # 6. Management and Governance
 
+## SSM (AWS Systems Manager) Parameter Store
+
+Centralized storage and management of your secrets and configuration data such as passwords, database strings, and license codes. You can encrypt values using KMS, or store as plain text, and secure access at every level.
+
+organize parameters into hierarchies
+
+`Create Parameter` from SSM Parameter Store
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "ssm:GetParameter*",
+        "ssm:GetParametersByPath"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+```python
+import json
+import os
+import boto3
+
+client = boto3.client("ssm")
+env = os.environ["ENV"] # env variable value = "prod"
+app_config_path = os.environ["APP_CONFIG_PATH"] # env variable value = "acg"
+full_config_path = "/" + env + "/" + app_config_path # /prod/acg
+
+
+def lambda_handler(event, context):
+
+    print("Config Path: " + full_config_path)
+
+    param_details = client.get_parameters_by_path(
+        Path=full_config_path, Recursive=True, WithDecryption=True
+    )
+
+    print(json.dumps(param_details, default=str))
+```
+
 ## CloudFormation
 
 **`AWS CloudFormation`** is IaaS tool to **create**, **update** and **delete** resources with **templates** (json or yaml). While Elastic Beanstalk we can create and manage resources based on code...
 
 1. Create **stack** using the sample template Wordpress blog, where stack is a set of related resources.
-2. enter rnietoe for every name and Abodroc83 for every password. 
 3. Select instance type t2.micro and our key value pair rnietoe
 4. `Create stack`. This will create and configure an EC2 instance based on the wordpress template
 5. from `Output` tab, click on the value link.
