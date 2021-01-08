@@ -402,6 +402,8 @@ ipconfig /flushdns # to remove saved ip from cache
 
 [API Gateway vs Application Load Balancer](https://serverless-training.com/articles/api-gateway-vs-application-load-balancer-technical-details/)
 
+!!!danger "API Gateway + Lambda + DynamoDB (serverless) instead of ELB + EC2 + RDS"
+
 API Gateway is like a door for your AWS environment. Targets are:
 
 * Lamda

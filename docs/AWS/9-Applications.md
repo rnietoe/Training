@@ -133,3 +133,27 @@ while True:
         else:
             logging.info("Queue is now empty")
 ```
+
+## Amazon Polly
+
+Machine learning service to convert text to audio mp3 (Alexa)
+
+## SAM (Serverless Application Model)
+
+CloudFormation extension optimized for serverless functions, APIs and tables. it can run locally with docker
+
+`Transform` tag
+
+```shell
+sam init
+
+sam deploy --guided
+```
+
+## ECS (Amazon Elastic Container Service)
+
+Amazon ECS is an orchaestration service to deploy, manage, and scale Docker containers running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.
+
+**ECR** (Elastic Container Registry) is the managed docker container resigry to store, manage and deploy images. it work with on-premises deployment
+
+**Fargate** is a serverless container engine (like docker). it works with both ECS and **EKS** (Elastic Kubernetes Service)

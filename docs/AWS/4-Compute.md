@@ -231,22 +231,72 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 
 ## Lambda
 
-**`AWS Lambda`** is the Function-as-a-Service (FaaS) to run your code without provisioning or managing servers.
+**`AWS Lambda`** is the Function-as-a-Service (FaaS) to run your code **globally** without provisioning or managing servers (Serverless).
 
-* Lambda can be used for Infrastructure as Code
+* Lambda can be used for Infrastructure as Code.
+* Lambda, EC2 and ECS supports hyper-threading on one or more virtual CPUs.
 * You can use JSON or YAML for Lambda templates.
 * The resources section is the only required field in Lambda templates.
+* Scales out (not up) automatically. (for example, 5 lambda replications running at the same time). Each time your function is triggered, a new, separate instance of that function is started. There are limits, but these can be adjusted on request.
+* when creating a lambda function, a role is required to provide credentials with rights to other services. This is exactly the same as needing a Role on an EC2 instance to access S3 or DDB. Create a new role selecting the  `Simple microservice permissions` policy template.
+* different services can trigger your function,  such as  Api Gateway
+	* a lambda function can trigger other lambda functions
+	* ALB, Cognito, Lex, Alexa, API Gateway, CloudFront, and Kinesis Data Firehose are all valid direct (synchronous) triggers for Lambda functions. S3 is one of the valid **asynchronous** triggers.
+	![](llambda-triggers.png)
 
 Pricing: 
 
-* request pricing
+* number of request
 	* 1 million request per month free
 	* 0,20$ next million requests
-* duration pricing (how long lambda functions are executing for)
+* duration (how long lambda functions are executing for)
 	*  4000.000 gb-seconds per month free, up to 3,2 million seconds of compute time
 	* 0,00001667 for every GB second used thereafter
+* The amount of memory assigned.
 * additional charges
 	* when using other AWS services
+
+[Lambda Troubleshooting](https://help.acloud.guru/hc/en-us/articles/115003704634)
+
+```python
+def lambda_handler(event, context):
+    print("In lambda handler")
+
+    resp = {
+        "statusCode": 200,
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+        },
+        "body": "Hello world"
+    }
+
+    return resp
+```
+
+```html
+<html>
+	<script>
+		function myFunction() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("my-demo").innerHTML = this.responseText;
+				}
+			};
+			xhttp.open("GET", "YOUR-API-GATEWAY-LINK-HERE", true);
+			xhttp.send();
+		}
+	</script>
+	<body>
+		<div align="center">
+			<br><br><br><br>
+			<h1>Hello <span id="my-demo">Cloud Gurus!</span></h1>
+			<button onclick="myFunction()">Click me</button><br>
+			<img src="https://s3.amazonaws.com/acloudguru-opsworkslab-donotdelete/ACG_Austin.JPG">
+		</div>
+	</body>
+</html>
+```
 
 ## Batch
 
