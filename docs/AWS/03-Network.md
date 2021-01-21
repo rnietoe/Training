@@ -1,23 +1,29 @@
 # 3. Network
 
-* **ENI** - **E**lastic **N**etwork **I**nterface - virtual network card for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more.
-* **ENA** - **E**nhanced **N**etworking **A**dapter - use SR-IOV (**S**ingle **R**oot **I/O V**irtualization) to allow speeds between 10 and 100 Gbps requirement
-* **EFA** - **E**lastic **F**abric **A**dapter - machine learning or HPC (**H**igh **P**erformance **C**omputing) requirement
+* **ENI** - Elastic Network Interface - virtual network card for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more.
+* **ENA** - Enhanced Networking Adapter - use **SR-IOV** (Single Root I/O Virtualization) to allow speeds between 10 and 100 Gbps requirement
+* **EFA** - Elastic Fabric Adapter - machine learning or **HPC** (High Performance Computing) requirement
 
 ## VPC
 
-[AN INTERACTIVE IP ADDRESS AND CIDR RANGE VISUALIZER](https://cidr.xyz/)
+An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/)
 
-* **`AWS VPC`** (**V**irtual **P**rivate **C**loud) is like a logical datacenter in AWS. A VPC is an isolated portion of the AWS cloud dedicated to a single AWS account where you can launch AWS resources. You define a VPC’s IP address space from ranges you select (10.0.0.0/16).
+* **`AWS VPC`** (Virtual Private Cloud) is like a logical datacenter in AWS. A VPC is an isolated portion of the AWS cloud dedicated to a single AWS account where you can launch AWS resources. You define a VPC’s IP address space from ranges you select (10.0.0.0/16).
 * **Subnets** are segments of a VPC’s IP address range where you can place groups of isolated resources (10.0.1.0/24).
     * 1 subnet = 1 AZ
+    * each default subnet is a public subnet. Each instance that you launch into a default subnet has a private IPv4 address and a public IPv4 address
+    * each nondefault subnet has a private IPv4 address, but no public IPv4 address
+    * You can enable internet access for an instance launched into a nondefault subnet by attaching an internet gateway to its nondefault VPC and associating an Elastic IP address with the instance.
+    * a public subnet within a VPC is one that has at least one route in its routing table that uses an Internet Gateway (IGW).
+* **Route tables** are a set of rules, called routes, that are used to determine where network traffic is directed.
 * **Internet Gateway** allow communication between your VPC and the internet. An IG serves two purposes: to provide a target in your VPC route tables for internet-routable traffic, and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses
     * 1 VPC = 1 IG
 * **egress-only internet gateway** allows IPv6 based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.
-* **VPG** (**V**irtual **P**rivate **G**ateway) is the VPN concentrator on the Amazon side of the Site-to-Site VPN connection.
+* **VPG** (Virtual Private Gateway) is the VPN concentrator of the Site-to-Site VPN connection on the Amazon side.
 * **customer gateway** is a resource that is installed on the customer side and provides a customer gateway inside a VPC.
 * **VPC peering** creates a connection between two VPCs using same or different accounts and regions.
-    * no transitive peering VPC-A <=> VPC-B <=> VPC-C ... VPC-A <> VPC-C 
+    * VPC peering only routes traffic between source and destination VPCs.
+    * no transitive peering VPC-A <=> VPC-B <=> VPC-C ... VPC-A <> VPC-C  
 * **VPC Endpoints**: Enables private connectivity to services hosted in AWS, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
 
 VPC pricing:
@@ -30,17 +36,21 @@ Some **scans** can be performed without alerting AWS, some require you to alert,
 
 You can have up to **5** non-default VPCs per account and region, but you can place a support request to increase the number.
 
+Once a VPC is set to Dedicated hosting, it can be changed back to default hosting via the CLI, SDK or API. Note that this will not change hosting settings for existing instances, only future ones. Existing instances can be changed via CLI, SDK or API modifying the `Instance Placement` attribute but need to be in a stopped state to do so.
+
+
+
 ### How to create a VPC
 
 [Creating a Basic VPC and Associated Components in AWS](https://learn.acloud.guru/handson/2cc3cf9e-61ce-475d-a00e-03306e9ba285/course/aws-certified-solutions-architect-associate)
 
 1. `Create VPC` with IPv4 CIDR block equals 10.0.0.0/16 and IPv6 CIDR block provided by Amazon.
-    * Note that **only a RT, a network ACL and a SG are created**
+    * Note that **only a RT, a NACL and a SG are created**
 
     ![](img/vpc-new.PNG)
 
 2. `Create subnet` with IPv4 CIDR block equals 10.0.1.0/24 (public) and 10.0.2.0/24 (private) with different AZs.
-    * [AWS](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) reserve 5 addresses so there are 251 available IPv4 addresses instead of 256
+    * [AWS](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) reserves both the first four and the last IP address (5) in each subnet's CIDR block, so there are 251 available IPv4 addresses instead of 256
 
     ![](img/vpc-subnets.PNG)
 
@@ -51,7 +61,7 @@ You can have up to **5** non-default VPCs per account and region, but you can pl
     aws ec2 attach-internet-gateway --vpc-id "vpc-05fa9d6e7085db9bf" --internet-gateway-id "igw-0e2c1cfa68b4dfc76" --region us-east-2
     ```
 6. `Create route table` to specify how packets are forwarded between the subnets within your VPC, the internet, and your VPN connection. 
-    * New subnets will be associated to the main route table instead of this public RT.
+    * New subnets will be associated to the main RT instead of this public RT.
 7. Allow the internet access selecting the public RT and `Edit routes` button and `add route` with destination 0.0.0.0/0 (IPv4) and ::/0 (IPv6) and our IG as the target 
 8. `Edit subnet associations` and select 10.0.1.0/24 to associate the public subnet with the public RT
 9. Create first EC2 instances as WebServer with network equals our VPC 
@@ -59,7 +69,7 @@ You can have up to **5** non-default VPCs per account and region, but you can pl
     * Create new SG as WebDMZ with rules SSH and HTTP
     * Create a new key-pair as rnietoe-ohio
     ```shell
-    chmod 400 rnietoe-ohio.pem
+    chmod 400 rnietoe-ohio.pem # set read permissions to the user
     ssh ec2-user@3.16.203.67 -i rnietoe-ohio.pem
     ```
 10. Create second EC2 instances as DBServer with network equals our VPC 
@@ -86,9 +96,10 @@ You can have up to **5** non-default VPCs per account and region, but you can pl
 
 ### How to create a NAT Gateway
 
-* [NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) (**N**etwork **A**ddress **T**ransaction) are single EC2 instances.
+* [NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) (Network Address Transaction) are single EC2 instances.
 * NAT Gateway is a highly available gateway that allows you to get your private subnets communicate out to the internet without becaming public
 * NAT gateway enable instances in a private subnet to connect to the internet or other AWS services, but prevent the internet from initiating a connection with those instances.
+* **source/destination checks** on the NAT instance must be disabled to allow the sending and receiving traffic for the private instances
 * NAT gateway are redundant inside the AZ
     * 1 NAT gateway per AZ
 * not need to patch
@@ -131,7 +142,7 @@ SG are statefull while network ACLs are stateless (inbounds settings are not app
 
 !!!danger "Block IP addresses using NACL instead of SG"
 
-!!!danger "1 NACL - 1 subnet, NACLs act on the subnet level, while security groups act on the instance level."
+!!!danger "NACLs act on the subnet level, while security groups act on the instance level."
 
 0. Default NACL allow all traffic
 1. `Create Network ACL` as WebNACL using our VPC. All inbound rules are denied by default
@@ -147,8 +158,8 @@ nano index.html
 <html><body><h1>This is server 1</h1></body></html>
 ```
 3. `Edit subnet associations` for our NACL named WebNACL and select the public subnet
-    * public subnet is disassociate from the default NACL becuase a subnet can be associated to a NACL only
-    * 1 NACL - many subnets
+    * public subnet is disassociate from the default NACL because a subnet can be associated to a NACL only
+    * 1 NACL - 1 subnet
     * web page is not accessible now
 4. `Edit inbound rules` adding new rules (100, 200, 300) allowing ports 80, 443 and 22
     * Rule Number increase in 100 units, like 100, 200, 300...
@@ -188,7 +199,7 @@ How to configure VPC FlowLogs:
 2. `Create subnet` with ipv4 CIDR block as 10.0.1.0/24 and enable auto-assign public IPv4 address
 3. `Launch EC2 instance` with VPC, subnet and a new SG with HTTP and SSH rules
 4. Create internet gateway and associate it to the default VPC RT
-5. `Create flow log` in the Network interface (eni)
+5. `Create flow log` in the ENI (Elastic Network interface)
     * specify the filter: accepted traffic only, rejected traffic only or capture all traffic
     * set Maximum aggregation interval to 1 min
     * flow log data destination can be CloudWatch Logs or S3 bucket. Select S3 bucket
@@ -329,7 +340,7 @@ VPC endpoint is a service that replace NAT gateway and allow connections from th
 
 ![](img/vpc-endpoints.PNG)
 
-* Interface endpoints: ENI (**E**lastic **N**etwork **I**nterface) with private IP as entry point
+* Interface endpoints: ENI (Elastic Network Interface) with private IP as entry point
 * Gateway endpoints support S3 and DynamoDB
 
 1. `Create Endpoint` from VPC : Endpoints
@@ -346,7 +357,7 @@ To open up our apps to other VPCs, we can try:
 
 ### Transit Gateway
 
-TGW (**T**ransit **G**ate**W**ay) is a network transit hub that interconnects attachments (VPCs and VPNs) within the same account or across accounts. 
+TGW (Transit GateWay) is a network transit hub that interconnects attachments (VPCs and VPNs) within the same account or across accounts. 
 
 * Cross region is allowed
 * support **IP multicast**
@@ -375,7 +386,7 @@ DNS changes can take 48 hours to take effect due to the cache
 * **CName** (Canonical Name) maps to the host name: https://mobile.acloud.guru = https://m.acloud.guru 
 * **Alias Record** provide a Route 53–specific extension to DNS functionality. An alias could be created for the ELB. Alias Records can also point to AWS Resources that are hosted in other accounts by manually entering the ARN
 
-!!!tips "ELB resolve DNS names isnteaf of IPv4 addresses"
+!!!tips "ELB resolve DNS names instead of IPv4 addresses"
 
 Routing Policies:
 
@@ -393,7 +404,7 @@ Routing Policies:
 4. `Create traffic policy` to configure Geoproximity Routing
 
 ```shell
-ipconfig /flushdns # to remove saved ip from cache
+ipconfig /flushdns # to remove saved ip from cache from the client side
 ```
 
 !!!danger "With Route 53, there is a default limit of **50** domain names. However, this limit can be increased by contacting AWS suppor"

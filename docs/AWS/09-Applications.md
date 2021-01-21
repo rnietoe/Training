@@ -1,4 +1,4 @@
-# Applications
+# 9. Applications
 
 ## SQS Simple Queue Service
 
@@ -9,11 +9,16 @@
 
 If you have an existing application that uses standard queues and you want to take advantage of the ordering or exactly-once processing features of FIFO queues, you need to configure the queue and your application correctly. You can't convert an existing standard queue into a FIFO queue. To make the move, you must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue. 
 
-retention period: 14 days
+**retention period**: the message can remain in the queue for 14 days
 
-**visibility timeout**: time while message is invisible during processing
+**visibility timeout**: time while message is invisible during processing. maximum VisibilityTimeout is 12 hours. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds
 
-**long polling**: retrieve messages from SQS queues when message arrives to the queue
+**long polling**: retrieve messages from SQS queues , reducing the number of empty responses
+    setting `ReceiveMessageWaitTimeSeconds` default value = 0 ?
+
+attribute `DelaySeconds`: When a new message is added to the SQS queue, it will be hidden from consumer instances for a fixed period.
+
+attribute `WaitTimeSeconds`: When the consumer instance polls for new work, the SQS service will allow it to wait a certain time for one or more messages to be available before closing the connection.
 
 Duplicate messages occur when a consumer does not complete its message processing and the visibility timeout of the message expires, making it visible for another consumer to obtain. Increasing the visibility timeout to enable the consumer processing to complete, will prevent duplicate messages.
 
@@ -37,11 +42,13 @@ a **domain** refer to a collection of related workflows
 
 **push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint
 
-group multiple recipients using **topics**. An Amazon Resource Name is created when you create a topic on Amazon SNS
+group multiple recipients using **topics**. 
+
+An ARN (Amazon Resource Name) is created when you create a topic on Amazon SNS
 
 messages are stored across multiple AZ to prevent lost
 
-DLQ (Deed Letter Queue) is supported in SNS, SQS and Lamda
+**DLQ** (Deed Letter Queue) is supported in SNS, SQS and Lambda
 
 
 send_message.py
@@ -152,7 +159,7 @@ sam deploy --guided
 
 ## ECS (Amazon Elastic Container Service)
 
-Amazon ECS is an orchaestration service to deploy, manage, and scale Docker containers running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.
+Amazon ECS is an orchestration service to deploy, manage, and scale Docker **containers** running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.
 
 **ECR** (Elastic Container Registry) is the managed docker container resigry to store, manage and deploy images. it work with on-premises deployment
 

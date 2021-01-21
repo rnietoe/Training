@@ -2,14 +2,14 @@
 
 ## RDS
 
-**`AWS RDS`** (**R**elational **D**atabase **S**ervice): 
+**`AWS RDS`** (Relational Database Service): 
 
-* MS SQL Server (up to 16TB of storage when using the Provisioned IOPS and General Purpose - SSD - storage)
-* Oracle. Includes license model
-* MySQL (port 3306)
-* Amazon Aurora. This is up to 5X faster than a traditional MySQL database. MySQL and PostgreSQL compatibility. No free tier
-* MariaDB
-* PostgreSQL (port 5432)
+* **MS SQL Server** (up to 16TB of storage when using the Provisioned IOPS and General Purpose SSD storage)
+* **Oracle**. Includes license model
+* **MySQL** (port 3306)
+* **PostgreSQL** (port 5432)
+* **Amazon Aurora**. This is up to 5X faster than a traditional MySQL database. MySQL and PostgreSQL compatibility. No free tier
+* **MariaDB**
 
 Some features: 
 
@@ -27,8 +27,8 @@ nslookup database_endpoint # Query DNS Records on Windows
     * disaster recovery
     * hosting a cross region with lower latency
     * MS SQL Server cannot be read replica
-    * From the RDS instance, select the action `Create read replica` (must have backups turned on) and check the option Public accesible.  
-    * A new RDS instance is created for the read replica **wihout any impact**.  
+    * `Create read replica` from the RDS instance (must have backups turned on) and check the option Public accesible.  
+    * A new RDS instance is created for the read replica **without any impact**.  
     * A read replica can be promoted as a standalone instance. Note that the promotion process is irreversible.  
 * Use of **AWS EBS** volumes for database and log storage. Only Aurora uses its storage system.
 * We can manage RDS instances (CPU and Memory) using AWS CLI, AWS RDS API or management console.  
@@ -37,7 +37,7 @@ nslookup database_endpoint # Query DNS Records on Windows
 
 Scaling
 
-* vertical scaling (compute -CPU- OR memory) with a new RDS instance of DB instance class. Instance may shutdown
+* vertical scaling (CPU or memory) with a new RDS instance of DB instance class. Instance may shutdown
 * scaling with AWS EBS storage
 * horizontal scaling with read replicas
 
@@ -58,7 +58,7 @@ Backup options
         * scheduled window
         * retention
         * data can be restored to point in time on intervals of **5 minutes** based on **transactions logs**. 
-    * **manual** snapshots. From RDS instance, `Take DB Snapshot`
+    * **manual** snapshots. `Take DB Snapshot` from RDS instance
         * kept till deleted
         * only recommended before large changes
         * we can copy snapshot to different regions (crossregion copy)
@@ -79,8 +79,8 @@ Pricing
 * Instance hours
 * Database Storage: EBS VS Aurora
 * Size of bakcup storage
-* Outgoing data transfer
-* Data transferred between Availability Zones for replication of Multi-AZ deployments is free
+* Data transfer out
+* Data transferred between AZs for replication of Multi-AZ deployments is free
 
 !!!tip "Reserve instance when long terms for both Multi-AZ and Single-AZ configurations"
 
@@ -101,7 +101,7 @@ Security
         * Active directory for SQL Server
         * IAM Authentication MySQL, PostgreSQL, Aurora
 * Encryption at rest:
-    * it is free to encrypt data using KMS (**K**ey **M**anagement **S**ystem) and AES-256
+    * it is free to encrypt data using KMS (Key Management System) and AES-256
     * encryption is replicated to all nodes, backups and snapshots
     * cannot decrypt once encrypted
     * two tier encryption: enable key rotation
@@ -116,9 +116,6 @@ Monitoring
 * 15-18 metrics based on the instance class (CPU, free storage space, network traffic, database connections and IOPS)
 * [**Performance Insights**](https://console.aws.amazon.com/rds/home?region=us-east-1#performance-insights-v20206:) is a free database performance dashboard, but it is not available for db.t2 instances.
 * AWS RDS Events to be notified when events occurs
-* AWS Config for configuration changes
-* AWS CloudTrail for audit logs of API calls
-* AWS Trusted Advisor for cost optimization, security, fault tolerance and performance improvements recommendations
 
 Script to test monitoring:
 ```sql
@@ -130,14 +127,50 @@ CREATE TABLE scale_data (
 INSERT INTO scale_data
 SELECT sections.*, gen.*
      , CEIL(RANDOM()*100) 
-  FROM GENERATE_SERIES(1, 300)     sections,
+FROM GENERATE_SERIES(1, 300)     sections,
        GENERATE_SERIES(1, 900000) gen
+WHERE gen <= sections * 3000;
+```
+
+### How to create an RDS instance (PostgreSQL)
+
+1. Download [pgAdmin](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.27/windows/) and install -> [http://127.0.0.1:54689/browser](http://127.0.0.1:54689/browser)
+2. Create a VPC using the wizard:
+    * Select VPC with Public and Private Subnets
+    * Select all default settings but Elastic IP Allocation ID. If not found, copy and paste
+3. Configure RDS subnet groups:
+    * Create DB Subnet groups (public and private)
+    
+    !!! error "DB Subnet Group doesn't meet AZ coverage requirement. Please add subnets to cover at least 2 AZs. Current coverage: 1"
+
+    * Create a new public (10.0.2.0/24) and private (10.0.3.0/24) subnets in a different AZ. Then try to create the subnet group again
+    * Edit route table association for the two new subnets. private subnets with NAT and public subnets wit igw (internet gateway)
+
+4. From `RDS`, click `Create Database` button
+5. Select PostgreSQL engine type, previous to last version, free tier template, db.t2.micro as db instance class, no multi-AZ
+6. Select the VPC created above and the public subnet group. **Public access**
+7. **Security groups are required for publicly accessible databases**. Create new VPC security group, so port 5432 will be opened to allow the PostgreSQL access.
+8. Run pgAdmin and create a new server Lab1 using the RDS endpoint as hostname (`mypostgresql.cmr9irlg1qe3.us-east-1.rds.amazonaws.com`), and the user and pwd
+
+![](img/PostgreSQL.PNG)
+
+```sql
+CREATE TABLE test_data (
+   section NUMERIC NOT NULL,
+   id1     NUMERIC NOT NULL,
+   id2     NUMERIC NOT NULL
+);
+
+INSERT INTO test_data
+SELECT sections.*, gen.*, CEIL(RANDOM()*100) 
+  FROM GENERATE_SERIES(1, 30) sections,
+       GENERATE_SERIES(1, 90) gen
  WHERE gen <= sections * 3000;
- ```
+```
 
 ### How to create a secured RDS instance
 
-1. From RDS, `create a parameter group` with family postgres10 as PostgresSSL.
+1. `Create a parameter group` from RDS with family postgres10 named PostgresSSL.
 2. Edit PostgresSSL parameter group to enable and enforce ssl (ssl and rds.force_ssl = 1)
 
     !!!warning "Encryption at rest is not enabled for a db.t2.micro, so a dev/test RDS is required"
@@ -177,52 +210,16 @@ SELECT sections.*, gen.*
 12. Change VPC subnet and test again.
 13. Remove PGSSLMODE variable and test again.
 
-### How to create an RDS instance (PostgreSQL)
-
-1. Download [pgAdmin](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.27/windows/) and install -> [http://127.0.0.1:54689/browser](http://127.0.0.1:54689/browser)
-2. Create a VPC using the wizard:
-    * Select VPC with Public and Private Subnets
-    * Select all default settings but Elastic IP Allocation ID. If not found, copy and paste
-3. Configure RDS subnet groups:
-    * Create DB Subnet groups (public and private)
-    
-    !!! error "DB Subnet Group doesn't meet availability zone coverage requirement. Please add subnets to cover at least 2 availability zones. Current coverage: 1"
-
-    * Create a new public (10.0.2.0/24) and private (10.0.3.0/24) subnets in a different AZ. Then try to create the subnet group again
-    * Edit route table association for the two new subnets. private subnets with nat and public subnets wit igw (internet gateway)
-
-4. From `RDS`, click `Create Database` button
-5. Select PostgreSQL engine type, previous to last version, free tier template, db.t2.micro as db instance class, no multi-AZ
-7. Select the VPC created above and the public subnet group. **Public access**
-8. **Security groups are required for publicly accessible databases**. Create new VPC security group., so port 5432 will be opened to allow the PostgreSQL access.
-9. Run pgAdmin and create a new server Lab1 using the RDS endpoint as hostname (`mypostgresql.cmr9irlg1qe3.us-east-1.rds.amazonaws.com`), and the user and pwd
-
-![](img/PostgreSQL.PNG)
-
-```sql
-CREATE TABLE test_data (
-   section NUMERIC NOT NULL,
-   id1     NUMERIC NOT NULL,
-   id2     NUMERIC NOT NULL
-);
-
-INSERT INTO test_data
-SELECT sections.*, gen.*, CEIL(RANDOM()*100) 
-  FROM GENERATE_SERIES(1, 30) sections,
-       GENERATE_SERIES(1, 90) gen
- WHERE gen <= sections * 3000;
-```
-
 ### How to create an RDS instance for WordPress
 
-1. From `RDS`, click `Create Database` button
+1. `Create Database` from `RDS`.
 2. Select MySQL engine type, free tier template (without Multi-AZ) and fill the database name (db instance identifier)
-3. Set initial db name as rnietoe in the additional configuration. 
+3. Set initial db name in the additional configuration. 
     * If you do not specify a database name, Amazon RDS does not create a database.
-    * When creating an RDS instance, you can select the Availability Zone into which you deploy it.
+    * When creating an RDS instance, you can select the AZ into which you deploy it.
     * automated backups are enabled by default, till 35 days
 
-5. Create a new EC2 instance with our WebDMZ security group, our key pair rnietoe and the following advanced details:
+5. Create a new EC2 instance with our WebDMZ security group, our key pair and the following advanced details:
 
 	```shell
 	#!/bin/bash
@@ -260,7 +257,7 @@ SELECT sections.*, gen.*, CEIL(RANDOM()*100)
 10. Login to wordpress
 11. Configure a ELB target group to set WordPress settings URL with a DNS address instead of a public IP
 
-Finally we create a EC2 instance image, like a **snapshot**. this is called `AMI` (**A**mazon **M**achine **I**mange)
+Finally we create a EC2 instance image, like a **snapshot**. this is called **AMI** (Amazon Machine Image)
 
 ### How to create a fault-tolerance wordpress app
 
@@ -283,7 +280,7 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called `AMI
 10. Scale between 2 and 3 instances (group size)
 11. Set a scaling policy. for example, when cpu is 90%
 12. notifications and tags not required here
-13. Select the ASG (**A**uto **S**caling **G**roup) created and see the `Activity` tab. Two instances are created. 
+13. Select the **ASG** (Auto Scaling Group) created and see the `Activity` tab. Two instances are created. 
 14. Browse to the ELB DNS adress and create new post in wordpress . Delete instances, wait ASG create new instances and check the post is still there
 
 ## Amazon Aurora
@@ -302,17 +299,16 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called `AMI
     * secondary region - read only. Promoted when failure
 * Aurora store by default 6 copies of my data (2x3)
 
-1. From `RDS`, create Amazon Aurora database with PostgreSQL compatibility
-2. Tree instances are created:
+1. Create Amazon Aurora database with PostgreSQL compatibility from `RDS` 
+2. Three instances are created:
     * regional - with writer and read endpoints
     * writer
     * reader
 
-3. From actions, create aurora read replica (writer and reader node)
+3. Create aurora read replica (writer and reader node) from actions
 
-**Aurora Serverless**
+### Aurora Serverless
 
-* capacity type: Serverless
 * You specify the minimum and maximum amount of resources needed, and Aurora scales the capacity based on database load. This is a good option for intermittent or unpredictable workloads.
 * only an endpoint is created
 
@@ -345,10 +341,17 @@ exports.handler = (event, context) => {
 
 DynamoDB (Non Relational Databases) is a key-value and document database that delivers single-digit millisecond performance at any scale.
 
-* DynamoDB provide automatic replication across AZs.
+DynamoDB allows for the storage of large text and binary objects, but there is a limit of 400 KB for the combined Value and Name
+
+* Data is stored on Solid State Drives (SSDs).
+* DynamoDB provide automatic replication across AZs. It is a regional service, there is no need to explicitly create a multi-AZ deployment.
 * DynamoDB is distributed across three geographically distinct datacentres by default
 * Eventual consistent reads (default) sample of 2 seconds  
-* Strongly consistent reads. sample of less than 1 second
+* Strongly consistent reads. sample of less than 1 second. some disadvantages such as :
+    * read might not be available if there is a network delay or outage
+    * higher latency
+    * global secondary indexes not supported
+    * use of more throughput capacity
 * **DAX** (DynamoDB Accelerator) is an advanced DynamoDB
 * There will always be a charge for:
     1. provisioning read and write capacity 
@@ -356,14 +359,13 @@ DynamoDB (Non Relational Databases) is a key-value and document database that de
 
 ## RedShift 
 
-* OLAP (OnLine Analytics Processing)
-* **Amazon's Data WareHousing** used for Online Anaylitcs Processing
+* **Amazon's Data WareHousing** used for **OLAP** (OnLine Analytics Processing)
 * Used for Business Intelligence
 * availabled in 1 AZ
 
-## EMR 
+## EMR (Elastic Map Reduce)
 
-EMR (**E**lastic **M**ap **R**educe) is a web service that makes it easy to process large amounts of data efficiently. sample of **big data**
+web service that makes it easy to process large amounts of data efficiently. sample of **big data**
 
 cluster with:
 
@@ -377,8 +379,13 @@ logs must be defined on cluster creation
 
 Improve performance with cache for the most common queries:
 
-* Memcached
-* Redis (muti AZ)
+* Memcached. does not offer a native encryption service
+* Redis (muti AZ) 
+    * Pub/Sub
+    * Sorted Sets 
+    * In-Memory Data Store
+
+ElastiCache is only a key-value store and cannot therefore store relational data.
 
 ## Graph Databases
 

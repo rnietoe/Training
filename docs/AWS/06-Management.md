@@ -1,7 +1,7 @@
 
 # 6. Management and Governance
 
-## SSM (AWS Systems Manager) Parameter Store
+## (AWS Systems Manager) SSM Parameter Store
 
 Centralized storage and management of your secrets and configuration data such as passwords, database strings, and license codes. You can encrypt values using KMS, or store as plain text, and secure access at every level.
 
@@ -551,6 +551,10 @@ Monitor resources and applications **performances**:
 	* CloudFront
 * network
 
+AWS can see that you have Memory, but a custom metric is required to see how much of the memory is being used 
+
+AWS can see how much of CPU you are using in a EC2, but cannot see what you are using if for.
+
 ## CloudTrail
 
 Continuously log your AWS account **activity** monitoring API calls per account and region
@@ -610,7 +614,7 @@ Maximum of 20 Link accounts. Contact AWS for more
 
 You are charged based on the number of configuration items recorded, the number of active AWS Config rule evaluations and the number of conformance pack evaluations in your account
 
-# Pricing
+## Pricing
 
 * Capex: Capital Expenditure: you pay up front. It's a fixed cost
 * Opex: Operational Expenditure: you pay for what you use, like electricity, gas or water
@@ -621,7 +625,7 @@ You are charged based on the number of configuration items recorded, the number 
 
 * **Cost explorer** is use to explore costs **after** they have been incurred. See [Billing & Cost Management Dashboard](https://console.aws.amazon.com/billing/home#/).
 
-* [Creating a billing alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html) at `ClouldWatch/Alarms/Billing` using SNS (**S**imple **N**otification **S**ervice) topic to monitor estimated AWS charges.
+* [Creating a billing alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html) at `ClouldWatch/Alarms/Billing` using **SNS** (Simple Notification Service) topic to monitor estimated AWS charges.
 
 `Application Integration/SNS` is a messaging service that enables you to decouple microservices, distributed systems, and serverless applications. Using AWS SNS topics, your publisher systems can fan-out messages to a large number of subscriber endpoints for parallel processing, including Amazon SQS queues, AWS Lambda functions, and HTTP/S webhooks. Additionally, SNS can be used to fan out notifications to end users using mobile push, SMS, and email.
 
@@ -669,7 +673,6 @@ Consolidated billing allows you to get volume discounts on all your accounts
 * AWS Total Cost of Ownership Calculator (**DEPRECATED**): comparing AWS VS on premise
 * [AWS Pricing Calculator](https://calculator.aws/#/)
 
-###################################################################
+## AWS X-Ray
 
-`Developer Tools - X-Ray`
-AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
+`Developer Tools - X-Ray` helps developers analyze and **debug** production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.

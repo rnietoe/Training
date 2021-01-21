@@ -1,6 +1,6 @@
-# Hight Availability Architecture
+# 7. Hight Availability Architecture
 
-a web site requires a minimum of 6 instances and tolerate the failaure of 1 AZ. the most cost effective environment is 3 AZ with 3 instances in each AZ. if 1 AZ fails, there are still 6 instances...
+When a web site requires a minimum of 6 instances and tolerate the failaure of 1 AZ. the most cost effective environment is 3 AZ with 3 instances in each AZ. if 1 AZ fails, there are still 6 instances...
 
 ## Elastic Load Balancers
 
@@ -8,9 +8,9 @@ a web site requires a minimum of 6 instances and tolerate the failaure of 1 AZ. 
 
 !!!danger "ELB can spread load across AZs not regions."
 
-* ALB (**A**pplication **L**oad **B**alancers) for intelligent routing - HTTP/HTTPS
-* NLB (**N**etwork **L**oad **B**alancers) for extreme performance and static IPs - TCP/TLS
-* CLB (**C**lassic **L**oad **B**alancers) for test and dev - low cost - HTTP/HTTPS/TCP
+* ALB (Application Load Balancers) for intelligent routing - HTTP/HTTPS
+* NLB (Network Load Balancers) for extreme performance and static IPs - TCP/TLS
+* CLB (Classic Load Balancers) for test and dev - low cost - HTTP/HTTPS/TCP
 
 Error **504** means gateway timeout
 
@@ -21,17 +21,17 @@ How to use classic load balancer
 1. `Create load balancer` from EC2 : Load Balancers of type CLB
 2. [Register EC2 instances](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-backend-instances.html)
 3. Select our Security Group (virtual firewall)
-7. Browse to the ELB (**E**lastic **L**oad **B**alance) DNS name and see the result, instead of browsing to the EC2 IP address
+7. Browse to the **ELB** (Elastic Load Balance) DNS name and see the result, instead of browsing to the EC2 IP address
 
 How to use application load balancer
 
-1. `Create target group` to group instances, IP addresses or Lamda functions for load balancing
+1. `Create target group` to group EC2 instances, IP addresses or Lambda functions for load balancing
 2. `Create load balancer` of type ALB
 3. Configure Load Balancer with name and select every AZ
 
     !!!danger "At least two public subnets are required to enable the LB"
 
-4. Configure Routing with a Target Troup name and the following health check settings:
+4. Configure Routing with a Target Group name and the following health check settings:
 	* healthy threshold: 3 times
 	* unhealthy threshold: 3 times
 	* timeout: 3 seconds
@@ -51,9 +51,9 @@ How to use application load balancer
 * Groups
 * Configuration Templates
 * Scaling Options
-    * To mantaint current instance levels at all times  (for example, 10 EC2 instances)
+    * To mantain current instance levels at all times  (for example, 10 EC2 instances)
     * Scale manually
-    * Scale based on a schedule
+    * Scale based on a schedule: Scaling actions are performed automatically as a function of time and date
     * Scale based on demand using scaling polices
     * Use predictive scaling based on performance
 

@@ -2,7 +2,7 @@
 
 ## EC2
 
-**`AWS EC2`** (**E**lastic **C**ompute **C**loud) is a virtual server in the cloud. It is a web service that provides resizeable compute capacity in the cloud
+**`AWS EC2`** (Elastic Compute Cloud) is a virtual machine in the cloud. It is a web service that provides resizeable compute capacity in the cloud
 
 * **EC2 fleet** - multiple EC2 instances. They are manage by **`AWS System Manager`**  
 * **Spot fleet** - multiple Spot (and on demand) instances 
@@ -13,22 +13,30 @@
 
 * **Clustered**: Group homogenous EC2 instances within a single AZ for network performance
 * **Spread**: Individial EC2 instances are placed on distinct rack within one region for hardware errors
-* **Partitiononed**: Multiple EC2 instances in the same rack
+	* you can only have a maximum of 7 running instances per AZ
+* **Partitioned**: Multiple EC2 instances in the same rack
+
+The name of your placement group must be unique within your AWS Account
+
+There is no charge for creating a placement group
 
 ### Pricing models:
 
 * **On Demand**: low cost, paying by hour or second. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it. Sample: when **task run uninterrupted** from start to finish
 * **Reserved**: the most economical option for **long-term workloads** with predictable usage patterns. Contract terms are 1 to 3 years. It includes different discounts
-	* **Standard** Reserved instances (75% off on demand instances)
+	* **Standard** Reserved instances (75% off on demand instances). Cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific AZ, or an Entire Region, but you cannot change the region.
 	* **Convertible** Reserved instances (54%)
 	* **Schedule** Reserved instances, based on times
 * **Spot**: taket advantage of unused EC2 capacity. It can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, HPC (high-performance computing), and other test & development workloads. Extra charge when you terminate the instance
     * Spot Instances are available at up to a 90% discount compared to On-Demand prices.
+	* It is possible that your Spot Instance is terminated before the warning can be made available.
+	* In rare situations, **Spot blocks** may be interrupted due to Amazon EC2 capacity needs. In these cases, AWS provides a two-minute warning before the instance is terminated, and customers are not charged for the terminated instances even if they have used them.
 * **Dedicated**: physical EC2 server. It reduces cost using your SW licenses. Also when multitenant not supported by law
+	* Dedicated Hosting modes are Dedicated & Host
 
     ![EC2-instances-types](img/EC2-instances-types.png)
 
-    !!!danger "Standard Reserved Instances cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific AZ, or an Entire Region, but you cannot change the region"
+**Capacity Rebalancing** helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running Spot Instance receives the two-minute Spot Instance interruption notice. When Capacity Rebalancing is enabled, Auto Scaling or Spot Fleet attempts to proactively replace Spot Instances that have received a rebalance recommendation, providing the opportunity to rebalance your workload to new Spot Instances that are not at elevated risk of interruption. Capacity Rebalancing complements the **capacity optimized allocation strategy** (which is designed to help find the most optimal spare capacity) and the **mixed instances policy** (which is designed to enhance availability by deploying instances across multiple instance types running in multiple AZs).
 
  EC2 Pricing depends on:
 
@@ -41,14 +49,17 @@
 * auto scaling
 * Elastic IP Addresses
 * Operative Systems and sw packages
+* Windows instances are billed by the full hour, and partial hours are billed as full hours
 
 ### AMI
 
-* (**A**mazon **M**achine **I**mange) are instance image snapshots of different Operative System
+* AMI (Amazon Machine Imange) are instance image snapshots of different Operative System
 * AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage)
 * EC2 instance with **Instance Store** can't be stopped
 * **Instance Store** does not appear in the AWS EC2 Volume list
-* To use hibernation, the root volume must be an encrypted EBS volume. RAM be less than 150gb
+* To use **hibernation**, the root volume must be an encrypted EBS volume. RAM be less than 150gb
+
+AWS does not copy launch permissions, user-defined tags, or security group rules from the source AMI to the new AMI. 
 
 !!!danger "Use snapshots and AMI to change EC2 volumes (AZ and encryption)."
 
@@ -68,7 +79,7 @@ aws ec2 create-snapshot
 3. Choose an Instance Type (t2 micro - free tier)
 4. Configure Instance Details (number of instances) 
 
-    !!!tips "Enable CloudWatch detailed monitoring is not free"
+    !!!danger "Enable CloudWatch detailed monitoring is not free"
 
 5. Add Storage. Root and EBS volume types allow encryption and delete on termination (turn off by default on EBS) 
 
@@ -77,7 +88,7 @@ aws ec2 create-snapshot
 6. Add tags like Name, Department or Employee_Id
 7. Configure **Security Groups** - virtual firewalls to enable traffic (types ssh & http - ports 22 & 80)
     * Security groups support "allow" rules only.
-    * All inbound traffic is blocked by default and all outbound traffic is allowed (SG are STATEFUL)
+    * All inbound traffic is blocked by default and all outbound traffic is allowed (SG are STATEFULL)
     * Linux=SSH port 22. Microsoft Windows= RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443
     * SG changes are take effect immediately
     * one or more SG can be assigned to EC2 instance. EC2 and SG relationshipt is many to many
@@ -192,11 +203,11 @@ chkconfig on # start apache on restarts
 
 ## Elastic Beanstalk
 
-**`AWS Elastic Beanstalk`** deploy and manage applications in the AWS cloud wihout worrying about the infrastructure that runs those applications
+**`AWS Elastic Beanstalk`** deploy and manage applications in the AWS cloud without worrying about the infrastructure that runs those applications
 
 1. `Create Application` from `Elastic Beanstalk`
 2. Select PHP as platform and the sample application code
-3. Crete environment includes:
+3. Created environment includes:
 	* S3 bucket
 	* LB / Target group
 	* Security group (virtual firewall)
@@ -217,7 +228,7 @@ eb deploy # to deploy updates to the applications
 
 ### Retrieving instance metadata
 
-Connect to the EC2 instance and [get instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html) to get information about an instance:
+Connect to the EC2 instance and [get instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html) to get information about an instance using ip address **169.254.169.254**:
 
 ```shell
 curl http://169.254.169.254/latest/user-data
@@ -240,9 +251,9 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 * Scales out (not up) automatically. (for example, 5 lambda replications running at the same time). Each time your function is triggered, a new, separate instance of that function is started. There are limits, but these can be adjusted on request.
 * when creating a lambda function, a role is required to provide credentials with rights to other services. This is exactly the same as needing a Role on an EC2 instance to access S3 or DDB. Create a new role selecting the  `Simple microservice permissions` policy template.
 * different services can trigger your function,  such as  Api Gateway
+	![](img/lambda-triggers.png)
 	* a lambda function can trigger other lambda functions
 	* ALB, Cognito, Lex, Alexa, API Gateway, CloudFront, and Kinesis Data Firehose are all valid direct (synchronous) triggers for Lambda functions. S3 is one of the valid **asynchronous** triggers.
-	![](llambda-triggers.png)
 
 Pricing: 
 

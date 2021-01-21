@@ -1,4 +1,4 @@
-# 7. Media
+# 10. Media
 
 ## Elastic Transcoder 
 
@@ -8,9 +8,13 @@ Amazon Elastic Transcoder covert media files from their original source format i
 
 Kinesis is a platform to send your streaming data to.
 
+* Kinesis Video Streams: Capture, process, and store video streams for analytics and machine learning.
 * Kinesis Data Stream (KDS): **store** streaming data for processing in shards from 24 hours to 7 days
+    ![](img/Kinesis-Data-Streams.png)
     * Producers, shards and consumers are components of Kinesis Data Streams
-* Kinesis Firehose: **load** streaming data into data stores and analytics tools
-    * there is not data persisteng. lambda funcions are optional 
-    * Key components of Kinesis Data Firehose are: delivery streams, records of data and destinations.
-* Kinesis Analytics: analyse data inside Kinesis
+* Kinesis Firehose: **load** streaming data into AWS data stores and analytics tools
+    ![](img/Kinesis-Data-Firehose.png)
+    * there is not data persistent. lambda funcions are optional 
+    * Key components are: delivery streams, records of data and destinations.
+* Kinesis Analytics: Process and analyze streaming data using SQL or Java.
+    ![](img/Amazon-Kinesis-Data-Analytics.png)

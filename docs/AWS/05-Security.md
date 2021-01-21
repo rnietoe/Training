@@ -2,9 +2,11 @@
 
 ## IAM 
 
-**`AWS IAM`** (**I**dentity and **A**ccess **M**anagement) enables you to manage access to AWS services and resources securely. 
+**`AWS IAM`** (Identity and Access Management) enables you to manage access to AWS services and resources securely. 
 
 * Users, groups, roles and policies are managed **globally** and not for a specific a region.
+* **Identities** include users, groups, and roles. These are the IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. 
+* A **Principal** is a person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS.
 * You may have a 3rd party device that uses **BioMetrics** to initiate and exchange of the password or secret key with AWS, but that is not an AWS IAM service
 * You can use permissions to allow and deny users and groups access to AWS resources.
     * Managed policies. Attach readonly policies already defined in AWS
@@ -25,10 +27,9 @@
     * To attach an IAM role to an instance that has no role, the instance can be in the stopped or running state. 
     * To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the running state.
 
-* **Identities** include users, groups, and roles. These are the IAM resource objects that are used to identify and group. You can attach a policy to an IAM identity. 
-* A **Principal** is a person or application that uses the AWS account root user, an IAM user, or an IAM role to sign in and make requests to AWS.
+New users are assigned with Access Key Id and secret when first created to access AWS via the APIs and CLI.  
 
-New users are assigned Access Key Id and secret when first created to access AWS via the APIs and CLI.  
+It's safer to use IAM roles than it is to use Access Keys.
 
 **Power User Access** allows access to all AWS services except the management of groups and users within IAM.
 
@@ -58,7 +59,9 @@ With the **IAM Policy Simulator**, you can test and troubleshoot identity-based 
 
 **Permissions boundary** define the maximum permissions an identity can have
 
-ARN (**A**mazon **R**esource **N**ame)
+## ARN
+
+Amazon Resource Name
     
     arn:partition:service:region:account_id:resouce_type:qualifier:resource:qualifier
 * partition: aws|aws-cn
@@ -80,29 +83,26 @@ ARN (**A**mazon **R**esource **N**ame)
 
 Encryption is a shared responsability
 
-[Shared responsability model](https://aws.amazon.com/compliance/shared-responsibility-model/) talks about who is responsible for waht in cloud
+[Shared responsability model](https://aws.amazon.com/compliance/shared-responsibility-model/) talks about who is responsible for what in cloud
 
 ![](img/Shared_Responsibility_Model_V2.jpg)
 
 The customer would be responsible for patching the Operating System for IaaS solutions
 
-* **`Inspector`** to anayze and report security issues on EC2, but it can not examine individual policies
+* **`Amazon Inspector`** to anayze and report security issues on EC2, but it can not examine individual policies
 * **`Trusted Advisor`** for recomendations and advices (not only EC2 instances). It helps you optimize cost, fault-tolerance, and more.
 * **`CloudTrail`** track user **activity** and API usage
 * **`CloudWatch`** monitoring **performance**
-* **`Config`** monitor **configuration** settings
+* **`AWS Config`** monitor **configuration** settings
 * **`Athena`** serverless service for **querying** data in S3 using SQL. Commonly used to analyse logs. It will work with a number of data formats including JSON, Apache Parquet, Apache ORC amongst others, but XML is not a format that is supported. 
-* **`Macie`** uses Machine learning to protect **sensitive data** (**P**ersonally **I**dentifiable **I**nformation) stored in S3
-* **`Kinesis`** work with Real-Time Streaming Data
+* **`Macie`** uses Machine learning to protect **sensitive data** (Personally Identifiable Information) stored in S3
 
 * `Personal Health Dashboard` helps you to inspect account alerts and find remediation guidance for your account
 * `Service Health Dashboard` displays the general status of AWS services
 
-It's safer to use IAM roles than it is to use Access Keys.
-
 ## WAF 
 
-AWS WAF (**W**eb **A**pplication **F**irewall) **block** request to stop hackers requests from:
+AWS WAF (Web Application Firewall) **block** request to stop hackers requests from:
 
 * specific IP address (CloudFront, ALB or API Gateway)
 * origin country
@@ -113,7 +113,7 @@ AWS WAF (**W**eb **A**pplication **F**irewall) **block** request to stop hackers
 
 It operates down to Layer 7.
 
-block traffic response forbbiden (403)
+Block traffic response is forbbiden (403)
 
 ## Shield
 
@@ -121,8 +121,6 @@ AWS Shield protect a lot of traffic (**DDOS** attacks).
 
 * AWS Shield Standard: free protection in layers 3 and 4
 * AWS Shield Advanced: advance protection costs $3000/month. It offers automated application layer monitoring. 
-
-
 
 ## Directory Service
 
@@ -132,11 +130,11 @@ There are three options that help you migrate **Active Directory**-dependent app
 * **AD Connector**
 * **Simple AD**
 
-These solutions also enable users to sign into AWS applications such as Amazon WorkSpaces and Amazon QuickSight with their AD credentials. Developers who don’t need AD can use Amazon **Cloud Directory** to create cloud-scale directories that organize and manage hierarchical information such as organizational charts, course catalogs, and device registries. Amazon **Cognito** user pools offer mobile and web application developers Internet-scale user directories with integrated sign-up and sign-in.
+These solutions also enable users to sign into AWS applications such as Amazon WorkSpaces and Amazon QuickSight with their AD credentials. Developers who don’t need AD can use Amazon **Cloud Directory** to create cloud-scale directories that organize and manage hierarchical information such as organizational charts, course catalogs, and device registries. 
 
 ## RAM
 
-**R**esource **A**ccess **M**anagement shares AWS resources with other AWS accounts.
+Resource Access Management shares AWS resources with other AWS accounts.
 
 1. Create a resource share
 2. Choose the resources type to add to the resource share
@@ -148,9 +146,9 @@ from the other account, browse to `Resource Access Manager`: `Shared with me` : 
 
 ## SSO
 
-AWS **S**ingle **S**ign-**O**n is a cloud service that makes it easy to manage SSO access to multiple AWS accounts and business applications.
+AWS Single Sign-On is a cloud service that makes it easy to manage SSO access to multiple AWS accounts and business applications.
 
-this require Active Directory and **SAML** (**S**ecurity **A**ssertion **M**arkup **L**anguage) integration
+this require Active Directory and **SAML** (Security Assertion Markup Language) integration
 
 ## Cognito
 
