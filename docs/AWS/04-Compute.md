@@ -86,13 +86,13 @@ aws ec2 create-snapshot
     !!!note "EC2 instance and volume are in the same AZ"
 
 6. Add tags like Name, Department or Employee_Id
-7. Configure **Security Groups** - virtual firewalls to enable traffic (types ssh & http - ports 22 & 80)
+7. Configure **Security Groups** - virtual **firewalls** to enable traffic - disabled by default (types ssh & http - ports 22 & 80)
     * Security groups support "allow" rules only.
-    * All inbound traffic is blocked by default and all outbound traffic is allowed (SG are STATEFULL)
+    * All inbound traffic (**ingress**) is blocked by default and all outbound traffic (**egrees**) is allowed (SG are STATEFULL)
     * Linux=SSH port 22. Microsoft Windows= RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443
     * SG changes are take effect immediately
     * one or more SG can be assigned to EC2 instance. EC2 and SG relationshipt is many to many
-    * Security groups operate at the instance level.
+    * Security groups operate at the instance level, not to subnet
     * use **Network ACL** to block specific IP address instead of SG
 
 8. Launch using a key pair (public and private key)

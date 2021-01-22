@@ -1,6 +1,8 @@
 # 3. Network
 
-* **ENI** - Elastic Network Interface - virtual network card for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more.
+* **ENI** - Elastic Network Interface - virtual network card or adapter attached to an AWS EC2 instance for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more.
+    * Multiple ENIs connected to a single instance allows dual-homing
+    * ENIs are assocated with a subnet
 * **ENA** - Enhanced Networking Adapter - use **SR-IOV** (Single Root I/O Virtualization) to allow speeds between 10 and 100 Gbps requirement
 * **EFA** - Elastic Fabric Adapter - machine learning or **HPC** (High Performance Computing) requirement
 
@@ -8,23 +10,38 @@
 
 An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/)
 
+192.168 is the network and 0.1 is the host  
+
+DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addresses where required within the VPC
+
+
 * **`AWS VPC`** (Virtual Private Cloud) is like a logical datacenter in AWS. A VPC is an isolated portion of the AWS cloud dedicated to a single AWS account where you can launch AWS resources. You define a VPC’s IP address space from ranges you select (10.0.0.0/16).
 * **Subnets** are segments of a VPC’s IP address range where you can place groups of isolated resources (10.0.1.0/24).
     * 1 subnet = 1 AZ
-    * each default subnet is a public subnet. Each instance that you launch into a default subnet has a private IPv4 address and a public IPv4 address
+    * each default subnet is a public subnet (DMZ). Each instance that you launch into a default subnet has a public IPv4 address and a private IPv4 address
     * each nondefault subnet has a private IPv4 address, but no public IPv4 address
-    * You can enable internet access for an instance launched into a nondefault subnet by attaching an internet gateway to its nondefault VPC and associating an Elastic IP address with the instance.
     * a public subnet within a VPC is one that has at least one route in its routing table that uses an Internet Gateway (IGW).
+    * You can enable internet access for an instance launched into a nondefault subnet by attaching an internet gateway to its nondefault VPC and associating an Elastic IP address with the instance.
+        * EIP (**Elastic IP**) are public IP addresses from the VPC
+        * EIP are permnently allocated to you account untill released
+        * EIP has a price, so the account is charged untill release
+        * ENIs consume EIPs
+        * EIPs can be moved between instances in the same region
 * **Route tables** are a set of rules, called routes, that are used to determine where network traffic is directed.
 * **Internet Gateway** allow communication between your VPC and the internet. An IG serves two purposes: to provide a target in your VPC route tables for internet-routable traffic, and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses
     * 1 VPC = 1 IG
 * **egress-only internet gateway** allows IPv6 based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.
-* **VPG** (Virtual Private Gateway) is the VPN concentrator of the Site-to-Site VPN connection on the Amazon side.
-* **customer gateway** is a resource that is installed on the customer side and provides a customer gateway inside a VPC.
+* **VPG** (Virtual Private Gateway) is the VPN concentrator on the Amazon side of the Site-to-Site VPN connection.
+* **CWG** (customer GateWay) is a resource that is installed on the customer side of the Site-to-Site VPN connection.
 * **VPC peering** creates a connection between two VPCs using same or different accounts and regions.
-    * VPC peering only routes traffic between source and destination VPCs.
+    * No transitive: VPC peering only routes traffic between source and destination VPCs.
     * no transitive peering VPC-A <=> VPC-B <=> VPC-C ... VPC-A <> VPC-C  
-* **VPC Endpoints**: Enables private connectivity to services hosted in AWS, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
+    * owner role required
+    * RTs must be configured with the destination VPC and the origin (target) VPC peering.
+* **VPC Endpoints**: connections that enables **private** connectivity to services hosted in AWS, based on region and service name, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
+    * Interface endpoints
+    * Gateway Load Balancer endpoints
+    * Gateway endpoints
 
 VPC pricing:
 
@@ -33,6 +50,8 @@ VPC pricing:
 * using different AZs and public IP has a cost
 
 Some **scans** can be performed without alerting AWS, some require you to alert, such as Penetration Testing
+
+every aws account has a default VPC in each region. AWS recomends not deleting them
 
 You can have up to **5** non-default VPCs per account and region, but you can place a support request to increase the number.
 
@@ -62,7 +81,10 @@ Once a VPC is set to Dedicated hosting, it can be changed back to default hostin
     ```
 6. `Create route table` to specify how packets are forwarded between the subnets within your VPC, the internet, and your VPN connection. 
     * New subnets will be associated to the main RT instead of this public RT.
-7. Allow the internet access selecting the public RT and `Edit routes` button and `add route` with destination 0.0.0.0/0 (IPv4) and ::/0 (IPv6) and our IG as the target 
+7. Allow the internet access selecting the public RT and `Edit routes` button and `add route` with destination 0.0.0.0/0 (IPv4) and ::/0 (IPv6) and our IG as the target (origin)
+
+    !!!danger "open the connection from the IG to any IP address"
+
 8. `Edit subnet associations` and select 10.0.1.0/24 to associate the public subnet with the public RT
 9. Create first EC2 instances as WebServer with network equals our VPC 
     * select public subnet and `auto-assign public ip` equals `use subnet settings (enabled)` for the first instance
@@ -94,12 +116,31 @@ Once a VPC is set to Dedicated hosting, it can be changed back to default hostin
 
 !!!danger "By default, instances in new subnets in a custom VPC can communicate with each other across AZs."
 
-### How to create a NAT Gateway
+### NAT instances
 
 * [NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) (Network Address Transaction) are single EC2 instances.
-* NAT Gateway is a highly available gateway that allows you to get your private subnets communicate out to the internet without becaming public
+* a NAT instance allows you to get your private subnets communicate out to the internet without becaming public
+* `source/destination checks` on the NAT instance must be disabled to allow the sending and receiving traffic for the private instances
+
+1. Launch EC2 instance choosing `Amazon Linux 2 AMI 2.0.20201126.0 x86_64 HVM gp2` from `Community AMIs`
+2. Select rnietoeVPC and public subnet
+3. Select WebDMZ as SG and the same key pair
+4. Select EC2 instance and clic on actions : networking : `change source/destination check`
+and disable all the traffic it sends and receives, as NAT instance requirement
+    ```shell
+    aws ec2 modify-instance-attribute --instance-id=i-0cdece2dd619e009b --no-source-dest-check
+    ```
+5. Edit private route table and create a route (from `edit routes`) to allow connections (0.0.0.0/0) to the NAT instance. Test it:
+    ```shell
+    ssh ec2-user@10.0.2.200 -i rnietoe-ohio.pem
+    yum update -y # should work now, but it does not
+    ```
+ 
+We have created a small VM that will not work for thouthands of EC2 instances. 
+
+### NAT Gateway
+
 * NAT gateway enable instances in a private subnet to connect to the internet or other AWS services, but prevent the internet from initiating a connection with those instances.
-* **source/destination checks** on the NAT instance must be disabled to allow the sending and receiving traffic for the private instances
 * NAT gateway are redundant inside the AZ
     * 1 NAT gateway per AZ
 * not need to patch
@@ -108,44 +149,29 @@ Once a VPC is set to Dedicated hosting, it can be changed back to default hostin
 
 ![](img/vpc-nat-gateway.PNG)
 
-1. Launch EC2 instance choosing `Amazon Linux 2 AMI 2.0.20201126.0 x86_64 HVM gp2` from `Community AMIs`
-2. Select rnietoeVPC and public subnet
-3. Select WebDMZ as SG and the same key pair
-4. Select EC2 instance and clic on actions : networking : `change source/destination check`
-and disable all the traffic it sends and receives, as NAT gateway requirement
-    ```shell
-    aws ec2 modify-instance-attribute --instance-id=i-0cdece2dd619e009b --no-source-dest-check
-    ```
-5. Edit private route table and create a route (from `edit routes`) to allow connections (0.0.0.0/0) to the NAT instance
-    ```shell
-    ssh ec2-user@10.0.2.200 -i rnietoe-ohio.pem
-    yum update -y # should work now, but it does not
-    ```
+To use a NAT gateway, create one in a public subnet and assign it an Elastic IP address. Then, update the route tables for your private subnets to point internet traffic to the NAT gateway.
 
-we have created a small VM that will not work for thouthands of EC2 instances. To use a NAT gateway, create one in a public subnet and assign it an Elastic IP address. Then, update the route tables for your private subnets to point internet traffic to the NAT gateway.
-
-1. Terminate EC2 NAT instance
+1. Terminate previous EC2 NAT instance
 2. From VPC, `create NAT gateway`
 3. Select public subnet and allocate a new Elastic IP
-4. Edit private route table and create a route (from `edit routes`) to allow connections (0.0.0.0/0) to the NAT gateway
+4. Edit private route table and create a route (from `edit routes`) to allow connections (0.0.0.0/0) to the NAT gateway. Test it:
     ```shell
     ssh ec2-user@10.0.2.200 -i rnietoe-ohio.pem
     yum update -y # this work successfully
     yum install mysql -y 
     ```
 
-!!!danger "Elastic IP / NAT Gateway are not free"
-
 ### Network ACLs
 
-SG are statefull while network ACLs are stateless (inbounds settings are not applied to outbound settings implicitly)
+* SG are statefull while network ACLs are stateless (inbounds settings are not applied to outbound settings implicitly)
+* Block IP addresses using NACL instead of SG
+* NACLs act on the subnet level, while SGs act on the instance level.
+* NACL rule number defined precedence
+* Default NACL allow all traffic?????????????????
 
-!!!danger "Block IP addresses using NACL instead of SG"
+Create Network ACL:
 
-!!!danger "NACLs act on the subnet level, while security groups act on the instance level."
-
-0. Default NACL allow all traffic
-1. `Create Network ACL` as WebNACL using our VPC. All inbound rules are denied by default
+1. All inbound rules are denied by default???????????????
 2. Create a Web page in the EC2 WebServer and check the valid connection:
 ```shell
 service httpd status # Unit httpd.service could not be found
@@ -163,7 +189,7 @@ nano index.html
     * web page is not accessible now
 4. `Edit inbound rules` adding new rules (100, 200, 300) allowing ports 80, 443 and 22
     * Rule Number increase in 100 units, like 100, 200, 300...
-    * inbound rules work order by rule number, so firt allow some ports and then deny everything else
+    * inbound rules work order by rule number, so first allow some ports and then deny everything else
 5. `Edit outbound rules` adding new rules allowing ports 80, 443 and 1024-65535
     * NACL are stateless: outbound rules have to be defined explicitly
     * [Ephemeral ports](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-ephemeral-ports)
@@ -172,7 +198,6 @@ nano index.html
     * Web page still accessible since rule 100 allow the traffic
 7. `Edit inbound rules` editing rule 400 as 99
     * Web page no accessible since rule 99 deny the traffic before rule 100 allow all traffic
-    * This is not working in my demo
 8. `Edit inbound rules` removing rule 99 and add new rule 400 to allow traffic on ports 1024-65535
 ```shell
 yum update -y # it should works again```
@@ -180,7 +205,7 @@ yum update -y # it should works again```
 
 ### VPC FlowLogs
 
-* VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. 
+* VPC Flow Logs is a feature that enables you to capture information about the **IP traffic** going to and from network interfaces in your VPC. 
 * VPC Flow Logs can be created at the VPC, subnet, and network interface levels. 
 * you can enable flow logs if VPC is in the same aws account
 * you can not edit flow logs
@@ -189,7 +214,7 @@ not all ip traffic is monitored such as:
 
 * Amazon DNS Server
 * Windows license activation
-* 169.254.169.254
+* 169.254.169.254 (metadata)
 * DHCP traffic
 * VPC reserved ports
 
@@ -198,16 +223,19 @@ How to configure VPC FlowLogs:
 1. `Create VPC` with ipv4 CIDR block as 10.0.0.0/16
 2. `Create subnet` with ipv4 CIDR block as 10.0.1.0/24 and enable auto-assign public IPv4 address
 3. `Launch EC2 instance` with VPC, subnet and a new SG with HTTP and SSH rules
-4. Create internet gateway and associate it to the default VPC RT
+4. Create IG and associate it to the default VPC RT
 5. `Create flow log` in the ENI (Elastic Network interface)
-    * specify the filter: accepted traffic only, rejected traffic only or capture all traffic
+    * specify the filter:
+        * **accepted traffic only**
+        * **rejected traffic only**
+        * **capture all traffic**
     * set Maximum aggregation interval to 1 min
     * flow log data destination can be CloudWatch Logs or S3 bucket. Select S3 bucket
     * `Create bucket` as arn:aws:s3:::rnietoeflowlogs
     * Specify AWS default format
 6. `Create log group` from CloudWatch as VPCFlowLogs
-7. `Create flow log` again
-    * specify the filter with all tthe traffic
+7. `Create flow log` again:
+    * specify the filter with all the traffic
     * set Maximum aggregation interval to 1 min
     * set flow log data destination as CloudWatch Logs
     * select  the destination log group as VPCFlowLogs
@@ -247,7 +275,7 @@ How to configure VPC FlowLogs:
     * Whenever SSHAccept is greater/equal than 1
 11. `Run query` from CloudWatch Logs Insights using VPC Flow Logs sample queries (right panel)
 12. Go back to S3 and check a new folder named `AWSLogs` has been created in our rnietoeflowlogs bucket
-13. Go to AWS Athena and set up a query result location in AWS S3 with the arn:
+13. Go to **`AWS Athena`** and set up a query result location in AWS S3 with the arn:
 ```
 s3://rnietoeflowlogs/AWSLogs/065275835852/vpcflowlogs/us-east-1/2020/12/12/
 ```
@@ -305,7 +333,7 @@ For high availability:
 
 ### Direct Connect
 
-Dedicated line from on premise to AWS to improve the network connection (security and performance)
+Dedicated line from on premise to AWS to improve the (VPN) network connection (security and performance)
 
 1. `Create virtual interface` from AWS Direct Connect : Virtual interfaces as Public
 2. `Create Customer Gateway` from VPC : Customer Gateways
@@ -328,7 +356,7 @@ improves the availability and performance of your applications for local or glob
 3. Add **endpoint groups** where the accelerator direct traffic to from one or more listeners. An endpoint group includes endpoints, such as load balancers.
 4. Add **endpoints** to each endpoint group
     * Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses.
-5. two static IP addresses are assign
+5. two static IP addresses are assigned.
 
 Disable Global Accelerator before removing is required
 
@@ -351,8 +379,8 @@ VPC endpoint is a service that replace NAT gateway and allow connections from th
 
 To open up our apps to other VPCs, we can try:
 
-* Open up the VPC to the internet. everything will be public
-* use **VPC peering**. However, many relationships will be required
+* if open up the VPC to the internet. everything will be public
+* you can use **VPC peering**. However, many relationships will be required
 * AWS Private Link peers many VPCs. They only require a NLB on the AWS VPC and a ENI on the customer VPC
 
 ### Transit Gateway
@@ -377,7 +405,7 @@ we can register a DNS using `Route53` - `Register domain`. You can purchase and 
 * **Failover Routing policy** routes data to a second resource if the first is unhealthy. Route 53 can be used for Disaster Recovery by simply shifting traffic to the new region.
 * **Latency-based Routing policy** routes data to resources that have better performance
 
-**Route 53 Traffic Flow** makes it easy for you to manage traffic globally through a variety of routing types, including Latency Based Routing, Geo DNS, Geoproximity, and Weighted Round Robin—all of which can be combined with DNS Failover to enable a variety of low-latency, fault-tolerant architectures. Using Route 53 Traffic Flow’s simple visual editor, you can easily manage how your end-users are routed to your application’s endpoints—whether in a single AWS region or distributed around the globe. 
+**Route 53 Traffic Flow** makes it easy for you to manage traffic globally through a variety of routing types. Using Route 53 Traffic Flow’s simple visual editor, you can easily manage how your end-users are routed to your application’s endpoints—whether in a single AWS region or distributed around the globe. 
 
 .com => **NS** (Name Server) Records => **SOA** (Start Of Authority)
 
@@ -391,12 +419,14 @@ DNS changes can take 48 hours to take effect due to the cache
 Routing Policies:
 
 * **Simple** Routing: one dns record with multiple IP addresses
-* **Weighted** Routing: traffic based on weighting (ponderaciones 20%-30%-50%)
+* **Weighted** Routing: traffic based on weighting (20%-30%-50%)
 * **Latency-based** Routing: traffic based on the lowest latency
 * **Failover** Routing: route the traffic to the primary or secondary site defined based on health checks
 * **Geolocation** Routing: traffic based on the user's location
 * **Geoproximity** Routing: traffic based on the users' and resources' location. Available in traffic **flow-only** mode using **bias**
 * **Multivalue Answer** Routing, similar to simple routing, but using health checks on each record sets to serve traffic to **random** web servers
+
+Using Route53:
 
 1. `Register domain` from Route53 takes between 2 hours and 3 days
 2. `Create Record Set` of type IPv4 address with the three EC2 public IPs. Set TTL (Time to Live) to 1 min to clear from cache
@@ -407,7 +437,7 @@ Routing Policies:
 ipconfig /flushdns # to remove saved ip from cache from the client side
 ```
 
-!!!danger "With Route 53, there is a default limit of **50** domain names. However, this limit can be increased by contacting AWS suppor"
+!!!danger "With Route 53, there is a default limit of **50** domain names. However, this limit can be increased by contacting AWS support"
 
 ## API Gateway
 
@@ -423,8 +453,6 @@ API Gateway is like a door for your AWS environment. Targets are:
 
 scaling is automatic
 
-enable **api gateway caching** to cache API gateway endpoint's responses for a TTL period in seconds
+enable **api gateway caching** to cache API gateway endpoint's responses for a TTL period in seconds. If a cache is configured, then Amazon API Gateway will return a cached response for duplicate requests for a customizable time, but only if under configured throttling limits.
 
-!!!danger "If a cache is configured, then Amazon API Gateway will return a cached response for duplicate requests for a customizable time, but only if under configured throttling limits"
-
-same origin policy to prevent cross site scripting (XSS) attacks. Cross origin resource sharing (CORS) allow restricted resources in a web page to be requested from a different domain. Enable **CORS** in Apigateway when the error message is "Origin policy cannot be read at the remote resource"
+same origin policy to prevent cross site scripting (XSS) attacks. **CORS** (Cross Origin Resource Sharing) allow restricted resources in a web page to be requested from a different domain. Enable CORS in Apigateway when the error message is *"Origin policy cannot be read at the remote resource"*.
