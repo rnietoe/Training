@@ -161,6 +161,13 @@ sam deploy --guided
 
 Amazon ECS is an orchestration service to deploy, manage, and scale Docker **containers** running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.
 
+no VM builds required, but Ec2 can be used for more control
+
 **ECR** (Elastic Container Registry) is the managed docker container resigry to store, manage and deploy images. it work with on-premises deployment
 
-**Fargate** is a serverless container engine (like docker). it works with both ECS and **EKS** (Elastic Kubernetes Service)
+Use **Fargate** to automatically build environments. Fargate is a serverless container engine (like docker). It works with both ECS and **EKS** (Elastic Kubernetes Service)
+
+* container
+* task
+* service
+* cluster

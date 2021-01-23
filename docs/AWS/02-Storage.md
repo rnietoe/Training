@@ -196,7 +196,7 @@ EBS Types:
 
     HDD based volumes will always be less expensive than SSD types. 
 
-    **EBS-optimized instance** should be used for performance
+    an **EBS-optimized** EC2 instance should be used for high performance. No availabled in EC2 free-tier
     
 ![](img/ebs.PNG)
 

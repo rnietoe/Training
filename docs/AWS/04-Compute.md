@@ -2,41 +2,61 @@
 
 ## EC2
 
-**`AWS EC2`** (Elastic Compute Cloud) is a virtual machine in the cloud. It is a web service that provides resizeable compute capacity in the cloud
+**`AWS EC2`** (Elastic Compute Cloud) is a VM in the cloud. It is a web service that provides resizeable compute capacity in the cloud.
 
-* **EC2 fleet** - multiple EC2 instances. They are manage by **`AWS System Manager`**  
-* **Spot fleet** - multiple Spot (and on demand) instances 
 
-!!!danger "AWS originally used a modified version of the **Xen** Hypervisor to host EC2. In 2017, AWS began rolling out their own Hypervisor called **Nitro**"
+AWS originally used a modified version of the **Xen** Hypervisor to host EC2. In 2017, AWS began rolling out their own Hypervisor called **Nitro**.
+
+[Resource Optimization](https://aws.amazon.com/blogs/aws-cost-management/launch-resource-optimization-recommendations/) gives recommendations to help saving money
+
+[Host recovery](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-recovery.html) restarts EC2 instances when a problem is detected or when a new host is available
 
 ### Placement groups
 
 * **Clustered**: Group homogenous EC2 instances within a single AZ for network performance
-* **Spread**: Individial EC2 instances are placed on distinct rack within one region for hardware errors
+* **Spread**: Individial EC2 instances are placed on distinct rack within one region for HW errors
 	* you can only have a maximum of 7 running instances per AZ
 * **Partitioned**: Multiple EC2 instances in the same rack
+* **EC2 fleet** - multiple EC2 instances managed by **`AWS System Manager`**  
+* **Spot fleet** - multiple Spot (and on demand) instances 
 
 The name of your placement group must be unique within your AWS Account
 
 There is no charge for creating a placement group
 
+### Instance types
+
+* General Purpose por basic apps: **T2** (burst performance), **M5**, **M4** and **M3**. They provie balance of memory and CPU
+* Compute Optimized for CPU intensive apps: **C5**, **C5n** **C4** and **C3**
+* Memory Optimized for eXtreme memory requirements: **X1e**, **X1**, **R4** and **R3**
+* Storage Optimized for high Input/Output access: **H1**, **I3**, **I3en** and **D2**
+* Advance Computing for hardware compute requirements: **P3**, **P2**, **G3** and **F1**
+
+    ![EC2-instances-types](img/EC2-instances-types.png)
+
+Change the instance type required stopping the instance previously.
+
 ### Pricing models:
 
 * **On Demand**: low cost, paying by hour or second. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it. Sample: when **task run uninterrupted** from start to finish
 * **Reserved**: the most economical option for **long-term workloads** with predictable usage patterns. Contract terms are 1 to 3 years. It includes different discounts
-	* **Standard** Reserved instances (75% off on demand instances). Cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific AZ, or an Entire Region, but you cannot change the region.
+	* **Standard** Reserved instances (75% off on demand instances). Cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific AZ, or an entire Region, but you cannot change the region.
 	* **Convertible** Reserved instances (54%)
 	* **Schedule** Reserved instances, based on times
-* **Spot**: taket advantage of unused EC2 capacity. It can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, HPC (high-performance computing), and other test & development workloads. Extra charge when you terminate the instance
+* **Spot**: taket advantage of **unused** EC2 capacity. It can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, HPC (high-performance computing), and other test & development workloads. Extra charge when you terminate the instance
     * Spot Instances are available at up to a 90% discount compared to On-Demand prices.
 	* It is possible that your Spot Instance is terminated before the warning can be made available.
 	* In rare situations, **Spot blocks** may be interrupted due to Amazon EC2 capacity needs. In these cases, AWS provides a two-minute warning before the instance is terminated, and customers are not charged for the terminated instances even if they have used them.
-* **Dedicated**: physical EC2 server. It reduces cost using your SW licenses. Also when multitenant not supported by law
-	* Dedicated Hosting modes are Dedicated & Host
+	* **Capacity Rebalancing** helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running Spot Instance receives the two-minute Spot Instance interruption notice. When Capacity Rebalancing is enabled, Auto Scaling or Spot Fleet attempts to proactively replace Spot Instances that have received a rebalance recommendation, providing the opportunity to rebalance your workload to new Spot Instances that are not at elevated risk of interruption. Capacity Rebalancing complements the **capacity optimized allocation strategy** (which is designed to help find the most optimal spare capacity) and the **mixed instances policy** (which is designed to enhance availability by deploying instances across multiple instance types running in multiple AZs).
+* **Dedicated**: physical EC2 server. 
+	* It reduces cost using your SW licenses (importing your licensed VM). 
+	* Also when multitenant not supported by law (compliance)
 
-    ![EC2-instances-types](img/EC2-instances-types.png)
+Tenancy:
 
-**Capacity Rebalancing** helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running Spot Instance receives the two-minute Spot Instance interruption notice. When Capacity Rebalancing is enabled, Auto Scaling or Spot Fleet attempts to proactively replace Spot Instances that have received a rebalance recommendation, providing the opportunity to rebalance your workload to new Spot Instances that are not at elevated risk of interruption. Capacity Rebalancing complements the **capacity optimized allocation strategy** (which is designed to help find the most optimal spare capacity) and the **mixed instances policy** (which is designed to enhance availability by deploying instances across multiple instance types running in multiple AZs).
+* **Shared**: (default) multiple customers share the hardware instance. Cost reduced
+* **Dedicated** instance: (not free) launch the instance in a dedicated host for one customer, but it may be moved to other of my hosts on restart
+* **Dedicated host**: launch the instance in a dedicated host for one customer
 
  EC2 Pricing depends on:
 
@@ -53,25 +73,28 @@ There is no charge for creating a placement group
 
 ### AMI
 
-* AMI (Amazon Machine Imange) are instance image snapshots of different Operative System
+* AMI (Amazon Machine Image) are instance image snapshots of different Operative System
+	* **public** for everyone
+	* **explicit** for specified accounts
+	* **implicit** for the owner only (default)
 * AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage)
-* EC2 instance with **Instance Store** can't be stopped
-* **Instance Store** does not appear in the AWS EC2 Volume list
-* To use **hibernation**, the root volume must be an encrypted EBS volume. RAM be less than 150gb
+	* EC2 instance with **Instance Store** can't be stopped
+	* **Instance Store** does not appear in the AWS EC2 Volume list
+* To use **hibernation**, the root volume must be an encrypted EBS volume and RAM must be less than 150gb
 
-AWS does not copy launch permissions, user-defined tags, or security group rules from the source AMI to the new AMI. 
+AWS does not copy launch permissions, tags, or SG rules from the source AMI to the new AMI. 
+
+* You must first deregister the AMI before you can delete the snapshot
+* **Snapshots** are incremental
+* You can use AWS APIs, CLI or the AWS Console to copy snapshots, share snapshots, and create volumes from snapshots.
+* Volumes exist on EBS. Snapshots and instance store exist on S3. 
+
+	```shell
+	aws ec2 create-snapshot
+	```
 
 !!!danger "Use snapshots and AMI to change EC2 volumes (AZ and encryption)."
 
-* Snapshots are incremental
-* You must first deregister the AMI before you can delete the snapshot
-* You can use AWS APIs, CLI or the AWS Console to copy snapshots, share snapshots, and create volumes from snapshots.
-* EBS snapshots use incremental backups and are stored in S3.
-* Volumes exist on EBS. Snapshots and instance store exist on S3. 
-
-```shell
-aws ec2 create-snapshot
-```
 ### How to create EC2:
 
 1. From AWS EC2, `Launch instance`
@@ -86,39 +109,41 @@ aws ec2 create-snapshot
     !!!note "EC2 instance and volume are in the same AZ"
 
 6. Add tags like Name, Department or Employee_Id
-7. Configure **Security Groups** - virtual **firewalls** to enable traffic - disabled by default (types ssh & http - ports 22 & 80)
-    * Security groups support "allow" rules only.
-    * All inbound traffic (**ingress**) is blocked by default and all outbound traffic (**egrees**) is allowed (SG are STATEFULL)
-    * Linux=SSH port 22. Microsoft Windows= RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443
+7. Configure **Security Groups**: virtual **firewalls** to enable traffic - disabled by default
+    * SG support "allow" rules only. Use **Network ACL** to block specific IPs instead of SG
+    * All inbound traffic (**ingress**) is blocked by default and all outbound traffic (**egrees**) is allowed 
+	* SG are **stateful** (no inbound traffic is allowed without request while all outbound traffic is allowed)
+	* network ACLs are stateless (outbound traffic must be specified)
+    * Security groups operate at the instance level, not to subnet as NACL
+    * Linux=SSH port 22. Microsoft Windows=RDP (Remote Desktop Protocol) port 3389. http/https ports 80/443
+	* default SG for linux instances brings already inbound with SSH. Default SG for windows instances bring RDP
     * SG changes are take effect immediately
-    * one or more SG can be assigned to EC2 instance. EC2 and SG relationshipt is many to many
-    * Security groups operate at the instance level, not to subnet
-    * use **Network ACL** to block specific IP address instead of SG
+    * one or more SG can be assigned to EC2 instance. EC2 and SG relation is many to many
+	* a maximum of 5 SGs per instance
+
+	![](img/sg_vs_nacl.png)
 
 8. Launch using a key pair (public and private key)
 
 !!!danger "Always design for failure. Have one EC2 instance in each AZ"
-!!!tips "EC2 instance are provisioned in AZ"
-!!!danget "Creating an Elastic IP address and associate it with your instance would be the simplest way to make your instance reachable from the outside world."
-
 
 ### How to connect to EC2 
 
-Using AWS Console, select the EC2 instance and clic on the `Connect` button
+Using AWS Console, select the EC2 instance and clic on the `Connect` button. Password required
 
 Using putty:
 
-1. Download [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) and load private key file created at `EC2/Key Pairs` (rnietoe.ppk) using putty gen.
+1. Download [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) and load PK file created at `EC2/Key Pairs` (rnietoe.ppk) using putty gen.
 
-	**Key pair** can created or imported in AWS. You can create you key pair with the following command, keep the private key and import the public key in AWS:
+	**Key pair** can created or imported in AWS. You can create you key pair with the following command, keep the PK and import the public key in AWS:
 
 	```shell
 	ssh-keygen -C rnietoe@gmail.com -f ~/.ssh/rnietoe
 	```
 
-2. Configure SSH Auth with private key
+2. Configure SSH Auth with PK
 3. Copy IP address to the session host name field
-4. Open connection, login as `ec2-user` and type `sudo su command`
+4. Open connection, login as `ec2-user` (default user) and type `sudo su command`
 
     ![](img/ec2-putty.PNG)
 
@@ -126,7 +151,7 @@ Using gitbash and install a web server:
 
 ```shell
 cd "C:\Users\rniet\OneDrive\AWS"
-CHMOD 400 rnietoe.pem # change permissions to lock my key down
+CHMOD 400 rnietoe.pem # change permissions to unlock my key down
 ssh ec2-user@3.80.39.184 -i rnietoe.pem
 sudo su
 uname -a  # software details
@@ -147,7 +172,7 @@ Using CLI
 	```shell
 	aws configure
 	aws configure --profile profile_name # when we want to work with cli profiles
-	# once type the access key, the secret access key, the default region and the output format (json/text)
+	# once typep the access key, the secret access key, the default region and the output format (json/text)
 	aws ec2 describe-regions
 	# use :q to exit from command output
 	aws <command> --profile <profile_name> # when we want to execute commands with a specific profile
@@ -159,17 +184,13 @@ Using CLI
     rm -rf ~/.aws
 	```
 
-    We must use **roles** for security reasons instead of saving credentials (anyone could access to the .aws directory). Roles are global. They are not specified any region. Create a role to allows EC2 to use S3 as an admin:
+    We must use **roles** for security reasons instead of saving credentials (anyone could access to the .aws directory). Roles are global, they are not specified any region. Create a role to allows EC2 to use S3 as an admin:
 
-    1. Go to `IAM/Roles` and crete a new role
+    1. Go to `IAM/Roles` and create a new role
     2. Select `EC2` as the type of trusted entity
     3. Attach `AmazonS3FullAccess` permissions policies
     4. Go to `EC2`, select the instance and actions/instance settings/attach/replace iam role
     5. Then we can delete .aws directory with credential and still running `aws s3 ls`
-
-    ```shell
-    aws s3 ls
-    ```
 
 ### How to create a static website on S3
 
@@ -179,7 +200,7 @@ aws s3 mb s3://rnietoe2 # make bucket command
 aws s3 ls # list all s3 instances
 
 echo "hello world" > hello_world.txt
-aws s3 cp hello_world.txt s3://rnietoe2 #upload: ./hello_world.txt to s3://rnietoe2/hello_world.txt
+aws s3 cp hello_world.txt s3://rnietoe2 # upload: ./hello_world.txt to s3://rnietoe2/hello_world.txt
 
 cd ~ # go to home directory
 cd .aws # go the hidden directory
@@ -187,6 +208,8 @@ nano credentials # display access keys
 ```
 
 More details to create Bootstrap actions to install additional software are [here](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-bootstrap.html)
+
+bootstrapping: providing code to be run on an instance at launch
 
 ### How to build a web server
 
@@ -203,7 +226,17 @@ chkconfig on # start apache on restarts
 
 ## Elastic Beanstalk
 
-**`AWS Elastic Beanstalk`** deploy and manage applications in the AWS cloud without worrying about the infrastructure that runs those applications
+
+**`AWS Elastic Beanstalk`** deploy and manage applications in the AWS cloud without worrying about the infrastructure that runs those applications. Some platforms are:
+
+* docker
+* multi-container docker
+* tomcat (php and apache)
+* .net (windows and iis)
+* python
+* ...
+
+you cannot change the environment tier after creating an environment
 
 1. `Create Application` from `Elastic Beanstalk`
 2. Select PHP as platform and the sample application code
@@ -211,8 +244,9 @@ chkconfig on # start apache on restarts
 	* S3 bucket
 	* LB / Target group
 	* Security group (virtual firewall)
+	* EIP
+	* EC2 instance
 	* Launch Configuration / Auto Scaling
-	* Ec2 instance
 	* CloudWatch alarm
 	* ...
 
@@ -242,10 +276,10 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 
 ## Lambda
 
-**`AWS Lambda`** is the Function-as-a-Service (FaaS) to run your code **globally** without provisioning or managing servers (Serverless).
+**`AWS Lambda`** is the FaaS (Function-as-a-Service) to run your code **globally** without provisioning or managing servers (Serverless).
 
 * Lambda can be used for Infrastructure as Code.
-* Lambda, EC2 and ECS supports hyper-threading on one or more virtual CPUs.
+* Lambda, EC2 and ECS supports **hyper-threading** on one or more virtual CPUs.
 * You can use JSON or YAML for Lambda templates.
 * The resources section is the only required field in Lambda templates.
 * Scales out (not up) automatically. (for example, 5 lambda replications running at the same time). Each time your function is triggered, a new, separate instance of that function is started. There are limits, but these can be adjusted on request.
@@ -253,7 +287,8 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 * different services can trigger your function,  such as  Api Gateway
 	![](img/lambda-triggers.png)
 	* a lambda function can trigger other lambda functions
-	* ALB, Cognito, Lex, Alexa, API Gateway, CloudFront, and Kinesis Data Firehose are all valid direct (synchronous) triggers for Lambda functions. S3 is one of the valid **asynchronous** triggers.
+	* ALB, Cognito, Lex, Alexa, API Gateway, CloudFront, and Kinesis Data Firehose are all valid direct (synchronous) triggers for Lambda functions.
+	* **S3** is one of the valid **asynchronous** triggers.
 
 Pricing: 
 
@@ -267,22 +302,24 @@ Pricing:
 * additional charges
 	* when using other AWS services
 
-[Lambda Troubleshooting](https://help.acloud.guru/hc/en-us/articles/115003704634)
+lambda python sample:
 
 ```python
 def lambda_handler(event, context):
-    print("In lambda handler")
+	print("In lambda handler")
 
-    resp = {
-        "statusCode": 200,
-        "headers": {
-            "Access-Control-Allow-Origin": "*",
-        },
-        "body": "Hello world"
-    }
+	resp = {
+		"statusCode": 200,
+		"headers": {
+			"Access-Control-Allow-Origin": "*",
+		},
+		"body": "Hello world"
+	}
 
-    return resp
+	return resp
 ```
+
+triggered in a html:
 
 ```html
 <html>
@@ -309,6 +346,10 @@ def lambda_handler(event, context):
 </html>
 ```
 
+[Lambda Troubleshooting](https://help.acloud.guru/hc/en-us/articles/115003704634)
+
 ## Batch
 
-**`AWS Batch`** enables you to easily and efficiently run batch computing jobs of any scale on AWS using EC2 and EC2 Spot.
+**`AWS Batch`** enables you to easily and efficiently run batch computing **jobs** of any scale on AWS using on-demand and Spot EC2.
+
+like hangfire??

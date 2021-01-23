@@ -14,6 +14,7 @@ An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/)
 
 DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addresses where required within the VPC
 
+[Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) copies network traffic from an ENI and sends it wherever you want it to go
 
 * **`AWS VPC`** (Virtual Private Cloud) is like a logical datacenter in AWS. A VPC is an isolated portion of the AWS cloud dedicated to a single AWS account where you can launch AWS resources. You define a VPC’s IP address space from ranges you select (10.0.0.0/16).
 * **Subnets** are segments of a VPC’s IP address range where you can place groups of isolated resources (10.0.1.0/24).
@@ -26,7 +27,8 @@ DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addre
         * EIP are permnently allocated to you account untill released
         * EIP has a price, so the account is charged untill release
         * ENIs consume EIPs
-        * EIPs can be moved between instances in the same region
+        * EIPs can be moved between instances in the same region.
+        * Creating an Elastic IP address and associate it with your EC2 instance would be the simplest way to make your instance reachable from the outside world.
 * **Route tables** are a set of rules, called routes, that are used to determine where network traffic is directed.
 * **Internet Gateway** allow communication between your VPC and the internet. An IG serves two purposes: to provide a target in your VPC route tables for internet-routable traffic, and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses
     * 1 VPC = 1 IG
@@ -163,7 +165,9 @@ To use a NAT gateway, create one in a public subnet and assign it an Elastic IP 
 
 ### Network ACLs
 
-* SG are statefull while network ACLs are stateless (inbounds settings are not applied to outbound settings implicitly)
+![](img/sg_vs_nacl.png)
+
+* network ACLs are stateless (outbound traffic must be specified)
 * Block IP addresses using NACL instead of SG
 * NACLs act on the subnet level, while SGs act on the instance level.
 * NACL rule number defined precedence
