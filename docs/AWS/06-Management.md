@@ -559,11 +559,9 @@ AWS can see how much of CPU you are using in a EC2, but cannot see what you are 
 
 Continuously log your AWS account **activity** monitoring API calls per account and region
 
-logs can be stored in a single S3 bucket (belonging to the paying account):
-
-1. turn on CloudTrail in paying account
-2. create a bucket policy that allows cross-account access
-3. turn on cloud trail in other accounts and use the bucket in the paying account 
+* data is retained for 90 days
+* logs can be stored in a single S3 bucket
+* read activity in the S3 bucket will be easier than using the API 
 
 ## Systems Manager
 
