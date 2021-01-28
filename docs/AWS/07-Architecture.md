@@ -1,20 +1,43 @@
 # 7. Hight Availability Architecture
 
-When a web site requires a minimum of 6 instances and tolerate the failaure of 1 AZ. the most cost effective environment is 3 AZ with 3 instances in each AZ. if 1 AZ fails, there are still 6 instances...
+When a web site requires a minimum of 6 EC2 and tolerate the failaure of 1 AZ, the most cost effective environment is 3 AZ with 3 EC2s in each AZ. if 1 AZ fails, there are still 6 EC2 instances.
 
 ## Elastic Load Balancers
 
-[Elastic Load Balancing FAQs](https://aws.amazon.com/elasticloadbalancing/faqs/?nc1=h_ls)
+[Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/faqs/?nc1=h_ls) implements Dynamic Load Balancer
 
-!!!danger "ELB can spread load across AZs not regions."
+Load Balancing algorithms:
 
-* ALB (Application Load Balancers) for intelligent routing - HTTP/HTTPS
-* NLB (Network Load Balancers) for extreme performance and static IPs - TCP/TLS
-* CLB (Classic Load Balancers) for test and dev - low cost - HTTP/HTTPS/TCP
+* Round Robin: first request to first server, second request to second server...
+* Randomized
+* Centrally managed, based on defined conditions
+* threshold-based: all request to a server till a defined limit (threshold)
 
-Error **504** means gateway timeout
+[ELB types](https://aws.amazon.com/elasticloadbalancing/features/?nc1=h_ls):
 
-**X-Forwarded-For** header is used to get the IPv4 address of end users
+* ALB (**Application** Load Balancers) for intelligent routing - HTTP/HTTPS (layer 7)
+* NLB (**Network** Load Balancers) for extreme performance and static IPs - TCP/TLS (layer 4)
+* CLB (**Classic** Load Balancers) for classic/**old/legacy** EC2 instantes or test/dev environments - low cost - HTTP/HTTPS/TCP (layers 4 and 7)
+* GLB (**Gateway** Load Balancers) to deploy, scale, and manage your third-party **virtual appliances**
+
+supported services:
+
+* EC2
+* ECS
+* Auto Scaling
+* CloudWatch
+* Route53
+
+some features:
+
+* **X-Forwarded-For** header is used to get the IPv4 address of end users
+* **sticky sessions** bind a **user's session** to a specific EC2 instance. All user requests during the session are sent to the same intance (CLB) or target group (ALB)
+* **cross zone load balancing** allow ELB to send traffic to **another AZ**
+    
+    !!!danger "ELB can spread (propagar) load across AZs not regions."
+
+* **path patterns**  are listener with rules to foward requests based on the **URL path**
+* Error **504** means gateway timeout
 
 How to use classic load balancer
 
@@ -40,25 +63,32 @@ How to use application load balancer
 5. Register target adding our EC2 instances (to registered)
 6. Review and create
 
-**sticky sessions** bind a **user's session** to a specific EC2 instance. All user requests during the session are sent to the same intance (CLB) or target group (ALB)
+## Auto Scaling 
 
-**cross zone load balancing** allow ELB to send traffic to **another AZ**
+1. (required) `Create launch configuration` to create a saved instance configuration for the new EC2 instances
+2. `Create Auto Scaling group` to create a collection of similar EC2 instances that are treated as a logical unit, based on its AMI
+3. select all VPC subnets for multiAZ
+4. metrics are average CPU utilization, network-in and network-out
+5. new instances are launched
 
-**path patterns**  are listener with rules to foward requests based on the **URL path**
+Creating an Auto Scaling group using: 
 
-## Autoscaling 
+* a launch template
+* the Amazon EC2 launch wizard
+* a launch configuration
+* using an EC2 instance
 
-* Groups
-* Configuration Templates
-* Scaling Options
-    * To mantain current instance levels at all times  (for example, 10 EC2 instances)
-    * Scale manually
-    * Scale based on a schedule: Scaling actions are performed automatically as a function of time and date
-    * Scale based on demand using scaling polices
-    * Use predictive scaling based on performance
+Scaling Options
 
-1. `Create launch configuration` to create a saved instance configuration from EC2 : AUTO SCALING : Launch Configurations
-2. `Create Auto Scaling group` to create a collection of Amazon EC2 instances that are treated as a logical unit
+* To mantain current instance levels at all times  (for example, 10 EC2 instances)
+* Scale manually
+* scake based on healthchecks
+* Scale based on a schedule: Scaling actions are performed automatically as a function of time and date
+* Scale based on demand using scaling polices
+* Use predictive scaling based on performance
 
 **EC2 Autoscaling** works in conjunction with the **AWS Autoscaling** service to provide a predictive ability to your autoscaling groups.
 
+!!!error "the error "you must use a fully formed launch template" means the launch template is missing some information" 
+
+!!!error "a second error can be not having enough permssions to launch EC2 instances..."

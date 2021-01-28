@@ -210,7 +210,7 @@ yum update -y # it should works again```
 ### VPC FlowLogs
 
 * VPC Flow Logs is a feature that enables you to capture information about the **IP traffic** going to and from network interfaces in your VPC. 
-* VPC Flow Logs can be created at the VPC, subnet, and network interface levels. 
+* VPC Flow Logs can be created at the VPC, subnet, and ENI levels. 
 * you can enable flow logs if VPC is in the same aws account
 * you can not edit flow logs
 
@@ -400,7 +400,7 @@ AWS VPN CloudHub manage multiple sites with own VPN connections
 
 ## Route 53
 
-**`AWS Route 53`** service name comes from port 53, where **DNS** work on 
+**`AWS Route 53`** service name comes from port 53, where **DNS** (Domain Name System) work on 
 
 we can register a DNS using `Route53` - `Register domain`. You can purchase and manage domain names such as example.com, and Route 53 will automatically configure DNS settings for your domains
 

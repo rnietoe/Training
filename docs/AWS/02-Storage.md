@@ -112,7 +112,7 @@ S3 Security:
 * managed in the AWS console and the AWS CLI
 * Uploaded files are **private** by default
 * When editing S3 bucket permissions (policies and ACLs), the concept of the **resource owner** refers to he AWS account that creates Amazon S3 buckets and objects.
-* **Bucket ACLs**: Object policies applies to an individual file.
+* **Bucket ACLs** (legacy): Object policies applies to an individual file.
 * **Bucket policies** applies to the entire bucket - like one hosting a static S3 website 
     * public sample:
     ```json

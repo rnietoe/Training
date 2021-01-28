@@ -20,11 +20,13 @@ The three types of cloud deployments are:
 
 Traditional Computing VS Cloud Computing
 
-* **Scale up** / Vertical Scaling (increase RAM, CPU)
-* **Scale Out** - Horizontal Scaling (add multiple virtual machines behind a ELB)
 * Build your systems to be scalable, use disposable resources, reduce infrastructure to code, and assume EVERYTHING will fail sooner or later.
 * resiliency: capacity to recover quickly from difficulties
-
+* **Scale Up** / Vertical Scaling: increase RAM, CPU
+* **Scale Out** / Horizontal Scaling: adding EC2 isntances behind a ELB
+* **Scale In**: removing instances based on oldest instances or configuration or close to the next billing hour:
+    ![](img/scale-in.png)
+    
 Global services (for every region):
 
 * IAM
