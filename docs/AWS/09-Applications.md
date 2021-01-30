@@ -1,6 +1,6 @@
 # 9. Applications
 
-## SQS Simple Queue Service
+## SQS (Simple Queue Service)
 
 **pull** based service to store messages in a queue to **decouple** the components of an application
 
@@ -13,7 +13,7 @@ If you have an existing application that uses standard queues and you want to ta
 
 **visibility timeout**: time while message is invisible during processing. maximum VisibilityTimeout is 12 hours. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds
 
-**long polling**: retrieve messages from SQS queues , reducing the number of empty responses
+**long polling**: retrieve messages from SQS queues, reducing the number of empty responses
     setting `ReceiveMessageWaitTimeSeconds` default value = 0 ?
 
 attribute `DelaySeconds`: When a new message is added to the SQS queue, it will be hidden from consumer instances for a fixed period.
@@ -24,25 +24,17 @@ Duplicate messages occur when a consumer does not complete its message processin
 
 SQS service guarantees a message will be delivered at least once.
 
-## SWF Amazon Simple Workflow Service
+* automatically scales
+* messages can be up to 256kb
+* multiAZ
 
-web service to coordinate synchronous and asynchronous work across distributed application components as executable code, web service calls, **human actions** or scripts, based on workflow tasks
+## SNS (Simple Notification Service)
 
-it makes sure a task is assinged only onces and never duplicated till 1 year
+**push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
 
-SWF Actors:
+use the publish-subscribe mechanism based on topics, called pub-sub messaging
 
-* Workflow starters: start the workflow
-* Deciders : decide what to do next if something fails or finish
-* Activity workers
-
-a **domain** refer to a collection of related workflows
-
-## SNS Simple Notification Service
-
-**push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint
-
-group multiple recipients using **topics**. 
+group multiple recipients using **topics** (a place to put some messages) 
 
 An ARN (Amazon Resource Name) is created when you create a topic on Amazon SNS
 
@@ -50,6 +42,8 @@ messages are stored across multiple AZ to prevent lost
 
 **DLQ** (Deed Letter Queue) is supported in SNS, SQS and Lambda
 
+* messages can be up to 256kb
+* multiAZ
 
 send_message.py
 ```python
@@ -141,6 +135,31 @@ while True:
             logging.info("Queue is now empty")
 ```
 
+## SWF (Simple Workflow Service)
+
+web service to coordinate synchronous and asynchronous work across distributed application components as executable code, web service calls, **human actions** or scripts, based on workflow tasks
+
+it makes sure a task is assinged only onces and never duplicated till 1 year
+
+SWF Actors:
+
+* Workflow starters: start the workflow
+* Deciders : decide what to do next if something fails or finish
+* Activity workers
+
+a **domain** refer to a collection of related workflows
+
+
+## Step Functions
+
+Step functions eventually replace SWF using state machines with: 
+
+* deciders
+* activity tasks
+* worker tasks
+
+support pararell processing
+
 ## Amazon Polly
 
 Machine learning service to convert text to audio mp3 (Alexa)
@@ -157,7 +176,7 @@ sam init
 sam deploy --guided
 ```
 
-## ECS (Amazon Elastic Container Service)
+## ECS (Elastic Container Service)
 
 Amazon ECS is an orchestration service to deploy, manage, and scale Docker **containers** running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.
 

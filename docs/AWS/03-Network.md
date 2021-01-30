@@ -449,13 +449,13 @@ ipconfig /flushdns # to remove saved ip from cache from the client side
 
 !!!danger "API Gateway + Lambda + DynamoDB (serverless) instead of ELB + EC2 + RDS"
 
-API Gateway is like a door for your AWS environment. Targets are:
+**API** (Application Programming Interface) Gateway is like a door for your AWS environment. Targets are:
 
 * Lamda
 * EC2
 * DynamoDB
 
-scaling is automatic
+scaling is automatic (as aws lambda)
 
 enable **api gateway caching** to cache API gateway endpoint's responses for a TTL period in seconds. If a cache is configured, then Amazon API Gateway will return a cached response for duplicate requests for a customizable time, but only if under configured throttling limits.
 

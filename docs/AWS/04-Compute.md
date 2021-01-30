@@ -282,7 +282,7 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 * Lambda, EC2 and ECS supports **hyper-threading** on one or more virtual CPUs.
 * You can use JSON or YAML for Lambda templates.
 * The resources section is the only required field in Lambda templates.
-* Scales out (not up) automatically. (for example, 5 lambda replications running at the same time). Each time your function is triggered, a new, separate instance of that function is started. There are limits, but these can be adjusted on request.
+* **Scales out automatically**. (for example, 5 lambda replications running at the same time). Each time your function is triggered, a new and separate instance of that function is started. There are limits, but these can be adjusted on request.
 * when creating a lambda function, a role is required to provide credentials with rights to other services. This is exactly the same as needing a Role on an EC2 instance to access S3 or DDB. Create a new role selecting the  `Simple microservice permissions` policy template.
 * different services can trigger your function,  such as  Api Gateway
 	![](img/lambda-triggers.png)
@@ -301,6 +301,14 @@ Pricing:
 * The amount of memory assigned.
 * additional charges
 	* when using other AWS services
+
+languages supported:
+
+* node.js
+* java
+* c#
+* Go
+* Python
 
 lambda python sample:
 

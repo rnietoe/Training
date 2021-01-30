@@ -121,7 +121,7 @@ Amazon Resource Name
 
 ## WAF (Web Application Firewall)
 
-**`AWS WAF`**  **block** requests to stop hackers requests from:
+**`AWS WAF`** **block** requests to stop hackers requests from:
 
 * specific IP address (CloudFront, ALB or API Gateway)
 * origin country
@@ -130,9 +130,14 @@ Amazon Resource Name
 * SQL code injection
 * Cross scripting
 
-It operates down to Layer 7.
+It works with CloudFront or ELB
 
-Block traffic response is forbbiden (403)
+It operates down to Layer 7 (http/https).
+
+* allow all requests except specified
+* block all requests except specified
+
+Block traffic response is **forbbiden** (403)
 
 ## Shield
 
@@ -171,7 +176,11 @@ this require Active Directory and **SAML** (Security Assertion Markup Language) 
 
 ## Cognito
 
-**`AWS Cognito`** provides Web Identity Federation (auth using Facebook, Google, etc.) recomended for mobile apps
+**`AWS Cognito`** is the SSO Solution in AWS providing Web Identity Federation (auth using **Facebook**, **Google** and Amazon) recomended for mobile apps log in
+
+store user profiles
+
+based on open standards as **OAuth2.0**, SAML2.0, OpenID Connect
 
 1. users pool: **JWT** (Json Web Token) for registration, authentication and account recovery
 2. identity pool: temporary AWS credentials to access AWS recources

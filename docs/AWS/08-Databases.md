@@ -362,19 +362,6 @@ DynamoDB allows for the storage of large text and binary objects, but there is a
 * **Amazon's Data WareHousing** used for **OLAP** (OnLine Analytics Processing)
 * Used for Business Intelligence
 * availabled in 1 AZ
-
-## EMR (Elastic Map Reduce)
-
-web service that makes it easy to process large amounts of data efficiently. sample of **big data**
-
-cluster with:
-
-* master node (store logs by default)
-* core node
-* task node (optional)
-
-logs must be defined on cluster creation
-
 ## ElastiCache
 
 Improve performance with cache for the most common queries:
