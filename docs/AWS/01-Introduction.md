@@ -27,6 +27,8 @@ Traditional Computing VS Cloud Computing
 * **Scale In**: removing instances based on oldest instances or configuration or close to the next billing hour:
     ![](img/scale-in.png)
     
+* **Scale Down**. decrease the class of EC2 or RDS to a lower power
+    
 Global services (for every region):
 
 * IAM
