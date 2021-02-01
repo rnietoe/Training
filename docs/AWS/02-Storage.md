@@ -230,3 +230,7 @@ connect on-premise software with cloud-based storage (S3) using AWS storage as l
     * Gateway-Cached volumes allow you to store your data in S3 and retain a copy of frequently accessed data subsets locally. Cached volumes offer a substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
 * **Tape gateway**: Back up your data to Amazon S3 using your existing tape-based processes as public or VPC (private)
     * **VTL** (Virtual Tape Library) is a library/collection of backup tapes that can be backed up
+
+## AWS Backup
+
+centrally manage and automate backups across AWS services, as well as on-premises servers

@@ -1,5 +1,13 @@
 # AWS Architect
 
+[AWS Well-Architected Framework](https://wa.aws.amazon.com/index.en.html):
+
+* [Reliability](https://wa.aws.amazon.com/wat.pillar.reliability.en.html)
+* [Performance Efficiency](https://wa.aws.amazon.com/wat.pillar.performance.en.html)
+* [Security](https://wa.aws.amazon.com/wat.pillar.security.en.html)
+* [Cost Optimization](https://wa.aws.amazon.com/wat.pillar.costOptimization.en.html)
+* [Operational Excellence](https://wa.aws.amazon.com/wat.pillar.operationalExcellence.en.html)
+
 [https://rnietoe.signin.aws.amazon.com/console](https://rnietoe.signin.aws.amazon.com/console)
 
 * rnietoe@gmail.com - AWS account (root account)

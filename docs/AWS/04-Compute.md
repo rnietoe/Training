@@ -125,7 +125,9 @@ AWS does not copy launch permissions, tags, or SG rules from the source AMI to t
 
 8. Launch using a key pair (public and private key)
 
-!!!danger "Always design for failure. Have one EC2 instance in each AZ"
+!!!danger "Always design for failure. Have one EC2 instance in each AZ, using clustering and backups"
+
+!!!danger "implement elasticity with auto scaling, ELB, decoupling applications and running tasks in parallel"
 
 ### How to connect to EC2 
 

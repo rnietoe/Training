@@ -151,8 +151,9 @@ Block traffic response is **forbbiden** (403)
 There are three options that help you migrate **Active Directory**-dependent applications to the AWS Cloud: 
 
 * Managed Microsoft AD - **Directory Service** for Microsoft Active Diretory
+* **Simple AD** using linux samba
 * **AD Connector**
-* **Simple AD**
+* AWS Cognito
 
 These solutions also enable users to sign into AWS applications such as Amazon WorkSpaces and Amazon QuickSight with their AD credentials. Developers who don’t need AD can use Amazon **Cloud Directory** to create cloud-scale directories that organize and manage hierarchical information such as organizational charts, course catalogs, and device registries. 
 
@@ -230,12 +231,10 @@ aws kms decrypt --ciphertext-blob fileb://test.txt.encrypted --output text --que
 
 ## CloudHSM (Hardware Security Model)
 
-* FIPS 140-2 Level 3
+manage your own encryption keys using FIPS 140-2 Level 3
+
 * single tenant (dedicated hardware) 
-
-manage your own keys
-
-run within a VPC in your account 
+* run within a VPC in your account 
 
 ## Secrets Manager
 

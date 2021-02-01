@@ -190,3 +190,76 @@ Use **Fargate** to automatically build environments. Fargate is a serverless con
 * task
 * service
 * cluster
+
+## Workspaces
+
+**`Amazon WorkSpaces`** provides users with a virtual desktop experience (linux or windows7, windows 10) in the cloud that can be accessed from any connected device to multiple applications
+
+storage is persistent (virtual D: drive)
+
+## AppStream 2.0
+
+allow virtual applications to be accessed from the cloud. Sample of office 365
+
+## Analytics
+
+### Cloud Search
+
+**`Amazon CloudSearch`** manages all the server resources needed to build and deploy search **indexes**. All you have to do is upload your data to a **search domain** and start submitting requests.
+
+### ES (Elastic Search)
+
+for big volume of data using clusters
+
+### Data Pipeline
+
+using data nodes
+
+### AWS Glue
+
+ETL (Extract, Transform and Load) 
+
+### QuickSight
+ 
+* business analytics
+* not included in your AWS subscription
+
+### Athena
+
+query data in S3 using SQL
+
+## Developer Tools
+
+AWS Solutions to manage an application project from the beginning to the end:
+
+### CodeStart
+
+full code building and deployment tool
+
+### CodeCommit
+
+source code repository managerment
+
+### CodeArtifact
+
+?
+
+### CodeBuild
+
+build and **test** code in the cloud
+
+### CodeDeploy
+
+Automate Code Deployment
+
+### CodePipeline
+
+CI-CD (continuous integration and continuous delivery)
+
+### Cloud9
+
+like visualstudio code with linux shell interface using an EC2 linux instance
+
+### AWS X-Ray
+
+`Developer Tools - X-Ray` helps developers analyze and **debug** production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.

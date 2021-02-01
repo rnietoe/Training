@@ -385,13 +385,14 @@ security:
 
 ## ElastiCache
 
-Improve performance with cache for the most common queries:
+Improve performance with **in-memory cache** for the most common queries:
 
-* Memcached. does not offer a native encryption service
+* Memcached. Simplest model for implementation. hight performance. It does not offer a native encryption service
 * **Redis** (muti AZ) 
     * Pub/Sub
     * Sorted Sets 
     * In-Memory Data Store
+    * HIPPA or PCI-DSS **compliance**
 
 !!!important "ElastiCache is only a key-value store and cannot therefore store relational data."
 

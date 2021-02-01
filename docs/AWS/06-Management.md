@@ -219,12 +219,15 @@ Create a paying account for billing purposes only. Do not deploy resources into 
 
 Consolidated billing allows you to get volume discounts on all your accounts
 
-## AWS Cost Calculators
+## Cost Calculators
 
 * [AWS Simple Monthly Calculator](https://calculator.s3.amazonaws.com/index.html) (**DEPRECATED**)
 * AWS Total Cost of Ownership Calculator (**DEPRECATED**): comparing AWS VS on premise
 * [AWS Pricing Calculator](https://calculator.aws/#/)
 
-## AWS X-Ray
+## Cost Explorer
 
-`Developer Tools - X-Ray` helps developers analyze and **debug** production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
+**`AWS Cost explorer`** is use to explore costs **after** they have been incurred. 
+
+* disable by default, it takes 24 hours to be enabled
+* details are given before the end of the month bill...
