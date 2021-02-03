@@ -19,7 +19,7 @@ Some features:
 host -t NS database_endpoint # Query DNS Records on Linux
 nslookup database_endpoint # Query DNS Records on Windows
 ```
-* **Multi-Region** deployment will best ensure **global availability**.
+* There is no **mulit-region RDS**. AWS does have multi-AZ RDS.
 * Backup retention from 0 days (disable) to **35 days**
 * **Read Replicas** for performance improvement. Quering read replica can have a delay of less than a minute. They are usefull when:
     * scaling due to excess read traffic
@@ -287,6 +287,7 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called **AM
 
 ## Amazon Aurora
 
+* **Multi-Region** deployment will best ensure **global availability**.
 * Hight performance with a low cost. 2-3x faster thant postgreSQL and 5x faster than MySQL
 * Move **Logging** and **Storage** layers into a multi tented scale out database optimized service
 * Storage **from 10gb to 64tb**
@@ -344,6 +345,8 @@ exports.handler = (event, context) => {
 
 DynamoDB (Non Relational Databases - **faster** due to small transactions) is a key-value and document database that delivers single-digit millisecond performance at any scale.
 
+DynamoDB auto scaling uses the AWS **Application Auto Scaling** service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns.
+
 DynamoDB allows for the storage of large text and binary objects, but there is a limit of **400 KB** for the combined Value and Name
 
 * Data is stored on SSDs (Solid State Drives).
@@ -383,6 +386,8 @@ security:
 * SSL transit encryption
 * AES-256 storage encryption usin AWS KMS
 
+!!!tip "not suited for streaming data"
+
 ## ElastiCache
 
 Improve performance with **in-memory cache** for the most common queries:
@@ -395,8 +400,6 @@ Improve performance with **in-memory cache** for the most common queries:
     * HIPPA or PCI-DSS **compliance**
 
 !!!important "ElastiCache is only a key-value store and cannot therefore store relational data."
-
-
 
 ## Graph Databases
 

@@ -31,6 +31,8 @@ clusters nodes:
 
 logs must be defined on cluster creation
 
+[Export, Import, Query, and Join Tables in DynamoDB Using Amazon EMR](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/EMRforDynamoDB.html)
+
 ## Systems Manager
 
 View and manage AWS resources in the cloud (EC2 fleets) or on premise (virtual machines)
@@ -85,6 +87,8 @@ def lambda_handler(event, context):
 ```
 
 ## CloudWatch
+
+[Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html)
 
 Monitor resources and applications **performances** from the cloud and on-premises systems based on logs and events:
 
@@ -181,7 +185,7 @@ You are charged based on the number of configuration items recorded, the number 
 
 `Application Integration/SNS` is a messaging service that enables you to decouple microservices, distributed systems, and serverless applications. Using AWS SNS topics, your publisher systems can fan-out messages to a large number of subscriber endpoints for parallel processing, including Amazon SQS queues, AWS Lambda functions, and HTTP/S webhooks. Additionally, SNS can be used to fan out notifications to end users using mobile push, SMS, and email.
 
-`Application Integration/SQS` (**S**imple **Q**ueue **S**ervice) offers a queue that lets you integrate and decouple distributed software systems and components.
+`Application Integration/SQS` (Simple Queue Service) offers a queue that lets you integrate and decouple distributed software systems and components.
 
 Support Plans:
 

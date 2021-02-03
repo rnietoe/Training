@@ -3,6 +3,10 @@
 [AWS Well-Architected Framework](https://wa.aws.amazon.com/index.en.html):
 
 * [Reliability](https://wa.aws.amazon.com/wat.pillar.reliability.en.html)
+    * **Backup and restore** (RPO in hours, RTO in 24 hours or less): Back up your data and applications using point-in-time backups into the DR Region. Restore this data when necessary to recover from a disaster.
+    * **Pilot light** (RPO in minutes, RTO in hours): Replicate your data from one region to another and provision a copy of your core workload infrastructure. Resources required to support data replication and backup such as databases and object storage are always on. Other elements such as application servers are loaded with application code and configurations, but are switched off and are only used during testing or when Disaster Recovery failover is invoked.
+    * **Warm standby** (RPO in seconds, RTO in minutes): Maintain a scaled-down but fully functional version of your workload always running in the DR Region. Business-critical systems are fully duplicated and are always on, but with a scaled down fleet. When the time comes for recovery, the system is scaled up quickly to handle the production load. The more scaled-up the Warm Standby is, the lower RTO and control plane reliance will be. When scaled up to full scale this is known as a **Hot Standby**.
+    * **Multi-region** (multi-site) active-active (RPO near zero, RTO potentially zero): Your workload is deployed to, and actively serving traffic from, multiple AWS Regions
 * [Performance Efficiency](https://wa.aws.amazon.com/wat.pillar.performance.en.html)
 * [Security](https://wa.aws.amazon.com/wat.pillar.security.en.html)
 * [Cost Optimization](https://wa.aws.amazon.com/wat.pillar.costOptimization.en.html)

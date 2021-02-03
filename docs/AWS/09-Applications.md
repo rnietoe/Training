@@ -28,6 +28,8 @@ SQS service guarantees a message will be delivered at least once.
 * messages can be up to 256kb
 * multiAZ
 
+!!!danger "backlog per instance and acceptable backlog per instance are metrics for auto scaling with SQS"
+
 ## SNS (Simple Notification Service)
 
 **push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
@@ -135,6 +137,13 @@ while True:
             logging.info("Queue is now empty")
 ```
 
+## SES (Simple Email Service)
+
+**`AWS SES`** is for applications that need to send communications via email.
+
+* It supports custom email header fields, and many MIME types.
+* But it can't be used by CloudWatch to push notifications via email. 
+
 ## SWF (Simple Workflow Service)
 
 web service to coordinate synchronous and asynchronous work across distributed application components as executable code, web service calls, **human actions** or scripts, based on workflow tasks
@@ -190,6 +199,12 @@ Use **Fargate** to automatically build environments. Fargate is a serverless con
 * task
 * service
 * cluster
+
+## Service quotas
+
+Your AWS account has default quotas/limits for each AWS service and **region**.
+
+Service Quotas is an AWS service that helps you manage your quotas for over **100 AWS services**, from one location. Along with looking up the quota values, you can also request a quota increase from the Service Quotas console.
 
 ## Workspaces
 

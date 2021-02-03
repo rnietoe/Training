@@ -6,7 +6,7 @@
 
 ## AWS
 
-* [AWS Solutions Architect Associate](AWS/0-AWS-Solutions-Architect-Associate.md)
+* [AWS Solutions Architect Associate](AWS/00-AWS-Solutions-Architect-Associate.md)
 
 ## Git
 

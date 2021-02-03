@@ -56,7 +56,7 @@ High-level AWS service used on premises:
 * SMS (Server **Migration** Service)
 * Application Discovery Service: collect information about their on premises data centers. Data is available in the AWS **Migration** Hub
 * **AWS DataSync** is used to move large amounts of data from on-premise to AWS S3, EFS, FSx, etc.
-* VM import/export
+* **AWS Import/Export** transfer large amounts of data from physical storage devices into AWS. You mail your portable storage devices to AWS, and AWS Import/Export transfers data directly off of your storage devices using Amazon's high-speed internal network.
 * Download Amazon Linux 2 as an ISO
 
 AWS Service used on premise:

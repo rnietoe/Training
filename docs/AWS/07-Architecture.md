@@ -68,14 +68,18 @@ How to use application load balancer
 1. (required) `Create launch configuration` to create a saved instance configuration for the new EC2 instances
 2. `Create Auto Scaling group` to create a collection of similar EC2 instances that are treated as a logical unit, based on its AMI
 3. select all VPC subnets for multiAZ
-4. metrics are average CPU utilization, network-in and network-out
+4. metrics are:
+	* CPU utilization
+	* **DiskReadOps**
+	* network-in 
+	* network-out
 5. new instances are launched
 
 Creating an Auto Scaling group using: 
 
-* a launch template
-* the Amazon EC2 launch wizard
+* a launch template: needed to use Dedicated Hosts and more features that can't be achieved with launch configurations.
 * a launch configuration
+* the Amazon EC2 launch wizard
 * using an EC2 instance
 
 Scaling Options
@@ -88,6 +92,8 @@ Scaling Options
 * Use predictive scaling based on performance
 
 **EC2 Autoscaling** works in conjunction with the **AWS Autoscaling** service to provide a predictive ability to your autoscaling groups.
+
+A scaling **cooldown** helps you prevent your EC2 Auto Scaling group from launching or terminating additional instances before the effects of previous scaling activities are visible.
 
 !!!error "the error "you must use a fully formed launch template" means the launch template is missing some information" 
 

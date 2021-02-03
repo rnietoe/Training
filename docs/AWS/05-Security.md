@@ -192,6 +192,10 @@ Cognito uses Push synchronization to push updates and synchronize user data acro
 
 **`AWS KMS`** manages encryption keys to encrypt data
 
+!!!tip "You can configure your application to use the KMS API to encrypt all data before saving it to disk."
+
+[When to use AWS](https://docs.aws.amazon.com/crypto/latest/userguide/awscryp-choose-kms.html)
+
 CMK (Customer Master Key) per region
 
 * AWS Managed CMK: used by default; free
@@ -235,6 +239,8 @@ manage your own encryption keys using FIPS 140-2 Level 3
 
 * single tenant (dedicated hardware) 
 * run within a VPC in your account 
+
+[When to use AWS CloudHSM](https://docs.aws.amazon.com/crypto/latest/userguide/awscryp-choose-hsm.html)
 
 ## Secrets Manager
 

@@ -13,9 +13,9 @@ AWS originally used a modified version of the **Xen** Hypervisor to host EC2. In
 
 ### Placement groups
 
-* **Clustered**: Group homogenous EC2 instances within a single AZ for network performance
+* **Clustered**: Group homogenous EC2 instances within a **single AZ** for **network performance**
 * **Spread**: Individial EC2 instances are placed on distinct rack within one region for HW errors
-	* you can only have a maximum of 7 running instances per AZ
+	* you can only have a maximum of **7** running instances per AZ
 * **Partitioned**: Multiple EC2 instances in the same rack
 * **EC2 fleet** - multiple EC2 instances managed by **`AWS System Manager`**  
 * **Spot fleet** - multiple Spot (and on demand) instances 
@@ -79,6 +79,7 @@ Tenancy:
 	* **implicit** for the owner only (default)
 * AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage)
 	* EC2 instance with **Instance Store** can't be stopped
+	* Reboot does not cause the data to be deleted on an **instance store** volume
 	* **Instance Store** does not appear in the AWS EC2 Volume list
 * To use **hibernation**, the root volume must be an encrypted EBS volume and RAM must be less than 150gb
 

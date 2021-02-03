@@ -26,10 +26,10 @@ Deep learning-based **visual analysis** service to search, verify, and organize 
 
 Kinesis is a platform to send your **streaming data** to.
 
-* Kinesis Data Stream (KDS): **store** streaming data for processing in shards from 24 hours to 7 days
+* Kinesis Data Stream (KDS): **store**/collect streaming data for processing in shards from 24 hours to 7 days
     ![](img/Kinesis-Data-Streams.png)
     * Producers, **shards** and consumers are components of Kinesis Data Streams
-* Kinesis Firehose: **load** streaming data into AWS data stores and analytics tools
+* Kinesis Firehose: **load** streaming data into AWS data stores and analytics tools (S3, Redshift, Elasticsearch and Splunk)
     ![](img/Kinesis-Data-Firehose.png)
     * there is not data persistent. lambda funcions are optional 
     * Key components are: delivery streams, records of data and destinations.

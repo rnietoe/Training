@@ -1,7 +1,10 @@
 # 3. Network
 
-* **ENI** - Elastic Network Interface - virtual network card or adapter attached to an AWS EC2 instance for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more.
-    * Multiple ENIs connected to a single instance allows dual-homing
+* **ENI** - Elastic Network Interface - virtual network card or adapter attached to an AWS EC2 instance for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more. ENI can be attached to an instance:
+    * when it’s running (**hot attach**)
+    * when it’s stopped (**warm attach**)
+    * when the instance is being launched (**cold attach**)
+    * Multiple ENIs connected to a single instance allows **dual-homing**
     * ENIs are assocated with a subnet
 * **ENA** - Enhanced Networking Adapter - use **SR-IOV** (Single Root I/O Virtualization) to allow speeds between 10 and 100 Gbps requirement
 * **EFA** - Elastic Fabric Adapter - machine learning or **HPC** (High Performance Computing) requirement
@@ -33,6 +36,7 @@ DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addre
 * **Internet Gateway** allow communication between your VPC and the internet. An IG serves two purposes: to provide a target in your VPC route tables for internet-routable traffic, and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses
     * 1 VPC = 1 IG
 * **egress-only internet gateway** allows IPv6 based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.
+* **VPN** reuses existing VPN equipment and processes, and reuse existing internet connections.
 * **VPG** (Virtual Private Gateway) is the VPN concentrator on the Amazon side of the Site-to-Site VPN connection.
 * **CWG** (customer GateWay) is a resource that is installed on the customer side of the Site-to-Site VPN connection.
 * **VPC peering** creates a connection between two VPCs using same or different accounts and regions.
@@ -207,6 +211,12 @@ nano index.html
 yum update -y # it should works again```
 ```
 
+Each network ACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn't match any of the other numbered rules, it's denied. You can't modify or remove this rule:
+    
+    100 All Traffic Allow 
+    200 All Traffic Deny 
+     *  All Traffic Deny
+
 ### VPC FlowLogs
 
 * VPC Flow Logs is a feature that enables you to capture information about the **IP traffic** going to and from network interfaces in your VPC. 
@@ -337,7 +347,7 @@ For high availability:
 
 ### Direct Connect
 
-Dedicated line from on premise to AWS to improve the (VPN) network connection (security and performance)
+Dedicated line from on premise to AWS to improve the (VPN) network connection (security and performance) from 1 Gbps to 10 Gbps
 
 1. `Create virtual interface` from AWS Direct Connect : Virtual interfaces as Public
 2. `Create Customer Gateway` from VPC : Customer Gateways
