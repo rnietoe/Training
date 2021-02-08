@@ -6,7 +6,8 @@
     * when the instance is being launched (**cold attach**)
     * Multiple ENIs connected to a single instance allows **dual-homing**
     * ENIs are assocated with a subnet
-* **ENA** - Enhanced Networking Adapter - use **SR-IOV** (Single Root I/O Virtualization) to allow speeds between 10 and 100 Gbps requirement
+* **ENA** - Enhanced Networking Adapter - use **SR-IOV** (Single Root I/O Virtualization) to provide high-performance networking capabilities on supported instance types. 
+    * speed is between 10 and 100 Gbps requirement
 * **EFA** - Elastic Fabric Adapter - machine learning or **HPC** (High Performance Computing) requirement
 
 ## VPC
@@ -360,7 +361,7 @@ Dedicated line from on premise to AWS to improve the (VPN) network connection (s
 
 ### Global Accelerator
 
-improves the availability and performance of your applications for local or global users
+**`AWS Global Accelerator`** uses the vast, congestion-free AWS global network to route TCP and UDP traffic to a healthy application endpoint in the closest AWS Region to the user to improves the availability and performance of your applications for local or global users
 
 1234567890abcdef.awsglobalaccelerator.com
 
@@ -439,6 +440,8 @@ Routing Policies:
 * **Geolocation** Routing: traffic based on the user's location
 * **Geoproximity** Routing: traffic based on the users' and resources' location. Available in traffic **flow-only** mode using **bias**
 * **Multivalue Answer** Routing, similar to simple routing, but using health checks on each record sets to serve traffic to **random** web servers
+
+It can be used to load balance however it does not have the ability to route based on information in the incoming request path.
 
 Using Route53:
 

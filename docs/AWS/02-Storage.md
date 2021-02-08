@@ -4,6 +4,8 @@
 
 ## S3
 
+[AWS S3](https://digitalcloud.training/certification-training/aws-solutions-architect-associate/storage/amazon-s3/)
+
 **`AWS S3`** (Simple Storage Service) is **object-based** for the safe storage of **flat files** such as text files, videos, pictures and any other flat file from 0 to 5 tb. The object has a key (filename), value (data), versionID, metadata, encryption, and security by **ACL** (Access Control Lists), torrent and Bucket Policies 
 
 !!!info "Objects stored in S3 (no One Zone) are stored across at least three AZs"
@@ -25,10 +27,10 @@ The S3 API is based in **REST** (Representational State Transfer) which uses CRU
 
 S3 classes order by pricing:
 
-1. **S3 Standard**: Frequently accessed data. Availability of 99.99%
+1. **S3 Standard**: Frequently accessed data. Availability of 99.99%. This is the best choice in a scenario for a short term storage solution.
 2. **S3 Standard - IA** (Infrequently Accessed). Availability of 99.9%
 3. **S3 One Zone - IA** (when multiple AZ not required) . costs is 20% less than S3 Standard-IA
-4. **S3 RRS** (Reduce Redundancy Storage). Availability of 99.5%. RRS is the only S3 Class that does not offer 99.999999999% **durability**. 
+4. **S3 RRS** (Reduce Redundancy Storage). Availability of 99.5%. RRS is the only S3 Class that does not offer 99.999999999% **durability**. Durability is "only" 99.99%
 5.  **S3 Glacier** (low cost storage. Retrieval times from 3 minutes to 12 hours). archives stored in vaults(as buckets) with AES 256-bit encryption
     * Expedited access within 3-5 min
     * Standard access within 3-5 hours
@@ -36,7 +38,9 @@ S3 classes order by pricing:
     * Up to 5% retrieved at no change
     * **S3 Glacier Vault Lock Policy**: compliance controls for S3 Glacier with a Vault Lock policy. The policy can no longer be changed
     * Only empty vaults can be deleted
-6. **S3 Glacier Deep Archive** (lowest-cost. Retrieval time of 12 hours is acceptable)
+6. **S3 Glacier Deep Archive** : lowest-cost. 
+    * Retrieval time of 12 hours is acceptable.
+    * minimum storage duration of 180 days. 
 
 Enhanced features:
 
@@ -144,12 +148,16 @@ S3 Performance:
 
 ## EFS
 
-**`AWS EFS`** (Elastic File System) is a mountable **file** storage service for EC2 (**linux**), like a NAS (Network Attached Storage - **shared folder**), based on **NFSv4** (Network File System), but has no connection to S3 which is an **object** storage service.
+**`AWS EFS`** (Elastic File System) is a mountable **file** storage service for EC2 (**linux**), like a NAS (Network Attached Storage - **shared folder**), based on **NFSv4** (Network File System Version 4), but has no connection to S3 which is an **object** storage service.
 
 * EFS is **shareable**. 
 * there is folder hierarchy 
 * no supported on windows instances
 * Data is stored across multiple AZ's within a region
+
+EFS lifecycle policy to move files to **EFS IA** (Infrequent Access)
+
+EFS provides shared volume across multiple EC2 instances, while EBS can be attached to a single volume within the same AZ.
 
 ### How to create an EFS **shared** by two EC2 instances
 
@@ -162,10 +170,10 @@ S3 Performance:
     yum install httpd -y
     service httpd start
     chkconfig httpd on
-    yum install amazon-efs-utils -y
+    yum install amazon-efs-utils -y # install the tool to mount EFS later
     ```
 
-3. default SG require inbound rule of type NFSv4 (port 2049) with source SG WebDMZ
+3. default SG require inbound rule of type **NFSv4** (port 2049) with source SG WebDMZ
 4. connect to the EC2 instances, and then mount EFS using the command from `EFS - Amazon EC2 mount instructions from local VPC`:
 
     ```shell
@@ -183,6 +191,9 @@ S3 Performance:
 * EBS cannot be shared by two EC2 instances
 * EBS volume can be attached to any EC2 instance in the same AZ
 * EBS volume attached as an additional disk (not the root volume) can be detached without stopping the instance
+* EBS snapshots use **incremental** backups and are stored in S3
+* By default, the **DeleteOnTermination** attribute is set to True for the root volume, and is set to False for all other volume types.
+    * To preserve the root volume when an instance terminates, change the DeleteOnTermination attribute for the root volume to False.
 
 EBS Types:
 
@@ -208,6 +219,10 @@ EBS Pricing depends on:
 * volume recovery (attaching volumes from own intances to another)
 
 Although there is no direct way to encrypt an existing unencrypted volume or snapshot, you can encrypt them by creating either a volume or a snapshot.
+
+```shell
+aws ec2 create-snapshot # create a snapshot of an EBS volume
+```
 
 ## FSx (File Systems)
 

@@ -50,12 +50,12 @@ Caching services:
 
 High-level AWS service used on premises:
 
-* DMS (Database **Migrations** Service) is the best choice for conventional database migrations to AWS.
+* DMS (Database **Migrations** Service) is the best choice for conventional database migrations to AWS, not data on file shares.
     * homogenous: sample of Oracle to Oracle
     * heterogenous with **SCT** (Schema Conversion Tool): sample of SQL Server to Aurora
-* SMS (Server **Migration** Service)
+* SMS (Server **Migration** Service): migrate on-premise servers into EC2 instances
 * Application Discovery Service: collect information about their on premises data centers. Data is available in the AWS **Migration** Hub
-* **AWS DataSync** is used to move large amounts of data from on-premise to AWS S3, EFS, FSx, etc.
+* **AWS DataSync** is used to move large amounts of data from on-premise to AWS S3, EFS, FSx, etc.. DataSync eliminates or automatically handles many of these tasks, including scripting copy jobs, scheduling and monitoring transfers, validating data, and optimizing network utilization. The source datastore can be Windows Server Message Block (SMB) file servers.
 * **AWS Import/Export** transfer large amounts of data from physical storage devices into AWS. You mail your portable storage devices to AWS, and AWS Import/Export transfers data directly off of your storage devices using Amazon's high-speed internal network.
 * Download Amazon Linux 2 as an ISO
 
@@ -102,6 +102,11 @@ AWS Service used on premise:
     * data transfer out
 
 !!!danger "We will be charged when deleting cached data from an edge location"
+
+you can use the **CloudFront geo restriction** feature to do one of the following:
+
+* Allow your users to access your content only if they're in one of the countries on a whitelist of approved countries.
+* Prevent your users from accessing your content if they're in one of the countries on a blacklist of banned countries.
     
 ## Resource Groups and Tag Editor
 

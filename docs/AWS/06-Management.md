@@ -153,7 +153,7 @@ Maximum of 20 Link accounts. Contact AWS for more
 
 [Landing Zone](https://aws.amazon.com/solutions/implementations/aws-landing-zone/) helps to quickly setup a secure, multi-account AWS environment based on AWS best practices.
 
-**services control policies** for central control over all of the permissions
+**SCP** (Services Control Policies) to apply permissions/restrictions across multiple member accounts
 
 ## AWS Config
 

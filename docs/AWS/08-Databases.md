@@ -19,7 +19,8 @@ Some features:
 host -t NS database_endpoint # Query DNS Records on Linux
 nslookup database_endpoint # Query DNS Records on Windows
 ```
-* There is no **mulit-region RDS**. AWS does have multi-AZ RDS.
+* There is no **multi-region RDS**. AWS does have multi-AZ RDS.
+* RDS Auto Scaling does not exist
 * Backup retention from 0 days (disable) to **35 days**
 * **Read Replicas** for performance improvement. Quering read replica can have a delay of less than a minute. They are usefull when:
     * scaling due to excess read traffic
@@ -30,6 +31,7 @@ nslookup database_endpoint # Query DNS Records on Windows
     * MS SQL Server cannot be read replica
     * `Create read replica` from the RDS instance (must have **backups** turned on and check the option **Public** accesible)
     * A read replica can be promoted as a standalone instance. Note that the promotion process is irreversible.  
+    * You cannot create an encrypted Read Replica from an unencrypted master DB instance
 * Use of **AWS EBS** volumes for database and log storage. Only Aurora uses its **storage system**.
 * We can manage RDS instances (CPU and Memory) using AWS CLI, AWS RDS API or management console.  
 * RDS run on VM, but login is not allowed.
@@ -345,14 +347,15 @@ exports.handler = (event, context) => {
 
 DynamoDB (Non Relational Databases - **faster** due to small transactions) is a key-value and document database that delivers single-digit millisecond performance at any scale.
 
-DynamoDB auto scaling uses the AWS **Application Auto Scaling** service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns.
+DynamoDB auto scaling uses the AWS **Application Auto Scaling** service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns, without incurring downtime.
 
 DynamoDB allows for the storage of large text and binary objects, but there is a limit of **400 KB** for the combined Value and Name
 
 * Data is stored on SSDs (Solid State Drives).
 * DynamoDB provide automatic replication across AZs. It is a regional service, there is no need to explicitly create a multi-AZ deployment.
+* Amazon DynamoDB global tables provide a fully managed solution for deploying a multiregion, **multi-master** database, without having to build and maintain your own replication solution.
 * DynamoDB is distributed across 3 geographically distinct datacentres by default
-* **DAX** (DynamoDB Accelerator) is an advanced DynamoDB
+* **DAX** (DynamoDB Accelerator) is an advanced DynamoDB with **caching**
 * There will always be a charge for:
     1. provisioning read and write capacity 
     2. the storage of data: $0.25Gb per month
@@ -392,8 +395,13 @@ security:
 
 Improve performance with **in-memory cache** for the most common queries:
 
-* Memcached. Simplest model for implementation. hight performance. It does not offer a native encryption service
-* **Redis** (muti AZ) 
+* Memcached
+    * Simplest model for implementation. 
+    * hight performance. 
+    * It does not offer a native encryption service
+    * does not offer persistence
+* **Redis** 
+    * (muti AZ) 
     * Pub/Sub
     * Sorted Sets 
     * In-Memory Data Store

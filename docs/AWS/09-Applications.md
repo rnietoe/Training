@@ -28,13 +28,17 @@ SQS service guarantees a message will be delivered at least once.
 * messages can be up to 256kb
 * multiAZ
 
-!!!danger "backlog per instance and acceptable backlog per instance are metrics for auto scaling with SQS"
+metrics for auto scaling with SQS: 
+* backlog per instance
+* acceptable backlog per instance
+
+!!!danger "You cannot invoke a Lambda function using Amazon SQS. Lambda can be configured to poll a queue, as SQS is pull-based, but it is not push-based like SNS"
 
 ## SNS (Simple Notification Service)
 
 **push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
 
-use the publish-subscribe mechanism based on topics, called pub-sub messaging
+use the publish-subscribe mechanism based on topics, called pub/sub messaging
 
 group multiple recipients using **topics** (a place to put some messages) 
 
@@ -199,6 +203,8 @@ Use **Fargate** to automatically build environments. Fargate is a serverless con
 * task
 * service
 * cluster
+
+To specify permissions for a specific task on Amazon ECS you should use IAM Roles for Tasks. The permissions policy can be applied to tasks when creating the task definition, or by using an IAM task role override using the AWS CLI or SDKs. The **taskRoleArn** parameter is used to specify the policy.
 
 ## Service quotas
 

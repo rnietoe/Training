@@ -2,6 +2,8 @@
 
 ## EC2
 
+!!!danger "EC2 instances are provisioned in AZs"
+
 **`AWS EC2`** (Elastic Compute Cloud) is a VM in the cloud. It is a web service that provides resizeable compute capacity in the cloud.
 
 
@@ -14,7 +16,7 @@ AWS originally used a modified version of the **Xen** Hypervisor to host EC2. In
 ### Placement groups
 
 * **Clustered**: Group homogenous EC2 instances within a **single AZ** for **network performance**
-* **Spread**: Individial EC2 instances are placed on distinct rack within one region for HW errors
+* **Spread**: Individial EC2 instances are placed on distinct rack within one region for **high availability**
 	* you can only have a maximum of **7** running instances per AZ
 * **Partitioned**: Multiple EC2 instances in the same rack
 * **EC2 fleet** - multiple EC2 instances managed by **`AWS System Manager`**  
@@ -40,7 +42,10 @@ Change the instance type required stopping the instance previously.
 
 * **On Demand**: low cost, paying by hour or second. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it. Sample: when **task run uninterrupted** from start to finish
 * **Reserved**: the most economical option for **long-term workloads** with predictable usage patterns. Contract terms are 1 to 3 years. It includes different discounts
-	* **Standard** Reserved instances (75% off on demand instances). Cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific AZ, or an entire Region, but you cannot change the region.
+	* **Standard** Reserved instances (75% off on demand instances). 
+	
+	!!!danger "Standard Reserved Instances cannot be moved between regions: You can choose if a Reserved Instance applies to either a specific AZ, or an entire Region, but you cannot change the region."
+
 	* **Convertible** Reserved instances (54%)
 	* **Schedule** Reserved instances, based on times
 * **Spot**: taket advantage of **unused** EC2 capacity. It can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, HPC (high-performance computing), and other test & development workloads. Extra charge when you terminate the instance
@@ -78,6 +83,7 @@ Tenancy:
 	* **explicit** for specified accounts
 	* **implicit** for the owner only (default)
 * AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage)
+	* **Instance store** is physically attached to the EC2 instance and provides the lowest latency and highest IOPS
 	* EC2 instance with **Instance Store** can't be stopped
 	* Reboot does not cause the data to be deleted on an **instance store** volume
 	* **Instance Store** does not appear in the AWS EC2 Volume list
@@ -133,6 +139,13 @@ AWS does not copy launch permissions, tags, or SG rules from the source AMI to t
 ### How to connect to EC2 
 
 Using AWS Console, select the EC2 instance and clic on the `Connect` button. Password required
+
+Using chrome extension [Secure Shell](https://chrome.google.com/webstore/detail/secure-shell/iodihamcpbpeioajjeobimgagajmlibd?hl=en)
+
+	```shell
+	ren MyKeyPair.pem MyKeyPair # rename without extension
+	ssh-key-gen -y -f MyKeyPair.pem > MyKeyPair.pub	# generate our public key
+	```
 
 Using putty:
 
