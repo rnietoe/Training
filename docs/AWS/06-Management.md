@@ -103,19 +103,32 @@ Monitor resources and applications **performances** from the cloud and on-premis
 	* CloudFront
 * network
 
+AWS can see how much of CPU you are using in a EC2, but cannot see what you are using if for.
+
 AWS can see that you have Memory, but a custom metric is required to see how much of the memory is being used 
 
-AWS can see how much of CPU you are using in a EC2, but cannot see what you are using if for.
+you can use the **CloudWatch agent** to collect both system metrics and log files from Amazon EC2 instances and on-premises servers. The metrics can be pushed to a CloudWatch custom metric.
 
 **CloudWatch logs insights** adds cross log group querying
 
 ## CloudTrail
 
-Continuously log your AWS account **activity** monitoring API calls per account and region
+Continuously log your AWS account **activity** monitoring API calls per account in all AWS regions
 
 * data is retained for 90 days
 * logs can be stored in a single S3 bucket
 * read activity in the S3 bucket will be easier than using the API 
+* log files are encrypted using S3 SSE and you can also enable encryption SSE KMS for additional security.
+
+Data events:
+
+* Amazon S3 object-level API activity (for example, GetObject, DeleteObject, and PutObject API operations).
+* AWS Lambda function execution activity (the Invoke API).
+
+Management events
+
+* Configuring security (for example, IAM AttachRolePolicy API operations)
+* Registering devices (for example, Amazon EC2 CreateDefaultVpc API operations).
 
 ## Trusted Advisor
 

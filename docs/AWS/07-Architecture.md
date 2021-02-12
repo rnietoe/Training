@@ -17,6 +17,7 @@ Load Balancing algorithms:
 
 * ALB (**Application** Load Balancers) for intelligent routing - HTTP/HTTPS (layer 7)
 * NLB (**Network** Load Balancers) for extreme performance and static IPs - TCP/TLS (layer 4)
+	* You can passthrough encrypted traffic with an NLB and terminate the SSL on the EC2 instances as all data in transit encryption requirement
 * CLB (**Classic** Load Balancers) for classic/**old/legacy** EC2 instantes or test/dev environments - low cost - HTTP/HTTPS/TCP (layers 4 and 7)
 * GLB (**Gateway** Load Balancers) to deploy, scale, and manage your third-party **virtual appliances**
 
@@ -92,6 +93,8 @@ Scaling Options
 * Use predictive scaling based on performance
 
 **EC2 Autoscaling** works in conjunction with the **AWS Autoscaling** service to provide a predictive ability to your autoscaling groups.
+
+[**Target tracking** scaling policies for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html) is more cost effective than using scheduled actions
 
 A scaling **cooldown** helps you prevent your EC2 Auto Scaling group from launching or terminating additional instances before the effects of previous scaling activities are visible.
 

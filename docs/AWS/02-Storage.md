@@ -55,14 +55,15 @@ Enhanced features:
 More features:
 
 * Unlimited storage
-* We can use the bucket to host a **static website** using S3 with option `static website hosting` enabled, with index.html and error.html. Dynamic website can not be hosted on S3.
+* We can use the bucket to host a **static website** using S3 and HTTP (use cloudfront for HHTPS) with option `static website hosting` enabled, with index.html and error.html. Dynamic website can not be hosted on S3.
 * Encryption:
     * Encryption in Transit, using https (SSL/TLS)
     * Encryption at Rest:
         * In the server side - SSE (Server Side Encryption - 256-bit AES encryption - storage encryption, no transit encryption):
             * **SSE-S3**: An encryption key that Amazon S3 creates, manages, and uses for you.
             * **SSE-KMS**: An encryption key protected by AWS Key Managament Service
-            * **SSE-C** with customer provided keys
+            * **SSE-C** with customer provided keys generated and managed on premises
+            * SSE encrypts only the object data, not object metadata
         * In the client side - encrypted before uploading with a client library such as Amazon S3 Encryption Client.
 * Versioning (disabled by default):
     * usefull as backup tool
@@ -72,7 +73,7 @@ More features:
     * Deleting a file create a new version (**deleted marker**), then restoring the file recovers all previous versions.
     * Integrated with lifecycle rules
 * Use **S3 Lifecycle rules** to define actions you want AWS S3 to take during an object's lifetime such as **transitioning** objects to another storage class, archiving them, or deleting them after a specified period of time.
-* **S3 Transfer Acceleration** takes advantage of Amazon CloudFront (edge location distribution) using Amazon internal network (no internet). It enables fast, easy and secure transfers of files to and from your bucket.
+* **S3 Transfer Acceleration** takes advantage of Amazon CloudFront (edge location distribution) using Amazon internal network (no internet). It enables fast, easy and secure upload of files to your bucket. It is not used for downloading data.
 
     * [Speed Comparison Tool](https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html)
 
@@ -159,6 +160,8 @@ EFS lifecycle policy to move files to **EFS IA** (Infrequent Access)
 
 EFS provides shared volume across multiple EC2 instances, while EBS can be attached to a single volume within the same AZ.
 
+Built to scale on demand to petabytes without disrupting applications.
+
 ### How to create an EFS **shared** by two EC2 instances
 
 1. `Create file system` from AWS EFS
@@ -194,6 +197,7 @@ EFS provides shared volume across multiple EC2 instances, while EBS can be attac
 * EBS snapshots use **incremental** backups and are stored in S3
 * By default, the **DeleteOnTermination** attribute is set to True for the root volume, and is set to False for all other volume types.
     * To preserve the root volume when an instance terminates, change the DeleteOnTermination attribute for the root volume to False.
+* EBS doesn’t grow automatically as your data requirements increase – you would need to increase the volume size and then extend your filesystem.
 
 EBS Types:
 
@@ -226,7 +230,7 @@ aws ec2 create-snapshot # create a snapshot of an EBS volume
 
 ## FSx (File Systems)
 
-* AWS FSx for **windows file server**
+* AWS FSx for **windows file server** provides resilient storage for Windows instances
     * Based on **SMB** (Windows Server Message Block)
 * AWS FSx for **Lustre**
     * Optimised file system
@@ -240,7 +244,8 @@ windows authentication using Active Directory self manage or by AWS
 
 connect on-premise software with cloud-based storage (S3) using AWS storage as local storage.
 
-* **File Gateway**. Store files as objects in Amazon S3, with a local cache for low-latency access to your most recently used data.
+* **File Gateway**. Store files as **objects** in Amazon S3, with a local cache for low-latency access to your most recently used data.
+    * used [to create an **NFS** file share](https://docs.aws.amazon.com/storagegateway/latest/userguide/CreatingAnNFSFileShare.html)
 * **Volume Gateway**: objects are hard disk drives. It looks like EBS snapshots. there are storage volumes (entire dataset) and cached volumes
     * Gateway-Cached volumes allow you to store your data in S3 and retain a copy of frequently accessed data subsets locally. Cached volumes offer a substantial cost savings on primary storage and minimize the need to scale your storage on-premises. You also retain low-latency access to your frequently accessed data. 
 * **Tape gateway**: Back up your data to Amazon S3 using your existing tape-based processes as public or VPC (private)

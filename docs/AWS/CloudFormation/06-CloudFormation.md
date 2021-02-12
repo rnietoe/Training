@@ -479,3 +479,9 @@ The actions depends on the resource. We should predict if replacement will be ne
 
 * [AWS resource and property types reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 * [Update behaviors of stack resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html)
+
+There are three CloudFormation-specific IAM conditions that you can add to your IAM policies:
+
+* cloudformation:**TemplateURL**: lets you specify where the CloudFormation template for a stack action, such as create or update, resides and enforce that it be used.
+* cloudformation:**ResourceTypes**: you specify which types of resources can be created or updated
+* cloudformation:**StackPolicyURL**: used in conjunction with IAM, stack policies provide a second layer of defense against both unintentional and malicious changes to your stack resources.

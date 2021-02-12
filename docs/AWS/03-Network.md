@@ -45,8 +45,9 @@ DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addre
     * no transitive peering VPC-A <=> VPC-B <=> VPC-C ... VPC-A <> VPC-C  
     * owner role required
     * RTs must be configured with the destination VPC and the origin (target) VPC peering.
+    * You can create a VPC peering connection between your own VPCs, or with a VPC in another AWS account.
 * **VPC Endpoints**: connections that enables **private** connectivity to services hosted in AWS, based on region and service name, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
-    * Interface endpoints
+    * Interface endpoints ([private links](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html))
     * Gateway Load Balancer endpoints
     * Gateway endpoints
 
@@ -167,6 +168,8 @@ To use a NAT gateway, create one in a public subnet and assign it an Elastic IP 
     yum update -y # this work successfully
     yum install mysql -y 
     ```
+
+NAT Gateway is used for enabling Internet connectivity using the **IPv4** protocol only. use an egress-only Internet Gateway for **IPv6**
 
 ### Network ACLs
 
@@ -350,6 +353,8 @@ For high availability:
 
 Dedicated line from on premise to AWS to improve the (VPN) network connection (security and performance) from 1 Gbps to 10 Gbps
 
+Delivery times (for installation) are usually longer than 1 month, so Direct Connect cannot be used to migrate data within the deadlines
+
 1. `Create virtual interface` from AWS Direct Connect : Virtual interfaces as Public
 2. `Create Customer Gateway` from VPC : Customer Gateways
 3. `Create Virtual Private Gateway` from VPC : Virtual Private Gateways
@@ -361,7 +366,7 @@ Dedicated line from on premise to AWS to improve the (VPN) network connection (s
 
 ### Global Accelerator
 
-**`AWS Global Accelerator`** uses the vast, congestion-free AWS global network to route TCP and UDP traffic to a healthy application endpoint in the closest AWS Region to the user to improves the availability and performance of your applications for local or global users
+**`AWS Global Accelerator`** uses the AWS global network to route TCP and UDP traffic to a healthy application endpoints in the closest AWS Region to the user to improves the availability and performance of your EC2 instances or ELB (ALB and NLB) for local or global users. It is not used for improving Amazon S3 performance.
 
 1234567890abcdef.awsglobalaccelerator.com
 
@@ -390,6 +395,8 @@ VPC endpoint is a service that replace NAT gateway and allow connections from th
 2. select service `com.amazonaws.us-east-2.s3`, our VPC, our main route table and the full access policy
     * the update in the route table could take some time
 
+Interface VPC endpoints (AWS PrivateLink)
+
 ### AWS Private Link
 
 To open up our apps to other VPCs, we can try:
@@ -397,6 +404,8 @@ To open up our apps to other VPCs, we can try:
 * if open up the VPC to the internet. everything will be public
 * you can use **VPC peering**. However, many relationships will be required
 * AWS Private Link peers many VPCs. They only require a NLB on the AWS VPC and a ENI on the customer VPC
+
+**ClassicLink** allows you to link EC2-Classic instances to a VPC in your account, within the same Region.
 
 ### Transit Gateway
 
@@ -407,7 +416,7 @@ TGW (Transit GateWay) is a network transit hub that interconnects attachments (V
 
 ### VPN CloudHub
 
-AWS VPN CloudHub manage multiple sites with own VPN connections
+AWS VPN CloudHub manage multiple sites into your VPC with own VPN connections
 
 ## Route 53
 
@@ -416,9 +425,6 @@ AWS VPN CloudHub manage multiple sites with own VPN connections
 we can register a DNS using `Route53` - `Register domain`. You can purchase and manage domain names such as example.com, and Route 53 will automatically configure DNS settings for your domains
 
 !!!tip "Ensure there is a free bucket with the same domain name"
-
-* **Failover Routing policy** routes data to a second resource if the first is unhealthy. Route 53 can be used for Disaster Recovery by simply shifting traffic to the new region.
-* **Latency-based Routing policy** routes data to resources that have better performance
 
 **Route 53 Traffic Flow** makes it easy for you to manage traffic globally through a variety of routing types. Using Route 53 Traffic Flow’s simple visual editor, you can easily manage how your end-users are routed to your application’s endpoints—whether in a single AWS region or distributed around the globe. 
 
@@ -435,7 +441,7 @@ Routing Policies:
 
 * **Simple** Routing: one dns record with multiple IP addresses
 * **Weighted** Routing: traffic based on weighting (20%-30%-50%)
-* **Latency-based** Routing: traffic based on the lowest latency
+* **Latency-based** Routing: traffic based on the lowest latency (better performance)
 * **Failover** Routing: route the traffic to the primary or secondary site defined based on health checks
 * **Geolocation** Routing: traffic based on the user's location
 * **Geoproximity** Routing: traffic based on the users' and resources' location. Available in traffic **flow-only** mode using **bias**
@@ -460,6 +466,8 @@ ipconfig /flushdns # to remove saved ip from cache from the client side
 
 [API Gateway vs Application Load Balancer](https://serverless-training.com/articles/api-gateway-vs-application-load-balancer-technical-details/)
 
+[Build a Serverless Web Application](https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/)
+
 !!!danger "API Gateway + Lambda + DynamoDB (serverless) instead of ELB + EC2 + RDS"
 
 **API** (Application Programming Interface) Gateway is like a door for your AWS environment. Targets are:
@@ -473,3 +481,5 @@ scaling is automatic (as aws lambda)
 enable **api gateway caching** to cache API gateway endpoint's responses for a TTL period in seconds. If a cache is configured, then Amazon API Gateway will return a cached response for duplicate requests for a customizable time, but only if under configured throttling limits.
 
 same origin policy to prevent cross site scripting (XSS) attacks. **CORS** (Cross Origin Resource Sharing) allow restricted resources in a web page to be requested from a different domain. Enable CORS in Apigateway when the error message is *"Origin policy cannot be read at the remote resource"*.
+
+Amazon API Gateway **decouples** the client application from the back-end application-layer services by providing a single endpoint for API requests.

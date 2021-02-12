@@ -1,14 +1,14 @@
 # 10. Media
 
-Most of the following media services use S3 buckets as repository:
+Most of the following media services use **S3 buckets** as repository:
 
 ## Elastic Transcoder 
 
-Amazon Elastic Transcoder **covert** media files from their original source **format** in to different formats that will play on any device.
+Amazon Elastic Transcoder **convert** media files from their original source **format** in to different formats that will play on any device.
 
 ## Translate
 
-on-demand language **translation**
+On-demand language **translation**
 
 ## Elemental MediaStore
 
@@ -17,6 +17,10 @@ on-demand language **translation**
 ## Transcribe 
 
 speech to **text transcription** from audio and video (subtitles) based on machine learning
+
+## Amazon Polly
+
+Machine learning service to convert text to audio mp3 (Alexa)
 
 ## Rekognition
 

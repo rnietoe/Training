@@ -82,7 +82,8 @@ Tenancy:
 	* **public** for everyone
 	* **explicit** for specified accounts
 	* **implicit** for the owner only (default)
-* AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage)
+* AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage.
+	* An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host computer. Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers.
 	* **Instance store** is physically attached to the EC2 instance and provides the lowest latency and highest IOPS
 	* EC2 instance with **Instance Store** can't be stopped
 	* Reboot does not cause the data to be deleted on an **instance store** volume

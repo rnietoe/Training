@@ -62,7 +62,7 @@ High-level AWS service used on premises:
 AWS Service used on premise:
 
 * AWS Snow Family:
-    * **Snowball** - to upload 50TB (200$) or 80TB (250$) to AWS in a week instead of three months. This allow S3 imports/exports
+    * **Snowball** - to upload 50TB (200$) or **80TB** (250$) to an AWS S3 bucket in a week instead of three months. This allow S3 imports/exports. From there, lifecycle policies can transition the S3 objects to Amazon S3 Glacier
     * **Snowball Edge** - Local compute and storage only till 100TB
     * **Snowmobile** - a track with 100PB
     * First 10 days are free. 15$ per day later
@@ -86,14 +86,16 @@ AWS Service used on premise:
 
 ## CloudFront
 
-**`AWS CloudFront`** distribution is a collection of Edge Locations. CloudFront content is **cached** in Edge Locations. This allows you to distribute content using a worldwide network of edge locations that provide low latency and high data transfer speeds. 
+**`AWS CloudFront`** distribution is a collection of Edge Locations caching content is **cached**. This allows you to distribute content using a worldwide network of edge locations that provide low latency and high data transfer speeds. It can serve both dynamic and static content.
+
+Create custom error pages for the Amazon CloudFront distribution for displaying a static error page if the website becomes unavailable.
 
 * From `AwS CloudFront` select `Create Distribution`
 * The CloudFront origin can be an S3 bucket, an EC2 instance, an ELB or Route53.
 * We can restrict viewer access using signed URLs for individual files or signed cookies for multiple files. Netflix or CloudGuru samples. 
-    * **OAI** - Origin Access Identity
-        * If the origin is EC2 then use CloudFront Signed url 
-        * If the origin is S3 then use S3 signed url 
+    * **OAI** (Origin Access Identity) to restrict access to AWS S3 Content
+    * If the origin is EC2 then use CloudFront Signed url 
+    * If the origin is S3 then use S3 signed url 
 * We can `create invalidations` to remove origin objets on the edge location
 * To delete a CloudFront distribution, you have to disable it first. This process takes 15 minutes	
 * Pricing depends on:
@@ -103,7 +105,7 @@ AWS Service used on premise:
 
 !!!danger "We will be charged when deleting cached data from an edge location"
 
-you can use the **CloudFront geo restriction** feature to do one of the following:
+You can use the **CloudFront geo restriction** feature to do one of the following:
 
 * Allow your users to access your content only if they're in one of the countries on a whitelist of approved countries.
 * Prevent your users from accessing your content if they're in one of the countries on a blacklist of banned countries.
@@ -111,7 +113,6 @@ you can use the **CloudFront geo restriction** feature to do one of the followin
 ## Resource Groups and Tag Editor
 
 * **Tags** allow to find AWS resources in a selected region, but it can not directly managing those resources. This can make it easier to search for and filter resources by purpose, owner, environment, or other criteria.
-
 * **Resources groups** allow to execute operations from **`AWS Systems Manager`** to different resources (such as a EC2 fleet) based on resources groups
 
 ## AWS Solutions

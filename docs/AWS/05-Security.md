@@ -128,7 +128,7 @@ Amazon Resource Name
 * request size
 * request header values
 * SQL code injection
-* Cross scripting
+* **XSS** (Cross scripting)
 
 It works with CloudFront or ELB
 
@@ -159,7 +159,9 @@ These solutions also enable users to sign into AWS applications such as Amazon W
 
 ## RAM (Resource Access Management)
 
-**`AWS RAM`** shares AWS resources with other AWS accounts.
+**`AWS RAM`** shares AWS resources with other AWS accounts
+
+!!!danger "APIs are not shareable resources with AWS RAM"
 
 1. Create a resource share
 2. Choose the resources type to add to the resource share
@@ -235,7 +237,7 @@ aws kms decrypt --ciphertext-blob fileb://test.txt.encrypted --output text --que
 
 ## CloudHSM (Hardware Security Model)
 
-manage your own encryption keys using FIPS 140-2 Level 3
+manage your own encryption keys in AWS in a hardware security module using FIPS 140-2 Level 3
 
 * single tenant (dedicated hardware) 
 * run within a VPC in your account 

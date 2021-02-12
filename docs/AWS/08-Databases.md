@@ -112,6 +112,8 @@ Security
 
         ![](img/rds-encryption.PNG)
 
+!!!danger "A Read Replica and the master instance are encrypted using the same key when both are in the same Region. When in different Regions, a different key can be used."
+
 * SSL for db conectivity  
 
 Monitoring
@@ -351,6 +353,7 @@ DynamoDB auto scaling uses the AWS **Application Auto Scaling** service to dynam
 
 DynamoDB allows for the storage of large text and binary objects, but there is a limit of **400 KB** for the combined Value and Name
 
+* There’s no such thing as DynamoDB Read Replicas (Read Replicas are an RDS concept).
 * Data is stored on SSDs (Solid State Drives).
 * DynamoDB provide automatic replication across AZs. It is a regional service, there is no need to explicitly create a multi-AZ deployment.
 * Amazon DynamoDB global tables provide a fully managed solution for deploying a multiregion, **multi-master** database, without having to build and maintain your own replication solution.
@@ -383,6 +386,7 @@ Quick start to [Deploy an Amazon Redshift data warehouse on the AWS Cloud for bi
 * availabled in 1 AZ
 * single node of 160 gb up to 160tb
 * $0.25 per hour or $1.000 per Tb per year
+* RedShift can also improve performance for repeat queries by caching the result. AWS ElastiCache is NOT required
 
 security:
 

@@ -28,13 +28,16 @@ SQS service guarantees a message will be delivered at least once.
 * messages can be up to 256kb
 * multiAZ
 
-metrics for auto scaling with SQS: 
+metrics for auto scaling with SQS:
+
 * backlog per instance
 * acceptable backlog per instance
 
 !!!danger "You cannot invoke a Lambda function using Amazon SQS. Lambda can be configured to poll a queue, as SQS is pull-based, but it is not push-based like SNS"
 
 ## SNS (Simple Notification Service)
+
+!!!danger "Amazon SNS is a better solution than SQS when you need to notify multiple AWS services"
 
 **push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
 
@@ -44,12 +47,10 @@ group multiple recipients using **topics** (a place to put some messages)
 
 An ARN (Amazon Resource Name) is created when you create a topic on Amazon SNS
 
-messages are stored across multiple AZ to prevent lost
-
 **DLQ** (Deed Letter Queue) is supported in SNS, SQS and Lambda
 
 * messages can be up to 256kb
-* multiAZ
+* multiAZ: messages are stored across multiple AZ to prevent lost
 
 send_message.py
 ```python
@@ -146,7 +147,7 @@ while True:
 **`AWS SES`** is for applications that need to send communications via email.
 
 * It supports custom email header fields, and many MIME types.
-* But it can't be used by CloudWatch to push notifications via email. 
+* But it can't be used by CloudWatch to push notifications via email. Use SNS instead
 
 ## SWF (Simple Workflow Service)
 
@@ -162,7 +163,6 @@ SWF Actors:
 
 a **domain** refer to a collection of related workflows
 
-
 ## Step Functions
 
 Step functions eventually replace SWF using state machines with: 
@@ -172,10 +172,6 @@ Step functions eventually replace SWF using state machines with:
 * worker tasks
 
 support pararell processing
-
-## Amazon Polly
-
-Machine learning service to convert text to audio mp3 (Alexa)
 
 ## SAM (Serverless Application Model)
 
@@ -193,9 +189,9 @@ sam deploy --guided
 
 Amazon ECS is an orchestration service to deploy, manage, and scale Docker **containers** running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.
 
-no VM builds required, but Ec2 can be used for more control
+no VM builds required, but EC2 can be used for more control
 
-**ECR** (Elastic Container Registry) is the managed docker container resigry to store, manage and deploy images. it work with on-premises deployment
+**ECR** (Elastic Container Registry) is the managed docker container registry to store, manage and deploy images. it work with on-premises deployment
 
 Use **Fargate** to automatically build environments. Fargate is a serverless container engine (like docker). It works with both ECS and **EKS** (Elastic Kubernetes Service)
 
@@ -205,6 +201,8 @@ Use **Fargate** to automatically build environments. Fargate is a serverless con
 * cluster
 
 To specify permissions for a specific task on Amazon ECS you should use IAM Roles for Tasks. The permissions policy can be applied to tasks when creating the task definition, or by using an IAM task role override using the AWS CLI or SDKs. The **taskRoleArn** parameter is used to specify the policy.
+
+You can only apply one IAM role to a Task Definition so you must create a separate Task Definition.
 
 ## Service quotas
 
@@ -220,7 +218,7 @@ storage is persistent (virtual D: drive)
 
 ## AppStream 2.0
 
-allow virtual applications to be accessed from the cloud. Sample of office 365
+allow virtual applications to be accessed from the cloud. Sample of Office365
 
 ## Analytics
 
@@ -238,7 +236,7 @@ using data nodes
 
 ### AWS Glue
 
-ETL (Extract, Transform and Load) 
+ETL (Extract, Transform and Load) data tool
 
 ### QuickSight
  
@@ -247,7 +245,7 @@ ETL (Extract, Transform and Load)
 
 ### Athena
 
-query data in S3 using SQL
+query data in S3 using SQL. Files in CSV format are not a problem
 
 ## Developer Tools
 
