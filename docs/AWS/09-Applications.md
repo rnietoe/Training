@@ -7,11 +7,11 @@
 * standard queues (default)
 * FIFO queues (first in first out)
 
-If you have an existing application that uses standard queues and you want to take advantage of the ordering or exactly-once processing features of FIFO queues, you need to configure the queue and your application correctly. You can't convert an existing standard queue into a FIFO queue. To make the move, you must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue. 
+You can't convert an existing standard queue into a FIFO queue. To make the move, you must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue. 
 
-**retention period**: the message can remain in the queue for 14 days
+**retention period**: the message can remain in the queue for **14 days**
 
-**visibility timeout**: time while message is invisible during processing. maximum VisibilityTimeout is 12 hours. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds
+**visibility timeout**: time while message is invisible during processing. maximum VisibilityTimeout is **12 hours**. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds
 
 **long polling**: retrieve messages from SQS queues, reducing the number of empty responses
     setting `ReceiveMessageWaitTimeSeconds` default value = 0 ?
@@ -39,7 +39,7 @@ metrics for auto scaling with SQS:
 
 !!!danger "Amazon SNS is a better solution than SQS when you need to notify multiple AWS services"
 
-**push** based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
+**push** based web service to send messages/notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
 
 use the publish-subscribe mechanism based on topics, called pub/sub messaging
 
@@ -236,7 +236,7 @@ using data nodes
 
 ### AWS Glue
 
-ETL (Extract, Transform and Load) data tool
+**ETL** (Extract, Transform and Load) data tool
 
 ### QuickSight
  

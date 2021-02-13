@@ -109,6 +109,8 @@ You can use the **CloudFront geo restriction** feature to do one of the followin
 
 * Allow your users to access your content only if they're in one of the countries on a whitelist of approved countries.
 * Prevent your users from accessing your content if they're in one of the countries on a blacklist of banned countries.
+
+!!!danger "CloudFront cannot expose static public IP addresses"
     
 ## Resource Groups and Tag Editor
 

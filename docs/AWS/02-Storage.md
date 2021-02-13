@@ -228,6 +228,8 @@ Although there is no direct way to encrypt an existing unencrypted volume or sna
 aws ec2 create-snapshot # create a snapshot of an EBS volume
 ```
 
+EBS Provisioned IOPS io1 volumes can be mounted to 16 nitro instances using **multi-attach** which is a new feature and has several constraints.
+
 ## FSx (File Systems)
 
 * AWS FSx for **windows file server** provides resilient storage for Windows instances

@@ -13,17 +13,17 @@
 
 Some features: 
 
-* Enable deletion protection: delete require this feature disabled. if enable, modify to disable first
+* Enable deletion protection: delete require this feature disabled first
 * **Multi-AZ** for disaster recovery and **high availability**. By default in production RDS. Primary host replicates to a secondary host when failover. Enable multiAZ impact to the RDS instance if running
-```shell
-host -t NS database_endpoint # Query DNS Records on Linux
-nslookup database_endpoint # Query DNS Records on Windows
-```
-* There is no **multi-region RDS**. AWS does have multi-AZ RDS.
+    ```shell
+    host -t NS database_endpoint # Query DNS Records on Linux
+    nslookup database_endpoint # Query DNS Records on Windows
+    ```
+* There is no **multi-region RDS**.
 * RDS Auto Scaling does not exist
 * Backup retention from 0 days (disable) to **35 days**
 * **Read Replicas** for performance improvement. Quering read replica can have a delay of less than a minute. They are usefull when:
-    * scaling due to excess read traffic
+    * excess read traffic
     * source db unavailable
     * reporting and data warehousing
     * disaster recovery
@@ -39,17 +39,16 @@ nslookup database_endpoint # Query DNS Records on Windows
 
 Scaling
 
-* vertical scaling (storage, CPU, memory or network) with a new RDS instance of DB instance class. Instance may shutdown
+* vertical scaling (storage, CPU, memory or network) with a new RDS instance class. Instance may shutdown
     * multiAZ takes more time for vertical scaling, but RDS is shutted down less time than working on a single AZ
 * horizontal scaling with read replicas
 * scaling with AWS EBS storage
-
 
 Backup options
 
 * backups in S3 are stored in an RDS own bucket. 
 * backup is for the db host, not only the databases.
-* only the differences are stored in the new snapshot.
+* only the **differences** are stored in the new snapshot.
 * in multiAZ there should not be impact. In single AZ, I/O is suspend from few seconds to few minutes.
 * restoring a backup create a new RDS instance. you cannot restore to an existing db instance.
 
@@ -89,6 +88,7 @@ Pricing
 
 Security
 
+* SSL for db conectivity 
 * Network isolation, using VPC:
     * Private subnet
     * Security group (firewall)
@@ -113,8 +113,6 @@ Security
         ![](img/rds-encryption.PNG)
 
 !!!danger "A Read Replica and the master instance are encrypted using the same key when both are in the same Region. When in different Regions, a different key can be used."
-
-* SSL for db conectivity  
 
 Monitoring
 
@@ -291,7 +289,6 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called **AM
 
 ## Amazon Aurora
 
-* **Multi-Region** deployment will best ensure **global availability**.
 * Hight performance with a low cost. 2-3x faster thant postgreSQL and 5x faster than MySQL
 * Move **Logging** and **Storage** layers into a multi tented scale out database optimized service
 * Storage **from 10gb to 64tb**
@@ -302,6 +299,7 @@ Finally we create a EC2 instance image, like a **snapshot**. this is called **AM
     * **Reader** endpoint connection allow **read** operations
     * **Custom** endpoint connection allow **load balancer**
     * **Instance** endpoint connection to a **specific instance**
+* **Multi-Region** deployment will best ensure **global availability**.
 * Aurora global databases
     * primary region - read and write
     * secondary region - read only. Promoted when failure
@@ -353,7 +351,7 @@ DynamoDB auto scaling uses the AWS **Application Auto Scaling** service to dynam
 
 DynamoDB allows for the storage of large text and binary objects, but there is a limit of **400 KB** for the combined Value and Name
 
-* There’s no such thing as DynamoDB Read Replicas (Read Replicas are an RDS concept).
+* There’s no DynamoDB Read Replicas (Read Replicas are an RDS concept).
 * Data is stored on SSDs (Solid State Drives).
 * DynamoDB provide automatic replication across AZs. It is a regional service, there is no need to explicitly create a multi-AZ deployment.
 * Amazon DynamoDB global tables provide a fully managed solution for deploying a multiregion, **multi-master** database, without having to build and maintain your own replication solution.

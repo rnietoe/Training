@@ -34,10 +34,10 @@ Kinesis is a platform to send your **real-time streaming data** to.
     ![](img/Kinesis-Data-Streams.png)
     * Producers, **shards** and consumers are components of Kinesis Data Streams
     * Shard will ensure ordering
-* Kinesis Firehose: **load** streaming data into AWS data stores for analytics tools (S3, Redshift, Elasticsearch and Splunk)
+* Kinesis Firehose: **load** streaming data into AWS data stores for **analytics** tools (S3, Redshift, Elasticsearch and Splunk)
     ![](img/Kinesis-Data-Firehose.png)
     * there is not data persistent. lambda funcions are optional 
     * Key components are: delivery streams, records of data and destinations.
-* Kinesis Analytics: **analyze** and process streaming data in **real-time** using **SQL** or Java.
+* Kinesis Analytics: **analyze** and process streaming data in real-time using **SQL** or Java.
     ![](img/Amazon-Kinesis-Data-Analytics.png)
 * Kinesis Video Streams: Capture, process, and store **video streams** for analytics and machine learning.
