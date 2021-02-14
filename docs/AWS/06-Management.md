@@ -3,39 +3,31 @@
 
 ## OpsWorks
 
-AWS OpsWorks implemet a **configuration management** system for automated deployment of instances, services and applications
+AWS OpsWorks implemets a **configuration management** system for automated deployment of instances, services and applications
 
 * OpsWorks **Stacks**: (default) collection of layers on-premises
 * OpsWorks for **Chef** Automate: cookbooks contain **recipes**/layers in the cloud
 * OpsWorks for **Puppet**: master servers with preconfigured **modules**/layers in the cloud
 
-pre-built layers
-
-* Ruby
-* PHP
-* Node.js
-* Java
-* Amazon RDS
-* HA Proxy
-* MySql
+Pre-built layers (Ruby, PHP, Node.js, Java, Amazon RDS, HA Proxy, MySql)
 
 ## EMR (Elastic MapReduce)
 
-web service that makes it easy to process large amounts of data efficiently, **mapping** the process to multiple processors to reduce **computing**. Sample of **big data**
+Process large amounts of data efficiently, **mapping** the process to multiple processors to reduce **computing**. Sample of **big data**
 
-clusters nodes:
+Clusters nodes:
 
 * **master**: coordinates job distribution and store logs by default
 * **core**: run tasks assigned by the master node and **store** data in the cluster
 * **task** (optional): runs only task that do not store data
 
-logs must be defined on cluster creation
+Logs must be defined on cluster creation
 
 [Export, Import, Query, and Join Tables in DynamoDB Using Amazon EMR](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/EMRforDynamoDB.html)
 
 ## Systems Manager
 
-View and manage AWS resources in the cloud (EC2 fleets) or on premise (virtual machines)
+Manage AWS resources in the cloud (EC2 fleets) or on premise (virtual machines)
 
 ## SSM (Systems Manager) Parameter Store
 
@@ -88,8 +80,6 @@ def lambda_handler(event, context):
 
 ## CloudWatch
 
-[Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html)
-
 Monitor resources and applications **performances** from the cloud and on-premises systems based on logs and events:
 
 * compute
@@ -103,13 +93,14 @@ Monitor resources and applications **performances** from the cloud and on-premis
 	* CloudFront
 * network
 
-AWS can see how much of CPU you are using in a EC2, but cannot see what you are using if for.
+Use the **CloudWatch agent** to collect both system metrics and log files from Amazon EC2 instances and on-premises servers. The metrics can be pushed to a CloudWatch custom metric:
 
-AWS can see that you have Memory, but a custom metric is required to see how much of the memory is being used 
-
-you can use the **CloudWatch agent** to collect both system metrics and log files from Amazon EC2 instances and on-premises servers. The metrics can be pushed to a CloudWatch custom metric.
+* AWS can see how much of CPU you are using in a EC2, but cannot see what you are using if for.
+* AWS can see that you have Memory, but a custom metric is required to see how much of the memory is being used 
 
 **CloudWatch logs insights** adds cross log group querying
+
+[Create Alarms to Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html)
 
 ## CloudTrail
 
@@ -140,6 +131,8 @@ Management events
 
 **`AWS Organizations`** enables you to centrally manage billing, control access, compliance, and security, and share resources across **multiple accounts** in the AWS Cloud.
 
+**SCP** (Services Control Policies) to apply permissions/restrictions across multiple member accounts
+
 You can consolidate all your AWS accounts into an organization, and arrange all AWS accounts into distinct **OUs** (Organizational Units).
 
 * Provides single payer and centralized cost tracking
@@ -162,15 +155,13 @@ Create an **organization trail** in AWS CloudTrail to log all events for all AWS
 
 Maximum of 20 Link accounts. Contact AWS for more
 
-!!!danger "Assuming all instances are in the same AWS Organization, the reserved instance pricing for the unused on demand instances will be applied."
+!!!danger "Assuming all instances are in the same AWS Organization, the unused of the reserved instance pricing will be applied for on demand instances ."
 
 [Landing Zone](https://aws.amazon.com/solutions/implementations/aws-landing-zone/) helps to quickly setup a secure, multi-account AWS environment based on AWS best practices.
 
-**SCP** (Services Control Policies) to apply permissions/restrictions across multiple member accounts
-
 ## AWS Config
 
-`AWS Config` provides an inventory of your AWS resources and a history of configuration changes to these resources.  
+`AWS Config` provides an inventory of your AWS resources and a history of **configuration changes** to these resources.  
  You can use AWS Config to define rules that evaluate these configurations for compliance.
 
  How to get started:
@@ -195,10 +186,6 @@ You are charged based on the number of configuration items recorded, the number 
 * **Cost explorer** is use to explore costs **after** they have been incurred. See [Billing & Cost Management Dashboard](https://console.aws.amazon.com/billing/home#/).
 
 * [Creating a billing alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html) at `ClouldWatch/Alarms/Billing` using **SNS** (Simple Notification Service) topic to monitor estimated AWS charges.
-
-`Application Integration/SNS` is a messaging service that enables you to decouple microservices, distributed systems, and serverless applications. Using AWS SNS topics, your publisher systems can fan-out messages to a large number of subscriber endpoints for parallel processing, including Amazon SQS queues, AWS Lambda functions, and HTTP/S webhooks. Additionally, SNS can be used to fan out notifications to end users using mobile push, SMS, and email.
-
-`Application Integration/SQS` (Simple Queue Service) offers a queue that lets you integrate and decouple distributed software systems and components.
 
 Support Plans:
 

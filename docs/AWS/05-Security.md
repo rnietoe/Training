@@ -181,6 +181,8 @@ this require Active Directory and **SAML** (Security Assertion Markup Language) 
 
 **`AWS Cognito`** is the SSO Solution in AWS providing Web Identity Federation (auth using **Facebook**, **Google** and Amazon) recomended for mobile apps log in
 
+You can use MFA with a Cognito user pool
+
 store user profiles
 
 based on open standards as **OAuth2.0**, SAML2.0, OpenID Connect
@@ -243,6 +245,8 @@ manage your own encryption keys in AWS in a hardware security module using FIPS 
 * run within a VPC in your account 
 
 [When to use AWS CloudHSM](https://docs.aws.amazon.com/crypto/latest/userguide/awscryp-choose-hsm.html)
+
+CloudHSM can be used to encrypt data but as a dedicated service it is charged on an hourly basis and is less cost-efficient compared to S3 encryption or encrypting the data at the source
 
 ## Secrets Manager
 

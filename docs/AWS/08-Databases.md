@@ -14,14 +14,12 @@
 Some features: 
 
 * Enable deletion protection: delete require this feature disabled first
-* **Multi-AZ** for disaster recovery and **high availability**. By default in production RDS. Primary host replicates to a secondary host when failover. Enable multiAZ impact to the RDS instance if running
-    ```shell
-    host -t NS database_endpoint # Query DNS Records on Linux
-    nslookup database_endpoint # Query DNS Records on Windows
-    ```
+* **Multi-AZ** for disaster recovery and **high availability**. By default in production RDS. Primary host replicates to a secondary host when failover. 
+    * Enable multiAZ impact to the RDS instance if running
 * There is no **multi-region RDS**.
 * RDS Auto Scaling does not exist
 * Backup retention from 0 days (disable) to **35 days**
+* Writes are only made to the primary database
 * **Read Replicas** for performance improvement. Quering read replica can have a delay of less than a minute. They are usefull when:
     * excess read traffic
     * source db unavailable
@@ -48,9 +46,12 @@ Backup options
 
 * backups in S3 are stored in an RDS own bucket. 
 * backup is for the db host, not only the databases.
-* only the **differences** are stored in the new snapshot.
+* only the DB **differences** are stored in the new snapshot.
+
+    !!!danger "EC2 and EBS snapshots are incremental"
+
 * in multiAZ there should not be impact. In single AZ, I/O is suspend from few seconds to few minutes.
-* restoring a backup create a new RDS instance. you cannot restore to an existing db instance.
+* restoring a backup create a new RDS instance. You cannot restore to an existing db instance.
 
     !!!tip "retain DB Parameter Group and SG. Inbound rules should allow the connection using the DB port"
 
@@ -118,7 +119,7 @@ Monitoring
 
 * RDS sends metrics to `CloudWatch`
 * 15-18 metrics based on the instance class (CPU, free storage space, network traffic, database connections and IOPS)
-* [**Performance Insights**](https://console.aws.amazon.com/rds/home?region=us-east-1#performance-insights-v20206:) is a free database performance dashboard, but it is not available for db.t2 instances. Only Aurora, MySql and PostgreSql support.
+* [**Performance Insights**](https://console.aws.amazon.com/rds/home?region=us-east-1#performance-insights-v20206:) is a free database performance **dashboard**, but it is not available for db.t2 instances. Only Aurora, MySql and PostgreSql support.
 * AWS RDS Events to be notified when events occurs
 
 Script to test monitoring:
@@ -351,11 +352,11 @@ DynamoDB auto scaling uses the AWS **Application Auto Scaling** service to dynam
 
 DynamoDB allows for the storage of large text and binary objects, but there is a limit of **400 KB** for the combined Value and Name
 
-* There’s no DynamoDB Read Replicas (Read Replicas are an RDS concept).
 * Data is stored on SSDs (Solid State Drives).
+* There’s no DynamoDB Read Replicas (Read Replicas are an RDS concept).
 * DynamoDB provide automatic replication across AZs. It is a regional service, there is no need to explicitly create a multi-AZ deployment.
-* Amazon DynamoDB global tables provide a fully managed solution for deploying a multiregion, **multi-master** database, without having to build and maintain your own replication solution.
-* DynamoDB is distributed across 3 geographically distinct datacentres by default
+* DynamoDB global tables provide a fully managed solution for deploying a multiregion, **multi-master** database, without having to build and maintain your own replication solution.
+* DynamoDB is distributed across 3 geographically distinct datacenters by default
 * **DAX** (DynamoDB Accelerator) is an advanced DynamoDB with **caching**
 * There will always be a charge for:
     1. provisioning read and write capacity 
@@ -370,6 +371,8 @@ Consistency types (database will not be consistent in one moment, but it will be
     * global secondary indexes not supported
     * use of more throughput capacity
 
+Amazon **DynamoDB Streams** captures a time-ordered sequence of item-level **modifications** in any DynamoDB table and stores this information in a **log** for up to 24 hours. Applications can access this log and view the data items as they appeared before and after they were modified, in near-real time.
+
 Create DynamoDB table:
 
 1. `Create a table` instead of a database
@@ -379,12 +382,13 @@ Create DynamoDB table:
 
 Quick start to [Deploy an Amazon Redshift data warehouse on the AWS Cloud for big data and analytics](https://aws.amazon.com/quickstart/architecture/amazon-redshift/)
 
-* **Amazon's Data WareHousing** database (columnar data store) used for **OLAP** (OnLine Analytics Processing)
-* Used for Business Intelligence
+* **Amazon's Data WareHousing** database (**columnar** data store) used for **OLAP** (OnLine Analytics Processing)
+* relational db used for Business Intelligence
 * availabled in 1 AZ
 * single node of 160 gb up to 160tb
 * $0.25 per hour or $1.000 per Tb per year
 * RedShift can also improve performance for repeat queries by caching the result. AWS ElastiCache is NOT required
+* Using Amazon **Redshift Spectrum**, you can efficiently query and retrieve structured and semistructured data from files in Amazon S3 without having to load the data into Amazon Redshift tables.
 
 security:
 
@@ -399,15 +403,15 @@ Improve performance with **in-memory cache** for the most common queries:
 
 * Memcached
     * Simplest model for implementation. 
-    * hight performance. 
     * It does not offer a native encryption service
     * does not offer persistence
+    * there is no data replication or high availability
 * **Redis** 
-    * (muti AZ) 
+    * multiAZ 
     * Pub/Sub
     * Sorted Sets 
-    * In-Memory Data Store
     * HIPPA or PCI-DSS **compliance**
+    * Redis AUTH command to require a password to access the database
 
 !!!important "ElastiCache is only a key-value store and cannot therefore store relational data."
 

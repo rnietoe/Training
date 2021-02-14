@@ -1,55 +1,74 @@
 # 3. Network
 
-* **ENI** - Elastic Network Interface - virtual network card or adapter attached to an AWS EC2 instance for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more. ENI can be attached to an instance:
+* **ENI** (Elastic Network Interface): virtual network card or adapter attached to an AWS EC2 instance for basic networking. It can include multiple attributes, such as security groups, IPv6 and IPv4 addresses, MAC addresses, and more. ENI can be attached to an instance:
     * when it’s running (**hot attach**)
     * when it’s stopped (**warm attach**)
     * when the instance is being launched (**cold attach**)
     * Multiple ENIs connected to a single instance allows **dual-homing**
-    * ENIs are assocated with a subnet
-* **ENA** - Enhanced Networking Adapter - use **SR-IOV** (Single Root I/O Virtualization) to provide high-performance networking capabilities on supported instance types. 
+    * ENIs are associated with a subnet
+* **ENA** (Enhanced Networking Adapter): use **SR-IOV** (Single Root I/O Virtualization) to provide high-performance networking capabilities on supported instance types.   
+    * There is no additional charge
     * speed is between 10 and 100 Gbps requirement
-* **EFA** - Elastic Fabric Adapter - machine learning or **HPC** (High Performance Computing) requirement
+* **EFA** (Elastic Fabric Adapter): machine learning or **HPC** (High Performance Computing) requirement
 
 ## VPC
 
-An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/)
-
-192.168 is the network and 0.1 is the host  
+An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/). 192.168 is the network and 0.1 is the host  
 
 DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addresses where required within the VPC
 
 [Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) copies network traffic from an ENI and sends it wherever you want it to go
 
 * **`AWS VPC`** (Virtual Private Cloud) is like a logical datacenter in AWS. A VPC is an isolated portion of the AWS cloud dedicated to a single AWS account where you can launch AWS resources. You define a VPC’s IP address space from ranges you select (10.0.0.0/16).
+    * every AWS account has a default VPC in each region. AWS recomends not deleting them
+
+    ![](img/VPC-default.PNG)
+    
+    * You can have up to **5** non-default VPCs per account and region, but you can place a support request to increase the number.
+
+    ![](img/VPC-non-default.PNG)
+
 * **Subnets** are segments of a VPC’s IP address range where you can place groups of isolated resources (10.0.1.0/24).
     * 1 subnet = 1 AZ
     * each default subnet is a public subnet (DMZ). Each instance that you launch into a default subnet has a public IPv4 address and a private IPv4 address
     * each nondefault subnet has a private IPv4 address, but no public IPv4 address
-    * a public subnet within a VPC is one that has at least one route in its routing table that uses an Internet Gateway (IGW).
-    * You can enable internet access for an instance launched into a nondefault subnet by attaching an internet gateway to its nondefault VPC and associating an Elastic IP address with the instance.
+    * a public subnet within a VPC is one that has at least one route in its routing table that uses an **IGW** (Internet Gateway).
+    * You can enable internet access for an instance launched into a nondefault subnet by attaching an IGW to its nondefault VPC and associating an Elastic IP address with the instance.
         * EIP (**Elastic IP**) are public IP addresses from the VPC
         * EIP are permnently allocated to you account untill released
-        * EIP has a price, so the account is charged untill release
+        * EIP has a price, so the account is charged untill released
         * ENIs consume EIPs
         * EIPs can be moved between instances in the same region.
         * Creating an Elastic IP address and associate it with your EC2 instance would be the simplest way to make your instance reachable from the outside world.
 * **Route tables** are a set of rules, called routes, that are used to determine where network traffic is directed.
 * **Internet Gateway** allow communication between your VPC and the internet. An IG serves two purposes: to provide a target in your VPC route tables for internet-routable traffic, and to perform network address translation (NAT) for instances that have been assigned public IPv4 addresses
     * 1 VPC = 1 IG
-* **egress-only internet gateway** allows IPv6 based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.
+    
+    ![](img/VPC-IG.PNG)
+
+* **egress-only internet gateway** allows **IPv6** based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.
 * **VPN** reuses existing VPN equipment and processes, and reuse existing internet connections.
-* **VPG** (Virtual Private Gateway) is the VPN concentrator on the Amazon side of the Site-to-Site VPN connection.
-* **CWG** (customer GateWay) is a resource that is installed on the customer side of the Site-to-Site VPN connection.
+* **VPG** (Virtual Private Gateway) is the VPN concentrator on the Amazon side of the VPN connection.
+    * you can use in combination with Direct Connect to encrypt all data that traverses the Direct Connect link
+* **CWG** (customer GateWay) is a resource that is installed on the customer side of the VPN connection.
+
+    ![](img/VPC-VPN.PNG)
+
 * **VPC peering** creates a connection between two VPCs using same or different accounts and regions.
     * No transitive: VPC peering only routes traffic between source and destination VPCs.
     * no transitive peering VPC-A <=> VPC-B <=> VPC-C ... VPC-A <> VPC-C  
     * owner role required
     * RTs must be configured with the destination VPC and the origin (target) VPC peering.
     * You can create a VPC peering connection between your own VPCs, or with a VPC in another AWS account.
-* **VPC Endpoints**: connections that enables **private** connectivity to services hosted in AWS, based on region and service name, from within your VPC without using an Internet Gateway, VPN, Network Address Translation (NAT) devices, or firewall proxies.
+
+![](img/VPC-peering.PNG)
+
+* **VPC Endpoints**: connections that enables **private** connectivity to services hosted in AWS, based on region and service name, from within your VPC without using an IG, VPN, NAT devices or firewall proxies.
     * Interface endpoints ([private links](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html))
     * Gateway Load Balancer endpoints
     * Gateway endpoints
+
+    ![](img/VPC-endpoint.PNG)
 
 VPC pricing:
 
@@ -59,13 +78,31 @@ VPC pricing:
 
 Some **scans** can be performed without alerting AWS, some require you to alert, such as Penetration Testing
 
-every aws account has a default VPC in each region. AWS recomends not deleting them
+* Once a VPC is set to Dedicated hosting, it can be changed back to default hosting via the CLI, SDK or API. 
+* Note that this will not change hosting settings for existing instances, only future ones. 
+* Existing instances can be changed via CLI, SDK or API modifying the `Instance Placement` attribute but need to be in a stopped state to do so.
 
-You can have up to **5** non-default VPCs per account and region, but you can place a support request to increase the number.
+### VPC endpoints
 
-Once a VPC is set to Dedicated hosting, it can be changed back to default hosting via the CLI, SDK or API. Note that this will not change hosting settings for existing instances, only future ones. Existing instances can be changed via CLI, SDK or API modifying the `Instance Placement` attribute but need to be in a stopped state to do so.
+A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by **AWS PrivateLink** without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
 
+VPC endpoint is a service that replace NAT gateway and allow connections from the private subnet to other AWS services, such as S3 
 
+* Interface endpoints: ENI (Elastic Network Interface) with private IP as entry point
+* **Gateway endpoints** support S3 and DynamoDB
+* **ClassicLink** allows you to link EC2-Classic instances to a VPC in your account, within the same Region.
+
+![](img/vpc-endpoints.PNG)
+
+1. `Create Endpoint` from VPC : Endpoints
+2. select service `com.amazonaws.us-east-2.s3`, our VPC, our main route table and the full access policy
+    * the update in the route table could take some time
+
+To open up our apps to other VPCs, we can try:
+
+* Open up the VPC to the internet, but everything will be public
+* you can use VPC peering. However, many relationships could be required
+* **AWS Private Link** peers many VPCs. They only require a NLB on the AWS VPC and a ENI on the customer VPC
 
 ### How to create a VPC
 
@@ -126,15 +163,16 @@ Once a VPC is set to Dedicated hosting, it can be changed back to default hostin
 
 ### NAT instances
 
-* [NAT instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) (Network Address Transaction) are single EC2 instances.
-* a NAT instance allows you to get your private subnets communicate out to the internet without becaming public
+* [NAT (Network Address Transaction) instances](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html) are single EC2 instances.
+* A NAT instance allows you to get your private subnets communicate out to the internet without becaming public
 * `source/destination checks` on the NAT instance must be disabled to allow the sending and receiving traffic for the private instances
+
+Create a NAT instance:
 
 1. Launch EC2 instance choosing `Amazon Linux 2 AMI 2.0.20201126.0 x86_64 HVM gp2` from `Community AMIs`
 2. Select rnietoeVPC and public subnet
 3. Select WebDMZ as SG and the same key pair
-4. Select EC2 instance and clic on actions : networking : `change source/destination check`
-and disable all the traffic it sends and receives, as NAT instance requirement
+4. Select EC2 instance and clic on actions : networking : `change source/destination check` to disable all the traffic it sends and receives, as NAT instance requirement
     ```shell
     aws ec2 modify-instance-attribute --instance-id=i-0cdece2dd619e009b --no-source-dest-check
     ```
@@ -154,6 +192,7 @@ We have created a small VM that will not work for thouthands of EC2 instances.
 * not need to patch
 * not associated with SGs
 * no need to disable source/destination check
+* impose a limit of 45 Gbps
 
 ![](img/vpc-nat-gateway.PNG)
 
@@ -169,22 +208,19 @@ To use a NAT gateway, create one in a public subnet and assign it an Elastic IP 
     yum install mysql -y 
     ```
 
-NAT Gateway is used for enabling Internet connectivity using the **IPv4** protocol only. use an egress-only Internet Gateway for **IPv6**
+NAT Gateway is used for enabling Internet connectivity using the **IPv4** protocol only. Remember to use an egress-only Internet Gateway for **IPv6**
 
 ### Network ACLs
 
 ![](img/sg_vs_nacl.png)
 
-* network ACLs are stateless (outbound traffic must be specified)
 * Block IP addresses using NACL instead of SG
-* NACLs act on the subnet level, while SGs act on the instance level.
-* NACL rule number defined precedence
 * Default NACL allow all traffic?????????????????
+* All inbound rules are denied by default???????????????
 
 Create Network ACL:
 
-1. All inbound rules are denied by default???????????????
-2. Create a Web page in the EC2 WebServer and check the valid connection:
+1. Create a Web page in the EC2 WebServer and check the valid connection:
 ```shell
 service httpd status # Unit httpd.service could not be found
 sudo su
@@ -215,7 +251,7 @@ nano index.html
 yum update -y # it should works again```
 ```
 
-Each network ACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn't match any of the other numbered rules, it's denied. You can't modify or remove this rule:
+Each NACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn't match any of the other numbered rules, it's denied. You can't modify or remove this rule:
     
     100 All Traffic Allow 
     200 All Traffic Deny 
@@ -256,7 +292,7 @@ How to configure VPC FlowLogs:
     * specify the filter with all the traffic
     * set Maximum aggregation interval to 1 min
     * set flow log data destination as CloudWatch Logs
-    * select  the destination log group as VPCFlowLogs
+    * select the destination log group as VPCFlowLogs
     * `set up permissions` to define the IAM role that has permission to publish to the Amazon CloudWatch log group. Create new role as flowlogsRole with the following policy:
     ```json
     {
@@ -353,63 +389,30 @@ For high availability:
 
 Dedicated line from on premise to AWS to improve the (VPN) network connection (security and performance) from 1 Gbps to 10 Gbps
 
+![](img/VPC-directconnect.PNG)
+
 Delivery times (for installation) are usually longer than 1 month, so Direct Connect cannot be used to migrate data within the deadlines
 
 1. `Create virtual interface` from AWS Direct Connect : Virtual interfaces as Public
 2. `Create Customer Gateway` from VPC : Customer Gateways
 3. `Create Virtual Private Gateway` from VPC : Virtual Private Gateways
     * attach the VPG to the VPC
-4. `Create VPN Connection` from VPC : Site-to-Site VPN Connections using the VPG and Customer Gateway
+4. `Create VPN Connection` from VPC : VPN Connections using the VPG and Customer Gateway
 5. Set up the VPN on the customer gateway
 
 [How do I configure a VPN over AWS Direct Connect?](https://www.youtube.com/watch?v=dhpTTT6V1So&feature=youtu.be)
 
-### Global Accelerator
+**`AWS Direct Connect Gateway`** is used to connect to VPCs across multiple AWS regions.
 
-**`AWS Global Accelerator`** uses the AWS global network to route TCP and UDP traffic to a healthy application endpoints in the closest AWS Region to the user to improves the availability and performance of your EC2 instances or ELB (ALB and NLB) for local or global users. It is not used for improving Amazon S3 performance.
-
-1234567890abcdef.awsglobalaccelerator.com
-
-1. `Create accelerator` from AWS Global Accelerator 
-2. Add a **listener** to checks for connection requests that arrive to an assigned set of static IP addresses on a port or port range that you specify. (80, 443)
-    * Leave client affinity setting as none
-3. Add **endpoint groups** where the accelerator direct traffic to from one or more listeners. An endpoint group includes endpoints, such as load balancers.
-4. Add **endpoints** to each endpoint group
-    * Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses.
-5. two static IP addresses are assigned.
-
-Disable Global Accelerator before removing is required
-
-**Network zones** are simliar to AZs. They are isolated units with their own set of physical infrastructure and service IP addresses from a unique IP subnet. If one IP address from a network zone becomes unavailable, due to network disruptions or IP address blocking by certain client networks, your client applications can retry using the healthy static IP address from the other isolated network zone.
-
-### VPC endpoints
-
-VPC endpoint is a service that replace NAT gateway and allow connections from the private subnet to other AWS services, such as S3 
-
-![](img/vpc-endpoints.PNG)
-
-* Interface endpoints: ENI (Elastic Network Interface) with private IP as entry point
-* Gateway endpoints support S3 and DynamoDB
-
-1. `Create Endpoint` from VPC : Endpoints
-2. select service `com.amazonaws.us-east-2.s3`, our VPC, our main route table and the full access policy
-    * the update in the route table could take some time
-
-Interface VPC endpoints (AWS PrivateLink)
-
-### AWS Private Link
-
-To open up our apps to other VPCs, we can try:
-
-* if open up the VPC to the internet. everything will be public
-* you can use **VPC peering**. However, many relationships will be required
-* AWS Private Link peers many VPCs. They only require a NLB on the AWS VPC and a ENI on the customer VPC
-
-**ClassicLink** allows you to link EC2-Classic instances to a VPC in your account, within the same Region.
+![](img/VPC-directconnect-gateway.PNG)
 
 ### Transit Gateway
 
 TGW (Transit GateWay) is a network transit hub that interconnects attachments (VPCs and VPNs) within the same account or across accounts. 
+
+![](img/transit-gateway.PNG)
+
+You can manage a single connection for multiple VPCs or VPNs that are in the same Region by associating a Direct Connect gateway to a transit gateway
 
 * Cross region is allowed
 * support **IP multicast**
@@ -417,6 +420,28 @@ TGW (Transit GateWay) is a network transit hub that interconnects attachments (V
 ### VPN CloudHub
 
 AWS VPN CloudHub manage multiple sites into your VPC with own VPN connections
+
+### Global Accelerator
+
+**`AWS Global Accelerator`** uses the AWS global network to route TCP and UDP traffic to a healthy application endpoints in the closest AWS Region to the user to improves the availability and performance of your **EC2** instances or **ELB** (ALB and NLB) for local or **global users**. 
+
+![](img/global-accelerator.PNG)
+
+!!!danger "It is not used for improving Amazon S3 performance."
+
+1. `Create accelerator` from AWS Global Accelerator 
+2. Add a **listener** to checks for connection requests that arrive to an assigned set of static IP addresses on a port or port range that you specify. (80, 443)
+    * Leave client affinity setting as none
+3. Add **endpoint groups** where the accelerator direct traffic to from one or more listeners. An endpoint group includes endpoints, such as load balancers.
+4. Add **endpoints** to each endpoint group
+    * Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses.
+5. **two static IP addresses** are assigned.
+
+1234567890abcdef.awsglobalaccelerator.com
+
+Disable Global Accelerator before removing is required
+
+**Network zones** are simliar to AZs. They are isolated units with their own set of physical infrastructure and service IP addresses from a unique IP subnet. If one IP address from a network zone becomes unavailable, due to network disruptions or IP address blocking by certain client networks, your client applications can retry using the healthy static IP address from the other isolated network zone.
 
 ## Route 53
 
@@ -447,7 +472,7 @@ Routing Policies:
 * **Geoproximity** Routing: traffic based on the users' and resources' location. Available in traffic **flow-only** mode using **bias**
 * **Multivalue Answer** Routing, similar to simple routing, but using health checks on each record sets to serve traffic to **random** web servers
 
-It can be used to load balance however it does not have the ability to route based on information in the incoming request path.
+Route 53 can be used to load balance however it does not have the ability to route based on information in the incoming request path.
 
 Using Route53:
 

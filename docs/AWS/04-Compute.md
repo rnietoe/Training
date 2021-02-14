@@ -84,10 +84,11 @@ Tenancy:
 	* **implicit** for the owner only (default)
 * AMI are based on region, OS, architecture (32 or 64 bits), launch permissions and storage for the root volume (EBS or **Instance store** - ephemeral storage.
 	* An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host computer. Instance store is ideal for temporary storage of information that changes frequently, such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers.
-	* **Instance store** is physically attached to the EC2 instance and provides the lowest latency and highest IOPS
+	* **Instance store** provides the lowest latency and highest IOPS
 	* EC2 instance with **Instance Store** can't be stopped
 	* Reboot does not cause the data to be deleted on an **instance store** volume
 	* **Instance Store** does not appear in the AWS EC2 Volume list
+	* cannot be shared between instances
 * To use **hibernation**, the root volume must be an encrypted EBS volume and RAM must be less than 150gb
 
 AWS does not copy launch permissions, tags, or SG rules from the source AMI to the new AMI. 
@@ -326,6 +327,8 @@ languages supported:
 * c#
 * Go
 * Python
+ 
+The Lambda console provides encryption helpers (for environment variables for example) that leverage AWS KMS to store that sensitive information as Ciphertext.
 
 lambda python sample:
 
@@ -376,5 +379,7 @@ triggered in a html:
 ## Batch
 
 **`AWS Batch`** enables you to easily and efficiently run batch computing **jobs** of any scale on AWS using on-demand and Spot EC2.
+
+An AWS Batch **multi-node parallel job** is compatible with any framework that supports IP-based, internode communication, such as Apache MXNet, TensorFlow, Caffe2, or **MPI** (Message Passing Interface).
 
 like hangfire??

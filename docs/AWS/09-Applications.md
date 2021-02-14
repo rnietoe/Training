@@ -1,5 +1,9 @@
 # 9. Applications
 
+## Amazon MQ
+
+Amazon MQ is a managed **message broker** service based on the MQTT protocol for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers on AWS. Amazon MQ reduces your operational responsibilities by managing the provisioning, setup, and maintenance of message brokers for you. Because Amazon MQ connects to your current applications with industry-standard APIs and protocols, you can easily migrate to AWS without having to rewrite code.
+
 ## SQS (Simple Queue Service)
 
 **pull** based service to store messages in a queue to **decouple** the components of an application
@@ -9,26 +13,21 @@
 
 You can't convert an existing standard queue into a FIFO queue. To make the move, you must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue. 
 
-**retention period**: the message can remain in the queue for **14 days**
+More features:
 
-**visibility timeout**: time while message is invisible during processing. maximum VisibilityTimeout is **12 hours**. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds
-
-**long polling**: retrieve messages from SQS queues, reducing the number of empty responses
-    setting `ReceiveMessageWaitTimeSeconds` default value = 0 ?
-
-attribute `DelaySeconds`: When a new message is added to the SQS queue, it will be hidden from consumer instances for a fixed period.
-
-attribute `WaitTimeSeconds`: When the consumer instance polls for new work, the SQS service will allow it to wait a certain time for one or more messages to be available before closing the connection.
-
-Duplicate messages occur when a consumer does not complete its message processing and the visibility timeout of the message expires, making it visible for another consumer to obtain. Increasing the visibility timeout to enable the consumer processing to complete, will prevent duplicate messages.
-
-SQS service guarantees a message will be delivered at least once.
-
+* **retention period**: the message can remain in the queue for **14 days**
+* **visibility timeout**: time while message is invisible during processing. maximum VisibilityTimeout is **12 hours**. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds
+    * Duplicate messages occur when a consumer does not complete its message processing and the visibility timeout of the message expires, making it visible for another consumer to obtain. Increasing the visibility timeout to enable the consumer processing to complete, will prevent duplicate messages.
+* **long polling**: retrieve messages from SQS queues, reducing the number of empty responses
+    * setting `ReceiveMessageWaitTimeSeconds` default value = 0 ?
+* attribute `DelaySeconds`: When a new message is added to the SQS queue, it will be hidden from consumer instances for a fixed period.
+* attribute `WaitTimeSeconds`: When the consumer instance polls for new work, the SQS service will allow it to wait a certain time for one or more messages to be available before closing the connection.
+* SQS service guarantees a message will be delivered at least once.
 * automatically scales
 * messages can be up to 256kb
 * multiAZ
 
-metrics for auto scaling with SQS:
+Metrics for auto scaling with SQS:
 
 * backlog per instance
 * acceptable backlog per instance
@@ -37,18 +36,14 @@ metrics for auto scaling with SQS:
 
 ## SNS (Simple Notification Service)
 
-!!!danger "Amazon SNS is a better solution than SQS when you need to notify multiple AWS services"
-
 **push** based web service to send messages/notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer
 
-use the publish-subscribe mechanism based on topics, called pub/sub messaging
+!!!danger "Amazon SNS is a better solution than SQS when you need to notify multiple AWS services"
 
-group multiple recipients using **topics** (a place to put some messages) 
-
-An ARN (Amazon Resource Name) is created when you create a topic on Amazon SNS
-
-**DLQ** (Deed Letter Queue) is supported in SNS, SQS and Lambda
-
+* use the publish-subscribe mechanism based on topics, called pub/sub messaging
+* group multiple recipients using **topics** (a place to put some messages) 
+* An ARN (Amazon Resource Name) is created when you create a topic on Amazon SNS
+* **DLQ** (Deed Letter Queue) is supported in SNS, SQS and Lambda
 * messages can be up to 256kb
 * multiAZ: messages are stored across multiple AZ to prevent lost
 
@@ -175,7 +170,7 @@ support pararell processing
 
 ## SAM (Serverless Application Model)
 
-CloudFormation extension optimized for serverless functions, APIs and tables. it can run locally with docker
+**CloudFormation extension** optimized for serverless functions, APIs and tables. it can run locally with docker
 
 `Transform` tag
 

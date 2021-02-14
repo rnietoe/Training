@@ -31,13 +31,14 @@ S3 classes order by pricing:
 2. **S3 Standard - IA** (Infrequently Accessed). Availability of 99.9%
 3. **S3 One Zone - IA** (when multiple AZ not required) . costs is 20% less than S3 Standard-IA
 4. **S3 RRS** (Reduce Redundancy Storage). Availability of 99.5%. RRS is the only S3 Class that does not offer 99.999999999% **durability**. Durability is "only" 99.99%
-5.  **S3 Glacier** (low cost storage. Retrieval times from 3 minutes to 12 hours). archives stored in vaults(as buckets) with AES 256-bit encryption
-    * Expedited access within 3-5 min
-    * Standard access within 3-5 hours
-    * Bulk access within 5-12 hours
+5.  **S3 Glacier** (low cost storage. Retrieval times from 1 minute to 12 hours). archives stored in vaults(as buckets) with AES 256-bit encryption
+    * **Expedited** access within 1-5 min
+    * **Standard** access within 3-5 hours
+    * **Bulk** access within 5-12 hours
     * Up to 5% retrieved at no change
     * **S3 Glacier Vault Lock Policy**: compliance controls for S3 Glacier with a Vault Lock policy. The policy can no longer be changed
     * Only empty vaults can be deleted
+
 6. **S3 Glacier Deep Archive** : lowest-cost. 
     * Retrieval time of 12 hours is acceptable.
     * minimum storage duration of 180 days. 
@@ -45,6 +46,7 @@ S3 classes order by pricing:
 Enhanced features:
 
 * **S3 - Intelligent Tiering**, using machine learning to move files to the most cost-effective access tier. It does not make sense to use S3 standard. Instead, use S3 - Intelligent Tiering to save money
+    * You cannot transition from Intelligent Tiering to Standard-IA.
 * **S3 Batch Operations** create jobs to enable automatic actions
 * **S3 on Outposts** store customer data generated on-premises before moving it to an AWS Region.
 * **S3 Objetc lock** use **WORM** model (objects are Written Once and Read Many) during bucket creation. Objects (the whole bucket or individual files) became unmodificable and undeletable:
@@ -91,6 +93,7 @@ More features:
     * quick recovery from network issues
     * improved throughput
     * allow pause and resume object uploads.
+* Uploading using a **pre-signed URL** allows you to upload the object without having any AWS security credentials/permissions. Pre-signed URLs can be generated programmatically and anyone who receives a valid pre-signed URL can then programmatically upload an object. This solution bypasses the web server avoiding any performance bottlenecks.
 * [General S3 FAQs](https://aws.amazon.com/s3/faqs/)
 
 To upload a file larger than 160 GB, use the AWS CLI, AWS SDK, or Amazon S3 REST API.
@@ -156,7 +159,7 @@ S3 Performance:
 * no supported on windows instances
 * Data is stored across multiple AZ's within a region
 
-EFS lifecycle policy to move files to **EFS IA** (Infrequent Access)
+EFS lifecycle policy to move files to **EFS IA** (Infrequent Access) after a file has not been accessed for a specified period of time with options up to **90 days**.
 
 EFS provides shared volume across multiple EC2 instances, while EBS can be attached to a single volume within the same AZ.
 
@@ -192,7 +195,7 @@ Built to scale on demand to petabytes without disrupting applications.
 **`AWS EBS`** (Elastic Block Storage) is like a virtual hard disk in the cloud. This is a **block** service used for **durable** storage in EC2 instances and again has no connection to S3.
 
 * EBS cannot be shared by two EC2 instances
-* EBS volume can be attached to any EC2 instance in the same AZ
+* EBS volume can be attached to any EC2 instance in the same AZ (**no multiAZ**)
 * EBS volume attached as an additional disk (not the root volume) can be detached without stopping the instance
 * EBS snapshots use **incremental** backups and are stored in S3
 * By default, the **DeleteOnTermination** attribute is set to True for the root volume, and is set to False for all other volume types.
@@ -234,6 +237,7 @@ EBS Provisioned IOPS io1 volumes can be mounted to 16 nitro instances using **mu
 
 * AWS FSx for **windows file server** provides resilient storage for Windows instances
     * Based on **SMB** (Windows Server Message Block)
+    * integrates with Windows file shares, not with Amazon S3.
 * AWS FSx for **Lustre**
     * Optimised file system
     * can store data on S3
