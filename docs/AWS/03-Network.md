@@ -13,7 +13,7 @@
 
 ## VPC
 
-An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/). 192.168 is the network and 0.1 is the host  
+An interactive IP address and CIDR range visualizer [here](https://cidr.xyz/). network is 192.168 while host is 0.1  
 
 DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addresses where required within the VPC
 
@@ -47,7 +47,7 @@ DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addre
     ![](img/VPC-IG.PNG)
 
 * **egress-only internet gateway** allows **IPv6** based traffic within a VPC to access the internet, whilst denying any internet based resources to connection back into the VPC.
-* **VPN** reuses existing VPN equipment and processes, and reuse existing internet connections.
+* **VPN** reuses existing VPN equipment and processes, and reuse existing internet connections (IPsec).
 * **VPG** (Virtual Private Gateway) is the VPN concentrator on the Amazon side of the VPN connection.
     * you can use in combination with Direct Connect to encrypt all data that traverses the Direct Connect link
 * **CWG** (customer GateWay) is a resource that is installed on the customer side of the VPN connection.
@@ -65,8 +65,6 @@ DHCP (Dynamic Host Configuration Protocol) will be used to provide dynamic addre
 
 * **VPC Endpoints**: connections that enables **private** connectivity to services hosted in AWS, based on region and service name, from within your VPC without using an IG, VPN, NAT devices or firewall proxies.
     * Interface endpoints ([private links](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html))
-    * Gateway Load Balancer endpoints
-    * Gateway endpoints
 
     ![](img/VPC-endpoint.PNG)
 
@@ -215,8 +213,7 @@ NAT Gateway is used for enabling Internet connectivity using the **IPv4** protoc
 ![](img/sg_vs_nacl.png)
 
 * Block IP addresses using NACL instead of SG
-* Default NACL allow all traffic?????????????????
-* All inbound rules are denied by default???????????????
+* [default NACL](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#default-network-acl) allows all traffic to flow in and out.
 
 Create Network ACL:
 
@@ -486,6 +483,11 @@ ipconfig /flushdns # to remove saved ip from cache from the client side
 ```
 
 !!!danger "With Route 53, there is a default limit of **50** domain names. However, this limit can be increased by contacting AWS support"
+
+Record types at the zone apex uses to point the DNS name of the Application Load Balancer are:
+
+* Alias with an **A** type record set.
+* Alias with an **AAAA** type record set.
 
 ## API Gateway
 

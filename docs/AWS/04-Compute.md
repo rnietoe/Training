@@ -43,11 +43,12 @@ Change the instance type required stopping the instance previously.
 * **On Demand**: low cost, paying by hour or second. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it. Sample: when **task run uninterrupted** from start to finish
 * **Reserved**: the most economical option for **long-term workloads** with predictable usage patterns. Contract terms are 1 to 3 years. It includes different discounts
 	* **Standard** Reserved instances (75% off on demand instances). 
+	* **Convertible** Reserved instances (54%)
+	* **Schedule** Reserved instances, based on times
 	
 	!!!danger "Standard Reserved Instances cannot be moved between regions: You can choose if a Reserved Instance applies to either a specific AZ, or an entire Region, but you cannot change the region."
 
-	* **Convertible** Reserved instances (54%)
-	* **Schedule** Reserved instances, based on times
+
 * **Spot**: taket advantage of **unused** EC2 capacity. It can accept interruptions. Used for various stateless, fault-tolerant, or flexible applications such as big data, containerized workloads, CI/CD, web servers, HPC (high-performance computing), and other test & development workloads. Extra charge when you terminate the instance
     * Spot Instances are available at up to a 90% discount compared to On-Demand prices.
 	* It is possible that your Spot Instance is terminated before the warning can be made available.
@@ -283,13 +284,20 @@ eb deploy # to deploy updates to the applications
 Connect to the EC2 instance and [get instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html) to get information about an instance using ip address **169.254.169.254**:
 
 ```shell
-curl http://169.254.169.254/latest/user-data
-curl http://169.254.169.254/latest/user-data > bootstrap.txt
-cat bootstrap.txt
-
 curl http://169.254.169.254/latest/meta-data
 curl http://169.254.169.254/latest/meta-data/local-ipv4
 curl http://169.254.169.254/latest/meta-data/public-ipv4
+```
+
+You can pass two types of user data to Amazon EC2: 
+
+* shell scripts 
+* cloud-init directives.
+
+```shell
+curl http://169.254.169.254/latest/user-data
+curl http://169.254.169.254/latest/user-data > bootstrap.txt
+cat bootstrap.txt
 ```
 
 ## Lambda

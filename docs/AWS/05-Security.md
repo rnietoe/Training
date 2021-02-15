@@ -108,7 +108,7 @@ Amazon Resource Name
 
 !!!tip "If you can do in the aws console, you are the responsible"
 
-* **`Amazon Inspector`** to anayze and report security issues on EC2, but it can not examine individual policies
+* **`Amazon Inspector`** performs vulnerability analysing and reporting **security issues** on EC2, but it can not examine individual policies
 * **`Trusted Advisor`** for **recomendations** and advices (not only EC2 instances). It helps you optimize cost, fault-tolerance, and more.
 * **`CloudTrail`** track user **activity** and API usage
 * **`CloudWatch`** monitoring **performance**
@@ -116,7 +116,7 @@ Amazon Resource Name
 * **`Athena`** serverless service for **querying** data in S3 using SQL. Commonly used to analyse logs. It will work with a number of data formats including JSON, Apache Parquet, Apache ORC amongst others, but **XML** is not a format that is supported. 
 * **`Macie`** uses Machine learning to protect **sensitive data** (Personally Identifiable Information) stored in S3
 
-* `Personal Health Dashboard` helps you to inspect account alerts and find remediation guidance for your account
+* `Personal Health Dashboard` provides alerts and remediation guidance when AWS is experiencing events that may impact you. (for example, a service has gone down). Also it helps you to inspect account alerts and find remediation guidance for your account
 * `Service Health Dashboard` displays the general status of AWS services
 
 ## WAF (Web Application Firewall)
@@ -263,3 +263,11 @@ this runs automatic checks to scan for compliance with regulations and laws
 * **`AWS GuardDuty`** is a IDS (intrusion detection system)
 * **`AWS Inspector`** performs vulnerability analysis
 * **`AWS Macie`** provides S3 bucket policy compliance scans for sensitive data
+
+## AWS STS (Security Token Service)
+
+Provide trusted users with temporary security credentials that can control access to your AWS resources.
+
+Temporary security credentials work almost identically to the long-term access key credentials that your IAM users can use, with the following differences: Temporary security credentials are short-term, as the name implies. They can be configured to last for anywhere from a few minutes to several hours. After the credentials expire, AWS no longer recognizes them or allows any kind of access from API requests made with them. Temporary security credentials are not stored with the user but are generated dynamically and provided to the user when requested. When (or even before) the temporary security credentials expire, the user can request new credentials, as long as the user requesting them still has permissions to do so. 
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html
+

@@ -15,7 +15,9 @@ Load Balancing algorithms:
 
 [ELB types](https://aws.amazon.com/elasticloadbalancing/features/?nc1=h_ls):
 
-* ALB (**Application** Load Balancers) for intelligent routing - HTTP/HTTPS (layer 7)
+* ALB (**Application** Load Balancers) for intelligent routing - HTTP/HTTPS (layer 7)	
+	* **path patterns** are listener with rules to foward requests based on the **URL path**
+	* forward requests based on the **host field** in the HTTP header
 * NLB (**Network** Load Balancers) for extreme performance and static IPs - TCP/TLS (layer 4)
 	* You can passthrough encrypted traffic with an NLB (and terminate the SSL on the EC2 instances as all data in transit encryption requirement)
 * CLB (**Classic** Load Balancers) for classic/**old/legacy** EC2 instantes or test/dev environments - low cost - HTTP/HTTPS/TCP (layers 4 and 7)
@@ -31,7 +33,6 @@ Supported services:
 
 Some features:
 
-* **path patterns** are listener with rules to foward requests based on the **URL path**
 * Error **504** means gateway timeout
 * **X-Forwarded-For** header is used to get the IPv4 address of end users
 * **sticky sessions** bind a **user's session** to a specific EC2 instance. All user requests during the session are sent to the same intance (CLB) or target group (ALB)
@@ -77,7 +78,7 @@ How to use application load balancer
 
 Creating an Auto Scaling group using: 
 
-* a launch template: needed to use Dedicated Hosts and more features that can't be achieved with launch configurations.
+* a launch template: needed to use Dedicated Hosts and more features that can't be achieved with launch configurations. A launch template also allows you to have multiple **versions** of a template. 
 * a launch configuration
 * the Amazon EC2 launch wizard
 * using an EC2 instance
@@ -99,3 +100,5 @@ A scaling **cooldown** helps you prevent your EC2 Auto Scaling group from launch
 !!!error "the error "you must use a fully formed launch template" means the launch template is missing some information" 
 
 !!!error "a second error can be not having enough permssions to launch EC2 instances..."
+
+The instance launched from the oldest launch configuration will be terminated first using the Default Termination Policy

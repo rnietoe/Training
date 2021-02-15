@@ -205,6 +205,8 @@ Your AWS account has default quotas/limits for each AWS service and **region**.
 
 Service Quotas is an AWS service that helps you manage your quotas for over **100 AWS services**, from one location. Along with looking up the quota values, you can also request a quota increase from the Service Quotas console.
 
+one quota is a vCPU-based on-demand instance limit per region.
+
 ## Workspaces
 
 **`Amazon WorkSpaces`** provides users with a virtual desktop experience (linux or windows7, windows 10) in the cloud that can be accessed from any connected device to multiple applications
@@ -265,6 +267,12 @@ build and **test** code in the cloud
 ### CodeDeploy
 
 Automate Code Deployment
+
+[Blue/Green deployment on an AWS Lambda compute platform](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html#blue-green-lambda-compute-type)
+
+* **Canary**: Traffic is shifted in two increments.
+* **linear**: Traffic is shifted in equal increments with an equal number of minutes between each increment.
+* **all-at-once**: All traffic is shifted from the original Lambda function to the updated Lambda function version all at once.
 
 ### CodePipeline
 

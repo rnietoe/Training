@@ -50,9 +50,8 @@ Enhanced features:
 * **S3 Batch Operations** create jobs to enable automatic actions
 * **S3 on Outposts** store customer data generated on-premises before moving it to an AWS Region.
 * **S3 Objetc lock** use **WORM** model (objects are Written Once and Read Many) during bucket creation. Objects (the whole bucket or individual files) became unmodificable and undeletable:
-
-* Governance mode: some users are grant with permissions to alter settings or delete the object version
-* Compliance mode: objects version cannot be modified or deleted, even by the root user
+    * Governance mode: some users are grant with permissions to alter settings or delete the object version
+    * Compliance mode: objects version cannot be modified or deleted, even by the root user
 
 More features:
 
@@ -195,6 +194,7 @@ Built to scale on demand to petabytes without disrupting applications.
 **`AWS EBS`** (Elastic Block Storage) is like a virtual hard disk in the cloud. This is a **block** service used for **durable** storage in EC2 instances and again has no connection to S3.
 
 * EBS cannot be shared by two EC2 instances
+    * EBS Provisioned IOPS io1 volumes can be mounted to 16 nitro instances using **multi-attach** which is a new feature and has several constraints.
 * EBS volume can be attached to any EC2 instance in the same AZ (**no multiAZ**)
 * EBS volume attached as an additional disk (not the root volume) can be detached without stopping the instance
 * EBS snapshots use **incremental** backups and are stored in S3
@@ -230,8 +230,6 @@ Although there is no direct way to encrypt an existing unencrypted volume or sna
 ```shell
 aws ec2 create-snapshot # create a snapshot of an EBS volume
 ```
-
-EBS Provisioned IOPS io1 volumes can be mounted to 16 nitro instances using **multi-attach** which is a new feature and has several constraints.
 
 ## FSx (File Systems)
 

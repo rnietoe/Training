@@ -15,12 +15,15 @@ Some features:
 
 * Enable deletion protection: delete require this feature disabled first
 * **Multi-AZ** for disaster recovery and **high availability**. By default in production RDS. Primary host replicates to a secondary host when failover. 
+    * Synchronous replication
     * Enable multiAZ impact to the RDS instance if running
+    * The **CNAME** is switched from the primary db instance to the secondary if the primary database fails to preserve high availability
+    * a failover typically complete within 1 to 2 minutes
 * There is no **multi-region RDS**.
 * RDS Auto Scaling does not exist
 * Backup retention from 0 days (disable) to **35 days**
 * Writes are only made to the primary database
-* **Read Replicas** for performance improvement. Quering read replica can have a delay of less than a minute. They are usefull when:
+* **Read Replicas** for performance improvement, no HA. Quering read replica can have a delay of less than a minute (**Asynchronous replication**). They are usefull when:
     * excess read traffic
     * source db unavailable
     * reporting and data warehousing
@@ -28,8 +31,9 @@ Some features:
     * hosting a cross region with lower latency
     * MS SQL Server cannot be read replica
     * `Create read replica` from the RDS instance (must have **backups** turned on and check the option **Public** accesible)
-    * A read replica can be promoted as a standalone instance. Note that the promotion process is irreversible.  
+    * A read replica can be promoted as a standalone instance, but this is a manual procedure. Note that the promotion process is irreversible.     
     * You cannot create an encrypted Read Replica from an unencrypted master DB instance
+    * You can have up to 5 read replicas per master, each with its own DNS endpoint.
 * Use of **AWS EBS** volumes for database and log storage. Only Aurora uses its **storage system**.
 * We can manage RDS instances (CPU and Memory) using AWS CLI, AWS RDS API or management console.  
 * RDS run on VM, but login is not allowed.
@@ -377,6 +381,8 @@ Create DynamoDB table:
 
 1. `Create a table` instead of a database
 2. Set table name and primary key
+
+[Export, Import, Query, and Join Tables in DynamoDB Using Amazon Elastic MapReducer](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/EMRforDynamoDB.html)
 
 ## RedShift 
 
