@@ -1,0 +1,1414 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Training Documentation">
+      
+      
+      
+        <meta name="author" content="Rafael Nieto Esteve">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.1">
+    
+    
+      
+        <title>8. Databases - rnietoe training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#8-databases" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="rnietoe training" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              rnietoe training
+            </span>
+            <span class="md-header-nav__topic">
+              
+                8. Databases
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="rnietoe training" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rnietoe training
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Training index" class="md-nav__link">
+      Training index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      AWS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        AWS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
+      AWS Architect
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01-Introduction/" title="1. Introduction" class="md-nav__link">
+      1. Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02-Storage/" title="2. Storage" class="md-nav__link">
+      2. Storage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03-Network/" title="3. Network" class="md-nav__link">
+      3. Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04-Compute/" title="4. Compute" class="md-nav__link">
+      4. Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05-Security/" title="5. Security" class="md-nav__link">
+      5. Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06-Management/" title="6. Management and Governance" class="md-nav__link">
+      6. Management and Governance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07-Architecture/" title="7. Hight Availability Architecture" class="md-nav__link">
+      7. Hight Availability Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        8. Databases
+      </label>
+    
+    <a href="./" title="8. Databases" class="md-nav__link md-nav__link--active">
+      8. Databases
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rds" class="md-nav__link">
+    RDS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-an-rds-instance-postgresql" class="md-nav__link">
+    How to create an RDS instance (PostgreSQL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-secured-rds-instance" class="md-nav__link">
+    How to create a secured RDS instance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-an-rds-instance-for-wordpress" class="md-nav__link">
+    How to create an RDS instance for WordPress
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-fault-tolerance-wordpress-app" class="md-nav__link">
+    How to create a fault-tolerance wordpress app
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-aurora" class="md-nav__link">
+    Amazon Aurora
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aurora-serverless" class="md-nav__link">
+    Aurora Serverless
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamodb" class="md-nav__link">
+    DynamoDB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redshift" class="md-nav__link">
+    RedShift
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticache" class="md-nav__link">
+    ElastiCache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-databases" class="md-nav__link">
+    Graph Databases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../09-Applications/" title="9. Applications" class="md-nav__link">
+      9. Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10-Media/" title="10. Media" class="md-nav__link">
+      10. Media
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      CloudFormation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-12">
+        CloudFormation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../CloudFormation/06-CloudFormation/" title="CloudFormation" class="md-nav__link">
+      CloudFormation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/1-Git-Essential-Training_The-Basics/" title="Git Essential Training: The Basics" class="md-nav__link">
+      Git Essential Training: The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/2-Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-nav__link">
+      Git: Branches, Merges, and Remotes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/3-Git-Intermediate-Techniques/" title="Git Intermediate Techniques" class="md-nav__link">
+      Git Intermediate Techniques
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      React
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        React
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Building-React-and-ASP.NET-Core-Applications/" title="Building React and ASP.NET Core Applications" class="md-nav__link">
+      Building React and ASP.NET Core Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Become a React Developer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Become a React Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/1-Learning-React-js/" title="Learning React.js" class="md-nav__link">
+      Learning React.js
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/2-React.js-Essential-Training/" title="React.js Essential Training" class="md-nav__link">
+      React.js Essential Training
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-nav__link">
+      Web Security: OAuth and OpenID Connect
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rds" class="md-nav__link">
+    RDS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-an-rds-instance-postgresql" class="md-nav__link">
+    How to create an RDS instance (PostgreSQL)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-secured-rds-instance" class="md-nav__link">
+    How to create a secured RDS instance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-an-rds-instance-for-wordpress" class="md-nav__link">
+    How to create an RDS instance for WordPress
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-create-a-fault-tolerance-wordpress-app" class="md-nav__link">
+    How to create a fault-tolerance wordpress app
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-aurora" class="md-nav__link">
+    Amazon Aurora
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aurora-serverless" class="md-nav__link">
+    Aurora Serverless
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamodb" class="md-nav__link">
+    DynamoDB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redshift" class="md-nav__link">
+    RedShift
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticache" class="md-nav__link">
+    ElastiCache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-databases" class="md-nav__link">
+    Graph Databases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/08-Databases.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="8-databases">8. Databases<a class="headerlink" href="#8-databases" title="Permanent link">&para;</a></h1>
+<h2 id="rds">RDS<a class="headerlink" href="#rds" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS RDS</code></strong> (Relational Database Service): </p>
+<ul>
+<li><strong>MS SQL Server</strong> (port 1433) (up to 16TB of storage when using the Provisioned IOPS and General Purpose SSD storage)</li>
+<li><strong>Oracle</strong>. Includes license model (BYOL - Bring your own license)</li>
+<li><strong>MariaDB</strong></li>
+<li><strong>MySQL</strong> (port 3306)</li>
+<li><strong>PostgreSQL</strong> (port 5432)</li>
+<li><strong>Amazon Aurora</strong>. MySQL and PostgreSQL compatibility. <strong>No free</strong> tier. This is up to 5X <strong>faster</strong> than a traditional MySQL database</li>
+</ul>
+<p>Some features: </p>
+<ul>
+<li>Enable deletion protection: delete require this feature disabled. if enable, modify to disable first</li>
+<li><strong>Multi-AZ</strong> for disaster recovery and <strong>high availability</strong>. By default in production RDS. Primary host replicates to a secondary host when failover. Enable multiAZ impact to the RDS instance if running
+<div class="codehilite"><pre><span></span>host -t NS database_endpoint <span class="c1"># Query DNS Records on Linux</span>
+nslookup database_endpoint <span class="c1"># Query DNS Records on Windows</span>
+</pre></div></li>
+<li>There is no <strong>mulit-region RDS</strong>. AWS does have multi-AZ RDS.</li>
+<li>Backup retention from 0 days (disable) to <strong>35 days</strong></li>
+<li><strong>Read Replicas</strong> for performance improvement. Quering read replica can have a delay of less than a minute. They are usefull when:<ul>
+<li>scaling due to excess read traffic</li>
+<li>source db unavailable</li>
+<li>reporting and data warehousing</li>
+<li>disaster recovery</li>
+<li>hosting a cross region with lower latency</li>
+<li>MS SQL Server cannot be read replica</li>
+<li><code>Create read replica</code> from the RDS instance (must have <strong>backups</strong> turned on and check the option <strong>Public</strong> accesible)</li>
+<li>A read replica can be promoted as a standalone instance. Note that the promotion process is irreversible.  </li>
+</ul>
+</li>
+<li>Use of <strong>AWS EBS</strong> volumes for database and log storage. Only Aurora uses its <strong>storage system</strong>.</li>
+<li>We can manage RDS instances (CPU and Memory) using AWS CLI, AWS RDS API or management console.  </li>
+<li>RDS run on VM, but login is not allowed.</li>
+<li>Patching RDS is Amazon's responsability</li>
+</ul>
+<p>Scaling</p>
+<ul>
+<li>vertical scaling (storage, CPU, memory or network) with a new RDS instance of DB instance class. Instance may shutdown<ul>
+<li>multiAZ takes more time for vertical scaling, but RDS is shutted down less time than working on a single AZ</li>
+</ul>
+</li>
+<li>horizontal scaling with read replicas</li>
+<li>scaling with AWS EBS storage</li>
+</ul>
+<p>Backup options</p>
+<ul>
+<li>backups in S3 are stored in an RDS own bucket. </li>
+<li>backup is for the db host, not only the databases.</li>
+<li>only the differences are stored in the new snapshot.</li>
+<li>in multiAZ there should not be impact. In single AZ, I/O is suspend from few seconds to few minutes.</li>
+<li>
+<p>restoring a backup create a new RDS instance. you cannot restore to an existing db instance.</p>
+<div class="admonition tip">
+<p class="admonition-title">retain DB Parameter Group and SG. Inbound rules should allow the connection using the DB port</p>
+</div>
+</li>
+<li>
+<p>Backup types:</p>
+<ul>
+<li><strong>automated</strong> backup: in a multiAZ scenario, data is backed up dialy taking a snapshot from the EBS volume of the secondary RDS instance <ul>
+<li>scheduled window</li>
+<li>retention</li>
+<li>data can be restored to point in time on intervals of <strong>5 minutes</strong> based on <strong>transactions logs</strong>. </li>
+</ul>
+</li>
+<li><strong>manual</strong> snapshots. <code>Take DB Snapshot</code> from RDS instance<ul>
+<li>kept till deleted</li>
+<li>only recommended before large changes</li>
+<li>we can copy snapshot to different regions (crossregion copy)</li>
+<li>we can share snapshots as public or private with other aws accounts</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>To mitigate the slow restore process:</p>
+<ul>
+<li>Restore a RDS instance with high I/O capacity</li>
+<li>Maximize the I/O during the restore process</li>
+</ul>
+<p>Pricing</p>
+<ul>
+<li>DB Engine and version</li>
+<li>License model</li>
+<li>DB Engine class</li>
+<li>Multi-AZ: the price is twice</li>
+<li>
+<p>Storage type and allocation</p>
+</li>
+<li>
+<p>Instance hours</p>
+</li>
+<li>Database Storage: EBS VS Aurora</li>
+<li>Size of bakcup storage</li>
+<li>Data transfer out</li>
+<li>Data transferred between AZs for replication of Multi-AZ deployments is free</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Reserve instance when long terms for both Multi-AZ and Single-AZ configurations</p>
+</div>
+<p>Security</p>
+<ul>
+<li>Network isolation, using VPC:<ul>
+<li>Private subnet</li>
+<li>Security group (firewall)</li>
+<li>Public accessibility (turn off)</li>
+<li>ClassicLink</li>
+<li><strong>Direct Connect</strong>: dedicated line from on premise to AWS to improve the network connection</li>
+<li>VPC Peering</li>
+</ul>
+</li>
+<li>IAM for access control:<ul>
+<li>Do not use AWS root credentials</li>
+<li>IAM for RDS management</li>
+<li>MFA for extra level of protection</li>
+<li>Integrated security<ul>
+<li>Active directory for SQL Server</li>
+<li>IAM Authentication MySQL, PostgreSQL, Aurora</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Encryption at Rest:</p>
+<ul>
+<li>must be defined at creation or restoration time</li>
+<li>it is free to encrypt data using KMS (Key Management System) and AES-256</li>
+<li>encryption is replicated to all nodes, backups and snapshots</li>
+<li>cannot decrypt once encrypted</li>
+<li>
+<p>two tier encryption: enable key rotation</p>
+<p><img alt="" src="../img/rds-encryption.PNG" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>SSL for db conectivity  </p>
+</li>
+</ul>
+<p>Monitoring</p>
+<ul>
+<li>RDS sends metrics to <code>CloudWatch</code></li>
+<li>15-18 metrics based on the instance class (CPU, free storage space, network traffic, database connections and IOPS)</li>
+<li><a href="https://console.aws.amazon.com/rds/home?region=us-east-1#performance-insights-v20206:"><strong>Performance Insights</strong></a> is a free database performance dashboard, but it is not available for db.t2 instances. Only Aurora, MySql and PostgreSql support.</li>
+<li>AWS RDS Events to be notified when events occurs</li>
+</ul>
+<p>Script to test monitoring:
+<div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">scale_data</span> <span class="p">(</span>
+   <span class="n">section</span> <span class="nb">NUMERIC</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+   <span class="n">id1</span>     <span class="nb">NUMERIC</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+   <span class="n">id2</span>     <span class="nb">NUMERIC</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">scale_data</span>
+<span class="k">SELECT</span> <span class="n">sections</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">gen</span><span class="p">.</span><span class="o">*</span>
+     <span class="p">,</span> <span class="n">CEIL</span><span class="p">(</span><span class="n">RANDOM</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span> 
+<span class="k">FROM</span> <span class="n">GENERATE_SERIES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>     <span class="n">sections</span><span class="p">,</span>
+       <span class="n">GENERATE_SERIES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">900000</span><span class="p">)</span> <span class="n">gen</span>
+<span class="k">WHERE</span> <span class="n">gen</span> <span class="o">&lt;=</span> <span class="n">sections</span> <span class="o">*</span> <span class="mi">3000</span><span class="p">;</span>
+</pre></div></p>
+<h3 id="how-to-create-an-rds-instance-postgresql">How to create an RDS instance (PostgreSQL)<a class="headerlink" href="#how-to-create-an-rds-instance-postgresql" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Download <a href="https://www.postgresql.org/ftp/pgadmin/pgadmin4/v4.27/windows/">pgAdmin</a> and install -&gt; <a href="http://127.0.0.1:54689/browser">http://127.0.0.1:54689/browser</a></li>
+<li>Create a VPC using the wizard:<ul>
+<li>Select VPC with Public and Private Subnets</li>
+<li>Select all default settings but Elastic IP Allocation ID. If not found, copy and paste</li>
+</ul>
+</li>
+<li>
+<p>Configure RDS subnet groups:</p>
+<ul>
+<li>Create DB Subnet groups (public and private)</li>
+</ul>
+<div class="admonition error">
+<p class="admonition-title">DB Subnet Group doesn't meet AZ coverage requirement. Please add subnets to cover at least 2 AZs. Current coverage: 1</p>
+</div>
+<ul>
+<li>Create a new public (10.0.2.0/24) and private (10.0.3.0/24) subnets in a different AZ. Then try to create the subnet group again</li>
+<li>Edit route table association for the two new subnets. private subnets with NAT and public subnets with IGW (internet gateway)</li>
+</ul>
+</li>
+<li>
+<p>From <code>RDS</code>, click <code>Create Database</code> button</p>
+</li>
+<li>Select PostgreSQL engine type, previous to last version, free tier template, db.t2.micro as db instance class, no multi-AZ</li>
+<li>Select the VPC created above and the public subnet group. <strong>Public access</strong></li>
+<li><strong>Security groups are required for publicly accessible databases</strong>. Create new VPC security group, so port 5432 will be opened to allow the PostgreSQL access.</li>
+<li>Run pgAdmin and create a new server Lab1 using the RDS endpoint as hostname (<code>mypostgresql.cmr9irlg1qe3.us-east-1.rds.amazonaws.com</code>), and the user and pwd</li>
+</ol>
+<p><img alt="" src="../img/PostgreSQL.PNG" /></p>
+<div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_data</span> <span class="p">(</span>
+   <span class="n">section</span> <span class="nb">NUMERIC</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+   <span class="n">id1</span>     <span class="nb">NUMERIC</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+   <span class="n">id2</span>     <span class="nb">NUMERIC</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test_data</span>
+<span class="k">SELECT</span> <span class="n">sections</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">gen</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">CEIL</span><span class="p">(</span><span class="n">RANDOM</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span> 
+  <span class="k">FROM</span> <span class="n">GENERATE_SERIES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="n">sections</span><span class="p">,</span>
+       <span class="n">GENERATE_SERIES</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span> <span class="n">gen</span>
+ <span class="k">WHERE</span> <span class="n">gen</span> <span class="o">&lt;=</span> <span class="n">sections</span> <span class="o">*</span> <span class="mi">3000</span><span class="p">;</span>
+</pre></div>
+
+<h3 id="how-to-create-a-secured-rds-instance">How to create a secured RDS instance<a class="headerlink" href="#how-to-create-a-secured-rds-instance" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>Create a *parameter group*</code> from RDS with family postgres10 named PostgresSSL.</li>
+<li>
+<p>Edit PostgresSSL <strong>parameter group</strong> to enable and enforce ssl (ssl and rds.force_ssl = 1)</p>
+<div class="admonition warning">
+<p class="admonition-title">Encryption at rest is not enabled for a db.t2.micro, so a dev/test RDS is required</p>
+</div>
+</li>
+<li>
+<p>Set No Public Accessible and enable encryption</p>
+</li>
+<li>Edit SG rules filling our private subnet (10.0.1.0/24 and 10.0.3.0/24) as source for PostgreSQL type</li>
+<li>From IAM, create a new Lambda Role using policy <code>AWSLambdaVPCAccessExecutionRole</code> named LambdaVPC</li>
+<li>From Lambda, <code>create function</code> called ConnectSecureRDS with runtime as node.js 10.x and LambdaVPC role </li>
+<li>Select our VPC with private subnets and the SG already edited with inbound/outbound rules filling our private subnet (10.0.1.0/24 and 10.0.3.0/24) as source for PostgreSQL type</li>
+<li>
+<p>Upload the .zip file for the function code:</p>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">)</span> <span class="c1">// import node.js Postgres library</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>   
+
+  <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">()</span>
+
+  <span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
+
+  <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">&#39;SELECT $1::text as message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">],</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="o">?</span> <span class="nx">err</span><span class="p">.</span><span class="nx">stack</span> <span class="o">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">message</span><span class="p">)</span> <span class="c1">// Hello World!</span>
+    <span class="nx">client</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>    
+    <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+<li>
+<p>Edit Environment variables </p>
+<ul>
+<li>PGHOST=RDS instance endpoint</li>
+<li>PGUSER=acgrds</li>
+<li>PGPASSWORD=test123123</li>
+<li>PGDATABASE=ACGRDS</li>
+<li>PGSSLMODE=require</li>
+</ul>
+</li>
+<li>Test the lambda function</li>
+<li>Change VPC and test again</li>
+<li>Change VPC subnet and test again.</li>
+<li>Remove PGSSLMODE variable and test again.</li>
+</ol>
+<h3 id="how-to-create-an-rds-instance-for-wordpress">How to create an RDS instance for WordPress<a class="headerlink" href="#how-to-create-an-rds-instance-for-wordpress" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>Create Database</code> from <code>RDS</code>.</li>
+<li>Select MySQL engine type, free tier template (without Multi-AZ) and fill the database name (db instance identifier)</li>
+<li>
+<p>Set initial db name in the additional configuration. </p>
+<ul>
+<li>If you do not specify a database name, Amazon RDS does not create a database.</li>
+<li>When creating an RDS instance, you can select the AZ into which you deploy it.</li>
+<li>automated backups are enabled by default, till <strong>35</strong> days</li>
+</ul>
+</li>
+<li>
+<p>Create a new EC2 instance with our WebDMZ security group, our key pair and the following advanced details:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+yum install httpd php php-mysql -y
+amazon-linux-extras install -y php7.2
+<span class="nb">cd</span> /var/www/html
+wget https://wordpress.org/wordpress-5.4.1.tar.gz
+tar -xzf wordpress-5.4.1.tar.gz
+cp -r wordpress/* /var/www/html/
+rm -rf wordpress
+rm -rf wordpress-5.4.1.tar.gz
+chmod -R <span class="m">755</span> wp-content
+chown -R apache:apache wp-content
+service httpd start
+chkconfig httpd on
+</pre></div>
+
+</li>
+<li>
+<p>Allow connection between EC2 and RDS clicking on defult VPC security group, <code>inbound rules</code>, edit to add a rule with:</p>
+<ul>
+<li>MySQL/Aurora type</li>
+<li>protocol TCP </li>
+<li>port 3306</li>
+<li>WebDMZ security group</li>
+</ul>
+</li>
+<li>
+<p>Browse to the EC2 public IP and see the wordpress home page. Fill db name, user name, pwd and RDS endpoint (rnietoe.cmr9irlg1qe3.us-east-1.rds.amazonaws.com)</p>
+</li>
+<li>
+<p>Create the wp-config.php file manually:</p>
+<div class="codehilite"><pre><span></span>ssh ec2-user@52.87.161.80 -i rnietoe.pem
+<span class="nb">cd</span> /var/www/html
+nano wp-config.php
+<span class="c1"># here paste wp-config.php from the wordpress home page. Ctrl+X to save it</span>
+</pre></div>
+
+</li>
+<li>
+<p>From the wordpress home page, <code>Run the installation</code>, fill the same credentials and <code>Install WordPress</code></p>
+</li>
+<li>Login to wordpress</li>
+<li>Configure a ELB target group to set WordPress settings URL with a DNS address instead of a public IP</li>
+</ol>
+<p>Finally we create a EC2 instance image, like a <strong>snapshot</strong>. this is called <strong>AMI</strong> (Amazon Machine Image)</p>
+<h3 id="how-to-create-a-fault-tolerance-wordpress-app">How to create a fault-tolerance wordpress app<a class="headerlink" href="#how-to-create-a-fault-tolerance-wordpress-app" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create <code>Launch Configuration</code> named MyLaunchConfigurationGroup</li>
+<li>select AMI MyworkPressTemplate</li>
+<li>select instance type t2.micro</li>
+<li>
+<p>advance settings:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+yum update -y
+</pre></div>
+
+</li>
+<li>
+<p>select our Security group (virtual firewall) and key pair</p>
+</li>
+<li>
+<p>Create <code>Auto Scaling Group</code> named MyAutoScalingGroup</p>
+</li>
+<li>Select MyLaunchConfigurationGroup</li>
+<li>Select all subnets (AZ)</li>
+<li>Enable ELB and select my target group</li>
+<li>Scale between 2 and 3 instances (group size)</li>
+<li>Set a scaling policy. for example, when CPU is 90%</li>
+<li>notifications and tags not required here</li>
+<li>Select the <strong>ASG</strong> (Auto Scaling Group) created and see the <code>Activity</code> tab. Two instances are created. </li>
+<li>Browse to the ELB DNS adress and create new post in wordpress . Delete instances, wait ASG create new instances and check the post is still there</li>
+</ol>
+<h2 id="amazon-aurora">Amazon Aurora<a class="headerlink" href="#amazon-aurora" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Multi-Region</strong> deployment will best ensure <strong>global availability</strong>.</li>
+<li>Hight performance with a low cost. 2-3x faster thant postgreSQL and 5x faster than MySQL</li>
+<li>Move <strong>Logging</strong> and <strong>Storage</strong> layers into a multi tented scale out database optimized service</li>
+<li>Storage <strong>from 10gb to 64tb</strong></li>
+<li>Max of 32 CPUs and 244 GiB RAM</li>
+<li>Continuous backup to S3</li>
+<li>Aurora DB Cluster till 15 read-replicas<ul>
+<li><strong>Cluster</strong> endpoint connection allow <strong>write</strong> operations</li>
+<li><strong>Reader</strong> endpoint connection allow <strong>read</strong> operations</li>
+<li><strong>Custom</strong> endpoint connection allow <strong>load balancer</strong></li>
+<li><strong>Instance</strong> endpoint connection to a <strong>specific instance</strong></li>
+</ul>
+</li>
+<li>Aurora global databases<ul>
+<li>primary region - read and write</li>
+<li>secondary region - read only. Promoted when failure</li>
+</ul>
+</li>
+<li>Aurora store by default 6 copies of my data (3x2). Default availability is a minimum of 3 AZs with 2 db copies in each one</li>
+</ul>
+<p>Create Amazon Aurora database with PostgreSQL compatibility from <code>RDS</code> </p>
+<ul>
+<li>Three instances are created:<ul>
+<li>regional - with writer and read endpoints</li>
+<li>writer</li>
+<li>reader</li>
+</ul>
+</li>
+<li>Create aurora read replica from actions (writer and reader node) </li>
+</ul>
+<h3 id="aurora-serverless">Aurora Serverless<a class="headerlink" href="#aurora-serverless" title="Permanent link">&para;</a></h3>
+<ul>
+<li>You specify the minimum and maximum amount of resources needed, and Aurora scales the capacity based on database load. This is a good option for <strong>intermittent or unpredictable workloads</strong>.</li>
+<li>only an endpoint is created</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c1">//test lambda function</span>
+<span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mysql&#39;</span><span class="p">);</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
+    <span class="nx">host</span>     <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">user</span>     <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">password</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span>
+  <span class="p">});</span> 
+
+  <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Connected!&quot;</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">connection</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;SELECT &#39;Hello World!&#39;;&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">succeed</span><span class="p">(</span><span class="s1">&#39;Success&#39;</span><span class="p">);</span>
+  <span class="p">});</span>    
+<span class="p">};</span>
+</pre></div>
+
+<h2 id="dynamodb">DynamoDB<a class="headerlink" href="#dynamodb" title="Permanent link">&para;</a></h2>
+<p>DynamoDB (Non Relational Databases - <strong>faster</strong> due to small transactions) is a key-value and document database that delivers single-digit millisecond performance at any scale.</p>
+<p>DynamoDB auto scaling uses the AWS <strong>Application Auto Scaling</strong> service to dynamically adjust provisioned throughput capacity on your behalf, in response to actual traffic patterns.</p>
+<p>DynamoDB allows for the storage of large text and binary objects, but there is a limit of <strong>400 KB</strong> for the combined Value and Name</p>
+<ul>
+<li>Data is stored on SSDs (Solid State Drives).</li>
+<li>DynamoDB provide automatic replication across AZs. It is a regional service, there is no need to explicitly create a multi-AZ deployment.</li>
+<li>DynamoDB is distributed across 3 geographically distinct datacentres by default</li>
+<li><strong>DAX</strong> (DynamoDB Accelerator) is an advanced DynamoDB</li>
+<li>There will always be a charge for:<ol>
+<li>provisioning read and write capacity </li>
+<li>the storage of data: $0.25Gb per month</li>
+</ol>
+</li>
+</ul>
+<p>Consistency types (database will not be consistent in one moment, but it will be in another moment):</p>
+<ul>
+<li>Eventual consistent reads (default) sample of 2 seconds  </li>
+<li>Strongly consistent reads. sample of less than 1 second. some disadvantages such as :<ul>
+<li>read might not be available if there is a network delay or outage</li>
+<li>higher latency</li>
+<li>global secondary indexes not supported</li>
+<li>use of more throughput capacity</li>
+</ul>
+</li>
+</ul>
+<p>Create DynamoDB table:</p>
+<ol>
+<li><code>Create a table</code> instead of a database</li>
+<li>Set table name and primary key</li>
+</ol>
+<h2 id="redshift">RedShift<a class="headerlink" href="#redshift" title="Permanent link">&para;</a></h2>
+<p>Quick start to <a href="https://aws.amazon.com/quickstart/architecture/amazon-redshift/">Deploy an Amazon Redshift data warehouse on the AWS Cloud for big data and analytics</a></p>
+<ul>
+<li><strong>Amazon's Data WareHousing</strong> database (columnar data store) used for <strong>OLAP</strong> (OnLine Analytics Processing)</li>
+<li>Used for Business Intelligence</li>
+<li>availabled in 1 AZ</li>
+<li>single node of 160 gb up to 160tb</li>
+<li>$0.25 per hour or $1.000 per Tb per year</li>
+</ul>
+<p>security:</p>
+<ul>
+<li>SSL transit encryption</li>
+<li>AES-256 storage encryption usin AWS KMS</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">not suited for streaming data</p>
+</div>
+<h2 id="elasticache">ElastiCache<a class="headerlink" href="#elasticache" title="Permanent link">&para;</a></h2>
+<p>Improve performance with <strong>in-memory cache</strong> for the most common queries:</p>
+<ul>
+<li>Memcached. Simplest model for implementation. hight performance. It does not offer a native encryption service</li>
+<li><strong>Redis</strong> (muti AZ) <ul>
+<li>Pub/Sub</li>
+<li>Sorted Sets </li>
+<li>In-Memory Data Store</li>
+<li>HIPPA or PCI-DSS <strong>compliance</strong></li>
+</ul>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">ElastiCache is only a key-value store and cannot therefore store relational data.</p>
+</div>
+<h2 id="graph-databases">Graph Databases<a class="headerlink" href="#graph-databases" title="Permanent link">&para;</a></h2>
+<p>Amazon Neptune</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../07-Architecture/" title="7. Hight Availability Architecture" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                7. Hight Availability Architecture
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../09-Applications/" title="9. Applications" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                9. Applications
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Rafael Nieto Esteve
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.8e03edeb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
