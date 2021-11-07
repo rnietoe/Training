@@ -9,7 +9,7 @@ Least privilege (pesimist) security: denies override allows
     * You can use password rotation
     * You may have a 3rd party device that uses **BioMetrics** to initiate and exchange of the password or secret key with AWS, but that is not an AWS IAM service
 
-2. Create `developer` user (AKIAQKS24ZJGHHB23MVF AYqu5iF2F+JIvnxszxUWtmq4pwHgdnmY7Vs+Ywt3)
+2. Create `developer` user (AKIAQKS24ZJGHHB23MVF)
 
     !!!Tip "Use username and password in the AWS console. Use key pair in the AWS API and CLI"
 
