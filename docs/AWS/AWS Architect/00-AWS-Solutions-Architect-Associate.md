@@ -1,4 +1,4 @@
-# AWS Architect
+# AWS Solutions Architect Associate
 
 [AWS Well-Architected Framework](https://wa.aws.amazon.com/index.en.html):
 
