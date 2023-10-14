@@ -43,6 +43,7 @@ logig - logic**al**
 value - valu**able**  
 access - access**ible**  
 science - scientific - scientists | ciencia - cientifico (adj) - cientificos (noum)  
+sadist - sadist**ic**  skp
 product - produce - product**ive**  
 effect - effect**ive**  
 proof - prove - proven  
@@ -110,3 +111,8 @@ https://www.britishcouncil.es/blog/false-friends
 ## True cognates
 
 https://eingleses.com/true-cognates-cognados-en-ingles/
+
+## Inversion
+
+https://www.rubenvalero.com/learningenglish/grammar-notes/grammar-notes-c1/inversion/
+

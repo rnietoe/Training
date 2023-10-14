@@ -50,3 +50,36 @@ ENSURE I ANSWERS THE QUESTION
 | -------------  | --------------| ------------- |
 | past           | present       | future        |
 | **didn't** have to | **don't** have to | **won't** have to |
+
+# Contrast linkers
+
+https://www.bilbaoschool.com/grammar-section-contrast-linkers/
+
+, **But** | , pero  
+. **However**, **Nevertheless** | . Sin embargo,  
+**While**, **Whereas** | mientras  
+**Despite**, **In spite of**  + -ing | a pesar de   
+**Despite the fact that** | a pesar de  
+**Although**, **Even Though**, **Though** | Aunque  
+**Even if** | Incluso aunque  
+**On the other hand** | Por el contrario
+
+# Linking expressions
+
+* Además, Tambien
+    * A the beginning
+        * Also
+        * Furthermore
+        * Besides
+        * As well as that
+        * In addition
+    * At the end
+        * too
+        * as well
+
+# be / get used to
+
+* usually - **present** - negative and questions (acostumbrar)
+* used (didn't use) to + infinitive - **past**| i used to play footbal (acostumbraba a)
+* be used to + noum OR -ing | i am used to working in these bad conditions (estar acostumbrado a)
+* get used to + noum OR -ing | she will get used to living in Siberia (llegar a acostumbrarse a)
