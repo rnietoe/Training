@@ -12,4 +12,8 @@
 
 [B2 First Free Computer-based sample tests](https://cambridge-exams.ch/exams-and-certifications/cambridge/preparation/b2-first#for-students)
 
+For a video tutorial and opportunity to try a practice test go to https://www.cambridge-exams.ch/exams/CB_exams.php
+
 [B2 First exam exercises tenidiomas](https://tenidiomas.englishexamslab.com/en/members/2-b2-first-b2-first/exam-exercises/)
+
+[English-Zone.com](https://www.english-zone.com/)

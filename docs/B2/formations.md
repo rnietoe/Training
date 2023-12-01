@@ -96,12 +96,12 @@ moral - **im**moral
 https://www.britishcouncil.es/blog/false-friends 
 
 | Español     | Palabra correcta en inglés | Falso amigo inglés                                    |
-| ----------- | -------------------------- | ----------------------------------------------------- |
+|-------------|----------------------------|-------------------------------------------------------|
 | Simpático   | Friendly, likeable         | Sympathetic (comprensivo, empatico)                   |
 | Extranjero  | Foreigner                  | Stranger (desconocido, extraño)                       |
 | Sensato     | Sensible                   | Sensitive (sensible, delicado)                        |
 | Sensible    | Sensitive                  | Sensible (sensato, razonable)                         |
-| Actualmente | Currently                  | Actually (de hecho)                                   |
+| Actualmente | Currently                  | Actually (de hecho -> muestra enfasis)                |
 | Fábrica     | Factory                    | Fabric (tela, tejido)                                 |
 | Discutir    | Argue                      | Discuss (hablar de, analizar, intercambiar opiniones) |
 | Embarazada  | Pregnant                   | Embarrassed (avergonzado)                             |
@@ -116,3 +116,13 @@ https://eingleses.com/true-cognates-cognados-en-ingles/
 
 https://www.rubenvalero.com/learningenglish/grammar-notes/grammar-notes-c1/inversion/
 
+verb     | noum                                         | adjetive
+---------|----------------------------------------------|-------------------------
+compete  | competitors, competition, competence         | competitive
+believe  | belief                                       | believable, unbelievable
+consider | consideration                                | considerable
+limit    | limit, limitation                            | limited, limiting
+minimize | minimum,minimalist                           | minimal, minimum
+identify | identification                               | identified
+         | possibility                                  | possible
+         | character, characterization, characteristics | characterised

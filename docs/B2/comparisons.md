@@ -1,17 +1,4 @@
-# Compare the pictures
 
-* it looks **far more** bored **than**... | mucho mas aburrido que...  
-* it looks **nowhere near as** stressful **as**... | no tan estresante como...  
-* it **isn't quite as** happy as ... | no tan feliz como...  
-* **the more annoyed** he will | más se enojará probablemente  
-* it **doesn't look as** comfortable as | No se ve tan cómoda como...  
-* he will arrrive **much later than** he wanted to
-
-whereas | mientras, aunque
-while | mientras, aunque
-whilst | mientras
-whilst also | a la vez que, al mismo tiempo que
-however | sin embargo
 
 # Modal verbs
 
@@ -59,12 +46,24 @@ https://www.bilbaoschool.com/grammar-section-contrast-linkers/
 . **However**, **Nevertheless** | . Sin embargo,  
 **While**, **Whereas** | mientras  
 **Despite**, **In spite of**  + -ing | a pesar de   
+Despite being a relatively small country ...   
 **Despite the fact that** | a pesar de  
 **Although**, **Even Though**, **Though** | Aunque  
 **Even if** | Incluso aunque  
+Even so  
 **On the other hand** | Por el contrario
 
-# Linking expressions
+# Purpose linkers
+
+in order to
+often to
+
+# Reason linkers
+
+due to  
+because of that
+
+# addition linkers
 
 * Además, Tambien
     * A the beginning
@@ -77,9 +76,10 @@ https://www.bilbaoschool.com/grammar-section-contrast-linkers/
         * too
         * as well
 
-# be / get used to
+# used to / be used to / get used to
 
 * usually - **present** - negative and questions (acostumbrar)
-* used (didn't use) to + infinitive - **past**| i used to play footbal (acostumbraba a)
+* used (didn't use) to + infinitive - **past**| I used to play footbal (acostumbraba a)
 * be used to + noum OR -ing | i am used to working in these bad conditions (estar acostumbrado a)
+    * the were used to my voice
 * get used to + noum OR -ing | she will get used to living in Siberia (llegar a acostumbrarse a)
