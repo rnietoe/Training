@@ -1,5 +1,15 @@
 # Reading
 
+https://www.flo-joe.co.uk/fce/students/tests/index.htm
+
+https://www.autoenglish.org/FCEUse/FCEUsePart3.htm#google_vignette
+https://www.autoenglish.org/FCEUse/FCEUsePart4.htm
+
+https://learnenglishteens.britishcouncil.org/skills/reading/b2-reading
+https://learnenglish.britishcouncil.org/skills/reading/b2-reading
+
+https://readandimprove.englishlanguageitutoring.com/
+
 | English                                                         | Spanish                                                            |    |
 |-----------------------------------------------------------------|--------------------------------------------------------------------|----|
 | can i **borrow**?                                               | Puedo tomar prestado?                                              |    |
@@ -17,7 +27,7 @@
 | to **skip** a question                                          | saltarse una pregunta                                              |    |
 | play **rope**                                                   | juagar a la cuerda (la comba)                                      |    |
 | **close-knit** family                                           | familia muy unida                                                  |    |
-| in danger of **extinction**                                     | en peligro de extinción                                            |    |
+| in danger of **extinction**, danger of dying out                | en peligro de extinción                                            |    |
 | I **would rather**                                              | yo preferiria                                                      |    |
 | spread to | propagar o extender 
 | The story **goes** that | La historia cuenta, que |
@@ -38,8 +48,9 @@
 * don't get me wrong | no me malinterpretessadist
 * I **do** love you | hace mas enfasis en el verbo
 * have a fry up (english breakfast)
+* it is worth it | vale la pena
 
-## The family
+## The family members
 
 * Great Grandfather and great grandmother
     * Grandfather and grandmother
@@ -80,4 +91,11 @@ The snow is building **up** on the roof                | La nieve se está acumu
 The snow is building up on the roof                    | La nieve se está acumulando en el techo.
 i have made **every** mistake                          | He cometido todos los errores
 **as** a result                                        | como resultado
-
+lost weight                                            | perder peso
+The name William is often **shortened** to Will        | to become shorter or to make something shorter
+cut words                                              | copy, paste cut words
+problems are **resulting in** a job losses             |
+**source of** income                                   | fuente de ingreso
+**means** of transport                                 | medios de transporte
+this is **causing** the ice **to** melt                | esto está causando que el hielo se derrita
+**to have a go at** training in a gym                  | intentar entrenar en un gimnasio

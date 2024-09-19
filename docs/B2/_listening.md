@@ -1,14 +1,12 @@
 # Listening
 
+[FCE Listening Practice Tests](https://engexam.info/fce-listening-practice-tests/)
+
 https://listenaminute.com/
 
 https://elblogdelingles.blogspot.com/2013/04/como-aprobar-el-listening-del-first.html
 https://elblogdelingles.blogspot.com/2013/04/como-aprobar-el-listening-del-first_21.html
 
-some banckets
-presents
-signalling danger
-disappear
 
 # Listening vocabulary
 
