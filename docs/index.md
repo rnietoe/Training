@@ -19,3 +19,7 @@
 
 * [Building React and ASP.NET Core Applications](React/Building-React-and-ASP.NET-Core-Applications.md)
 * [Become a React Developer](React/Become-a-React-Developer/index.md)
+
+## RabbitMQ
+
+* [Learning RabbitMQ](Message-Based-Systems/Learning_RabbitMQ.md)

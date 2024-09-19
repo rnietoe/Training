@@ -1,0 +1,1381 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Training Documentation">
+      
+      
+      
+        <meta name="author" content="Rafael Nieto Esteve">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.1">
+    
+    
+      
+        <title>CloudFormation - rnietoe training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#cloudformation" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="rnietoe training" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              rnietoe training
+            </span>
+            <span class="md-header-nav__topic">
+              
+                CloudFormation
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="rnietoe training" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rnietoe training
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Training index" class="md-nav__link">
+      Training index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      AWS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        AWS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../00-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
+      AWS Architect
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../01-Introduction/" title="1. Introduction" class="md-nav__link">
+      1. Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../02-Storage/" title="2. Storage" class="md-nav__link">
+      2. Storage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../03-Network/" title="3. Network" class="md-nav__link">
+      3. Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../04-Compute/" title="4. Compute" class="md-nav__link">
+      4. Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../05-Security/" title="5. Security" class="md-nav__link">
+      5. Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../06-Management/" title="6. Management and Governance" class="md-nav__link">
+      6. Management and Governance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../07-Architecture/" title="7. Hight Availability Architecture" class="md-nav__link">
+      7. Hight Availability Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../08-Databases/" title="8. Databases" class="md-nav__link">
+      8. Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../09-Applications/" title="9. Applications" class="md-nav__link">
+      9. Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../10-Media/" title="10. Media" class="md-nav__link">
+      10. Media
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12" checked>
+    
+    <label class="md-nav__link" for="nav-2-12">
+      CloudFormation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-12">
+        CloudFormation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        CloudFormation
+      </label>
+    
+    <a href="./" title="CloudFormation" class="md-nav__link md-nav__link--active">
+      CloudFormation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    Mappings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-parameters" class="md-nav__link">
+    Input Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    Conditions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform" class="md-nav__link">
+    Transform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intrinsic-functions" class="md-nav__link">
+    Intrinsic functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-parameters" class="md-nav__link">
+    Pseudo parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helper-scripts" class="md-nav__link">
+    Helper scripts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changesets" class="md-nav__link">
+    ChangeSets
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Git/1-Git-Essential-Training_The-Basics/" title="Git Essential Training: The Basics" class="md-nav__link">
+      Git Essential Training: The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Git/2-Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-nav__link">
+      Git: Branches, Merges, and Remotes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Git/3-Git-Intermediate-Techniques/" title="Git Intermediate Techniques" class="md-nav__link">
+      Git Intermediate Techniques
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      React
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        React
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../React/Building-React-and-ASP.NET-Core-Applications/" title="Building React and ASP.NET Core Applications" class="md-nav__link">
+      Building React and ASP.NET Core Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Become a React Developer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Become a React Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../React/Become-a-React-Developer/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../React/Become-a-React-Developer/1-Learning-React-js/" title="Learning React.js" class="md-nav__link">
+      Learning React.js
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../React/Become-a-React-Developer/2-React.js-Essential-Training/" title="React.js Essential Training" class="md-nav__link">
+      React.js Essential Training
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-nav__link">
+      Web Security: OAuth and OpenID Connect
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    Mappings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-parameters" class="md-nav__link">
+    Input Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    Conditions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transform" class="md-nav__link">
+    Transform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intrinsic-functions" class="md-nav__link">
+    Intrinsic functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-parameters" class="md-nav__link">
+    Pseudo parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helper-scripts" class="md-nav__link">
+    Helper scripts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changesets" class="md-nav__link">
+    ChangeSets
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/CloudFormation/06-CloudFormation.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h1>
+<p><strong><code>AWS CloudFormation</code></strong> is IaaS tool to <strong>create</strong>, <strong>update</strong> and <strong>delete</strong> resources with <strong>templates</strong> (json or yaml). While Elastic Beanstalk we can create and manage resources based on code...</p>
+<ol>
+<li>Create <strong>stack</strong> using the sample template Wordpress blog, where stack is a set of related resources.</li>
+<li>Select instance type t2.micro and our key value pair rnietoe</li>
+<li><code>Create stack</code>. This will create and configure an EC2 instance based on the wordpress template</li>
+<li>from <code>Output</code> tab, click on the value link.</li>
+<li>from <code>Template</code> tab, clik on <code>View in Designer</code></li>
+</ol>
+<p><a href="https://aws.amazon.com/quickstart/?nc1=h_ls&amp;quickstart-all.sort-by=item.additionalFields.sortDate&amp;quickstart-all.sort-order=desc">AWS Quick Start</a> is a way of deploying environments quickly using CloudFormation templates built by experts AWS Solucions Architects.</p>
+<ul>
+<li>CloudFormation service is free, but the resources that it provisions have a cost</li>
+<li>CloudFormation has a wide set of supported resources, but does not support the creation of all AWS resources.</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template anatomy</a>:</p>
+<div class="codehilite"><pre><span></span><span class="nt">AWSTemplateFormatVersion</span><span class="p">:</span> <span class="s">&quot;optional</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">date.</span><span class="nv"> </span><span class="s">sample:</span><span class="nv"> </span><span class="s">2010-09-09&quot;</span>
+<span class="nt">Description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">optional string</span>
+<span class="nt">Metadata</span><span class="p">:</span>
+  <span class="c1"># optional template metadata</span>
+<span class="nt">Parameters</span><span class="p">:</span>
+  <span class="c1"># optional set of parameters</span>
+<span class="nt">Mappings</span><span class="p">:</span>
+  <span class="c1"># optional set of mappings</span>
+<span class="nt">Conditions</span><span class="p">:</span>
+  <span class="c1"># set of conditions</span>
+<span class="nt">Transform</span><span class="p">:</span>
+  <span class="c1"># set of transforms</span>
+<span class="nt">Resources</span><span class="p">:</span>
+  <span class="c1"># required set of resources</span>
+<span class="nt">Outputs</span><span class="p">:</span>
+  <span class="c1"># optional set of outputs</span>
+</pre></div>
+
+<p>When updating a stack, a change set (such as tags) is created with the summary of proposed changes. This change set is executed to update the stack. Only the change set is executed instead of all resources defined in the template.</p>
+<p>At the other hand, when adding a new resource (such as SecurityGroup) for our previous deployed resource (EC2), a new EC2 instance in created with the SecurityGroup, and the old EC2 instance is deleted automatically</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html">CloudFormation Resources</a></p>
+<p><strong>UserData</strong> property:</p>
+<ul>
+<li>perform actions on system startup</li>
+<li>only runs on the first boot cycle</li>
+<li>execution time impact on the startup time</li>
+<li>Base64 encoded</li>
+</ul>
+<p>on Windows:</p>
+<ul>
+<li>Run as local admin</li>
+<li>Batch commands and/or powersheel support</li>
+<li>Executed by EC2Config or EC2Launch</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c1">#script</span>
+<span class="nb">echo</span> Current date and <span class="nb">time</span> &gt;&gt; %SystemRoot%<span class="se">\T</span>em<span class="se">\t</span>est.log
+<span class="nb">echo</span> %DATE% %TIME% &gt;&gt; %SystemRoot%<span class="se">\T</span>em<span class="se">\t</span>est.log
+<span class="c1">#powershell</span>
+<span class="nv">$file</span> <span class="o">=</span> <span class="nv">$env</span>:SystemRoot + <span class="s2">&quot;\Temp\&quot; + (Get=Date).ToString(&quot;</span>MM-dd-yy-hh-mm<span class="s2">&quot;)</span>
+<span class="s2">New-Item </span><span class="nv">$file</span><span class="s2"> -ItemType file</span>
+</pre></div>
+
+<p>on Linux:</p>
+<ul>
+<li>Run as root (no need for sudo)</li>
+<li>Not run interactively (no user feedback)</li>
+<li>Logs output to /var/log/cloud-init-output.log</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash # interpreter</span>
+yum update -y
+yum install -y httpd
+service httpd start
+</pre></div>
+
+<p>Sample template:</p>
+<div class="codehilite"><pre><span></span><span class="n">Resources</span><span class="o">:</span>
+  <span class="n">EC2Instance</span><span class="o">:</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">Instance</span>
+    <span class="n">Properties</span><span class="o">:</span>
+      <span class="n">UserData</span><span class="o">:</span>
+        <span class="o">!</span><span class="n">Base64</span><span class="o">:</span> <span class="o">|</span>
+          <span class="err">#</span><span class="o">!/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">xe</span>
+          <span class="n">yum</span> <span class="n">update</span> <span class="o">-</span><span class="n">y</span>
+          <span class="n">yum</span> <span class="n">install</span> <span class="n">httpd</span> <span class="o">-</span><span class="n">y</span>
+          <span class="n">service</span> <span class="n">httpd</span> <span class="n">start</span>
+</pre></div>
+
+<h2 id="mappings">Mappings<a class="headerlink" href="#mappings" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html">CloudFormation Mappings</a></p>
+<div class="codehilite"><pre><span></span><span class="nt">Mappings</span><span class="p">:</span>
+  <span class="nt">RegionMap</span><span class="p">:</span>                <span class="c1"># MapName</span>
+    <span class="nt">us-east-1</span><span class="p">:</span>              <span class="c1"># TopLevelKey 1</span>
+      <span class="nt">AMI</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ami-1853ac65</span>     <span class="c1"># SecondLevelKey 1</span>
+    <span class="nt">us-west-1</span><span class="p">:</span>              <span class="c1"># TopLevelKey 2</span>
+      <span class="nt">AMI</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ami-bf5540df</span>     <span class="c1"># SecondLevelKey 2</span>
+<span class="nt">Resources</span><span class="p">:</span>
+  <span class="nt">MyEc2Instance</span><span class="p">:</span>
+    <span class="nt">Type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">AWS::EC2::Instance</span>
+    <span class="nt">Properties</span><span class="p">:</span>
+      <span class="nt">InstanceType</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">t2.micro</span>
+      <span class="nt">ImageId</span><span class="p">:</span>
+        <span class="nt">!FindInMap</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">RegionMap</span>         <span class="c1"># MapName</span>
+        <span class="p p-Indicator">-</span> <span class="kt">!Ref</span> <span class="l l-Scalar l-Scalar-Plain">AWS::Region</span>  <span class="c1"># TopLevelKey</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">AMI</span>               <span class="c1"># SecondLevelKey</span>
+</pre></div>
+
+<h2 id="input-parameters">Input Parameters<a class="headerlink" href="#input-parameters" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html">CloudFormation Parameters</a> enable you to input custom values to your template each time you create or update a stack.</p>
+<p><img alt="" src="../../img/cloudFormation_parameters.PNG" /></p>
+<p>Supported parameter types:</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>List<Number></li>
+<li>CommaDelimitedList</li>
+<li>AWS-specific types(AWS::ec2::Image::Id)</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="nt">Parameters</span><span class="p">:</span>
+  <span class="nt">InstanceTypeParameter</span><span class="p">:</span>                        <span class="c1"># Parameter ID</span>
+    <span class="nt">Type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>                                <span class="c1"># Parameter Type</span>
+    <span class="nt">Default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">t2.micro</span>                           <span class="c1"># Parameter Property 1</span>
+    <span class="nt">AllowedValues</span><span class="p">:</span>                              <span class="c1"># Parameter Property 2</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">t2.micro</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">m1.small</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">m1.large</span>
+    <span class="nt">Description</span><span class="p">:</span>                                <span class="c1"># ParameterProperty 3</span>
+      <span class="l l-Scalar l-Scalar-Plain">EC2 Instance Type</span>
+<span class="nt">Resources</span><span class="p">:</span>
+  <span class="nt">Ec2Instance</span><span class="p">:</span>
+    <span class="nt">Type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">AWS::EC2::Instance</span>
+    <span class="nt">Properties</span><span class="p">:</span>
+      <span class="nt">InstanceType</span><span class="p">:</span> <span class="nt">!Ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">InstanceTypeParameter</span> <span class="c1"># Parameter</span>
+</pre></div>
+
+<h2 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html">CloudFormation Metadata</a></p>
+<h2 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html">CloudFormation Conditions</a></p>
+<h2 id="transform">Transform<a class="headerlink" href="#transform" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html">CloudFormation Transform</a></p>
+<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html">CloudFormation Outputs</a> information about resources, within a cloudformation stack. For example:</p>
+<ul>
+<li>the public IP or DNS of a EC2 instance</li>
+<li>the S3 bucket name for a stack</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">Outputs</span><span class="o">:</span>
+  <span class="n">ServerDns</span><span class="o">:</span>            <span class="err">#</span> <span class="n">OutputID</span>
+    <span class="n">Value</span><span class="o">:</span> <span class="o">!</span><span class="n">GetAtt</span>      <span class="err">#</span> <span class="n">Value</span> <span class="n">to</span> <span class="k">return</span>
+      <span class="o">-</span> <span class="n">Ec2Instance</span>
+      <span class="o">-</span> <span class="n">PublicDnsName</span>
+    <span class="n">Export</span><span class="o">:</span>
+      <span class="n">Name</span><span class="o">:</span>             <span class="err">#</span> <span class="n">Value</span> <span class="n">to</span> <span class="n">export</span>
+</pre></div>
+
+<h2 id="intrinsic-functions">Intrinsic functions<a class="headerlink" href="#intrinsic-functions" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html">CloudFormation Intrinsic functions</a></p>
+<ul>
+<li>
+<p><strong>Join</strong>: appends a set of values into a single value
+<div class="codehilite"><pre><span></span><span class="p">{</span> <span class="nt">&quot;Fn::Join&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="p">[</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span> <span class="p">]</span> <span class="p">]</span> <span class="p">}</span>
+</pre></div>
+<div class="codehilite"><pre><span></span><span class="sx">!Join [ &quot;:&quot;, [ a, b, c ] ]</span>
+</pre></div></p>
+</li>
+<li>
+<p><strong>Ref</strong>: : returns the value of the specified resource.
+<div class="codehilite"><pre><span></span><span class="p">{</span> <span class="nt">&quot;Ref&quot;</span> <span class="p">:</span> <span class="s2">&quot;resourceId&quot;</span> <span class="p">}</span>
+</pre></div>
+<div class="codehilite"><pre><span></span><span class="sx">!Ref resourceId</span>
+</pre></div></p>
+</li>
+<li>
+<p><strong>FindInMap</strong>: returns the value corresponding to keys in a two-level map that is declared in the Mappings section.
+<div class="codehilite"><pre><span></span><span class="p">{</span> <span class="nt">&quot;Fn::FindInMap&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;MapName&quot;</span><span class="p">,</span> <span class="s2">&quot;TopLevelKey&quot;</span><span class="p">,</span> <span class="s2">&quot;SecondLevelKey&quot;</span><span class="p">]</span> <span class="p">}</span>
+</pre></div>
+<div class="codehilite"><pre><span></span><span class="sx">!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]</span>
+</pre></div></p>
+</li>
+<li>
+<p><strong>GetAtt</strong>: returns the value of an attribute from a resource in the template
+<div class="codehilite"><pre><span></span><span class="p">{</span> <span class="nt">&quot;Fn::GetAtt&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;logicalNameOfResource&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeName&quot;</span> <span class="p">]</span> <span class="p">}</span>
+</pre></div>
+<div class="codehilite"><pre><span></span><span class="sx">!GetAtt logicalNameOfResource.attributeName</span>
+</pre></div></p>
+</li>
+<li>
+<p><strong>Sub</strong>: substitutes variables in an input string with values that you specify when you create or update a stack, such as ${AWS::StackName} or ${AWS::Region}
+<div class="codehilite"><pre><span></span><span class="p">{</span> <span class="nt">&quot;Fn::Sub&quot;</span> <span class="p">:</span> <span class="err">String</span> <span class="p">}</span>
+</pre></div>
+<div class="codehilite"><pre><span></span><span class="sx">!Sub String</span>
+</pre></div></p>
+</li>
+<li>
+<p><strong>GetAZs</strong>:  returns an array that lists AZs for a specified region in alaphabetical order. Specifying an empty string is equivalent to specifying AWS::Region.
+<div class="codehilite"><pre><span></span><span class="p">{</span> <span class="nt">&quot;Fn::GetAZs&quot;</span> <span class="p">:</span> <span class="s2">&quot;region&quot;</span> <span class="p">}</span><span class="err">```</span>
+<span class="err">```yml</span>
+<span class="err">!GetAZs</span> <span class="err">region</span>
+</pre></div></p>
+</li>
+</ul>
+<h2 id="pseudo-parameters">Pseudo parameters<a class="headerlink" href="#pseudo-parameters" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html">CloudFormation Pseudo parameters</a></p>
+<ul>
+<li><strong>AWS::AccountId</strong>: Returns the AWS account ID of the account in which the stack is being created</li>
+<li><strong>AWS::NotificationARNs</strong>: Returns the list of notification ARNs (<strong>A</strong>mazon <strong>R</strong>esource <strong>N</strong>ames) for the current stack.</li>
+<li><strong>AWS::StackId</strong>: Returns the ID of the stack</li>
+<li><strong>AWS::StackName</strong>: Returns the Name of the stack</li>
+<li><strong>AWS::Region</strong>: Returns the AWS Region in which the resource is being created</li>
+</ul>
+<h2 id="helper-scripts">Helper scripts<a class="headerlink" href="#helper-scripts" title="Permanent link">&para;</a></h2>
+<p>Pyhon based helper scripts preinstalled on Amazon Linux (to avoid scripting):</p>
+<ul>
+<li><strong>cfn-init:</strong>: read Metadata to execute AWS::CloudFormation::Init</li>
+<li><strong>cfn-signal</strong>: signal with a CreationPolicy or WaitCondition when the resource or application is ready.</li>
+<li><strong>cfn-get-metadata</strong>: retrieve metadata based on a specific key.</li>
+<li><strong>cfn-hup</strong>: check for updates to metadata and execute custom hooks when changes are detected.</li>
+</ul>
+<p>single config key sample:</p>
+<div class="codehilite"><pre><span></span><span class="c">AWS::CloudFormation::Init:</span>
+<span class="c">  config: </span>
+<span class="c">    packages: download and install pre-packaged applications and components</span>
+<span class="c">    groups: create Linux/Unix groups and assign group IDs</span>
+<span class="c">    users: create Linux/UNIX users on the EC2 instance</span>
+<span class="c">    sources: download an archive file and unpack it in the target directory on EC2</span>
+<span class="c">    files: create files on the EC2 instance</span>
+<span class="c">    services: define enabled and siabled services when the instance is launch</span>
+<span class="c">    commands: execute commands on the EC2 instance</span>
+</pre></div>
+
+<ul>
+<li><strong>configSets</strong> sample to install a web server:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">installweb</span><span class="o">:</span>
+  <span class="n">packages</span><span class="o">:</span>
+    <span class="n">yum</span><span class="o">:</span>
+      <span class="n">httpd</span><span class="o">:</span> <span class="o">[]</span>
+  <span class="n">services</span><span class="o">:</span>
+    <span class="n">sysvinit</span><span class="o">:</span>
+      <span class="n">httpd</span><span class="o">:</span>
+        <span class="n">enabled</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="n">ensureRunning</span><span class="o">:</span> <span class="kc">true</span>
+
+<span class="n">installphp</span><span class="o">:</span>
+  <span class="n">packages</span><span class="o">:</span>
+    <span class="n">yum</span><span class="o">:</span>
+      <span class="n">php</span><span class="o">:</span> <span class="o">[]</span>
+
+<span class="n">Resources</span><span class="o">:</span>
+  <span class="n">EC2Instance</span><span class="o">:</span>
+    <span class="n">Metadata</span><span class="o">:</span> 
+      <span class="n">AWS</span><span class="o">::</span><span class="n">CloudFormation</span><span class="o">::</span><span class="n">Init</span><span class="o">:</span>
+        <span class="n">configSets</span><span class="o">:</span> 
+          <span class="n">webphp</span><span class="o">:</span>
+          <span class="o">-</span> <span class="s2">&quot;installphp&quot;</span>
+          <span class="o">-</span> <span class="s2">&quot;installweb&quot;</span>
+</pre></div>
+
+<p>How to setting up a full stack:</p>
+<ol>
+<li>
+<p>From <code>CloudFormation</code>, create stack uploading the following template file:</p>
+<div class="codehilite"><pre><span></span><span class="n">Parameters</span><span class="o">:</span>
+<span class="n">myKeyPair</span><span class="o">:</span> 
+    <span class="n">Description</span><span class="o">:</span> <span class="n">Amazon</span> <span class="n">EC2</span> <span class="n">Key</span> <span class="n">Pair</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">KeyPair</span><span class="o">::</span><span class="n">KeyName</span>
+<span class="n">VpcId</span><span class="o">:</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">the</span> <span class="n">VpcId</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">VPC</span><span class="o">::</span><span class="n">Id</span>
+<span class="n">SubnetIds</span><span class="o">:</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="n">Enter</span> <span class="n">the</span> <span class="n">Subnets</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">Subnet</span><span class="o">::</span><span class="n">Id</span><span class="o">&gt;</span>
+<span class="n">Mappings</span><span class="o">:</span>
+<span class="n">RegionMap</span><span class="o">:</span>
+    <span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span>
+    <span class="n">AMI</span><span class="o">:</span> <span class="n">ami</span><span class="o">-</span><span class="mi">1853</span><span class="n">ac65</span>
+    <span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span>
+    <span class="n">AMI</span><span class="o">:</span> <span class="n">ami</span><span class="o">-</span><span class="n">bf5540df</span>
+    <span class="n">eu</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span>
+    <span class="n">AMI</span><span class="o">:</span> <span class="n">ami</span><span class="o">-</span><span class="mi">3</span><span class="n">bfab942</span>
+    <span class="n">ap</span><span class="o">-</span><span class="n">southeast</span><span class="o">-</span><span class="mi">1</span><span class="o">:</span>
+    <span class="n">AMI</span><span class="o">:</span> <span class="n">ami</span><span class="o">-</span><span class="n">e2adf99e</span>
+    <span class="n">ap</span><span class="o">-</span><span class="n">southeast</span><span class="o">-</span><span class="mi">2</span><span class="o">:</span>
+    <span class="n">AMI</span><span class="o">:</span> <span class="n">ami</span><span class="o">-</span><span class="mi">43874721</span>
+<span class="n">Resources</span><span class="o">:</span>
+<span class="n">LoadBalancer</span><span class="o">:</span> <span class="err">#</span> <span class="n">Application</span> <span class="n">Load</span> <span class="n">Balancer</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">ElasticLoadBalancingV2</span><span class="o">::</span><span class="n">LoadBalancer</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">SecurityGroups</span><span class="o">:</span>
+        <span class="o">-</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">ALBSecurityGroup</span>
+    <span class="n">Subnets</span><span class="o">:</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">SubnetIds</span>
+<span class="n">LoadBalancerListener</span><span class="o">:</span> <span class="err">#</span> <span class="n">Port</span> <span class="mi">80</span> <span class="n">Listener</span> <span class="k">for</span> <span class="n">ALB</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">ElasticLoadBalancingV2</span><span class="o">::</span><span class="n">Listener</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">LoadBalancerArn</span><span class="o">:</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">LoadBalancer</span>
+    <span class="n">Port</span><span class="o">:</span> <span class="mi">80</span>
+    <span class="n">Protocol</span><span class="o">:</span> <span class="n">HTTP</span>
+    <span class="n">DefaultActions</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">Type</span><span class="o">:</span> <span class="n">forward</span>
+        <span class="n">TargetGroupArn</span><span class="o">:</span>
+            <span class="n">Ref</span><span class="o">:</span> <span class="n">TargetGroup</span>
+<span class="n">TargetGroup</span><span class="o">:</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">ElasticLoadBalancingV2</span><span class="o">::</span><span class="n">TargetGroup</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">Port</span><span class="o">:</span> <span class="mi">80</span>
+    <span class="n">Protocol</span><span class="o">:</span> <span class="n">HTTP</span>
+    <span class="n">VpcId</span><span class="o">:</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">VpcId</span>
+<span class="n">AutoScalingGroup</span><span class="o">:</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">AutoScaling</span><span class="o">::</span><span class="n">AutoScalingGroup</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">AvailabilityZones</span><span class="o">:</span> <span class="o">!</span><span class="n">GetAZs</span>
+    <span class="n">LaunchConfigurationName</span><span class="o">:</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">LaunchConfiguration</span>
+    <span class="n">MinSize</span><span class="o">:</span> <span class="mi">1</span>
+    <span class="n">MaxSize</span><span class="o">:</span> <span class="mi">3</span>
+    <span class="n">TargetGroupARNs</span><span class="o">:</span> 
+        <span class="o">-</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">TargetGroup</span>
+<span class="n">LaunchConfiguration</span><span class="o">:</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">AutoScaling</span><span class="o">::</span><span class="n">LaunchConfiguration</span>
+    <span class="n">Metadata</span><span class="o">:</span> 
+    <span class="n">Comment</span><span class="o">:</span> <span class="n">Install</span> <span class="n">php</span> <span class="n">and</span> <span class="n">httpd</span>
+    <span class="n">AWS</span><span class="o">::</span><span class="n">CloudFormation</span><span class="o">::</span><span class="n">Init</span><span class="o">:</span>
+        <span class="n">config</span><span class="o">:</span> 
+        <span class="n">packages</span><span class="o">:</span> 
+            <span class="n">yum</span><span class="o">:</span>
+            <span class="n">httpd</span><span class="o">:</span> <span class="o">[]</span>
+            <span class="n">php</span><span class="o">:</span> <span class="o">[]</span>
+        <span class="n">files</span><span class="o">:</span> 
+            <span class="sr">/var/www/html/i</span><span class="n">ndex</span><span class="o">.</span><span class="na">php</span><span class="o">:</span>
+            <span class="n">content</span><span class="o">:</span> <span class="o">!</span><span class="n">Sub</span> <span class="o">|</span>
+                <span class="o">&lt;?</span><span class="n">php</span> <span class="n">print</span> <span class="s2">&quot;Hello world Abs was here!&quot;</span><span class="o">;</span> <span class="o">?&gt;</span>
+        <span class="n">services</span><span class="o">:</span> 
+            <span class="n">sysvinit</span><span class="o">:</span>
+            <span class="n">httpd</span><span class="o">:</span>
+                <span class="n">enabled</span><span class="o">:</span> <span class="kc">true</span>
+                <span class="n">ensureRunning</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">KeyName</span><span class="o">:</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">myKeyPair</span>
+    <span class="n">InstanceType</span><span class="o">:</span> <span class="n">t2</span><span class="o">.</span><span class="na">micro</span>
+    <span class="n">SecurityGroups</span><span class="o">:</span>
+        <span class="o">-</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">EC2SecurityGroup</span>
+    <span class="n">ImageId</span><span class="o">:</span>
+        <span class="n">Fn</span><span class="o">::</span><span class="n">FindInMap</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">RegionMap</span>
+        <span class="o">-</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">AWS</span><span class="o">::</span><span class="n">Region</span>
+        <span class="o">-</span> <span class="n">AMI</span>
+    <span class="n">UserData</span><span class="o">:</span>
+        <span class="s1">&#39;Fn::Base64&#39;</span><span class="o">:</span> 
+        <span class="o">!</span><span class="n">Sub</span> <span class="o">|</span>
+            <span class="err">#</span><span class="o">!/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">xe</span>                        
+            <span class="err">#</span> <span class="n">Ensure</span> <span class="n">AWS</span> <span class="n">CFN</span> <span class="n">Bootstrap</span> <span class="k">is</span> <span class="n">the</span> <span class="n">latest</span>
+            <span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">aws</span><span class="o">-</span><span class="n">cfn</span><span class="o">-</span><span class="n">bootstrap</span>
+            <span class="err">#</span> <span class="n">Install</span> <span class="n">the</span> <span class="n">files</span> <span class="n">and</span> <span class="n">packages</span> <span class="n">from</span> <span class="n">the</span> <span class="n">metadata</span>
+            <span class="sr">/opt/aws/bin/</span><span class="n">cfn</span><span class="o">-</span><span class="n">init</span> <span class="o">-</span><span class="n">v</span> <span class="o">--</span><span class="n">stack</span> <span class="n">$</span><span class="o">{</span><span class="n">AWS</span><span class="o">::</span><span class="n">StackName</span><span class="o">}</span> <span class="o">--</span><span class="n">resource</span> <span class="n">LaunchConfiguration</span> <span class="o">--</span><span class="n">region</span> <span class="n">$</span><span class="o">{</span><span class="n">AWS</span><span class="o">::</span><span class="n">Region</span><span class="o">}</span>
+<span class="n">ALBSecurityGroup</span><span class="o">:</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">SecurityGroup</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">GroupDescription</span><span class="o">:</span> <span class="n">ALB</span> <span class="n">Security</span> <span class="n">Group</span>
+    <span class="n">VpcId</span><span class="o">:</span> <span class="o">!</span><span class="n">Ref</span> <span class="n">VpcId</span>
+    <span class="n">SecurityGroupIngress</span><span class="o">:</span>
+        <span class="o">-</span> <span class="n">IpProtocol</span><span class="o">:</span> <span class="n">tcp</span>
+        <span class="n">FromPort</span><span class="o">:</span> <span class="mi">80</span>
+        <span class="n">ToPort</span><span class="o">:</span> <span class="mi">80</span>
+        <span class="n">CidrIp</span><span class="o">:</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">0</span>
+<span class="n">EC2SecurityGroup</span><span class="o">:</span> 
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">SecurityGroup</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">GroupDescription</span><span class="o">:</span> <span class="n">EC2</span> <span class="n">Instance</span>
+<span class="n">EC2InboundRule</span><span class="o">:</span> <span class="err">#</span> <span class="n">EC2</span> <span class="n">can</span> <span class="n">only</span> <span class="n">accept</span> <span class="n">traffic</span> <span class="n">from</span> <span class="n">ALB</span>
+    <span class="n">Type</span><span class="o">:</span> <span class="n">AWS</span><span class="o">::</span><span class="n">EC2</span><span class="o">::</span><span class="n">SecurityGroupIngress</span>
+    <span class="n">Properties</span><span class="o">:</span>
+    <span class="n">IpProtocol</span><span class="o">:</span> <span class="n">tcp</span>
+    <span class="n">FromPort</span><span class="o">:</span> <span class="mi">80</span>
+    <span class="n">ToPort</span><span class="o">:</span> <span class="mi">80</span>
+    <span class="n">SourceSecurityGroupId</span><span class="o">:</span>
+        <span class="o">!</span><span class="n">GetAtt</span>
+        <span class="o">-</span> <span class="n">ALBSecurityGroup</span>
+        <span class="o">-</span> <span class="n">GroupId</span>
+    <span class="n">GroupId</span><span class="o">:</span>
+        <span class="o">!</span><span class="n">GetAtt</span>
+        <span class="o">-</span> <span class="n">EC2SecurityGroup</span>
+        <span class="o">-</span> <span class="n">GroupId</span>
+<span class="n">Outputs</span><span class="o">:</span>
+<span class="n">PublicDns</span><span class="o">:</span>
+    <span class="n">Description</span><span class="o">:</span> <span class="n">The</span> <span class="n">Public</span> <span class="n">DNS</span>
+    <span class="n">Value</span><span class="o">:</span> <span class="o">!</span><span class="n">Sub</span> <span class="s1">&#39;http://${LoadBalancer.DNSName}&#39;</span>
+</pre></div>
+
+</li>
+<li>
+<p>Set stack name and parameters and finally create the stack</p>
+</li>
+<li>
+<p>Stak is created with defined resources
+    <img alt="" src="../../img/stack-events.PNG" /></p>
+</li>
+<li>
+<p>Check the stack outputs and browse to the EC2 instance uri:
+    <img alt="" src="../../img/stack-outputs.PNG" /></p>
+</li>
+</ol>
+<h2 id="changesets">ChangeSets<a class="headerlink" href="#changesets" title="Permanent link">&para;</a></h2>
+<p>Allow to preview how changes will impact to the resources. There are 4 changeSets operations:</p>
+<ul>
+<li><strong>Create</strong>: create a change set. This operation does not modify the stack</li>
+<li><strong>View</strong>: view proposed changes after creating</li>
+<li><strong>Execute</strong>: execute the change set to update the stack</li>
+<li><strong>Delete</strong>: delete change set. This operation does not modify the stack</li>
+</ul>
+<p>how to <code>create</code> a change set for current stack to update security groups:</p>
+<ol>
+<li>We are going to remove port 22 from security group in this sample</li>
+<li>From CloudFormation, select the stack and from stack actions, Create change sets for current stack</li>
+<li>Upload the template with changes and create</li>
+<li>
+<p>See the JSON Changes result:</p>
+<div class="codehilite"><pre><span></span><span class="p">[</span>
+<span class="p">{</span>
+    <span class="nt">&quot;resourceChange&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;logicalResourceId&quot;</span><span class="p">:</span> <span class="s2">&quot;MySecurityGroup&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;Modify&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Add</span> <span class="err">|</span> <span class="err">Modify</span> <span class="err">|</span> <span class="err">Remove</span>
+    <span class="nt">&quot;physicalResourceId&quot;</span><span class="p">:</span> <span class="s2">&quot;MyFirstStack-MySecurityGroup-1AT0XTT24PZNP&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resourceType&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::SecurityGroup&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;replacement&quot;</span><span class="p">:</span> <span class="s2">&quot;False&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;moduleInfo&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;details&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;target&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SecurityGroupIngress&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;requiresRecreation&quot;</span><span class="p">:</span> <span class="s2">&quot;Never&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;attribute&quot;</span><span class="p">:</span> <span class="s2">&quot;Properties&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;causingEntity&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;evaluation&quot;</span><span class="p">:</span> <span class="s2">&quot;Static&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;changeSource&quot;</span><span class="p">:</span> <span class="s2">&quot;DirectModification&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;changeSetId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;scope&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Properties&quot;</span>
+    <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Resource&quot;</span>
+<span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Finally we can <code>delete</code> or <code>execute</code> the change set</p>
+</li>
+</ol>
+<p>The actions depends on the resource. We should predict if replacement will be necesary based on these documents:</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS resource and property types reference</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html">Update behaviors of stack resources</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../10-Media/" title="10. Media" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                10. Media
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../../Git/1-Git-Essential-Training_The-Basics/" title="Git Essential Training: The Basics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Git Essential Training: The Basics
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Rafael Nieto Esteve
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.8e03edeb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
