@@ -1,0 +1,1382 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Training Documentation">
+      
+      
+      
+        <meta name="author" content="Rafael Nieto Esteve">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.5.1">
+    
+    
+      
+        <title>9. Applications - rnietoe training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.268332fc.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#9-applications" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="rnietoe training" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              rnietoe training
+            </span>
+            <span class="md-header-nav__topic">
+              
+                9. Applications
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="rnietoe training" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rnietoe training
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/rnietoe/Training/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Training@rnietoe
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Training index" class="md-nav__link">
+      Training index
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      AWS
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        AWS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../00-AWS-Solutions-Architect-Associate/" title="AWS Architect" class="md-nav__link">
+      AWS Architect
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../01-Introduction/" title="1. Introduction" class="md-nav__link">
+      1. Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../02-Storage/" title="2. Storage" class="md-nav__link">
+      2. Storage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../03-Network/" title="3. Network" class="md-nav__link">
+      3. Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../04-Compute/" title="4. Compute" class="md-nav__link">
+      4. Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../05-Security/" title="5. Security" class="md-nav__link">
+      5. Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../06-Management/" title="6. Management and Governance" class="md-nav__link">
+      6. Management and Governance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../07-Architecture/" title="7. Hight Availability Architecture" class="md-nav__link">
+      7. Hight Availability Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../08-Databases/" title="8. Databases" class="md-nav__link">
+      8. Databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        9. Applications
+      </label>
+    
+    <a href="./" title="9. Applications" class="md-nav__link md-nav__link--active">
+      9. Applications
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sqs-simple-queue-service" class="md-nav__link">
+    SQS (Simple Queue Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns-simple-notification-service" class="md-nav__link">
+    SNS (Simple Notification Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ses-simple-email-service" class="md-nav__link">
+    SES (Simple Email Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swf-simple-workflow-service" class="md-nav__link">
+    SWF (Simple Workflow Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-functions" class="md-nav__link">
+    Step Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-polly" class="md-nav__link">
+    Amazon Polly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam-serverless-application-model" class="md-nav__link">
+    SAM (Serverless Application Model)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecs-elastic-container-service" class="md-nav__link">
+    ECS (Elastic Container Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-quotas" class="md-nav__link">
+    Service quotas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workspaces" class="md-nav__link">
+    Workspaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appstream-20" class="md-nav__link">
+    AppStream 2.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics" class="md-nav__link">
+    Analytics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloud-search" class="md-nav__link">
+    Cloud Search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#es-elastic-search" class="md-nav__link">
+    ES (Elastic Search)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline" class="md-nav__link">
+    Data Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-glue" class="md-nav__link">
+    AWS Glue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quicksight" class="md-nav__link">
+    QuickSight
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena" class="md-nav__link">
+    Athena
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developer-tools" class="md-nav__link">
+    Developer Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codestart" class="md-nav__link">
+    CodeStart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codecommit" class="md-nav__link">
+    CodeCommit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codeartifact" class="md-nav__link">
+    CodeArtifact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codebuild" class="md-nav__link">
+    CodeBuild
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codedeploy" class="md-nav__link">
+    CodeDeploy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codepipeline" class="md-nav__link">
+    CodePipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud9" class="md-nav__link">
+    Cloud9
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-x-ray" class="md-nav__link">
+    AWS X-Ray
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10-Media/" title="10. Media" class="md-nav__link">
+      10. Media
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      CloudFormation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-12">
+        CloudFormation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../CloudFormation/06-CloudFormation/" title="CloudFormation" class="md-nav__link">
+      CloudFormation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Git
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/1-Git-Essential-Training_The-Basics/" title="Git Essential Training: The Basics" class="md-nav__link">
+      Git Essential Training: The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/2-Git_Branches-Merges-and-Remotes/" title="Git: Branches, Merges, and Remotes" class="md-nav__link">
+      Git: Branches, Merges, and Remotes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Git/3-Git-Intermediate-Techniques/" title="Git Intermediate Techniques" class="md-nav__link">
+      Git Intermediate Techniques
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      React
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        React
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Building-React-and-ASP.NET-Core-Applications/" title="Building React and ASP.NET Core Applications" class="md-nav__link">
+      Building React and ASP.NET Core Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Become a React Developer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        Become a React Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/1-Learning-React-js/" title="Learning React.js" class="md-nav__link">
+      Learning React.js
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../React/Become-a-React-Developer/2-React.js-Essential-Training/" title="React.js Essential Training" class="md-nav__link">
+      React.js Essential Training
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Security/Web-Security-OAuth-And-OpenID-Connect/" title="Web Security: OAuth and OpenID Connect" class="md-nav__link">
+      Web Security: OAuth and OpenID Connect
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sqs-simple-queue-service" class="md-nav__link">
+    SQS (Simple Queue Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns-simple-notification-service" class="md-nav__link">
+    SNS (Simple Notification Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ses-simple-email-service" class="md-nav__link">
+    SES (Simple Email Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swf-simple-workflow-service" class="md-nav__link">
+    SWF (Simple Workflow Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-functions" class="md-nav__link">
+    Step Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amazon-polly" class="md-nav__link">
+    Amazon Polly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam-serverless-application-model" class="md-nav__link">
+    SAM (Serverless Application Model)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecs-elastic-container-service" class="md-nav__link">
+    ECS (Elastic Container Service)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-quotas" class="md-nav__link">
+    Service quotas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workspaces" class="md-nav__link">
+    Workspaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appstream-20" class="md-nav__link">
+    AppStream 2.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analytics" class="md-nav__link">
+    Analytics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloud-search" class="md-nav__link">
+    Cloud Search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#es-elastic-search" class="md-nav__link">
+    ES (Elastic Search)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-pipeline" class="md-nav__link">
+    Data Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-glue" class="md-nav__link">
+    AWS Glue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quicksight" class="md-nav__link">
+    QuickSight
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena" class="md-nav__link">
+    Athena
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#developer-tools" class="md-nav__link">
+    Developer Tools
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codestart" class="md-nav__link">
+    CodeStart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codecommit" class="md-nav__link">
+    CodeCommit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codeartifact" class="md-nav__link">
+    CodeArtifact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codebuild" class="md-nav__link">
+    CodeBuild
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codedeploy" class="md-nav__link">
+    CodeDeploy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codepipeline" class="md-nav__link">
+    CodePipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud9" class="md-nav__link">
+    Cloud9
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-x-ray" class="md-nav__link">
+    AWS X-Ray
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rnietoe/Training/edit/master/docs/AWS/09-Applications.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="9-applications">9. Applications<a class="headerlink" href="#9-applications" title="Permanent link">&para;</a></h1>
+<h2 id="sqs-simple-queue-service">SQS (Simple Queue Service)<a class="headerlink" href="#sqs-simple-queue-service" title="Permanent link">&para;</a></h2>
+<p><strong>pull</strong> based service to store messages in a queue to <strong>decouple</strong> the components of an application</p>
+<ul>
+<li>standard queues (default)</li>
+<li>FIFO queues (first in first out)</li>
+</ul>
+<p>If you have an existing application that uses standard queues and you want to take advantage of the ordering or exactly-once processing features of FIFO queues, you need to configure the queue and your application correctly. You can't convert an existing standard queue into a FIFO queue. To make the move, you must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue. </p>
+<p><strong>retention period</strong>: the message can remain in the queue for 14 days</p>
+<p><strong>visibility timeout</strong>: time while message is invisible during processing. maximum VisibilityTimeout is 12 hours. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds</p>
+<p><strong>long polling</strong>: retrieve messages from SQS queues, reducing the number of empty responses
+    setting <code>ReceiveMessageWaitTimeSeconds</code> default value = 0 ?</p>
+<p>attribute <code>DelaySeconds</code>: When a new message is added to the SQS queue, it will be hidden from consumer instances for a fixed period.</p>
+<p>attribute <code>WaitTimeSeconds</code>: When the consumer instance polls for new work, the SQS service will allow it to wait a certain time for one or more messages to be available before closing the connection.</p>
+<p>Duplicate messages occur when a consumer does not complete its message processing and the visibility timeout of the message expires, making it visible for another consumer to obtain. Increasing the visibility timeout to enable the consumer processing to complete, will prevent duplicate messages.</p>
+<p>SQS service guarantees a message will be delivered at least once.</p>
+<ul>
+<li>automatically scales</li>
+<li>messages can be up to 256kb</li>
+<li>multiAZ</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">backlog per instance and acceptable backlog per instance are metrics for auto scaling with SQS</p>
+</div>
+<h2 id="sns-simple-notification-service">SNS (Simple Notification Service)<a class="headerlink" href="#sns-simple-notification-service" title="Permanent link">&para;</a></h2>
+<p><strong>push</strong> based web service to send messages / notifications from the cloud to mobile devices, by SMS or mail to SQS or any Http endpoint, for example CloudWatch or Cost Explorer</p>
+<p>use the publish-subscribe mechanism based on topics, called pub-sub messaging</p>
+<p>group multiple recipients using <strong>topics</strong> (a place to put some messages) </p>
+<p>An ARN (Amazon Resource Name) is created when you create a topic on Amazon SNS</p>
+<p>messages are stored across multiple AZ to prevent lost</p>
+<p><strong>DLQ</strong> (Deed Letter Queue) is supported in SNS, SQS and Lambda</p>
+<ul>
+<li>messages can be up to 256kb</li>
+<li>multiAZ</li>
+</ul>
+<p>send_message.py
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">botocore.exceptions</span> <span class="kn">import</span> <span class="n">ClientError</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--queue-name&quot;</span><span class="p">,</span> <span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Messages&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;SQS queue name&quot;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--interval&quot;</span><span class="p">,</span> <span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;timer interval&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--message&quot;</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;message to send&quot;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--log&quot;</span><span class="p">,</span> <span class="s2">&quot;-l&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;logging level&quot;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">log</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%(levelname)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+<span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;sqs&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting queue URL for queue: </span><span class="si">{args.queue_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">get_queue_url</span><span class="p">(</span><span class="n">QueueName</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">queue_name</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">queue_url</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;QueueUrl&quot;</span><span class="p">]</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Queue URL: </span><span class="si">{queue_url}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sending message: &quot;</span> <span class="o">+</span> <span class="n">message</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">MessageBody</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;MessageId: &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;MessageId&quot;</span><span class="p">])</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div></p>
+<p>receive_messages.py
+<div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">botocore.exceptions</span> <span class="kn">import</span> <span class="n">ClientError</span>
+
+<span class="n">QUEUE_NAME</span> <span class="o">=</span> <span class="s2">&quot;Messages&quot;</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%(levelname)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
+<span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;sqs&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting queue URL for queue: </span><span class="si">{QUEUE_NAME}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">get_queue_url</span><span class="p">(</span><span class="n">QueueName</span><span class="o">=</span><span class="n">QUEUE_NAME</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">queue_url</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;QueueUrl&quot;</span><span class="p">]</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Queue URL: </span><span class="si">{queue_url}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Receiving messages from queue...&quot;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">MaxNumberOfMessages</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;Messages&quot;</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">[</span><span class="s2">&quot;Messages&quot;</span><span class="p">]:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message body: </span><span class="si">{message[&#39;Body&#39;]}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># simulate work</span>
+            <span class="n">sqs</span><span class="o">.</span><span class="n">delete_message</span><span class="p">(</span>
+                <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">ReceiptHandle</span><span class="o">=</span><span class="n">message</span><span class="p">[</span><span class="s2">&quot;ReceiptHandle&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Queue is now empty&quot;</span><span class="p">)</span>
+</pre></div></p>
+<h2 id="ses-simple-email-service">SES (Simple Email Service)<a class="headerlink" href="#ses-simple-email-service" title="Permanent link">&para;</a></h2>
+<p><strong><code>AWS SES</code></strong> is for applications that need to send communications via email.</p>
+<ul>
+<li>It supports custom email header fields, and many MIME types.</li>
+<li>But it can't be used by CloudWatch to push notifications via email. </li>
+</ul>
+<h2 id="swf-simple-workflow-service">SWF (Simple Workflow Service)<a class="headerlink" href="#swf-simple-workflow-service" title="Permanent link">&para;</a></h2>
+<p>web service to coordinate synchronous and asynchronous work across distributed application components as executable code, web service calls, <strong>human actions</strong> or scripts, based on workflow tasks</p>
+<p>it makes sure a task is assinged only onces and never duplicated till 1 year</p>
+<p>SWF Actors:</p>
+<ul>
+<li>Workflow starters: start the workflow</li>
+<li>Deciders : decide what to do next if something fails or finish</li>
+<li>Activity workers</li>
+</ul>
+<p>a <strong>domain</strong> refer to a collection of related workflows</p>
+<h2 id="step-functions">Step Functions<a class="headerlink" href="#step-functions" title="Permanent link">&para;</a></h2>
+<p>Step functions eventually replace SWF using state machines with: </p>
+<ul>
+<li>deciders</li>
+<li>activity tasks</li>
+<li>worker tasks</li>
+</ul>
+<p>support pararell processing</p>
+<h2 id="amazon-polly">Amazon Polly<a class="headerlink" href="#amazon-polly" title="Permanent link">&para;</a></h2>
+<p>Machine learning service to convert text to audio mp3 (Alexa)</p>
+<h2 id="sam-serverless-application-model">SAM (Serverless Application Model)<a class="headerlink" href="#sam-serverless-application-model" title="Permanent link">&para;</a></h2>
+<p>CloudFormation extension optimized for serverless functions, APIs and tables. it can run locally with docker</p>
+<p><code>Transform</code> tag</p>
+<div class="codehilite"><pre><span></span>sam init
+
+sam deploy --guided
+</pre></div>
+
+<h2 id="ecs-elastic-container-service">ECS (Elastic Container Service)<a class="headerlink" href="#ecs-elastic-container-service" title="Permanent link">&para;</a></h2>
+<p>Amazon ECS is an orchestration service to deploy, manage, and scale Docker <strong>containers</strong> running applications, services, and batch processes. Amazon ECS places containers across your cluster based on your resource needs and is integrated with familiar features like ELB, EC2 security groups, EBS volumes and IAM roles.</p>
+<p>no VM builds required, but Ec2 can be used for more control</p>
+<p><strong>ECR</strong> (Elastic Container Registry) is the managed docker container resigry to store, manage and deploy images. it work with on-premises deployment</p>
+<p>Use <strong>Fargate</strong> to automatically build environments. Fargate is a serverless container engine (like docker). It works with both ECS and <strong>EKS</strong> (Elastic Kubernetes Service)</p>
+<ul>
+<li>container</li>
+<li>task</li>
+<li>service</li>
+<li>cluster</li>
+</ul>
+<h2 id="service-quotas">Service quotas<a class="headerlink" href="#service-quotas" title="Permanent link">&para;</a></h2>
+<p>Your AWS account has default quotas/limits for each AWS service and <strong>region</strong>.</p>
+<p>Service Quotas is an AWS service that helps you manage your quotas for over <strong>100 AWS services</strong>, from one location. Along with looking up the quota values, you can also request a quota increase from the Service Quotas console.</p>
+<h2 id="workspaces">Workspaces<a class="headerlink" href="#workspaces" title="Permanent link">&para;</a></h2>
+<p><strong><code>Amazon WorkSpaces</code></strong> provides users with a virtual desktop experience (linux or windows7, windows 10) in the cloud that can be accessed from any connected device to multiple applications</p>
+<p>storage is persistent (virtual D: drive)</p>
+<h2 id="appstream-20">AppStream 2.0<a class="headerlink" href="#appstream-20" title="Permanent link">&para;</a></h2>
+<p>allow virtual applications to be accessed from the cloud. Sample of office 365</p>
+<h2 id="analytics">Analytics<a class="headerlink" href="#analytics" title="Permanent link">&para;</a></h2>
+<h3 id="cloud-search">Cloud Search<a class="headerlink" href="#cloud-search" title="Permanent link">&para;</a></h3>
+<p><strong><code>Amazon CloudSearch</code></strong> manages all the server resources needed to build and deploy search <strong>indexes</strong>. All you have to do is upload your data to a <strong>search domain</strong> and start submitting requests.</p>
+<h3 id="es-elastic-search">ES (Elastic Search)<a class="headerlink" href="#es-elastic-search" title="Permanent link">&para;</a></h3>
+<p>for big volume of data using clusters</p>
+<h3 id="data-pipeline">Data Pipeline<a class="headerlink" href="#data-pipeline" title="Permanent link">&para;</a></h3>
+<p>using data nodes</p>
+<h3 id="aws-glue">AWS Glue<a class="headerlink" href="#aws-glue" title="Permanent link">&para;</a></h3>
+<p>ETL (Extract, Transform and Load) </p>
+<h3 id="quicksight">QuickSight<a class="headerlink" href="#quicksight" title="Permanent link">&para;</a></h3>
+<ul>
+<li>business analytics</li>
+<li>not included in your AWS subscription</li>
+</ul>
+<h3 id="athena">Athena<a class="headerlink" href="#athena" title="Permanent link">&para;</a></h3>
+<p>query data in S3 using SQL</p>
+<h2 id="developer-tools">Developer Tools<a class="headerlink" href="#developer-tools" title="Permanent link">&para;</a></h2>
+<p>AWS Solutions to manage an application project from the beginning to the end:</p>
+<h3 id="codestart">CodeStart<a class="headerlink" href="#codestart" title="Permanent link">&para;</a></h3>
+<p>full code building and deployment tool</p>
+<h3 id="codecommit">CodeCommit<a class="headerlink" href="#codecommit" title="Permanent link">&para;</a></h3>
+<p>source code repository managerment</p>
+<h3 id="codeartifact">CodeArtifact<a class="headerlink" href="#codeartifact" title="Permanent link">&para;</a></h3>
+<p>?</p>
+<h3 id="codebuild">CodeBuild<a class="headerlink" href="#codebuild" title="Permanent link">&para;</a></h3>
+<p>build and <strong>test</strong> code in the cloud</p>
+<h3 id="codedeploy">CodeDeploy<a class="headerlink" href="#codedeploy" title="Permanent link">&para;</a></h3>
+<p>Automate Code Deployment</p>
+<h3 id="codepipeline">CodePipeline<a class="headerlink" href="#codepipeline" title="Permanent link">&para;</a></h3>
+<p>CI-CD (continuous integration and continuous delivery)</p>
+<h3 id="cloud9">Cloud9<a class="headerlink" href="#cloud9" title="Permanent link">&para;</a></h3>
+<p>like visualstudio code with linux shell interface using an EC2 linux instance</p>
+<h3 id="aws-x-ray">AWS X-Ray<a class="headerlink" href="#aws-x-ray" title="Permanent link">&para;</a></h3>
+<p><code>Developer Tools - X-Ray</code> helps developers analyze and <strong>debug</strong> production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../08-Databases/" title="8. Databases" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                8. Databases
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../10-Media/" title="10. Media" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                10. Media
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Rafael Nieto Esteve
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.8e03edeb.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
