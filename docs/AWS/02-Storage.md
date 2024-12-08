@@ -202,14 +202,17 @@ Built to scale on demand to petabytes without disrupting applications.
     * To preserve the root volume when an instance terminates, change the DeleteOnTermination attribute for the root volume to False.
 * EBS doesn’t grow automatically as your data requirements increase – you would need to increase the volume size and then extend your filesystem.
 
-EBS Types:
+[Amazon EBS volume types](https://aws.amazon.com/ebs/volume-types/):
 
 * **SSD** (Solid State Drive)
-	* GP2 - General Purpose
-	* IO1 - Provisioned IOPS - from 10.000 to 32.000 Input Output per second - high performance
-* **HDD** (Hard Disk Drive)
-	* ST1 - Throughtput optimised - Low cost for frequently access
-	* SC1 - Cold HDD - Lowest cost for less frequently access
+	* GP2 - General Purpose, 3 IOPS (Input Output per second) per gb, maximun of 16000 IOPS
+    * GP3 - latest generation, from 3000 to 16000 IOPS 20% cheaper than GP2
+	* IO1 - Provisioned IOPS - 50 IOPS per gb. from 16.000 to 64.000 IOPS - high performance, more expensive
+    * IO2 - latest generation. 500 IOPS per gb. from 16.000 to 64.000 IOPS - 99.999% durability instead of 99.9%. same price as IO1
+    * IO2 Block Express - SAN in the cloud - up to 64tb and 256.000 IOPS - the highest performance, most expensive
+* **HDD** (Hard Disk Drive) They cannot be a root volume
+	* ST1 - Throughtput optimised - Low cost for frequently access. 500 mb/s. 
+	* SC1 - Cold HDD - Lowest cost for less frequently access. 250 mb/s
 	* Magnetic - Previous generation
 
     HDD based volumes will always be less expensive than SSD types. 

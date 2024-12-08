@@ -49,6 +49,7 @@ Scaling
 Backup options
 
 * backups in S3 are stored in an RDS own bucket. 
+* free storage
 * backup is for the db host, not only the databases.
 * only the DB **differences** are stored in the new snapshot.
 
@@ -63,12 +64,14 @@ Backup options
     * **automated** backup: in a multiAZ scenario, data is backed up dialy taking a snapshot from the EBS volume of the secondary RDS instance 
         * scheduled window
         * retention
-        * data can be restored to point in time on intervals of **5 minutes** based on **transactions logs**. 
+        * data can be restored to point in time on intervals of **5 minutes** based on **transactions logs** from 1 to 35 days. 
     * **manual** snapshots. `Take DB Snapshot` from RDS instance
         * kept till deleted
         * only recommended before large changes
         * we can copy snapshot to different regions (crossregion copy)
         * we can share snapshots as public or private with other aws accounts
+
+!!!tip "encrypted an unencrypted rds: snapshot of an unencrypted rds can be encrypted, so the rds restored from the new snapshot will be encripted"
 
 To mitigate the slow restore process:
 

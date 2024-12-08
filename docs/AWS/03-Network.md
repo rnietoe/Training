@@ -442,7 +442,7 @@ Disable Global Accelerator before removing is required
 
 ## Route 53
 
-**`AWS Route 53`** service name comes from port 53, where **DNS** (Domain Name System) work on 
+**`AWS Route 53`** service name comes from port 53, where **DNS** (Domain Name System) work on to map domain name to EC2 instances, Load Balancers and S3 buckets
 
 we can register a DNS using `Route53` - `Register domain`. You can purchase and manage domain names such as example.com, and Route 53 will automatically configure DNS settings for your domains
 

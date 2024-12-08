@@ -15,10 +15,10 @@ Load Balancing algorithms:
 
 [ELB types](https://aws.amazon.com/elasticloadbalancing/features/?nc1=h_ls):
 
-* ALB (**Application** Load Balancers) for intelligent routing - HTTP/HTTPS (layer 7)	
+* ALB (**Application** Load Balancers) for intelligent routing - HTTP/HTTPS (application layer 7)	
 	* **path patterns** are listener with rules to foward requests based on the **URL path**
 	* forward requests based on the **host field** in the HTTP header
-* NLB (**Network** Load Balancers) for extreme performance and static IPs - TCP/TLS (layer 4)
+* NLB (**Network** Load Balancers) for extreme performance and static IPs - TCP/TLS (transport layer 4)
 	* You can passthrough encrypted traffic with an NLB (and terminate the SSL on the EC2 instances as all data in transit encryption requirement)
 * CLB (**Classic** Load Balancers) for classic/**old/legacy** EC2 instantes or test/dev environments - low cost - HTTP/HTTPS/TCP (layers 4 and 7)
 * GLB (**Gateway** Load Balancers) to deploy, scale, and manage your third-party **virtual appliances**
@@ -34,7 +34,7 @@ Supported services:
 Some features:
 
 * Error **504** means gateway timeout
-* **X-Forwarded-For** header is used to get the IPv4 address of end users
+* **X-Forwarded-For** header is used to get the IPv4 address of end users when routing the request
 * **sticky sessions** bind a **user's session** to a specific EC2 instance. All user requests during the session are sent to the same intance (CLB) or target group (ALB)
 * **cross zone load balancing** allow ELB to send traffic to **another AZ**
     
