@@ -2,6 +2,8 @@
 
 ## Part 2
 
+[Practice Tests: Open Cloze | C1 Advanced (CAE)](https://engxam.com/handbook/practice-tests-open-cloze-c1-advanced-cae/)
+
 - articles
   - in **other** words
 - pronoums
@@ -72,6 +74,9 @@
     - **when** for time
     - **where** for places
       - For example, residential areas where there is little recycling are often less affluent.
+
+
+We pride **ourselft** on offering memorable photos | Estamos orgullosos de ofrecer fotografías memorables.
 
 ## Part 3
 
