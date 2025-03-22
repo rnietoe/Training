@@ -13,6 +13,18 @@
 | much harder               | far more demanding than  | mucho mas exigente           |
 | totally baffled about...  | confused enterily by     | completamente desconcertado  |
 
+## Essay Template
+
+Essay - [Insert Title]
+
+[Introduce the issue or debate and the proposed solutions.] Both options offer distinct advantages, but I believe that [state your choice] is the most effective solution due to [reason].
+
+[Discuss the first option, highlighting its strengths and limitations.] While this approach has merit, it also faces challenges, such as [mention key issues or concerns].
+
+[Transition to the second option, explaining why it is preferable.] By [describe the solution's benefits], this approach directly addresses the issue and offers more [mention advantages, e.g., accessibility, sustainability, etc.].
+
+[Conclude by summarizing your argument.] Although [acknowledge the merits of the alternative], I believe that [restate your choice] provides a more impactful and practical solution to [address the problem].
+
 ## Essay - Funding The Space Race: Government Or Private Companies?
 
 The question of who should fund the race to space is increasingly relevant, as both private companies and governments are pushing forward. While some believe space exploration is essential for scientific development and future survival, others think the money should solve urgent issues on Earth. I will discuss the two options - private companies versus government funding - and argue that government support is preferable.
@@ -24,8 +36,6 @@ Government funding, in contrast, treats space exploration as a public good. Agen
 In conclusion, although private companies are key contributors, government funding is necessary to keep space exploration focused on scientific priorities and public interests, benefiting everyone rather than only private entities.
 
 ## Essay - Addressing Social Networking Addiction
-
-Adressing Social Networking Addiction
 
 The rapid rise in social media obsession, especially among young people, has led to calls for increased control to mitigate its negative impact. Two possible solutions to this issue are for parents to take more responsibility for monitoring usage or for social platforms to introduce self-regulatory measures. Both options have advantages and limitations, but I believe that parental control is the most practical and effective approach to addressing this growing concern.
 
@@ -85,6 +95,59 @@ On the other hand, government intervention thourgh legislation could ensure pare
 
 In conclusion, while government action can provide a formal structure, parental responsability offes a more immediate and personal solution to managing children's misbehavior. By equipping families with the right tools and support, society can foster helathier family environments that nurture better behavior and emotional well-being in children.
  
+## Essay - The Impact of Patronage on Modern Sports
+
+Sponsorship in sport has gained a significant influence, transforming the way matches are played and perceived. Two of the main effects of sponsorship are that it makes games more exciting by increasing quality and accessibility, but it also introduces issues of injustice and inequality. While both impacts are notable, I believe the latter carries more weight due to its ethical and social implications.
+
+Firstly, sponsorship often enhances the excitement of sports. Increased funding allows teams to invest in better facilities, advanced training programs and high-profile athletes. For example, championships such as the English Premier League have benefited from lucrative sponsorship deals that improve the overall viewing experience for fans. However, while this enthusiasm is valuable, it primarily servers entertaiment and economic interests, without tackling deeper issues.
+
+On the other hand, this support to sports can create unfair advantages. Wealthier teams or individual athletes often attract more lucrative deals, leaving lesser-known competitors at a disadvantage. In addition, the pressure to secure funding can lead some individuals to engage in unethical behavour, such as doping or match-fixing, as seen in several scandals.
+
+In conclusion, while sponsorship undeniably makes sports more thrilling for audencies, its potential to foster inequiality and encourage unethical practices makes it a more pressing issue. Addressing these problems is essential to ensure that sport remains a field of competition based on principles.
+
+
+## Essay - Addressing Support for Elderly People
+
+The growing need to allocate public funds to support the elderly has sparked debate, particulary about whether priority should be given to social centres or home help services. Both options offer distinct advantages, but I believe that some form of support is the most effective choice due to its direct impact on individual needs.
+
+Social centres provide older adults with opportunities to connect and combat loneliness, which can significantly enhance their mental well-being. By offering spaces for social interaction, recreational activities and community events, these centers help foster a sense of belonging. Moreover, they encourage active lifestyles, which are vital for maintaining physical and mental health. However, such centers may not be accesible to all seniors, especially those with mobility issues or who live in remote areas.
+
+On the other hand, home help services offer personalized assistance directly to individuals, enabling them to remain in their familiar surroundings. These services address practical needs, such as cleaning, cooking and personal care, allowing older people to maintain their independence and dignity. While there are concerns about cost, home help is often more inclusive and reach those who cannot access centralized facilities.
+
+In conclusion, although social centres are valuable for their community-building benefits, I believe home help shoud be the priority. Its personalized approach and potential to reach a wider range of elderly people make it a more effective use of public funds in addressing the diverse needs of this vulnerable population.
+
+## Essay -  Addressing the Dangers of Smoking: Parental Control or Manufacturer Responsability?
+
+Addressing the Dangers of Smoking: Parental Control or Manufacturer Responsability?
+
+The dangers of smoking remain a pressing publich health issue, and a number of solutions have been proposed to mitigate its impact. Two notable options are to increase parental controls to prevent children from smoking and to hold manufacturers responsible for the harm caused by their products. Both strategies have merits, but I believe parental control is the most impactful and feasible solution.
+
+First, it seems logical to hold tobacco manufacturers liable for the damage their products cause. Companies profit from selling harmful products, so making them legally responsible could discourage unethical practices, such as targeting vulnerable populations wtih marketing campaigns. However, implementing this solution faces significant challenges. Legal battles againts cigarettes companies often take years and require substantial evidence, which makes it an unreliable approach to taclikng the issue in the short term.
+
+On the other hand, parental control directly addresses the root cause: early exposure to smoking. Parents play a crucial role in shaping their children's attitudes and behaviors. By fosteing open communication, setting a possitive example, and educating children about the risk of smoking, parents can significantly reduce the likelihood of their children taking up the habit. 
+
+In conclusion, while making manufactures accountable may have theorical appeal, its practical limitations make it less effective. Strenghening parental control offers a more inmediate and sustainable solution by addressing smoking at its source. Empowering parents through education and support is essential for combating the dangers of smoking and protecting future generations.
+
+# Computer Programming Versus Literature: What Should Schools Prioritise?
+
+The debate about which subjects schools should emphasise is an ongoing one, with choices such as computer programming and literature often generate contrasting viewpoints. Both have undeniable importance, but I believe that coding should take priority in modern education, while recognising the enduring value of literary studies.
+
+To begin with, software programming equips students with practical skills that are increasingly vital in today's digital age. Profiency in coding opens doors to high-demand careers in fields such as software engineering, artificial intelligence and data analitics. Beyond employability, these technical abilities cultivate logical thinking, problem solving and creativity. These qualities are universally valuable, fostering adaptability in a rapidly evolving job market.
+
+On the other hand, literature also holds significant value in nurturing the humanistic aspects of education, ensuring a deeper connection to culture and humanity. By exploring diverse stories and narratives, students develop critical thinking, empathy and cultural awareness. Texts like novels and proses introduce them to ideas and perpestives that technology alone cannot provide, such as their emotional intelligence and moral reasoning, which are essential for personal and societal growth.
+
+In conclusion, while both disciplines offer significant advantages, computer programming addresses the inmediate need for technological fluency in a competitive world. However, a complete curriculum must also include literature to ensure that students grow as both skilled professionals and thoughtful invididuals. 
+
+# Addressing the cost of public transport; free or fixed price?
+
+The debate about how best to fund and structure public transport has long been a topic of discussion. To tackle this issue, two commonly proposed options are making it free or charging a small fixed fee. While both choices have potential benefits and drawbacks, I believe that charging a minimal amount is a more practical and sustainable approach compared to offering free public transport.
+
+To begin with, free public transport could encourage greater use, reducing traffic congestion and pollution by persuading people to leave their cars at home. Additionally, it would make transportation more accesible to low-income individuals, fostering social equiality. However, the cost of maintaining a free system would require significant government funding. This could lead to higher taxes or budget cuts in other essential areas, such as healthcare or education. Furthermore, completely free services may result to saturation, reducing the quality of the system for regular commuters.
+
+On the other hand, charging a fixed small fee strickes a balance between affordability and sustainability. A nominal cost ensures that the system generates some revenue to support maintenance and upgrades while remaining accessible to the majority of the population. It also discourages misuse or unnecessary travel, preserving the quality and efficiency of the service.
+
+In conclusion, while free public transport has important merits, the issues of funding make it less viable in the long term. A fixed small fare ensures a more balanced approach, combining accessibility with financial stability, which benefits both users and the wider community.
+
 ## Mail - Taking a voluntary job in Peru!
 
 Hi Anna,

@@ -15,3 +15,7 @@
 | Whatever you say, I will never go there again                               | Under NO CIRCUMSTANCES WILL I EVER go there                   |
 | I am always depressed when I have to go to work on Monday mornings          | Going to work on Monday MORNINGS ALWAYS GETS ME DOWN          |
 | I don’t care who he is                                                      | Who he IS MAKES NO DIFFERENCE TO ME                           |
+
+## Formal letters
+
+[Formal Language](https://www.flo-joe.co.uk/cae/students/writing/formal-language.htm)
